@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv/
+
+# Secrets / credentials
+.env
+.env.*
+.kaggle/
+access_token
+
+# Local scratch
+*.log
+.fetch_log.txt
+.comp_pages.txt
+.shell_test
+
+# Kaggle download cache (optional; keep data/ tracked only if small)
+# data/
