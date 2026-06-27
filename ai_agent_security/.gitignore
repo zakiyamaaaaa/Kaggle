@@ -8,3 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
+
+# aicomp local evaluation history
+.aicomp/
+
+# Pulled Kaggle kernels (debug)
+kaggle-pulled/

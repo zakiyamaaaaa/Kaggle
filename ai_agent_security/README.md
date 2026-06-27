@@ -141,7 +141,7 @@ cd /Users/shoichiyamazaki/Kaggle/ai_agent_security
 uv sync
 ```
 
-Python 3.13 の仮想環境（`.venv`）が作成され、`kaggle` CLI が利用可能になります。
+Python 3.13 の仮想環境（`.venv`）が作成され、`kaggle` CLI と **`aicomp` CLI**（[`aicomp-sdk`](https://pypi.org/project/aicomp-sdk/)）が利用可能になります。
 
 ### Kaggle 認証
 
@@ -151,17 +151,62 @@ uv run kaggle auth login
 
 または [Settings → API](https://www.kaggle.com/settings) でトークンを発行し、環境変数 `KAGGLE_API_TOKEN` または `~/.kaggle/access_token` に設定します。
 
+## ローカル検証（aicomp）
+
+[JED Framework](https://mbhatt1.github.io/competitionscratch/) 公式 SDK/CLI。Kaggle 提出前に `attack.py` の形式チェックと短時間テストができます。
+
+| 名前 | 役割 |
+|---|---|
+| `aicomp_sdk` | Python ライブラリ（`AttackAlgorithmBase`, `eval_predicates` 等） |
+| `aicomp` | CLI（`validate` / `test` / `evaluate`） |
+
+**ローカルと本番の違い:** ローカルの predicate 判定・guardrail・エージェントは本番 evaluator と完全一致しません。ローカルは **形式確認** と **開発ヒント** 用、LB スコアは提出後の replay で確定します。
+
+### よく使うコマンド
+
+```bash
+# 提出形式チェック（クラス名・import・構造）
+uv run aicomp validate redteam experiments/runs/exp-002-exfil-encoding/attack.py
+
+# 短時間 smoke test（API キー不要・deterministic agent）
+uv run aicomp test redteam experiments/runs/exp-002-exfil-encoding/attack.py \
+  --budget-s 600 --agent deterministic
+
+# Kaggle 寄りの評価（Gym 環境）
+uv run aicomp evaluate redteam experiments/runs/exp-002-exfil-encoding/attack.py \
+  --budget-s 600 --agent deterministic --env gym
+
+# 実行履歴・比較
+uv run aicomp history
+uv run aicomp compare <run_id1> <run_id2>
+```
+
+結果 JSON は `.aicomp/history/` に保存されます。
+
+### ローカル test の注意
+
+- **`--budget-s` は `attack.py` 内の `margin_s` より長く** 取る（例: `margin_s=180` なら `--budget-s 600` 以上）
+- `deterministic` agent は本番 LLM と挙動が異なり、**0 findings でも正常** のことがある
+- 本番 default は attack budget **1800 秒**（`--budget-s 1800` で近い条件を試せる）
+
+### 公式ドキュメント（aicomp）
+
+- [Attacks Guide](https://mbhatt1.github.io/competitionscratch/ATTACKS_GUIDE.html)
+- [Kaggle Red-Team Guide](https://mbhatt1.github.io/competitionscratch/KAGGLE_REDTEAM_GUIDE.html)
+- [FAQ](https://mbhatt1.github.io/competitionscratch/FAQ.html)
+
 ## 実験管理の流れ
 
 1. `new` で実験フォルダを作成
 2. `experiments/runs/<exp_id>/attack.py` を編集
-3. Kaggle ノートブックに反映して提出
-4. 提出時の **Version description** に `exp_id` を含める
-5. `sync` でリーダーボード得点を取得
-6. `list` / `show` / CSV で結果を確認
+3. **`aicomp validate` → `aicomp test`** でローカル確認
+4. Kaggle ノートブックに反映して提出
+5. 提出時の **Version description** に `exp_id` を含める
+6. `sync` でリーダーボード得点を取得
+7. `list` / `show` / CSV で結果を確認
 
 ```text
-new → edit attack.py → Kaggle submit → sync → list/show
+new → edit attack.py → aicomp validate/test → Kaggle submit → sync → list/show
 ```
 
 ## コマンド一覧
@@ -270,9 +315,10 @@ exp-002-multi-turn-v2 | snapshot branching improved
 ```text
 ai_agent_security/
 ├── README.md
-├── pyproject.toml          # 依存関係（uv 管理）
+├── pyproject.toml          # 依存関係（uv 管理: kaggle, aicomp-sdk）
 ├── uv.lock                 # ロックファイル
 ├── .python-version         # Python 3.13
+├── .aicomp/history/        # aicomp test/evaluate の結果 JSON
 ├── getting-started-notebook.ipynb
 ├── scripts/
 │   ├── exp.py              # 実験管理 CLI

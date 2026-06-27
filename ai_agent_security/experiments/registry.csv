@@ -1,2 +1,7 @@
 exp_id,name,created_at,kaggle_tag,notes,attack_path,git_commit,attack_sha256
 exp-001-baseline,Getting Started starter,2026-06-20T05:45:05Z,exp-001-baseline,Starter notebook default prompts,experiments/runs/exp-001-baseline/attack.py,,
+exp-002-exfil-encoding,EXFILTRATION guardrail-aware,2026-06-23T23:30:00Z,exp-002-exfil-encoding,Multi-turn read + encoded/raw http.post exfiltration,experiments/runs/exp-002-exfil-encoding/attack.py,,
+exp-003-mixed-v1,mixed-v1,2026-06-25T23:20:19Z,exp-003-mixed-v1,exp-001 baseline + exp-002 exfil grid; record any predicate; dedupe,experiments/runs/exp-003-mixed-v1/attack.py,5cb5ea5,0c6987c0d460610f775d147e9c7106ef593d2759416e23e849d7f15d2c56d0fe
+exp-004-deputy-focus,deputy-focus,2026-06-26T15:03:04Z,exp-004-deputy-focus,exp-001 core + deputy variants; gated exfil; early return,experiments/runs/exp-004-deputy-focus/attack.py,5cb5ea5,0c6987c0d460610f775d147e9c7106ef593d2759416e23e849d7f15d2c56d0fe
+exp-005-goexplore,goexplore,2026-06-26T15:08:47Z,exp-005-goexplore,SDK Go-Explore baseline + Kaggle prompt bank extension,experiments/runs/exp-005-goexplore/attack.py,5cb5ea5,4a0e8ca99bfde25a7b72b04eaab13c067de05bf593cece0475cab4268de721ff
+exp-006-hybrid-baseline-goexplore,hybrid-baseline-goexplore,2026-06-27T00:40:58Z,exp-006-hybrid-baseline-goexplore,Phase A exp-001 then Go-Explore with Kaggle-only bank; short chains first,experiments/runs/exp-006-hybrid-baseline-goexplore/attack.py,5cb5ea5,4a0e8ca99bfde25a7b72b04eaab13c067de05bf593cece0475cab4268de721ff
