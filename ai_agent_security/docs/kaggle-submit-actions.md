@@ -1,10 +1,16 @@
-# GitHub Actions Kaggle Submit Flow
+# GitHub Actions Kaggle Kernel Push Flow
 
 ## 概要
 
 `main`へpushするとCIが走ります。変更ファイルが
 `ai_agent_security/kaggle-push/<exp>/`直下の提出用ファイルだった場合だけ、
-CI成功後にKaggleへ提出します。
+CI成功後にKaggleへkernel versionをpushします。
+
+> 注意: このcompetitionでは `kaggle competitions submit -k ... -v ...`
+> を使うと、hosted evaluator rerunではなくkernel outputの
+> `submission.csv` を静的に提出してしまい、`Submission Format Error`に
+> なります。APIで行うのはkernel pushと完了確認までにし、最終提出は
+> Kaggle Notebook画面右側の **Submit to Competition** から行います。
 
 提出対象として見るファイル:
 
@@ -28,7 +34,7 @@ KAGGLE_API_TOKEN
 
 Kaggle SettingsのAPI画面で発行したtoken文字列をそのまま入れます。
 
-## 自動提出
+## 自動push
 
 1回のpushで変更できる提出bundleは1つだけです。
 
@@ -44,14 +50,14 @@ CIが成功すると、workflowは以下を実行します。
 ```bash
 kaggle kernels push -p ai_agent_security/kaggle-push/<exp>
 kaggle kernels status <kernel>/<version>
-kaggle competitions submit ai-agent-security-multi-step-tool-attacks \
-  -f attack.py \
-  -k <kernel> \
-  -v <version> \
-  -m "<exp> github:<sha>"
+kaggle kernels files <kernel>/<version>
 ```
 
-## 手動提出
+`submission.csv` がoutputにあることを確認したら、Kaggle Notebook画面で
+該当versionを開き、右側パネルの **Submit to Competition** からnotebook自体を
+提出します。output tabの`submission.csv`を提出しないでください。
+
+## 手動push
 
 Actionsの`CI and Kaggle Submit` workflowを手動実行し、`exp_id`に
 `exp-007`のような`kaggle-push`配下のディレクトリ名を指定します。

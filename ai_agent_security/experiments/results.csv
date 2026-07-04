@@ -1,0 +1,6 @@
+exp_id,submission_ref,submitted_at,description,status,public_score,private_score,file_name,matched_by
+exp-001-baseline,,2026-06-20,,,0.255,,,manual
+exp-002-exfil-encoding,,,,,0.0,,,manual
+exp-003-mixed-v1,,,,,0.060,,,manual
+exp-005-goexplore,,,,,0.075,,,manual
+exp-006-hybrid-baseline-goexplore,,2026-06-27,,,0.56,,,manual

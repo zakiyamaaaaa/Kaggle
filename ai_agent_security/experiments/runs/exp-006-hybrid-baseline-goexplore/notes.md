@@ -16,22 +16,20 @@ Combine **replay-proven fixed prompts first**, then **Kaggle-only Go-Explore** o
 | **B** | Go-Explore if ≥240s remain; `KAGGLE_GOEXPLORE_BANK` only (no install.txt / chain_attack_*) |
 | **C** | Sort findings by chain length (short first), cap 2000 |
 
-Go-Explore params (Phase B): `branch_batch=10`, `max_turns=12` (shorter chains for replay).
+Go-Explore params (Phase B): `branch_batch=8`, `max_turns=10` (v2; shorter chains for replay).
 
-## vs exp-005-goexplore
+## Results
 
-- Phase A locks in exp-001-style wins before exploration
-- Prompt bank replaced (not DEFAULT + extension)
-- Shorter max_turns / smaller branch_batch
-- Return order favors short chains
+| exp_id | public_score | notes |
+|---|---|---|
+| exp-006-hybrid-baseline-goexplore | **0.56** | Kaggle submit (v2); Format Error 解消後 |
+| exp-001-baseline | 0.255 | |
+| exp-005-goexplore | 0.075 | |
+| exp-003-mixed-v1 | 0.060 | |
 
-## Prior scores
+**0.56 は exp-001 (0.255) の約 2.2 倍。** Phase A（固定プロンプト先行）+ Phase B（Go-Explore 余り時間）の仮説が裏付けられた。
 
-| exp_id | score |
-|---|---|
-| exp-001-baseline | 0.255 |
-| exp-005-goexplore | 0.075 |
-| exp-003-mixed-v1 | 0.060 |
+## Prior scores (historical)
 
 ## Local test
 
@@ -47,4 +45,10 @@ uv run aicomp test redteam experiments/runs/exp-006-hybrid-baseline-goexplore/at
 2. Save & Run All (Commit) — T4 x2
 3. Version description: `exp-006-hybrid-baseline-goexplore`
 4. Submit on Kaggle UI
-5. After score: `uv run python scripts/exp.py sync` (local only, not submit)
+5. After score: `uv run python scripts/exp.py sync` (local only)
+
+## Format error fix (v2)
+
+Commit success != submission success. Evaluation runs `run()` for ~1800s separately.
+v2 changes: global generation deadline with 120s buffer, try/except around exploration,
+lazy Go-Explore import, smaller branch_batch/max_turns, always return `list[AttackCandidate]`.

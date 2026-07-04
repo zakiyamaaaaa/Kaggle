@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Push a Kaggle kernel bundle, wait for it to finish, then submit it."""
+"""Push a Kaggle kernel bundle and wait for it to finish.
+
+For this competition, `kaggle competitions submit -k ... -v ...` submits the
+kernel output CSV statically and can produce Submission Format Error. Use this
+script to create a completed kernel version, then submit the notebook from the
+Kaggle UI's "Submit to Competition" button.
+"""
 
 from __future__ import annotations
 
@@ -95,7 +101,7 @@ def submit_kernel(args: argparse.Namespace) -> None:
     kernel_id = metadata["id"]
 
     if args.dry_run:
-        print(f"Dry run: would push and submit {kernel_id} from {bundle_dir}")
+        print(f"Dry run: would push and wait for {kernel_id} from {bundle_dir}")
         return
 
     push_result = _run(["kaggle", "kernels", "push", "-p", str(bundle_dir)])
@@ -106,6 +112,16 @@ def submit_kernel(args: argparse.Namespace) -> None:
         timeout_seconds=args.timeout_minutes * 60,
         poll_seconds=args.poll_seconds,
     )
+
+    if not args.submit_static_output:
+        print()
+        print(f"Kernel {kernel_id}/{version} is complete.")
+        print("Submit this notebook version from Kaggle UI: Submit to Competition.")
+        print(
+            "Do not use `kaggle competitions submit -k ... -v ...` for this "
+            "competition unless you intentionally want a static output-file submit."
+        )
+        return
 
     submit_cmd = [
         "kaggle",
@@ -126,19 +142,30 @@ def submit_kernel(args: argparse.Namespace) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Push a Kaggle kernel bundle and submit the completed version."
+        description="Push a Kaggle kernel bundle and wait for the completed version."
     )
     parser.add_argument("bundle_dir", help="Path to ai_agent_security/kaggle-push/<exp>.")
     parser.add_argument("--competition", default=COMPETITION)
     parser.add_argument(
         "--output-file",
-        default="attack.py",
-        help="Kernel output file name to submit for the code competition.",
+        default="submission.csv",
+        help=(
+            "Static kernel output file name to submit only when "
+            "--submit-static-output is set."
+        ),
     )
     parser.add_argument("--message", required=True, help="Kaggle submission message.")
     parser.add_argument("--timeout-minutes", type=int, default=360)
     parser.add_argument("--poll-seconds", type=int, default=60)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--submit-static-output",
+        action="store_true",
+        help=(
+            "Dangerous for this competition: submit the completed kernel output "
+            "file statically via Kaggle API."
+        ),
+    )
     return parser
 
 
