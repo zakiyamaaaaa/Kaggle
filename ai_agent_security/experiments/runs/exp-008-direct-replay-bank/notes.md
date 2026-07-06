@@ -54,9 +54,22 @@ generation.
 ```bash
 uv run aicomp validate redteam experiments/runs/exp-008-direct-replay-bank/attack.py
 uv run aicomp test redteam experiments/runs/exp-008-direct-replay-bank/attack.py \
-  --budget-s 600 --agent deterministic --env gym --verbosity progress
+  --budget-s 300 --agent deterministic --env gym --verbosity progress
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-008
 ```
+
+Run on 2026-07-06:
+
+- `aicomp validate`: passed.
+- `aicomp test --budget-s 300 --agent deterministic --env gym --verbosity progress`:
+  completed in 1.8s with 0 scored findings. This is acceptable as a smoke test
+  for format/replay plumbing; deterministic local agent is not expected to match
+  hosted model behavior.
+- Direct `AttackAlgorithm().run()` check with a 300s dummy config returned 29
+  candidates.
+- `python3 scripts/validate_submission_bundle.py kaggle-push/exp-008`: passed.
+- `submit.ipynb` and `kaggle-push/exp-008/exp-008-direct-replay-bank.ipynb`
+  embed code matching `attack.py`.
 
 ## Kaggle submit
 
