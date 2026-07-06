@@ -45,16 +45,27 @@
 
 ## ローカル検証
 
-実行予定:
+完了済み:
 
 ```bash
 python3 -m py_compile experiments/runs/exp-008-pattern-harvest/attack.py
-uv run aicomp validate redteam experiments/runs/exp-008-pattern-harvest/attack.py
-uv run aicomp test redteam experiments/runs/exp-008-pattern-harvest/attack.py \
+$HOME/.local/bin/aicomp validate redteam experiments/runs/exp-008-pattern-harvest/attack.py
+$HOME/.local/bin/aicomp test redteam experiments/runs/exp-008-pattern-harvest/attack.py \
   --budget-s 300 --agent deterministic --env gym --verbosity progress
+python3 scripts/validate_submission_bundle.py kaggle-push/exp-008
 ```
 
-注意: この実験は固定候補を即時返却するため、ローカル `deterministic/gym` の findings は replay bank の件数確認が中心になる。本番のスコアは Kaggle evaluator の replay で確定する。
+結果:
+
+- `py_compile`: 成功
+- `aicomp validate`: 成功
+- `validate_submission_bundle.py`: 成功
+- direct replay bank 返却候補: 66 件
+- 最大ターン数: 2
+- 最大メッセージ長: 89 文字
+- `aicomp test deterministic/gym`: 4.2 秒で完了、score 0 / findings 0
+
+注意: この実験は固定候補を即時返却するため、ローカル `deterministic/gym` は形式確認と候補 replay の smoke test として扱う。本番のスコアは Kaggle evaluator の LLM replay で確定する。
 
 ## 提出
 
