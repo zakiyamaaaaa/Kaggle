@@ -37,6 +37,16 @@ aicomp validate redteam experiments/runs/exp-009-direct-replay-bank/attack.py
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-009
 ```
 
+結果:
+
+- `py_compile`: pass
+- `aicomp validate`: pass
+- `validate_submission_bundle.py`: pass
+- notebook 内 `attack_code` と実験版 `attack.py` の一致: pass
+- 固定候補数: `206`
+- 最大ターン数: `2`
+- 最大メッセージ長: `83`
+
 `aicomp test` は deterministic/gym が本番 replay と大きく異なり、固定バンク型では 0 findings でも blocker ではないため、必要に応じて短時間 smoke test として扱う。
 
 ## 提出
