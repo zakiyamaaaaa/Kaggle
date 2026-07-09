@@ -40,13 +40,26 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-011
 
 結果:
 
-- `py_compile`: 実行予定
-- `aicomp validate`: 実行予定
-- `validate_submission_bundle.py`: 実行予定
-- notebook 内 `attack_code` と実験版 `attack.py` の一致: 実行予定
-- 固定候補数: 実行予定
-- 最大ターン数: 実行予定
-- 最大メッセージ長: 実行予定
+- `py_compile`: pass
+- `aicomp validate`: pass
+- `validate_submission_bundle.py`: pass
+- notebook 内 `attack_code` と実験版 `attack.py` の一致: pass
+- 固定候補数: `72`
+- 最大ターン数: `2`
+- 最大メッセージ長: `89`
+
+追加 smoke test:
+
+```bash
+aicomp test redteam experiments/runs/exp-011-prioritized-replay-bank/attack.py \
+  --budget-s 300 --agent deterministic --env gym --verbosity progress
+```
+
+結果:
+
+- 実行時間: `4.2s`
+- findings: `0`
+- score: `0.00`
 
 固定 replay bank 型は、本番 LLM replay に候補を渡すことが主目的である。ローカル deterministic/gym はツール実行の形式確認・破綻検知の proxy として扱う。
 
