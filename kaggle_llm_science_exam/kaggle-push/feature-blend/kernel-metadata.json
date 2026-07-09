@@ -1,0 +1,15 @@
+{
+  "id": "zacky21/llm-science-feature-blend",
+  "title": "LLM Science Feature Blend",
+  "code_file": "feature-blend.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "kaggle-llm-science-exam"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": []
+}
