@@ -44,19 +44,20 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-011
 - `validate_submission_bundle.py`: pass
 - notebook 内 `attack_code` と実験版 `attack.py` の一致: pass
 - `aicomp validate`: pass
-- 固定候補数: `61`
+- 固定候補数: `62`
 - 最大ターン数: `2`
-- 最大メッセージ長: `89`
+- 最大メッセージ長: `86`
 
 追加 smoke test:
 
 ```bash
-aicomp test redteam experiments/runs/exp-011-prioritized-replay-bank/attack.py   --budget-s 300 --agent deterministic --env gym --verbosity progress
+aicomp test redteam experiments/runs/exp-011-prioritized-replay-bank/attack.py \
+  --budget-s 300 --agent deterministic --env gym --verbosity progress
 ```
 
 結果:
 
-- 実行時間: `4.4s`
+- 実行時間: `3.7s`
 - findings: `0`
 - score: `0.00`
 
