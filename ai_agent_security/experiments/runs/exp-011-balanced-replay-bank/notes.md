@@ -34,15 +34,38 @@
 
 ## ローカル検証
 
-実装直後の検証予定:
+実装後に以下を実行した。
 
 ```bash
 python3 -m py_compile experiments/runs/exp-011-balanced-replay-bank/attack.py
-uv run aicomp validate redteam experiments/runs/exp-011-balanced-replay-bank/attack.py
+aicomp validate redteam experiments/runs/exp-011-balanced-replay-bank/attack.py
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-011
 ```
 
-固定 replay bank 型のため、`aicomp test --agent deterministic --env gym` の findings 0 は本番提出の blocker とは扱わない。
+結果:
+
+- `py_compile`: pass
+- `aicomp validate`: pass
+- `validate_submission_bundle.py`: pass
+- notebook 内 `attack_code` と実験版 `attack.py` の一致: pass
+- 固定候補数: `764`
+- 最大ターン数: `3`
+- 最大メッセージ長: `88`
+
+追加 smoke test:
+
+```bash
+aicomp test redteam experiments/runs/exp-011-balanced-replay-bank/attack.py \
+  --budget-s 300 --agent deterministic --env gym --verbosity progress
+```
+
+結果:
+
+- 実行時間: `43.3s`
+- findings: `0`
+- score: `0.00`
+
+固定 replay bank 型は、本番 LLM replay に候補を渡すことが主目的である。ローカル deterministic/gym はツール実行の形式確認・破綻検知の proxy であり、0 findings は Kaggle 提出の blocker とは扱わない。
 
 ## 提出
 
