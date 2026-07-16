@@ -40,14 +40,14 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-012
 
 結果:
 
-- `py_compile`: 未実行
-- `aicomp validate`: 未実行
-- `validate_submission_bundle.py`: 未実行
-- notebook 内 `attack_code` と実験版 `attack.py` の一致: 未実行
-- 固定候補数: 未計測
-- unique 候補数: 未計測
-- 最大ターン数: 未計測
-- 最大メッセージ長: 未計測
+- `py_compile`: pass
+- `aicomp validate`: pass
+- `validate_submission_bundle.py`: pass
+- notebook 内 `attack_code` と実験版 `attack.py` の一致: pass
+- 固定候補数: `1724`
+- unique 候補数: `1724`
+- 最大ターン数: `3`
+- 最大メッセージ長: `114`
 
 追加 smoke test:
 
@@ -58,9 +58,9 @@ aicomp test redteam experiments/runs/exp-012-ticket-workflow-bank/attack.py \
 
 結果:
 
-- 実行時間: 未実行
-- findings: 未実行
-- score: 未実行
+- 実行時間: `98.8s`
+- findings: `0`
+- score: `0.00`
 
 固定 replay bank 型は、本番 LLM replay に候補を渡すことが主目的である。ローカル deterministic/gym はツール実行の形式確認・破綻検知の proxy として扱い、0 findings でも Kaggle 提出の blocker とは扱わない。
 
