@@ -1,0 +1,86 @@
+name: Python CI
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# This workflow may inspect PR code, but it receives no write token or secrets.
+permissions:
+  contents: read
+
+concurrency:
+  group: python-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-ci:
+    name: Python CI
+    if: github.event_name != 'pull_request_target' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout PR head or default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Compile Python files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import py_compile
+
+          excluded = {".git", ".venv", "__pycache__"}
+          files = [
+              path
+              for path in Path(".").rglob("*.py")
+              if not excluded.intersection(path.parts)
+          ]
+          for path in sorted(files):
+              py_compile.compile(str(path), doraise=True)
+          print(f"Compiled {len(files)} Python files.")
+          PY
+
+      - name: Validate Kaggle bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          bundles=(ai_agent_security/kaggle-push/*)
+          if (( ${#bundles[@]} == 0 )); then
+            echo "No Kaggle bundles found."
+            exit 0
+          fi
+          for bundle in "${bundles[@]}"; do
+            if [[ -d "$bundle" ]]; then
+              python ai_agent_security/scripts/validate_submission_bundle.py "$bundle"
+            fi
+          done
+
+      - name: Run pytest when tests exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test_file="$(find . \
+            -path './.git' -prune -o \
+            -path '*/.venv' -prune -o \
+            -type f \( -name 'test_*.py' -o -name '*_test.py' \) -print -quit)"
+          if [[ -z "$test_file" ]]; then
+            echo "No pytest files found; syntax and bundle validation are the current CI checks."
+            exit 0
+          fi
+          python -m pip install --disable-pip-version-check pytest
+          python -m pytest -q
+
+      - name: Check whitespace errors
+        run: git diff --check
