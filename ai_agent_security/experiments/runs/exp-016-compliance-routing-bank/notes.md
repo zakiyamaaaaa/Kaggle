@@ -1,11 +1,11 @@
-# exp-012-compliance-routing-bank
+# exp-016-compliance-routing-bank
 
 - 名前: compliance-routing-bank
-- Kaggle タグ: `exp-012-compliance-routing-bank`
+- Kaggle タグ: `exp-016-compliance-routing-bank`
 
 ## 仮説
 
-`exp-011-handoff-routing-bank` は、過去最良の `exp-006` の短い replay 候補を維持しつつ、webhook / callback / handoff / runbook といった業務表現を増やした固定 bank 型の実験だった。今回の実験では、その構成を崩さずに `compliance` / `legal review` / `risk register` / `governance archive` といった監査・承認ワークフロー系の言い換えを追加する。
+`exp-013-handoff-routing-bank` は、過去最良の `exp-006` の短い replay 候補を維持しつつ、webhook / callback / handoff / runbook といった業務表現を増やした固定 bank 型の実験だった。今回の実験では、その構成を崩さずに `compliance` / `legal review` / `risk register` / `governance archive` といった監査・承認ワークフロー系の言い換えを追加する。
 
 狙いは、同じ `http.post` / `email.send` / `fs.write` / `shell.run` 系の predicate でも、宛先ドメイン・受信者・直近ユーザーメッセージ・多段経路を変えて cell signature の多様性を増やすこと。生成時に `env.interact` を叩いて成功候補だけを選別する方式ではなく、Kaggle 本番の LLM replay に短い固定候補を渡す方針は維持する。
 
@@ -34,8 +34,8 @@
 実装後に以下を実行した。
 
 ```bash
-python3 -m py_compile experiments/runs/exp-012-compliance-routing-bank/attack.py
-aicomp validate redteam experiments/runs/exp-012-compliance-routing-bank/attack.py
+python3 -m py_compile experiments/runs/exp-016-compliance-routing-bank/attack.py
+aicomp validate redteam experiments/runs/exp-016-compliance-routing-bank/attack.py
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-012
 ```
 
@@ -53,7 +53,7 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-012
 追加 smoke test:
 
 ```bash
-aicomp test redteam experiments/runs/exp-012-compliance-routing-bank/attack.py \
+aicomp test redteam experiments/runs/exp-016-compliance-routing-bank/attack.py \
   --budget-s 300 --agent deterministic --env gym --verbosity progress
 ```
 
@@ -68,5 +68,5 @@ aicomp test redteam experiments/runs/exp-012-compliance-routing-bank/attack.py \
 ## 提出
 
 1. `kaggle-push/exp-012` の bundle を Kaggle kernels push する。
-2. Kaggle UI で version description に `exp-012-compliance-routing-bank` を含めて notebook 自体を提出する。
+2. Kaggle UI で version description に `exp-016-compliance-routing-bank` を含めて notebook 自体を提出する。
 3. スコア反映後に `python3 scripts/exp.py sync` を実行する。

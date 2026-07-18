@@ -1,11 +1,11 @@
-# exp-012-ticket-workflow-bank
+# exp-017-ticket-workflow-bank
 
 - 名前: ticket-workflow-bank
-- Kaggle タグ: `exp-012-ticket-workflow-bank`
+- Kaggle タグ: `exp-017-ticket-workflow-bank`
 
 ## 仮説
 
-直近の `exp-011-handoff-routing-bank` は、過去最良系統である短い固定 replay bank を維持しつつ handoff / routing 表現を追加して候補の多様性を増やした。候補数は上限 2000 に対してまだ余裕があるため、同じ predicate を別の業務文脈で誘発する候補を増やす余地がある。
+直近の `exp-013-handoff-routing-bank` は、過去最良系統である短い固定 replay bank を維持しつつ handoff / routing 表現を追加して候補の多様性を増やした。候補数は上限 2000 に対してまだ余裕があるため、同じ predicate を別の業務文脈で誘発する候補を増やす余地がある。
 
 今回の実験では、Kaggle 本番 LLM が自然にツールを使いそうな `ticket` / `incident` / `workflow` / `casework` / `triage` の表現を追加する。HTTP 外部送信、メール送信、読み取り後の証跡添付、untrusted content 由来の実行・書き込み、`secret.txt` の cleanup を ticket 処理として言い換え、cell signature の重複を減らすことを狙う。
 
@@ -33,8 +33,8 @@
 実装後に以下を実行する。
 
 ```bash
-python3 -m py_compile experiments/runs/exp-012-ticket-workflow-bank/attack.py
-aicomp validate redteam experiments/runs/exp-012-ticket-workflow-bank/attack.py
+python3 -m py_compile experiments/runs/exp-017-ticket-workflow-bank/attack.py
+aicomp validate redteam experiments/runs/exp-017-ticket-workflow-bank/attack.py
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-012
 ```
 
@@ -52,7 +52,7 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-012
 追加 smoke test:
 
 ```bash
-aicomp test redteam experiments/runs/exp-012-ticket-workflow-bank/attack.py \
+aicomp test redteam experiments/runs/exp-017-ticket-workflow-bank/attack.py \
   --budget-s 300 --agent deterministic --env gym --verbosity progress
 ```
 
@@ -67,5 +67,5 @@ aicomp test redteam experiments/runs/exp-012-ticket-workflow-bank/attack.py \
 ## 提出
 
 1. `kaggle-push/exp-012` の bundle を Kaggle kernels push する。
-2. Kaggle UI で version description に `exp-012-ticket-workflow-bank` を含めて notebook 自体を提出する。
+2. Kaggle UI で version description に `exp-017-ticket-workflow-bank` を含めて notebook 自体を提出する。
 3. スコア反映後に `python3 scripts/exp.py sync` を実行する。

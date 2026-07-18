@@ -1,7 +1,7 @@
-# exp-010-structured-replay-bank
+# exp-015-structured-replay-bank
 
 - 名前: structured-replay-bank
-- Kaggle タグ: `exp-010-structured-replay-bank`
+- Kaggle タグ: `exp-015-structured-replay-bank`
 
 ## 仮説
 
@@ -33,8 +33,8 @@
 実装後に以下を実行した。
 
 ```bash
-python3 -m py_compile experiments/runs/exp-010-structured-replay-bank/attack.py
-aicomp validate redteam experiments/runs/exp-010-structured-replay-bank/attack.py
+python3 -m py_compile experiments/runs/exp-015-structured-replay-bank/attack.py
+aicomp validate redteam experiments/runs/exp-015-structured-replay-bank/attack.py
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-010
 ```
 
@@ -51,7 +51,7 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-010
 追加 smoke test:
 
 ```bash
-aicomp test redteam experiments/runs/exp-010-structured-replay-bank/attack.py \
+aicomp test redteam experiments/runs/exp-015-structured-replay-bank/attack.py \
   --budget-s 300 --agent deterministic --env gym --verbosity progress
 ```
 
@@ -66,5 +66,5 @@ aicomp test redteam experiments/runs/exp-010-structured-replay-bank/attack.py \
 ## 提出
 
 1. `kaggle-push/exp-010` の bundle を Kaggle kernels push する。
-2. Kaggle UI で version description に `exp-010-structured-replay-bank` を含めて notebook 自体を提出する。
+2. Kaggle UI で version description に `exp-015-structured-replay-bank` を含めて notebook 自体を提出する。
 3. スコア反映後に `python3 scripts/exp.py sync` を実行する。

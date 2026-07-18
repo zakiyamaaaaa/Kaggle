@@ -1,7 +1,7 @@
-# exp-011-handoff-routing-bank
+# exp-013-handoff-routing-bank
 
 - 名前: handoff-routing-bank
-- Kaggle タグ: `exp-011-handoff-routing-bank`
+- Kaggle タグ: `exp-013-handoff-routing-bank`
 
 ## 仮説
 
@@ -33,8 +33,8 @@
 実装後に以下を実行した。
 
 ```bash
-python3 -m py_compile experiments/runs/exp-011-handoff-routing-bank/attack.py
-aicomp validate redteam experiments/runs/exp-011-handoff-routing-bank/attack.py
+python3 -m py_compile experiments/runs/exp-013-handoff-routing-bank/attack.py
+aicomp validate redteam experiments/runs/exp-013-handoff-routing-bank/attack.py
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-011
 ```
 
@@ -52,7 +52,7 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-011
 追加 smoke test:
 
 ```bash
-aicomp test redteam experiments/runs/exp-011-handoff-routing-bank/attack.py \
+aicomp test redteam experiments/runs/exp-013-handoff-routing-bank/attack.py \
   --budget-s 300 --agent deterministic --env gym --verbosity progress
 ```
 
@@ -67,5 +67,5 @@ aicomp test redteam experiments/runs/exp-011-handoff-routing-bank/attack.py \
 ## 提出
 
 1. `kaggle-push/exp-011` の bundle を Kaggle kernels push する。
-2. Kaggle UI で version description に `exp-011-handoff-routing-bank` を含めて notebook 自体を提出する。
+2. Kaggle UI で version description に `exp-013-handoff-routing-bank` を含めて notebook 自体を提出する。
 3. スコア反映後に `python3 scripts/exp.py sync` を実行する。

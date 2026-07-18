@@ -1,7 +1,7 @@
-# exp-008-pattern-harvest
+# exp-010-pattern-harvest
 
 - 名前: pattern-harvest
-- Kaggle タグ: `exp-008-pattern-harvest`
+- Kaggle タグ: `exp-010-pattern-harvest`
 
 ## 仮説
 
@@ -48,9 +48,9 @@
 完了済み:
 
 ```bash
-python3 -m py_compile experiments/runs/exp-008-pattern-harvest/attack.py
-$HOME/.local/bin/aicomp validate redteam experiments/runs/exp-008-pattern-harvest/attack.py
-$HOME/.local/bin/aicomp test redteam experiments/runs/exp-008-pattern-harvest/attack.py \
+python3 -m py_compile experiments/runs/exp-010-pattern-harvest/attack.py
+$HOME/.local/bin/aicomp validate redteam experiments/runs/exp-010-pattern-harvest/attack.py
+$HOME/.local/bin/aicomp test redteam experiments/runs/exp-010-pattern-harvest/attack.py \
   --budget-s 300 --agent deterministic --env gym --verbosity progress
 python3 scripts/validate_submission_bundle.py kaggle-push/exp-008
 ```
@@ -69,7 +69,7 @@ python3 scripts/validate_submission_bundle.py kaggle-push/exp-008
 
 ## 提出
 
-1. `kaggle-push/exp-008/exp-008-pattern-harvest.ipynb` を push する。
-2. Kaggle version description は `exp-008-pattern-harvest | direct replay bank + compact go-explore` にする。
+1. `kaggle-push/exp-008/exp-010-pattern-harvest.ipynb` を push する。
+2. Kaggle version description は `exp-010-pattern-harvest | direct replay bank + compact go-explore` にする。
 3. CI で kernel version が作られたら、Kaggle UI の **Submit to Competition** から notebook を提出する。
 4. スコアが反映されたら `python3 scripts/exp.py sync` を実行する。
