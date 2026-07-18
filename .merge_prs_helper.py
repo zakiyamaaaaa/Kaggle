@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resolve registry.csv merge conflicts by unioning rows on exp_id."""
+"""Resolve git merge conflict markers by keeping the HEAD side."""
 
 from __future__ import annotations
 
@@ -28,10 +28,10 @@ def exp_sort_key(exp_id: str) -> tuple[int, str]:
     return 9999, exp_id
 
 
-def resolve_registry(path: Path) -> None:
+def resolve_registry(path: Path) -> bool:
     text = path.read_text(encoding="utf-8")
     if "<<<<<<<" not in text:
-        return
+        return False
     ours, theirs = text.split("<<<<<<< HEAD", 1)[1].split("=======", 1)
     theirs = theirs.split(">>>>>>>", 1)[0]
     merged = parse_registry_lines(ours)
@@ -40,12 +40,13 @@ def resolve_registry(path: Path) -> None:
     for exp_id in sorted(merged, key=exp_sort_key):
         lines.append(merged[exp_id])
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return True
 
 
-def resolve_json_conflict(path: Path) -> None:
+def resolve_head_side(path: Path) -> bool:
     text = path.read_text(encoding="utf-8")
     if "<<<<<<<" not in text:
-        return
+        return False
     lines = text.splitlines()
     out: list[str] = []
     i = 0
@@ -66,20 +67,32 @@ def resolve_json_conflict(path: Path) -> None:
             continue
         out.append(line)
         i += 1
-    resolved = "\n".join(out).strip()
-    if not resolved.endswith("}"):
-        raise ValueError(f"Could not resolve JSON conflict in {path}")
-    path.write_text(resolved + "\n", encoding="utf-8")
+    path.write_text("\n".join(out) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
+    return True
 
 
 def main() -> int:
     root = Path(sys.argv[1])
-    resolve_registry(root / "ai_agent_security/experiments/registry.csv")
-    metadata = root / "ai_agent_security/kaggle-push/exp-008/kernel-metadata.json"
-    if metadata.exists():
-        resolve_json_conflict(metadata)
-    for metadata_path in root.glob("ai_agent_security/kaggle-push/exp-*/kernel-metadata.json"):
-        resolve_json_conflict(metadata_path)
+    changed: list[str] = []
+    registry = root / "ai_agent_security/experiments/registry.csv"
+    if registry.exists() and resolve_registry(registry):
+        changed.append(str(registry.relative_to(root)))
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        if "data/external" in str(path):
+            continue
+        if path.name == "registry.csv" and "experiments" in path.parts:
+            continue
+        if path.suffix in {".py", ".md", ".json", ".ipynb", ".csv"}:
+            try:
+                if resolve_head_side(path):
+                    changed.append(str(path.relative_to(root)))
+            except UnicodeDecodeError:
+                continue
+    print("Resolved conflicts in:")
+    for item in changed:
+        print(f"  - {item}")
     return 0
 
 
