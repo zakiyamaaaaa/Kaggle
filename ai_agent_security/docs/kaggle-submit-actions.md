@@ -24,6 +24,14 @@ CI成功後にKaggleへkernel versionをpushします。
 
 `kaggle-push/<exp>/output/`などのネストした実行結果は提出トリガーにしません。
 
+## bundle ディレクトリの命名規則
+
+`kaggle-push/<exp>/` の `<exp>` は `experiments/runs/<exp>-*/` の実験 ID と 1:1 で対応させます。
+
+- 例: `exp-010-pattern-harvest` → `kaggle-push/exp-010/`
+- 各ディレクトリには `kernel-metadata.json` と 1 本の notebook だけを置く
+- 複数実験を同じ push スロットに同居させない（CI は 1 push あたり 1 bundle のみ）
+
 ## 必要なGitHub Secret
 
 Repository settingsのActions secretsに以下を登録します。

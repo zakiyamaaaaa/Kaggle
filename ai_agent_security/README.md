@@ -476,6 +476,8 @@ ai_agent_security/
 ├── scripts/
 │   ├── exp.py              # 実験管理 CLI
 │   └── discussions.py      # Discussion 取得 CLI
+├── kaggle-push/
+│   └── exp-<NNN>/          # 実験 ID と 1:1（kernel-metadata.json + notebook 1 本）
 ├── discussions/
 │   ├── index.csv           # 保存済み Discussion 台帳
 │   └── topics/             # Markdown 保存先
