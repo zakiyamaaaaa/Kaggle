@@ -39,7 +39,7 @@ unique cell 多様性の上積みを狙う。
 ```bash
 python3 -m py_compile experiments/runs/exp-012-encoding-chain-bank/attack.py
 aicomp validate redteam experiments/runs/exp-012-encoding-chain-bank/attack.py
-python3 scripts/validate_submission_bundle.py kaggle-push/exp-011
+python3 scripts/validate_submission_bundle.py kaggle-push/exp-012
 ```
 
 結果:
@@ -70,6 +70,6 @@ aicomp test redteam experiments/runs/exp-012-encoding-chain-bank/attack.py \
 
 ## 提出
 
-1. `kaggle-push/exp-011` の bundle を Kaggle kernels push する。
+1. `kaggle-push/exp-012` の bundle を Kaggle kernels push する。
 2. Kaggle UI で version description に `exp-012-encoding-chain-bank` を含めて notebook 自体を提出する。
 3. スコア反映後に `python3 scripts/exp.py sync` を実行する。
