@@ -1,0 +1,107 @@
+name: Create or reopen pull requests
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+      timezone: Asia/Tokyo
+  workflow_dispatch:
+    inputs:
+      head_branch:
+        description: "Optional single branch to create or reopen a PR for"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: create-prs-main
+  cancel-in-progress: false
+
+jobs:
+  create-prs:
+    name: Create or reopen PRs
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPOSITORY: ${{ github.repository }}
+      HEAD_BRANCH_INPUT: ${{ inputs.head_branch || '' }}
+      # Override this repository variable when only selected branch families should be scanned.
+      AUTO_PR_BRANCH_PREFIXES: ${{ vars.AUTO_PR_BRANCH_PREFIXES || 'cursor/,refactor/' }}
+    steps:
+      - name: Create or reopen eligible PRs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          owner="${REPOSITORY%%/*}"
+          base_branch="main"
+          branch_prefixes="$AUTO_PR_BRANCH_PREFIXES"
+
+          matches_prefix() {
+            local branch="$1"
+            local prefix
+            IFS=',' read -ra prefixes <<< "$branch_prefixes"
+            for prefix in "${prefixes[@]}"; do
+              [[ -n "$prefix" && "$branch" == "$prefix"* ]] && return 0
+            done
+            return 1
+          }
+
+          create_or_reopen() {
+            local branch="$1"
+            local encoded_branch compare ahead existing number state title body
+
+            encoded_branch="$(jq -rn --arg value "$branch" '$value | @uri')"
+            compare="$(gh api "repos/${REPOSITORY}/compare/${base_branch}...${encoded_branch}")"
+            ahead="$(jq -r '.ahead_by // 0' <<< "$compare")"
+            if ! [[ "$ahead" =~ ^[0-9]+$ ]] || (( ahead == 0 )); then
+              echo "Skipping ${branch}: it is not ahead of ${base_branch}."
+              return 0
+            fi
+
+            existing="$(gh api --method GET "repos/${REPOSITORY}/pulls" \
+              -f state=all \
+              -f head="${owner}:${branch}" \
+              -f base="$base_branch" \
+              --jq '.[0] // empty')"
+
+            if [[ -n "$existing" ]]; then
+              number="$(jq -r '.number' <<< "$existing")"
+              state="$(jq -r '.state' <<< "$existing")"
+              if [[ "$state" == "open" ]]; then
+                echo "PR #${number} for ${branch} is already open."
+                return 0
+              fi
+              gh api --method PATCH "repos/${REPOSITORY}/pulls/${number}" \
+                -f state=open >/dev/null
+              echo "Reopened PR #${number} for ${branch}."
+              return 0
+            fi
+
+            title="Merge ${branch} into ${base_branch}"
+            body="Automated pull request for the ${branch} branch. Created by the daily PR manager."
+            created="$(gh api --method POST "repos/${REPOSITORY}/pulls" \
+              -f title="$title" \
+              -f head="$branch" \
+              -f base="$base_branch" \
+              -f body="$body")"
+            number="$(jq -r '.number' <<< "$created")"
+            echo "Created PR #${number} for ${branch}."
+          }
+
+          if [[ -n "$HEAD_BRANCH_INPUT" ]]; then
+            create_or_reopen "$HEAD_BRANCH_INPUT"
+            exit 0
+          fi
+
+          mapfile -t branches < <(
+            gh api --paginate "repos/${REPOSITORY}/branches?per_page=100" --jq '.[].name'
+          )
+          for branch in "${branches[@]}"; do
+            [[ "$branch" == "$base_branch" ]] && continue
+            matches_prefix "$branch" || continue
+            create_or_reopen "$branch"
+          done
