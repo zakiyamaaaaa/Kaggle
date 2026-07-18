@@ -1,0 +1,17 @@
+{
+  "id": "zacky21/llm-science-bm25-rag",
+  "title": "LLM Science BM25 RAG",
+  "code_file": "bm25-rag.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "kaggle-llm-science-exam"
+  ],
+  "dataset_sources": [
+    "mbanaei/all-paraphs-parsed-expanded"
+  ],
+  "kernel_sources": []
+}
