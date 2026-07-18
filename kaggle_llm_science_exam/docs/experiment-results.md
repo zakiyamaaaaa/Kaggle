@@ -9,9 +9,9 @@
 | 54443338 | 長さ順 baseline | 0.542655 | 0.523705 | 各問題で選択肢を語数の長い順に並べる |
 | 54454091 | 長さ + TF-IDF 類似度 ensemble | 0.552226 | 0.529853 | 長さスコアに prompt/option の TF-IDF cosine を少量加える |
 | 54454212 | 特徴量分類器 + 長さ/TF-IDF blend | 0.523096 | 0.522038 | ExtraTrees で option 単位に正解確率を学習し、手作りスコアと混ぜる |
-| (pending) | BM25 RAG + 長さ/TF-IDF | - | - | Wikipedia STEM を BM25 で検索し、context/option 類似度を加える |
+| 54460835 | BM25 RAG + 長さ/TF-IDF | 0.587598 | 0.564395 | Wikipedia STEM を BM25 で検索し、context/option 類似度を加える |
 
-現時点の最良提出は **長さ + TF-IDF 類似度 ensemble** です。BM25 RAG はローカル train で 0.5783 まで改善したため、Kaggle 提出待ちです。
+現時点の最良は **BM25 RAG + 長さ/TF-IDF** です。
 
 ## ローカル比較
 
@@ -86,7 +86,7 @@ Kaggle Notebook では `mbanaei/all-paraphs-parsed-expanded`（270K Wikipedia ST
 
 ## 現時点の採用方針
 
-短期 baseline としては `BM25 RAG + 長さ/TF-IDF`（ローカル最良）を採用候補とします。Kaggle 提出後、実スコアで最終判断します。
+短期 baseline としては **BM25 RAG + 長さ/TF-IDF** を採用します（Public 0.587598 / Private 0.564395）。
 
 分類器 blend は、現時点では採用しません。CV より実提出のほうが悪く、train 200件の特徴量学習では安定しないためです。
 
