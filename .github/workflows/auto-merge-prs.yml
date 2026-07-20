@@ -77,6 +77,10 @@ jobs:
               pr_json="$(gh api "$endpoint")"
               state="$(jq -r '.state' <<< "$pr_json")"
               draft="$(jq -r '.draft // false' <<< "$pr_json")"
+              base_ref="$(jq -r '.base.ref // ""' <<< "$pr_json")"
+              head_repo="$(jq -r '.head.repo.full_name // ""' <<< "$pr_json")"
+              head_ref="$(jq -r '.head.ref // ""' <<< "$pr_json")"
+              author="$(jq -r '.user.login // ""' <<< "$pr_json")"
               mergeable="$(jq -r '.mergeable // "null"' <<< "$pr_json")"
               mergeable_state="$(jq -r '.mergeable_state // "unknown"' <<< "$pr_json")"
               if [[ "$mergeable_state" != "unknown" && "$mergeable" != "null" ]]; then
@@ -86,10 +90,23 @@ jobs:
             done
 
             [[ "$state" == "open" ]] || continue
-            [[ "$draft" == "false" ]] || continue
-            [[ "$(jq -r '.base.ref' <<< "$pr_json")" == "main" ]] || continue
+            [[ "$base_ref" == "main" ]] || continue
 
-            head_repo="$(jq -r '.head.repo.full_name // ""' <<< "$pr_json")"
+            if [[ "$draft" == "true" ]]; then
+              if [[ "$head_repo" == "$REPOSITORY" ]] \
+                && [[ "$head_ref" == cursor/* ]] \
+                && [[ "$author" == "cursor[bot]" ]]; then
+                gh pr ready "$pr_number" --repo "$REPOSITORY"
+                echo "PR #${pr_number} was marked ready for review."
+              else
+                echo "Skipping PR #${pr_number}: draft PR is not an eligible Cursor PR."
+              fi
+              # The ready_for_review event starts a fresh run with the updated PR state.
+              continue
+            fi
+
+            [[ "$draft" == "false" ]] || continue
+
             if [[ "$head_repo" != "$REPOSITORY" ]]; then
               echo "Skipping PR #${pr_number}: fork PRs are not auto-merged."
               continue
