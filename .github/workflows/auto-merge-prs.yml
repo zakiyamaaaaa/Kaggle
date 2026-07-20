@@ -1,0 +1,123 @@
+name: Auto-merge eligible pull requests
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "20 2 * * *"
+      timezone: Asia/Tokyo
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Optional single PR number to inspect"
+        required: false
+        type: string
+
+# This workflow calls the GitHub API and never checks out PR code.
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: auto-merge-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inspect-and-merge:
+    name: Inspect and merge PRs
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPOSITORY: ${{ github.repository }}
+      PR_NUMBER_INPUT: ${{ inputs.pr_number || '' }}
+      CONFLICT_LABEL: ai-conflict-fix
+    steps:
+      - name: Merge clean PRs and label conflicts
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          add_conflict_label() {
+            local pr_number="$1"
+            gh label create "$CONFLICT_LABEL" \
+              --repo "$REPOSITORY" \
+              --color F9D0C4 \
+              --description "Ask OpenAI to resolve merge conflicts" \
+              --force >/dev/null
+
+            if ! gh api "repos/${REPOSITORY}/issues/${pr_number}/labels" \
+              --jq '.[].name' | grep -Fxq "$CONFLICT_LABEL"; then
+              gh pr edit "$pr_number" --repo "$REPOSITORY" --add-label "$CONFLICT_LABEL"
+              gh pr comment "$pr_number" --repo "$REPOSITORY" --body \
+                "コンフリクトを検出したため、自動マージを停止し \`ai-conflict-fix\` ラベルを付与しました。"
+            fi
+          }
+
+          if [[ -n "$PR_NUMBER_INPUT" ]]; then
+            pr_numbers=("$PR_NUMBER_INPUT")
+          elif [[ -n "${{ github.event.pull_request.number || '' }}" ]]; then
+            pr_numbers=("${{ github.event.pull_request.number }}")
+          else
+            mapfile -t pr_numbers < <(
+              gh pr list --repo "$REPOSITORY" --state open --base main \
+                --json number --jq '.[].number' --limit 100
+            )
+          fi
+
+          for pr_number in "${pr_numbers[@]}"; do
+            [[ -z "$pr_number" ]] && continue
+            endpoint="repos/${REPOSITORY}/pulls/${pr_number}"
+
+            for attempt in {1..6}; do
+              pr_json="$(gh api "$endpoint")"
+              state="$(jq -r '.state' <<< "$pr_json")"
+              draft="$(jq -r '.draft // false' <<< "$pr_json")"
+              mergeable="$(jq -r '.mergeable // "null"' <<< "$pr_json")"
+              mergeable_state="$(jq -r '.mergeable_state // "unknown"' <<< "$pr_json")"
+              if [[ "$mergeable_state" != "unknown" && "$mergeable" != "null" ]]; then
+                break
+              fi
+              (( attempt < 6 )) && sleep 10
+            done
+
+            [[ "$state" == "open" ]] || continue
+            [[ "$draft" == "false" ]] || continue
+            [[ "$(jq -r '.base.ref' <<< "$pr_json")" == "main" ]] || continue
+
+            head_repo="$(jq -r '.head.repo.full_name // ""' <<< "$pr_json")"
+            if [[ "$head_repo" != "$REPOSITORY" ]]; then
+              echo "Skipping PR #${pr_number}: fork PRs are not auto-merged."
+              continue
+            fi
+
+            if [[ "$mergeable_state" == "dirty" ]]; then
+              add_conflict_label "$pr_number"
+              echo "PR #${pr_number} has conflicts."
+              continue
+            fi
+
+            if [[ "$mergeable_state" != "clean" || "$mergeable" != "true" ]]; then
+              echo "PR #${pr_number} is not clean: ${mergeable_state}."
+              continue
+            fi
+
+            # Require the dedicated Python CI check even when branch protection is absent.
+            head_sha="$(jq -r '.head.sha' <<< "$pr_json")"
+            ci_state="$(gh api "repos/${REPOSITORY}/commits/${head_sha}/check-runs?per_page=100" \
+              --jq '[.check_runs[] | select(.name == "Python CI")] | sort_by(.completed_at) | last | (.conclusion // "missing")')"
+            if [[ "$ci_state" != "success" ]]; then
+              echo "PR #${pr_number} is clean but Python CI is ${ci_state}; not merging."
+              continue
+            fi
+
+            gh api --method PUT "${endpoint}/merge" \
+              -f merge_method=squash \
+              -f commit_title="Auto-merge pull request #${pr_number}" \
+              -f commit_message="Merged automatically after Python CI passed." \
+              --jq 'if .merged then "Merged: \(.message)" else "Not merged: \(.message)" end'
+          done
