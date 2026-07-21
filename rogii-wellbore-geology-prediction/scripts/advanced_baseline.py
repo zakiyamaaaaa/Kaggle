@@ -1,0 +1,290 @@
+"""Leakage-safe, lightweight typewell GR tracking baselines.
+
+The competition's public notebooks use particle filters and beam search. This
+file keeps the same central idea in a small, CPU-friendly implementation so
+that experiments can be reproduced locally before making a Kaggle notebook.
+"""
+
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+
+def _data_root(path: str | Path) -> Path:
+    root = Path(path)
+    if (root / "train").exists() and (root / "test").exists():
+        return root
+    candidates = sorted(root.rglob("sample_submission.csv"))
+    if not candidates:
+        raise FileNotFoundError(f"Could not find competition data under {root}")
+    return candidates[0].parent
+
+
+def _typewell_arrays(typewell: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+    tw = typewell[["TVT", "GR"]].dropna().sort_values("TVT")
+    tvt = tw["TVT"].to_numpy(float)
+    gr = tw["GR"].to_numpy(float)
+    order = np.argsort(tvt)
+    tvt, gr = tvt[order], gr[order]
+    unique, first = np.unique(tvt, return_index=True)
+    if len(unique) != len(tvt):
+        gr = np.array([np.median(gr[tvt == value]) for value in unique])
+        tvt = unique
+    return tvt, gr
+
+
+def _nearest_index(values: np.ndarray, value: float) -> int:
+    pos = int(np.searchsorted(values, value))
+    if pos <= 0:
+        return 0
+    if pos >= len(values):
+        return len(values) - 1
+    return pos - 1 if abs(values[pos - 1] - value) <= abs(values[pos] - value) else pos
+
+
+def _smooth(values: pd.Series, window: int) -> np.ndarray:
+    s = values.astype(float).interpolate(limit_direction="both")
+    if s.isna().all():
+        return np.zeros(len(s), dtype=float)
+    s = s.fillna(float(s.median()))
+    if window <= 1:
+        return s.to_numpy(float)
+    return s.rolling(window, center=True, min_periods=1).median().to_numpy(float)
+
+
+def _gr_sigma(horizontal: pd.DataFrame, tw_tvt: np.ndarray, tw_gr: np.ndarray) -> float:
+    known = horizontal[horizontal["TVT_input"].notna() & horizontal["GR"].notna()]
+    if len(known) < 20:
+        return 30.0
+    expected = np.interp(known["TVT_input"].to_numpy(float), tw_tvt, tw_gr)
+    residual = known["GR"].to_numpy(float) - expected
+    return float(np.clip(np.nanstd(residual), 10.0, 60.0))
+
+
+def beam_suffix(
+    horizontal: pd.DataFrame,
+    typewell: pd.DataFrame,
+    beam_size: int = 8,
+    max_step_indices: int = 3,
+    movement_penalty: float = 0.75,
+    smooth_window: int = 5,
+) -> np.ndarray:
+    """Track a TVT path from the last known TVT using a bounded beam.
+
+    The method only reads GR and the observed TVT_input prefix. The suffix
+    target TVT is never consulted, making it suitable for local validation.
+    """
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+
+    tw_tvt, tw_gr = _typewell_arrays(typewell)
+    if len(tw_tvt) < 3:
+        return np.full(len(unknown), float(known["TVT_input"].iloc[-1]))
+
+    start_tvt = float(known["TVT_input"].iloc[-1])
+    start_idx = _nearest_index(tw_tvt, start_tvt)
+    sigma = _gr_sigma(horizontal, tw_tvt, tw_gr)
+    obs = _smooth(unknown["GR"], smooth_window)
+    offsets = np.arange(-max_step_indices, max_step_indices + 1, dtype=int)
+
+    # A beam is represented by its current typewell index and cumulative cost.
+    # Backpointers make it possible to return the globally best path at the end.
+    prev_idx = np.array([start_idx], dtype=int)
+    prev_cost = np.array([0.0], dtype=float)
+    history_idx: list[np.ndarray] = []
+    history_parent: list[np.ndarray] = []
+    tvt_step = float(np.nanmedian(np.diff(tw_tvt))) if len(tw_tvt) > 1 else 1.0
+    tvt_step = max(abs(tvt_step), 1e-3)
+
+    for value in obs:
+        candidate_idx = np.clip(prev_idx[:, None] + offsets[None, :], 0, len(tw_tvt) - 1)
+        candidate_idx = candidate_idx.ravel()
+        parent = np.repeat(np.arange(len(prev_idx)), len(offsets))
+        movement = np.abs(candidate_idx - prev_idx[parent])
+        costs = prev_cost[parent] + ((float(value) - tw_gr[candidate_idx]) / sigma) ** 2
+        costs += movement_penalty * movement
+
+        order = np.argsort(costs, kind="stable")
+        chosen_idx: list[int] = []
+        chosen_parent: list[int] = []
+        chosen_cost: list[float] = []
+        for oi in order:
+            ci = int(candidate_idx[oi])
+            if ci in chosen_idx:
+                continue
+            chosen_idx.append(ci)
+            chosen_parent.append(int(parent[oi]))
+            chosen_cost.append(float(costs[oi]))
+            if len(chosen_idx) >= beam_size:
+                break
+        if not chosen_idx:
+            chosen_idx = [int(prev_idx[0])]
+            chosen_parent = [0]
+            chosen_cost = [float(prev_cost[0])]
+        history_idx.append(np.asarray(chosen_idx, dtype=int))
+        history_parent.append(np.asarray(chosen_parent, dtype=int))
+        prev_idx = np.asarray(chosen_idx, dtype=int)
+        prev_cost = np.asarray(chosen_cost, dtype=float)
+
+    path = np.empty(len(history_idx), dtype=float)
+    parent = int(np.argmin(prev_cost))
+    for row in range(len(history_idx) - 1, -1, -1):
+        path[row] = tw_tvt[history_idx[row][parent]]
+        parent = int(history_parent[row][parent])
+
+    # The first decoded row should not jump solely because the typewell has a
+    # different absolute datum. Align the decoded suffix to the known prefix.
+    path += start_tvt - path[0]
+    return path
+
+
+def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) -> np.ndarray:
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0:
+        return np.array([], dtype=float)
+    last = float(known["TVT_input"].iloc[-1]) if len(known) else 0.0
+    if method == "last":
+        return np.full(len(unknown), last, dtype=float)
+    decoded = beam_suffix(horizontal, typewell)
+    if method == "beam":
+        return decoded
+    if method == "safe_beam":
+        # A deliberately conservative blend. The fallback is useful when the
+        # GR signature is ambiguous, a failure mode noted in Discussion.
+        if len(decoded) == 0:
+            return np.full(len(unknown), last, dtype=float)
+        delta = decoded - last
+        return last + 0.20 * np.clip(delta, -60.0, 60.0)
+    raise ValueError(f"Unknown method: {method}")
+
+
+def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict[str, float]:
+    files = sorted(train_dir.glob("*__horizontal_well.csv"))
+    if max_wells is not None:
+        files = files[:max_wells]
+    if method == "grid":
+        return evaluate_grid(train_dir, max_wells)
+    sse = 0.0
+    n = 0
+    well_rmses = []
+    for fp in files:
+        wid = fp.name.split("__", 1)[0]
+        tw_path = train_dir / f"{wid}__typewell.csv"
+        if not tw_path.exists():
+            continue
+        hw = pd.read_csv(fp)
+        if "TVT" not in hw or "TVT_input" not in hw:
+            continue
+        mask = hw["TVT_input"].isna() & hw["TVT"].notna()
+        if not mask.any() or not hw["TVT_input"].notna().any():
+            continue
+        pred = predict_well(hw, pd.read_csv(tw_path), method)
+        truth = hw.loc[mask, "TVT"].to_numpy(float)
+        good = np.isfinite(pred) & np.isfinite(truth)
+        if not good.any():
+            continue
+        error = pred[good] - truth[good]
+        sse += float(np.sum(error * error))
+        n += int(good.sum())
+        well_rmses.append(float(np.sqrt(np.mean(error * error))))
+    return {
+        "method": method,
+        "rmse": float(np.sqrt(sse / n)) if n else float("nan"),
+        "rows": float(n),
+        "wells": float(len(well_rmses)),
+        "well_rmse_p50": float(np.percentile(well_rmses, 50)) if well_rmses else float("nan"),
+        "well_rmse_p90": float(np.percentile(well_rmses, 90)) if well_rmses else float("nan"),
+    }
+
+
+def evaluate_grid(train_dir: Path, max_wells: int | None = None) -> dict[str, float]:
+    """Decode each well once and search conservative blend settings."""
+    files = sorted(train_dir.glob("*__horizontal_well.csv"))
+    if max_wells is not None:
+        files = files[:max_wells]
+    settings = [(a, c) for a in [0.10, 0.20, 0.35, 0.50, 0.70, 1.0] for c in [15.0, 30.0, 60.0, 1e9]]
+    sse = {key: 0.0 for key in settings}
+    counts = {key: 0 for key in settings}
+    by_well = {key: [] for key in settings}
+    for fp in files:
+        wid = fp.name.split("__", 1)[0]
+        tw_path = train_dir / f"{wid}__typewell.csv"
+        if not tw_path.exists():
+            continue
+        hw = pd.read_csv(fp)
+        mask = hw["TVT_input"].isna() & hw["TVT"].notna()
+        if not mask.any() or not hw["TVT_input"].notna().any():
+            continue
+        last = float(hw.loc[hw["TVT_input"].notna(), "TVT_input"].iloc[-1])
+        decoded = beam_suffix(hw, pd.read_csv(tw_path))
+        truth = hw.loc[mask, "TVT"].to_numpy(float)
+        for key in settings:
+            alpha, clip = key
+            pred = last + alpha * np.clip(decoded - last, -clip, clip)
+            good = np.isfinite(pred) & np.isfinite(truth)
+            err = pred[good] - truth[good]
+            sse[key] += float(np.sum(err * err))
+            counts[key] += int(good.sum())
+            by_well[key].append(float(np.sqrt(np.mean(err * err))))
+    summaries = []
+    for key in settings:
+        alpha, clip = key
+        vals = by_well[key]
+        summaries.append({
+            "alpha": alpha,
+            "clip": clip,
+            "rmse": float(np.sqrt(sse[key] / counts[key])),
+            "rows": counts[key],
+            "well_rmse_p50": float(np.percentile(vals, 50)),
+            "well_rmse_p90": float(np.percentile(vals, 90)),
+        })
+    best = min(summaries, key=lambda x: x["rmse"])
+    print(pd.DataFrame(summaries).sort_values("rmse").to_string(index=False))
+    return {"method": "grid", **best}
+
+
+def write_submission(data_root: Path, output: Path, method: str) -> None:
+    test_dir = data_root / "test"
+    sample = pd.read_csv(data_root / "sample_submission.csv")
+    values: dict[str, float] = {}
+    for fp in sorted(test_dir.glob("*__horizontal_well.csv")):
+        wid = fp.name.split("__", 1)[0]
+        tw_path = test_dir / f"{wid}__typewell.csv"
+        if not tw_path.exists():
+            continue
+        hw = pd.read_csv(fp)
+        mask = hw["TVT_input"].isna()
+        pred = predict_well(hw, pd.read_csv(tw_path), method)
+        for row_idx, value in zip(hw.index[mask], pred):
+            values[f"{wid}_{row_idx}"] = float(value)
+    out = sample[["id"]].copy()
+    fallback = float(np.nanmedian(list(values.values()))) if values else 0.0
+    out["tvt"] = out["id"].map(values).fillna(fallback)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    out.to_csv(output, index=False)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data-root", default="data/raw")
+    parser.add_argument("--method", choices=["last", "beam", "safe_beam", "grid"], default="safe_beam")
+    parser.add_argument("--evaluate", action="store_true")
+    parser.add_argument("--max-wells", type=int)
+    parser.add_argument("--output")
+    args = parser.parse_args()
+    root = _data_root(args.data_root)
+    if args.evaluate:
+        print(evaluate(root / "train", args.method, args.max_wells))
+    if args.output:
+        write_submission(root, Path(args.output), args.method)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,6 @@
+experiment_id,datetime,method,features,local_rmse,kaggle_public_score,submission_ref,status,next_action
+baseline_last_value,2026-07-21,last_value,TVT_input prefix,15.9098529,15.883,54875928,submitted,keep as fallback
+baseline_linear_z,2026-07-21,within_well_linear,Z;TVT_input prefix,124.1807705,,,rejected,do not use
+baseline_linear_xyzmd,2026-07-21,within_well_ridge,X Y Z MD;TVT_input prefix,61.9867824,,,rejected,do not use
+prototype_formation_knn_mean,2026-07-21,spatial_formation_knn,X Y;train formation medians;prefix anchor,78.7874,,,rejected,replace mean with local plane
+safe_beam_alpha_020_clip60,2026-07-21,typewell_beam_guarded,GR;typewell TVT/GR;TVT_input prefix,15.8617707,15.702,54876671,submitted,keep as new fallback and add NCC/physics blend
