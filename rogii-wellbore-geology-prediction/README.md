@@ -42,6 +42,8 @@ python scripts/advanced_baseline.py --data-root data/raw --method safe_beam --ou
 
 typewellのGR波形をbounded beam searchで追跡し、最後の `TVT_input` からの補正を20%だけ採用する `safe_beam` を実装しました。全773井・3,783,989 suffix行のローカルRMSEは `15.861771`、Kaggle public scoreは `15.702`（submission ref `54876671`）です。末尾値固定のpublic score `15.883`から改善しています。
 
+さらに、周辺学習井のprefix-only `TVT_input + Z` anchorをXY上の局所加重平面で補間し、対象井のZへ変換する `safe_spatial_plane` を追加しました。全773井のローカルRMSEは `15.561354`（p50 `10.580739`、p90 `22.302122`）で、現時点のローカル基準です。ローカル候補 `outputs/submissions/safe_spatial_plane.csv` は生成済みですが、Kaggleへの提出は行っていません。
+
 改善の根拠と次の実験は [knowledge/learning-notes.md](knowledge/learning-notes.md)、全実験の数値は [experiments/results.csv](experiments/results.csv) に記録しています。
 
 Kaggle提出用のコマンド例：

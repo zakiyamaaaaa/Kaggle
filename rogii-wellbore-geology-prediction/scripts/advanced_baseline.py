@@ -207,6 +207,82 @@ def ncc_suffix(
     return path
 
 
+def particle_suffix(
+    horizontal: pd.DataFrame,
+    typewell: pd.DataFrame,
+    particle_count: int = 48,
+    process_sigma: float = 2.0,
+    smooth_window: int = 5,
+    seed: int = 1729,
+) -> np.ndarray:
+    """Track a TVT state with a small, deterministic bootstrap particle filter.
+
+    Particles live on the typewell sample index.  Each row first propagates
+    with a zero-mean local random walk and then receives a GR likelihood.  The
+    suffix GR is available at inference time, while the suffix TVT is never
+    read, so this remains valid for prefix-to-suffix validation.
+    """
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+
+    tw_tvt, tw_gr = _typewell_arrays(typewell)
+    if len(tw_tvt) < 3:
+        return np.full(len(unknown), float(known["TVT_input"].iloc[-1]))
+
+    start_tvt = float(known["TVT_input"].iloc[-1])
+    start_idx = _nearest_index(tw_tvt, start_tvt)
+    sigma = _gr_sigma(horizontal, tw_tvt, tw_gr)
+    obs = _smooth(unknown["GR"], smooth_window)
+    n_particles = max(8, int(particle_count))
+    rng = np.random.default_rng(seed)
+
+    # Keep the initial cloud local but retain an exact particle at the
+    # observed datum.  This avoids injecting a large absolute-datum error.
+    positions = np.clip(
+        start_idx + np.rint(rng.normal(0.0, process_sigma, n_particles)).astype(int),
+        0,
+        len(tw_tvt) - 1,
+    )
+    positions[0] = start_idx
+    weights = np.full(n_particles, 1.0 / n_particles, dtype=float)
+    decoded = np.empty(len(obs), dtype=float)
+
+    for row, value in enumerate(obs):
+        steps = np.rint(rng.normal(0.0, process_sigma, n_particles)).astype(int)
+        candidates = np.clip(positions + steps, 0, len(tw_tvt) - 1)
+        residual = (float(value) - tw_gr[candidates]) / sigma
+        log_weights = -0.5 * residual * residual - 0.10 * np.abs(steps)
+        log_weights += np.log(np.maximum(weights, 1e-12))
+        log_weights -= float(np.max(log_weights))
+        weights = np.exp(log_weights)
+        weight_sum = float(np.sum(weights))
+        if not np.isfinite(weight_sum) or weight_sum <= 0.0:
+            weights.fill(1.0 / n_particles)
+        else:
+            weights /= weight_sum
+
+        # Weighted mean is less jumpy than selecting the MAP particle and is
+        # intentionally kept as a conservative decoder output.
+        decoded[row] = float(np.sum(tw_tvt[candidates] * weights))
+        ess = 1.0 / float(np.sum(weights * weights))
+        if ess < 0.55 * n_particles:
+            # Systematic resampling is deterministic given the fixed RNG and
+            # keeps the implementation vectorized for the full 773-well run.
+            sample_idx = np.searchsorted(
+                np.cumsum(weights),
+                (np.arange(n_particles) + rng.random()) / n_particles,
+            )
+            positions = candidates[np.minimum(sample_idx, n_particles - 1)]
+            weights.fill(1.0 / n_particles)
+        else:
+            positions = candidates
+
+    decoded += start_tvt - decoded[0]
+    return decoded
+
+
 def physics_anchor_suffix(
     horizontal: pd.DataFrame,
     anchor_window: int = 20,
@@ -234,7 +310,109 @@ def physics_anchor_suffix(
     return np.where(np.isfinite(decoded), decoded, last)
 
 
-def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) -> np.ndarray:
+def build_spatial_metadata(train_dir: Path) -> dict[str, np.ndarray]:
+    """Collect prefix-only TVT+Z anchors and XY locations for local KNN.
+
+    The formation columns are absent from test horizontal wells.  A usable
+    spatial proxy is therefore the local TVT+Z datum measured before the
+    prediction boundary.  Every metadata row is built from its own observed
+    TVT_input prefix and Z only; hidden suffix TVT is never read.
+    """
+    well_ids: list[str] = []
+    x_values: list[float] = []
+    y_values: list[float] = []
+    anchors: list[float] = []
+    for fp in sorted(train_dir.glob("*__horizontal_well.csv")):
+        try:
+            hw = pd.read_csv(fp, usecols=["X", "Y", "Z", "TVT_input"])
+        except (FileNotFoundError, ValueError):
+            continue
+        known = hw[hw["TVT_input"].notna()]
+        if len(known) == 0:
+            continue
+        tail = known.tail(20)
+        anchor_values = pd.to_numeric(tail["TVT_input"], errors="coerce") + pd.to_numeric(
+            tail["Z"], errors="coerce"
+        )
+        anchor_values = anchor_values[np.isfinite(anchor_values)]
+        if len(anchor_values) == 0:
+            continue
+        x = float(pd.to_numeric(tail["X"], errors="coerce").median())
+        y = float(pd.to_numeric(tail["Y"], errors="coerce").median())
+        if not (np.isfinite(x) and np.isfinite(y)):
+            continue
+        well_ids.append(fp.name.split("__", 1)[0])
+        x_values.append(x)
+        y_values.append(y)
+        anchors.append(float(np.median(anchor_values)))
+    return {
+        "well_ids": np.asarray(well_ids, dtype=object),
+        "x": np.asarray(x_values, dtype=float),
+        "y": np.asarray(y_values, dtype=float),
+        "anchor": np.asarray(anchors, dtype=float),
+    }
+
+
+def spatial_plane_suffix(
+    horizontal: pd.DataFrame,
+    spatial_metadata: dict[str, np.ndarray],
+    well_id: str | None = None,
+    neighbor_count: int = 12,
+) -> np.ndarray:
+    """Predict a suffix from a local XY plane of prefix-only TVT+Z anchors."""
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+    fallback = physics_anchor_suffix(horizontal)
+    meta_x = spatial_metadata.get("x", np.array([], dtype=float))
+    meta_y = spatial_metadata.get("y", np.array([], dtype=float))
+    meta_anchor = spatial_metadata.get("anchor", np.array([], dtype=float))
+    meta_ids = spatial_metadata.get("well_ids", np.array([], dtype=object))
+    if len(meta_x) < 3:
+        return fallback
+
+    known_tail = known.tail(20)
+    query_x = float(pd.to_numeric(known_tail["X"], errors="coerce").median())
+    query_y = float(pd.to_numeric(known_tail["Y"], errors="coerce").median())
+    if not (np.isfinite(query_x) and np.isfinite(query_y)):
+        return fallback
+    distance = np.hypot((meta_x - query_x) / 1000.0, (meta_y - query_y) / 1000.0)
+    allowed = np.isfinite(distance) & np.isfinite(meta_anchor)
+    if well_id is not None and len(meta_ids) == len(allowed):
+        allowed &= meta_ids != well_id
+    neighbor_idx = np.flatnonzero(allowed)
+    if len(neighbor_idx) < 3:
+        return fallback
+    neighbor_idx = neighbor_idx[np.argsort(distance[neighbor_idx], kind="stable")[: max(3, neighbor_count)]]
+    scale = max(float(np.median(distance[neighbor_idx])), 0.01)
+    dx = (meta_x[neighbor_idx] - query_x) / 1000.0 / scale
+    dy = (meta_y[neighbor_idx] - query_y) / 1000.0 / scale
+    design = np.column_stack([np.ones(len(neighbor_idx)), dx, dy])
+    weights = 1.0 / np.maximum(distance[neighbor_idx], 0.01)
+    weighted_design = design * np.sqrt(weights)[:, None]
+    weighted_target = meta_anchor[neighbor_idx] * np.sqrt(weights)
+    try:
+        coef, *_ = np.linalg.lstsq(weighted_design, weighted_target, rcond=None)
+    except np.linalg.LinAlgError:
+        return fallback
+    suffix_x = pd.to_numeric(unknown["X"], errors="coerce").to_numpy(float)
+    suffix_y = pd.to_numeric(unknown["Y"], errors="coerce").to_numpy(float)
+    suffix_z = pd.to_numeric(unknown["Z"], errors="coerce").to_numpy(float)
+    pred_anchor = coef[0] + coef[1] * (suffix_x - query_x) / 1000.0 / scale + coef[2] * (
+        suffix_y - query_y
+    ) / 1000.0 / scale
+    decoded = pred_anchor - suffix_z
+    return np.where(np.isfinite(decoded), decoded, fallback)
+
+
+def predict_well(
+    horizontal: pd.DataFrame,
+    typewell: pd.DataFrame,
+    method: str,
+    spatial_metadata: dict[str, np.ndarray] | None = None,
+    well_id: str | None = None,
+) -> np.ndarray:
     known = horizontal[horizontal["TVT_input"].notna()]
     unknown = horizontal[horizontal["TVT_input"].isna()]
     if len(unknown) == 0:
@@ -246,8 +424,15 @@ def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) 
         decoded = beam_suffix(horizontal, typewell)
     elif method in {"ncc", "safe_ncc"}:
         decoded = ncc_suffix(horizontal, typewell)
+    elif method in {"particle", "safe_particle"}:
+        decoded = particle_suffix(horizontal, typewell)
     elif method == "safe_physics":
         decoded = physics_anchor_suffix(horizontal)
+    elif method == "safe_spatial_plane":
+        if spatial_metadata is None:
+            decoded = physics_anchor_suffix(horizontal)
+        else:
+            decoded = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
     else:
         raise ValueError(f"Unknown method: {method}")
     if method == "beam":
@@ -266,11 +451,23 @@ def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) 
             return np.full(len(unknown), last, dtype=float)
         delta = decoded - last
         return last + 0.15 * np.clip(delta, -40.0, 40.0)
+    if method == "particle":
+        return decoded
+    if method == "safe_particle":
+        if len(decoded) == 0:
+            return np.full(len(unknown), last, dtype=float)
+        delta = decoded - last
+        return last + 0.20 * np.clip(delta, -60.0, 60.0)
     if method == "safe_physics":
         if len(decoded) == 0:
             return np.full(len(unknown), last, dtype=float)
         delta = decoded - last
         return last + 0.04 * np.clip(delta, -40.0, 40.0)
+    if method == "safe_spatial_plane":
+        if len(decoded) == 0:
+            return np.full(len(unknown), last, dtype=float)
+        delta = decoded - last
+        return last + 0.10 * np.clip(delta, -60.0, 60.0)
     raise ValueError(f"Unknown method: {method}")
 
 
@@ -280,6 +477,7 @@ def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict
         files = files[:max_wells]
     if method == "grid":
         return evaluate_grid(train_dir, max_wells)
+    spatial_metadata = build_spatial_metadata(train_dir) if method == "safe_spatial_plane" else None
     sse = 0.0
     n = 0
     well_rmses = []
@@ -294,7 +492,13 @@ def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict
         mask = hw["TVT_input"].isna() & hw["TVT"].notna()
         if not mask.any() or not hw["TVT_input"].notna().any():
             continue
-        pred = predict_well(hw, pd.read_csv(tw_path), method)
+        pred = predict_well(
+            hw,
+            pd.read_csv(tw_path),
+            method,
+            spatial_metadata=spatial_metadata,
+            well_id=wid,
+        )
         truth = hw.loc[mask, "TVT"].to_numpy(float)
         good = np.isfinite(pred) & np.isfinite(truth)
         if not good.any():
@@ -363,6 +567,7 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
     values: dict[str, float] = {}
+    spatial_metadata = build_spatial_metadata(data_root / "train") if method == "safe_spatial_plane" else None
     for fp in sorted(test_dir.glob("*__horizontal_well.csv")):
         wid = fp.name.split("__", 1)[0]
         tw_path = test_dir / f"{wid}__typewell.csv"
@@ -370,7 +575,13 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
             continue
         hw = pd.read_csv(fp)
         mask = hw["TVT_input"].isna()
-        pred = predict_well(hw, pd.read_csv(tw_path), method)
+        pred = predict_well(
+            hw,
+            pd.read_csv(tw_path),
+            method,
+            spatial_metadata=spatial_metadata,
+            well_id=wid,
+        )
         for row_idx, value in zip(hw.index[mask], pred):
             values[f"{wid}_{row_idx}"] = float(value)
     out = sample[["id"]].copy()
@@ -385,7 +596,7 @@ def main() -> None:
     parser.add_argument("--data-root", default="data/raw")
     parser.add_argument(
         "--method",
-        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "safe_physics", "grid"],
+        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "grid"],
         default="safe_beam",
     )
     parser.add_argument("--evaluate", action="store_true")
