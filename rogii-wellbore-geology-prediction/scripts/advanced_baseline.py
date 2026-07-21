@@ -8,6 +8,7 @@ that experiments can be reproduced locally before making a Kaggle notebook.
 from __future__ import annotations
 
 import argparse
+import time
 from pathlib import Path
 
 import numpy as np
@@ -63,6 +64,19 @@ def _gr_sigma(horizontal: pd.DataFrame, tw_tvt: np.ndarray, tw_gr: np.ndarray) -
     expected = np.interp(known["TVT_input"].to_numpy(float), tw_tvt, tw_gr)
     residual = known["GR"].to_numpy(float) - expected
     return float(np.clip(np.nanstd(residual), 10.0, 60.0))
+
+
+def _normalized_corr(a: np.ndarray, b: np.ndarray) -> float:
+    if len(a) != len(b) or len(a) < 2:
+        return 0.0
+    a = np.asarray(a, dtype=float)
+    b = np.asarray(b, dtype=float)
+    a = a - float(np.mean(a))
+    b = b - float(np.mean(b))
+    denom = float(np.linalg.norm(a) * np.linalg.norm(b))
+    if denom <= 1e-8:
+        return 0.0
+    return float(np.dot(a, b) / denom)
 
 
 def beam_suffix(
@@ -144,6 +158,82 @@ def beam_suffix(
     return path
 
 
+def ncc_suffix(
+    horizontal: pd.DataFrame,
+    typewell: pd.DataFrame,
+    smooth_window: int = 7,
+    lookback: int = 21,
+    search_radius: int = 12,
+    move_penalty: float = 0.02,
+) -> np.ndarray:
+    """Causal NCC decoder using only the observed prefix and past suffix GR."""
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+
+    tw_tvt, tw_gr = _typewell_arrays(typewell)
+    if len(tw_tvt) < lookback + 2:
+        return np.full(len(unknown), float(known["TVT_input"].iloc[-1]))
+
+    start_tvt = float(known["TVT_input"].iloc[-1])
+    start_idx = _nearest_index(tw_tvt, start_tvt)
+
+    known_gr = _smooth(known["GR"], smooth_window)
+    unknown_gr = _smooth(unknown["GR"], smooth_window)
+    history = np.concatenate([known_gr[-(lookback - 1):], unknown_gr]) if lookback > 1 else unknown_gr
+
+    path_idx = np.empty(len(unknown), dtype=int)
+    prev_idx = start_idx
+    for row in range(len(unknown)):
+        end = (lookback - 1) + row + 1
+        start = max(0, end - lookback)
+        segment = history[start:end]
+        best_idx = prev_idx
+        best_score = -np.inf
+        left = max(len(segment) - 1, prev_idx - search_radius)
+        right = min(len(tw_gr) - 1, prev_idx + search_radius)
+        for candidate in range(left, right + 1):
+            ref = tw_gr[candidate - len(segment) + 1 : candidate + 1]
+            score = _normalized_corr(segment, ref) - move_penalty * abs(candidate - prev_idx)
+            if score > best_score:
+                best_score = score
+                best_idx = candidate
+        path_idx[row] = best_idx
+        prev_idx = best_idx
+
+    path = tw_tvt[path_idx].astype(float)
+    path += start_tvt - path[0]
+    return path
+
+
+def physics_anchor_suffix(
+    horizontal: pd.DataFrame,
+    anchor_window: int = 20,
+) -> np.ndarray:
+    """Predict from a causal ``TVT + Z`` anchor.
+
+    The anchor is estimated only from the observed TVT_input prefix.  Test
+    wells expose Z in the suffix, while their formation columns are absent,
+    so this deliberately uses no hidden TVT or training-only surface column.
+    """
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+    last = float(known["TVT_input"].iloc[-1])
+    known_z = pd.to_numeric(known["Z"], errors="coerce").to_numpy(float)
+    known_tvt = known["TVT_input"].to_numpy(float)
+    valid = np.isfinite(known_z) & np.isfinite(known_tvt)
+    if not valid.any():
+        return np.full(len(unknown), last, dtype=float)
+    anchor_values = (known_tvt[valid] + known_z[valid])[-anchor_window:]
+    anchor = float(np.median(anchor_values))
+    z = pd.to_numeric(unknown["Z"], errors="coerce").to_numpy(float)
+    decoded = anchor - z
+    return np.where(np.isfinite(decoded), decoded, last)
+
+
 def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) -> np.ndarray:
     known = horizontal[horizontal["TVT_input"].notna()]
     unknown = horizontal[horizontal["TVT_input"].isna()]
@@ -152,7 +242,14 @@ def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) 
     last = float(known["TVT_input"].iloc[-1]) if len(known) else 0.0
     if method == "last":
         return np.full(len(unknown), last, dtype=float)
-    decoded = beam_suffix(horizontal, typewell)
+    if method in {"beam", "safe_beam"}:
+        decoded = beam_suffix(horizontal, typewell)
+    elif method in {"ncc", "safe_ncc"}:
+        decoded = ncc_suffix(horizontal, typewell)
+    elif method == "safe_physics":
+        decoded = physics_anchor_suffix(horizontal)
+    else:
+        raise ValueError(f"Unknown method: {method}")
     if method == "beam":
         return decoded
     if method == "safe_beam":
@@ -162,6 +259,18 @@ def predict_well(horizontal: pd.DataFrame, typewell: pd.DataFrame, method: str) 
             return np.full(len(unknown), last, dtype=float)
         delta = decoded - last
         return last + 0.20 * np.clip(delta, -60.0, 60.0)
+    if method == "ncc":
+        return decoded
+    if method == "safe_ncc":
+        if len(decoded) == 0:
+            return np.full(len(unknown), last, dtype=float)
+        delta = decoded - last
+        return last + 0.15 * np.clip(delta, -40.0, 40.0)
+    if method == "safe_physics":
+        if len(decoded) == 0:
+            return np.full(len(unknown), last, dtype=float)
+        delta = decoded - last
+        return last + 0.04 * np.clip(delta, -40.0, 40.0)
     raise ValueError(f"Unknown method: {method}")
 
 
@@ -274,16 +383,22 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-root", default="data/raw")
-    parser.add_argument("--method", choices=["last", "beam", "safe_beam", "grid"], default="safe_beam")
+    parser.add_argument(
+        "--method",
+        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "safe_physics", "grid"],
+        default="safe_beam",
+    )
     parser.add_argument("--evaluate", action="store_true")
     parser.add_argument("--max-wells", type=int)
     parser.add_argument("--output")
     args = parser.parse_args()
     root = _data_root(args.data_root)
+    started = time.perf_counter()
     if args.evaluate:
         print(evaluate(root / "train", args.method, args.max_wells))
     if args.output:
         write_submission(root, Path(args.output), args.method)
+    print({"elapsed_sec": round(time.perf_counter() - started, 3)})
 
 
 if __name__ == "__main__":
