@@ -406,6 +406,35 @@ def spatial_plane_suffix(
     return np.where(np.isfinite(decoded), decoded, fallback)
 
 
+def spatial_beam_blend_suffix(
+    horizontal: pd.DataFrame,
+    typewell: pd.DataFrame,
+    spatial_metadata: dict[str, np.ndarray],
+    well_id: str | None = None,
+    beam_weight: float = 0.25,
+) -> np.ndarray:
+    """Conservatively blend the typewell beam and spatial-plane candidates.
+
+    Each decoder is first reduced to the same guarded delta used by its
+    standalone method.  The spatial candidate supplies most of the signal
+    because it was the stronger local-validation candidate, while a small
+    beam contribution can recover typewell-tracking information where the
+    spatial plane is locally imperfect.
+    """
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+    last = float(known["TVT_input"].iloc[-1])
+    beam = beam_suffix(horizontal, typewell)
+    spatial = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
+    if len(beam) != len(unknown) or len(spatial) != len(unknown):
+        return np.full(len(unknown), last, dtype=float)
+    beam_delta = 0.20 * np.clip(beam - last, -60.0, 60.0)
+    spatial_delta = 0.10 * np.clip(spatial - last, -60.0, 60.0)
+    return last + beam_weight * beam_delta + (1.0 - beam_weight) * spatial_delta
+
+
 def predict_well(
     horizontal: pd.DataFrame,
     typewell: pd.DataFrame,
@@ -433,6 +462,11 @@ def predict_well(
             decoded = physics_anchor_suffix(horizontal)
         else:
             decoded = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
+    elif method == "safe_spatial_beam_blend":
+        if spatial_metadata is None:
+            decoded = physics_anchor_suffix(horizontal)
+        else:
+            decoded = spatial_beam_blend_suffix(horizontal, typewell, spatial_metadata, well_id=well_id)
     else:
         raise ValueError(f"Unknown method: {method}")
     if method == "beam":
@@ -468,6 +502,8 @@ def predict_well(
             return np.full(len(unknown), last, dtype=float)
         delta = decoded - last
         return last + 0.10 * np.clip(delta, -60.0, 60.0)
+    if method == "safe_spatial_beam_blend":
+        return decoded
     raise ValueError(f"Unknown method: {method}")
 
 
@@ -477,7 +513,7 @@ def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict
         files = files[:max_wells]
     if method == "grid":
         return evaluate_grid(train_dir, max_wells)
-    spatial_metadata = build_spatial_metadata(train_dir) if method == "safe_spatial_plane" else None
+    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend"} else None
     sse = 0.0
     n = 0
     well_rmses = []
@@ -567,7 +603,7 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
     values: dict[str, float] = {}
-    spatial_metadata = build_spatial_metadata(data_root / "train") if method == "safe_spatial_plane" else None
+    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend"} else None
     for fp in sorted(test_dir.glob("*__horizontal_well.csv")):
         wid = fp.name.split("__", 1)[0]
         tw_path = test_dir / f"{wid}__typewell.csv"
@@ -596,7 +632,7 @@ def main() -> None:
     parser.add_argument("--data-root", default="data/raw")
     parser.add_argument(
         "--method",
-        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "grid"],
+        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "grid"],
         default="safe_beam",
     )
     parser.add_argument("--evaluate", action="store_true")
