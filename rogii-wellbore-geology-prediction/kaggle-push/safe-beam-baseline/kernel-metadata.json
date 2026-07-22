@@ -1,0 +1,13 @@
+{
+  "id": "zacky21/rogii-safe-beam-baseline",
+  "title": "ROGII Safe Typewell Beam Baseline",
+  "code_file": "rogii-safe-beam-baseline.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "competition_sources": ["rogii-wellbore-geology-prediction"],
+  "dataset_sources": [],
+  "kernel_sources": []
+}

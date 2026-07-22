@@ -29,7 +29,7 @@ jobs:
       REPOSITORY: ${{ github.repository }}
       HEAD_BRANCH_INPUT: ${{ inputs.head_branch || '' }}
       # Override this repository variable when only selected branch families should be scanned.
-      AUTO_PR_BRANCH_PREFIXES: ${{ vars.AUTO_PR_BRANCH_PREFIXES || 'cursor/,refactor/' }}
+      AUTO_PR_BRANCH_PREFIXES: ${{ vars.AUTO_PR_BRANCH_PREFIXES || 'cursor/,refactor/,codex/' }}
     steps:
       - name: Create or reopen eligible PRs
         shell: bash
