@@ -1,0 +1,13 @@
+{
+  "method": "safe_lowfreq_trend_recent250_alpha010_clip40",
+  "window": 250,
+  "alpha": 0.1,
+  "clip_ft": 40.0,
+  "rows": 3783989,
+  "wells": 773,
+  "rmse": 15.97009057323191,
+  "well_rmse_p50": 10.824526151316475,
+  "well_rmse_p90": 22.462381384378453,
+  "elapsed_sec": 5.528139957983512,
+  "leakage_check": "predictor reads only TVT_input prefix and suffix MD; suffix TVT is scoring-only"
+}
