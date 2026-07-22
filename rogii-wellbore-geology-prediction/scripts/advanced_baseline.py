@@ -181,24 +181,41 @@ def ncc_suffix(
 
     known_gr = _smooth(known["GR"], smooth_window)
     unknown_gr = _smooth(unknown["GR"], smooth_window)
-    history = np.concatenate([known_gr[-(lookback - 1):], unknown_gr]) if lookback > 1 else unknown_gr
+    if lookback > 1:
+        prefix = known_gr[-(lookback - 1) :]
+        if len(prefix) < lookback - 1:
+            pad = np.full(lookback - 1 - len(prefix), float(prefix[0]) if len(prefix) else 0.0)
+            prefix = np.concatenate([pad, prefix])
+        history = np.concatenate([prefix, unknown_gr])
+    else:
+        history = unknown_gr
+    tw_windows = np.lib.stride_tricks.sliding_window_view(tw_gr, lookback)
 
     path_idx = np.empty(len(unknown), dtype=int)
     prev_idx = start_idx
     for row in range(len(unknown)):
-        end = (lookback - 1) + row + 1
-        start = max(0, end - lookback)
-        segment = history[start:end]
+        end = row + lookback
+        segment = history[end - lookback : end]
+        segment_centered = segment - float(np.mean(segment))
+        segment_norm = float(np.linalg.norm(segment_centered))
+        if segment_norm <= 1e-8:
+            path_idx[row] = prev_idx
+            continue
         best_idx = prev_idx
         best_score = -np.inf
         left = max(len(segment) - 1, prev_idx - search_radius)
         right = min(len(tw_gr) - 1, prev_idx + search_radius)
-        for candidate in range(left, right + 1):
-            ref = tw_gr[candidate - len(segment) + 1 : candidate + 1]
-            score = _normalized_corr(segment, ref) - move_penalty * abs(candidate - prev_idx)
-            if score > best_score:
-                best_score = score
-                best_idx = candidate
+        candidate_idx = np.arange(left, right + 1, dtype=int)
+        ref_windows = tw_windows[candidate_idx - lookback + 1]
+        ref_centered = ref_windows - np.mean(ref_windows, axis=1, keepdims=True)
+        ref_norm = np.linalg.norm(ref_centered, axis=1)
+        denom = segment_norm * ref_norm
+        numer = ref_centered @ segment_centered
+        corr = np.divide(numer, denom, out=np.zeros_like(numer), where=denom > 1e-8)
+        score = corr - move_penalty * np.abs(candidate_idx - prev_idx)
+        best_pos = int(np.argmax(score))
+        best_score = float(score[best_pos])
+        best_idx = int(candidate_idx[best_pos])
         path_idx[row] = best_idx
         prev_idx = best_idx
 
@@ -412,6 +429,7 @@ def spatial_beam_blend_suffix(
     spatial_metadata: dict[str, np.ndarray],
     well_id: str | None = None,
     beam_weight: float = 0.25,
+    beam_smooth_window: int = 5,
 ) -> np.ndarray:
     """Conservatively blend the typewell beam and spatial-plane candidates.
 
@@ -426,7 +444,7 @@ def spatial_beam_blend_suffix(
     if len(unknown) == 0 or len(known) == 0:
         return np.array([], dtype=float)
     last = float(known["TVT_input"].iloc[-1])
-    beam = beam_suffix(horizontal, typewell)
+    beam = beam_suffix(horizontal, typewell, smooth_window=beam_smooth_window)
     spatial = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
     if len(beam) != len(unknown) or len(spatial) != len(unknown):
         return np.full(len(unknown), last, dtype=float)
@@ -462,11 +480,17 @@ def predict_well(
             decoded = physics_anchor_suffix(horizontal)
         else:
             decoded = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
-    elif method == "safe_spatial_beam_blend":
+    elif method in {"safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"}:
         if spatial_metadata is None:
             decoded = physics_anchor_suffix(horizontal)
         else:
-            decoded = spatial_beam_blend_suffix(horizontal, typewell, spatial_metadata, well_id=well_id)
+            decoded = spatial_beam_blend_suffix(
+                horizontal,
+                typewell,
+                spatial_metadata,
+                well_id=well_id,
+                beam_smooth_window=9 if method == "safe_spatial_beam_blend_gr_smooth9" else 5,
+            )
     else:
         raise ValueError(f"Unknown method: {method}")
     if method == "beam":
@@ -502,7 +526,7 @@ def predict_well(
             return np.full(len(unknown), last, dtype=float)
         delta = decoded - last
         return last + 0.10 * np.clip(delta, -60.0, 60.0)
-    if method == "safe_spatial_beam_blend":
+    if method in {"safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"}:
         return decoded
     raise ValueError(f"Unknown method: {method}")
 
@@ -513,7 +537,7 @@ def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict
         files = files[:max_wells]
     if method == "grid":
         return evaluate_grid(train_dir, max_wells)
-    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend"} else None
+    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"} else None
     sse = 0.0
     n = 0
     well_rmses = []
@@ -603,7 +627,7 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
     values: dict[str, float] = {}
-    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend"} else None
+    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"} else None
     for fp in sorted(test_dir.glob("*__horizontal_well.csv")):
         wid = fp.name.split("__", 1)[0]
         tw_path = test_dir / f"{wid}__typewell.csv"
@@ -632,7 +656,7 @@ def main() -> None:
     parser.add_argument("--data-root", default="data/raw")
     parser.add_argument(
         "--method",
-        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "grid"],
+        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "grid"],
         default="safe_beam",
     )
     parser.add_argument("--evaluate", action="store_true")
