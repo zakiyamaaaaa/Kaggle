@@ -1,0 +1,29 @@
+train features 50/773 wells
+train features 100/773 wells
+train features 150/773 wells
+train features 200/773 wells
+train features 250/773 wells
+train features 300/773 wells
+train features 350/773 wells
+train features 400/773 wells
+train features 450/773 wells
+train features 500/773 wells
+train features 550/773 wells
+train features 600/773 wells
+train features 650/773 wells
+train features 700/773 wells
+train features 750/773 wells
+/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py:131: UserWarning: Could not find the number of physical cores for the following reason:
+invalid literal for int() with base 10: ''
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py", line 249, in _count_physical_cores
+    cpu_count_physical = _count_physical_cores_darwin()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py", line 318, in _count_physical_cores_darwin
+    return int(cpu_info)
+           ^^^^^^^^^^^^^
+{'train_rows': 231900, 'train_wells': 773}
+{'test_rows': 14151, 'submission_rows': 14151, 'output': 'outputs/submissions/learned_selector_hgb_clip20.csv'}
+{'elapsed_sec': 233.357}
+exit=0 wall_sec=236

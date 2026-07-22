@@ -83,6 +83,7 @@ def write_prediction(
     advanced,
     metadata,
     model,
+    guard_clip: float,
 ) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
@@ -105,7 +106,7 @@ def write_prediction(
             continue
         residual = model.predict(frame.astype(np.float32))
         candidate = frame["best_blend"].to_numpy(float)
-        prediction = candidate + np.clip(residual, -40.0, 40.0)
+        prediction = candidate + np.clip(residual, -guard_clip, guard_clip)
         for row_idx, value in zip(unknown.index, prediction):
             values[f"{well_id}_{row_idx}"] = float(value)
 
@@ -126,6 +127,7 @@ def main() -> None:
         "--output",
         default="outputs/submissions/learned_selector_hgb_clip40.csv",
     )
+    parser.add_argument("--guard-clip", type=float, default=40.0)
     args = parser.parse_args()
     started = time.perf_counter()
     root = Path(args.data_root)
@@ -139,6 +141,7 @@ def main() -> None:
         advanced,
         metadata,
         model,
+        args.guard_clip,
     )
     print({"elapsed_sec": round(time.perf_counter() - started, 3)})
 

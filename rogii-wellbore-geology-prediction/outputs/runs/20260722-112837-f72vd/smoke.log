@@ -1,0 +1,16 @@
+/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py:131: UserWarning: Could not find the number of physical cores for the following reason:
+invalid literal for int() with base 10: ''
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py", line 249, in _count_physical_cores
+    cpu_count_physical = _count_physical_cores_darwin()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py", line 318, in _count_physical_cores_darwin
+    return int(cpu_info)
+           ^^^^^^^^^^^^^
+fold 1: candidate=20.271401 hgb=29.649324
+fold 2: candidate=12.610904 hgb=12.276905
+fold 3: candidate=7.283466 hgb=7.466948
+fold 4: candidate=10.921321 hgb=18.696922
+fold 5: candidate=9.508248 hgb=10.224348
+{'method': 'group_hgb_candidate_selector_all_wells', 'rows': 5000, 'wells': 20, 'candidate_rmse': 12.905003058652282, 'hgb_rmse': 17.548061591480906, 'candidate_well_rmse_p50': 8.259331862915118, 'candidate_well_rmse_p90': 18.211088851992958, 'hgb_well_rmse_p50': 9.381448871590838, 'hgb_well_rmse_p90': 22.9836767613492, 'hgb_clip40_rmse': 17.548061591480906, 'hgb_clip20_rmse': 16.896214673257084, 'hgb_clip60_rmse': 17.548061591480906, 'rows_per_well': 250, 'folds': 5, 'elapsed_sec': 51.7731468330021}

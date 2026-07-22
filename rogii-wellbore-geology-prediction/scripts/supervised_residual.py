@@ -207,11 +207,14 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
     good = np.isfinite(oof)
     by_well_candidate: list[float] = []
     by_well_hgb: list[float] = []
+    by_well_clip20: list[float] = []
     for wid in pd.unique(group):
         mask = good & (group == wid)
         if mask.any():
             by_well_candidate.append(float(np.sqrt(np.mean((candidate[mask] - y[mask]) ** 2))))
             by_well_hgb.append(float(np.sqrt(np.mean((oof[mask] - y[mask]) ** 2))))
+            clipped = candidate[mask] + np.clip(oof[mask] - candidate[mask], -20.0, 20.0)
+            by_well_clip20.append(float(np.sqrt(np.mean((clipped - y[mask]) ** 2))))
     hgb_pred = oof[good]
     candidate_pred = candidate[good]
     truth = y[good]
@@ -225,10 +228,19 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
         "candidate_well_rmse_p90": float(np.percentile(by_well_candidate, 90)),
         "hgb_well_rmse_p50": float(np.percentile(by_well_hgb, 50)),
         "hgb_well_rmse_p90": float(np.percentile(by_well_hgb, 90)),
+        "hgb_clip20_well_rmse_p50": float(np.percentile(by_well_clip20, 50)),
+        "hgb_clip20_well_rmse_p90": float(np.percentile(by_well_clip20, 90)),
         "hgb_clip40_rmse": float(
             mean_squared_error(
                 truth,
                 candidate_pred + np.clip(hgb_pred - candidate_pred, -40.0, 40.0),
+            )
+            ** 0.5
+        ),
+        "hgb_clip20_rmse": float(
+            mean_squared_error(
+                truth,
+                candidate_pred + np.clip(hgb_pred - candidate_pred, -20.0, 20.0),
             )
             ** 0.5
         ),

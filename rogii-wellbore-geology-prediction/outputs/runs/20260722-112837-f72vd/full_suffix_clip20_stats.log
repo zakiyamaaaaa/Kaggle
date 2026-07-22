@@ -1,0 +1,32 @@
+built 50/773 wells
+built 100/773 wells
+built 150/773 wells
+built 200/773 wells
+built 250/773 wells
+built 300/773 wells
+built 350/773 wells
+built 400/773 wells
+built 450/773 wells
+built 500/773 wells
+built 550/773 wells
+built 600/773 wells
+built 650/773 wells
+built 700/773 wells
+built 750/773 wells
+/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py:131: UserWarning: Could not find the number of physical cores for the following reason:
+invalid literal for int() with base 10: ''
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+  warnings.warn(
+  File "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py", line 249, in _count_physical_cores
+    cpu_count_physical = _count_physical_cores_darwin()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/.venv/lib/python3.12/site-packages/joblib/externals/loky/backend/context.py", line 318, in _count_physical_cores_darwin
+    return int(cpu_info)
+           ^^^^^^^^^^^^^
+fold 1: candidate=15.169050 hgb=14.355304
+fold 2: candidate=15.428410 hgb=14.774345
+fold 3: candidate=14.642616 hgb=14.221381
+fold 4: candidate=15.501055 hgb=14.540602
+fold 5: candidate=16.770329 hgb=15.662948
+{'method': 'group_hgb_candidate_selector_all_wells', 'rows': 3783989, 'wells': 773, 'candidate_rmse': 15.518022779503932, 'hgb_rmse': 14.7196100148914, 'candidate_well_rmse_p50': 10.480637044839836, 'candidate_well_rmse_p90': 21.871335326978965, 'hgb_well_rmse_p50': 10.078256284104006, 'hgb_well_rmse_p90': 21.06584156972954, 'hgb_clip20_well_rmse_p50': 10.041928457150716, 'hgb_clip20_well_rmse_p90': 20.924833152102185, 'hgb_clip40_rmse': 14.721218758282903, 'hgb_clip20_rmse': 14.641627268104381, 'hgb_clip60_rmse': 14.7196100148914, 'rows_per_well': 1000000, 'folds': 5, 'elapsed_sec': 688.2338760409912}
+exit=0 wall_sec=692
