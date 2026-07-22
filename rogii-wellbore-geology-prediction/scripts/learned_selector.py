@@ -128,7 +128,7 @@ def main() -> None:
     parser.add_argument("--max-wells", type=int)
     parser.add_argument(
         "--output",
-        default="outputs/submissions/learned_selector_hgb_trend100_clip10.csv",
+        default="outputs/submissions/learned_selector_hgb_trend200_clip10.csv",
     )
     parser.add_argument("--clip", type=float, default=10.0)
     args = parser.parse_args()

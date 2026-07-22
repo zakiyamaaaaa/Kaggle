@@ -42,7 +42,7 @@ python scripts/advanced_baseline.py --data-root data/raw --method safe_beam --ou
 
 typewellのGR波形をbounded beam searchで追跡し、最後の `TVT_input` からの補正を20%だけ採用する `safe_beam` を実装しました。全773井・3,783,989 suffix行のローカルRMSEは `15.861771`、Kaggle public scoreは `15.702`（submission ref `54876671`）です。末尾値固定のpublic score `15.883`から改善しています。
 
-さらに、周辺学習井のprefix-only `TVT_input + Z` anchorをXY上の局所加重平面で補間し、対象井のZへ変換する `safe_spatial_plane` を追加しました。typewell beamの保守候補を25%、局所平面候補を75%でblendする `safe_spatial_beam_blend` は、全773井でローカルRMSE `15.518195`（p50 `10.480521`、p90 `21.871322`）となりました。候補軌道をHGBで選択するselectorに、直近100点のprefix傾きから作る因果特徴 `trend_delta_md_100` とclip10 guardを加えた候補も保存しています。これは250行/井のGroupKFold OOFでRMSE `14.414458`（well p50 `9.641972`、p90 `20.262022`）でしたが、標本評価のためKaggleへの提出は行っていません。
+さらに、周辺学習井のprefix-only `TVT_input + Z` anchorをXY上の局所加重平面で補間し、対象井のZへ変換する `safe_spatial_plane` を追加しました。typewell beamの保守候補を25%、局所平面候補を75%でblendする `safe_spatial_beam_blend` は、全773井でローカルRMSE `15.518195`（p50 `10.480521`、p90 `21.871322`）となりました。候補軌道をHGBで選択するselectorには、直近200点のprefix傾きから作る因果特徴 `trend_delta_md_200` とclip10 guardを追加しました。250行/井のGroupKFold OOFでRMSE `14.402559`（well p50 `9.775259`、p90 `20.180731`）となり、直近100点版の `14.414458` を改善しました。ただし標本評価のためKaggleへの提出は行っていません。
 
 改善の根拠と次の実験は [knowledge/learning-notes.md](knowledge/learning-notes.md)、全実験の数値は [experiments/results.csv](experiments/results.csv) に記録しています。
 

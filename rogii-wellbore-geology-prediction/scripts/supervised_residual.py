@@ -129,7 +129,7 @@ def build_features(
     row["beam_ncc_gap"] = beam - ncc
     row["spatial_ncc_gap"] = spatial - ncc
     row["ncc_agrees"] = (np.abs(beam - ncc) <= 12.0).astype(float)
-    for window in (25, 100, 250):
+    for window in (25, 100, 200, 250):
         recent = known.tail(min(window, len(known)))
         row[f"slope_md_{window}"] = _slope(
             recent["MD"].to_numpy(float), recent["TVT_input"].to_numpy(float)
@@ -137,6 +137,10 @@ def build_features(
         row[f"slope_z_{window}"] = _slope(
             recent["Z"].to_numpy(float), recent["TVT_input"].to_numpy(float)
         )
+    # Explicitly expose the medium-horizon prefix trend as a suffix displacement.
+    # The tree model already sees both factors separately, but the product makes
+    # this causal low-frequency hypothesis available without requiring many splits.
+    row["trend_delta_md_200"] = row["slope_md_200"] * row["md_from_start"]
     # Explicit causal low-frequency displacement feature: the recent-100
     # prefix slope extrapolated over the suffix MD distance.  The suffix TVT
     # is never read here; it is only returned as the training target below.
