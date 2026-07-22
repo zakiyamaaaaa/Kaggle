@@ -453,6 +453,41 @@ def spatial_beam_blend_suffix(
     return last + beam_weight * beam_delta + (1.0 - beam_weight) * spatial_delta
 
 
+def spatial_beam_ncc_agreement_suffix(
+    horizontal: pd.DataFrame,
+    typewell: pd.DataFrame,
+    spatial_metadata: dict[str, np.ndarray],
+    well_id: str | None = None,
+    beam_weight: float = 0.25,
+    agreement_tolerance: float = 12.0,
+) -> np.ndarray:
+    """Add NCC to the spatial/beam blend only when both decoders agree.
+
+    NCC is useful on some local GR patterns but can lock onto a repeated
+    typewell motif.  Keep the established spatial/beam blend unchanged unless
+    the raw, datum-aligned beam and NCC paths are within a fixed 12-ft gate;
+    inside that gate, average their guarded deltas rather than trusting NCC
+    on its own.
+    """
+    known = horizontal[horizontal["TVT_input"].notna()]
+    unknown = horizontal[horizontal["TVT_input"].isna()]
+    if len(unknown) == 0 or len(known) == 0:
+        return np.array([], dtype=float)
+    last = float(known["TVT_input"].iloc[-1])
+    beam = beam_suffix(horizontal, typewell, smooth_window=5)
+    ncc = ncc_suffix(horizontal, typewell)
+    spatial = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
+    if any(len(candidate) != len(unknown) for candidate in (beam, ncc, spatial)):
+        return np.full(len(unknown), last, dtype=float)
+
+    beam_delta = 0.20 * np.clip(beam - last, -60.0, 60.0)
+    ncc_delta = 0.15 * np.clip(ncc - last, -40.0, 40.0)
+    agree = np.abs(beam - ncc) <= agreement_tolerance
+    decoder_delta = np.where(agree, 0.5 * (beam_delta + ncc_delta), beam_delta)
+    spatial_delta = 0.10 * np.clip(spatial - last, -60.0, 60.0)
+    return last + beam_weight * decoder_delta + (1.0 - beam_weight) * spatial_delta
+
+
 def predict_well(
     horizontal: pd.DataFrame,
     typewell: pd.DataFrame,
@@ -491,6 +526,16 @@ def predict_well(
                 well_id=well_id,
                 beam_smooth_window=9 if method == "safe_spatial_beam_blend_gr_smooth9" else 5,
             )
+    elif method == "safe_spatial_beam_ncc_agree":
+        if spatial_metadata is None:
+            decoded = physics_anchor_suffix(horizontal)
+        else:
+            decoded = spatial_beam_ncc_agreement_suffix(
+                horizontal,
+                typewell,
+                spatial_metadata,
+                well_id=well_id,
+            )
     else:
         raise ValueError(f"Unknown method: {method}")
     if method == "beam":
@@ -526,7 +571,11 @@ def predict_well(
             return np.full(len(unknown), last, dtype=float)
         delta = decoded - last
         return last + 0.10 * np.clip(delta, -60.0, 60.0)
-    if method in {"safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"}:
+    if method in {
+        "safe_spatial_beam_blend",
+        "safe_spatial_beam_blend_gr_smooth9",
+        "safe_spatial_beam_ncc_agree",
+    }:
         return decoded
     raise ValueError(f"Unknown method: {method}")
 
@@ -537,7 +586,7 @@ def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict
         files = files[:max_wells]
     if method == "grid":
         return evaluate_grid(train_dir, max_wells)
-    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"} else None
+    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree"} else None
     sse = 0.0
     n = 0
     well_rmses = []
@@ -627,7 +676,7 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
     values: dict[str, float] = {}
-    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"} else None
+    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree"} else None
     for fp in sorted(test_dir.glob("*__horizontal_well.csv")):
         wid = fp.name.split("__", 1)[0]
         tw_path = test_dir / f"{wid}__typewell.csv"
@@ -656,7 +705,7 @@ def main() -> None:
     parser.add_argument("--data-root", default="data/raw")
     parser.add_argument(
         "--method",
-        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "grid"],
+        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree", "grid"],
         default="safe_beam",
     )
     parser.add_argument("--evaluate", action="store_true")
