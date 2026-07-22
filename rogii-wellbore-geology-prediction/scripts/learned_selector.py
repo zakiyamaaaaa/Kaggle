@@ -83,6 +83,7 @@ def write_prediction(
     advanced,
     metadata,
     model,
+    clip: float | None,
 ) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
@@ -105,7 +106,10 @@ def write_prediction(
             continue
         residual = model.predict(frame.astype(np.float32))
         candidate = frame["best_blend"].to_numpy(float)
-        prediction = candidate + np.clip(residual, -40.0, 40.0)
+        if clip is None:
+            prediction = candidate + residual
+        else:
+            prediction = candidate + np.clip(residual, -clip, clip)
         for row_idx, value in zip(unknown.index, prediction):
             values[f"{well_id}_{row_idx}"] = float(value)
 
@@ -124,8 +128,9 @@ def main() -> None:
     parser.add_argument("--max-wells", type=int)
     parser.add_argument(
         "--output",
-        default="outputs/submissions/learned_selector_hgb_clip40.csv",
+        default="outputs/submissions/learned_selector_hgb_trend100_clip10.csv",
     )
+    parser.add_argument("--clip", type=float, default=10.0)
     args = parser.parse_args()
     started = time.perf_counter()
     root = Path(args.data_root)
@@ -139,6 +144,7 @@ def main() -> None:
         advanced,
         metadata,
         model,
+        args.clip,
     )
     print({"elapsed_sec": round(time.perf_counter() - started, 3)})
 

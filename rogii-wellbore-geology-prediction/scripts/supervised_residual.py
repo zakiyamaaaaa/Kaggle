@@ -137,6 +137,10 @@ def build_features(
         row[f"slope_z_{window}"] = _slope(
             recent["Z"].to_numpy(float), recent["TVT_input"].to_numpy(float)
         )
+    # Explicit causal low-frequency displacement feature: the recent-100
+    # prefix slope extrapolated over the suffix MD distance.  The suffix TVT
+    # is never read here; it is only returned as the training target below.
+    row["trend_delta_md_100"] = row["slope_md_100"] * row["md_from_start"]
     row = row.replace([np.inf, -np.inf], np.nan)
     # Hidden/test horizontal files intentionally do not contain the target.
     # Keeping the feature builder usable there lets the fitted selector be
@@ -215,6 +219,13 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
     hgb_pred = oof[good]
     candidate_pred = candidate[good]
     truth = y[good]
+    clip10_pred = candidate_pred + np.clip(hgb_pred - candidate_pred, -10.0, 10.0)
+    by_well_clip10: list[float] = []
+    for wid in pd.unique(group[good]):
+        mask = good & (group == wid)
+        by_well_clip10.append(
+            float(np.sqrt(np.mean((clip10_pred[mask[good]] - truth[group[good] == wid]) ** 2)))
+        )
     return {
         "method": "group_hgb_candidate_selector_all_wells",
         "rows": int(good.sum()),
@@ -225,6 +236,9 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
         "candidate_well_rmse_p90": float(np.percentile(by_well_candidate, 90)),
         "hgb_well_rmse_p50": float(np.percentile(by_well_hgb, 50)),
         "hgb_well_rmse_p90": float(np.percentile(by_well_hgb, 90)),
+        "hgb_clip10_rmse": float(mean_squared_error(truth, clip10_pred) ** 0.5),
+        "hgb_clip10_well_rmse_p50": float(np.percentile(by_well_clip10, 50)),
+        "hgb_clip10_well_rmse_p90": float(np.percentile(by_well_clip10, 90)),
         "hgb_clip40_rmse": float(
             mean_squared_error(
                 truth,
