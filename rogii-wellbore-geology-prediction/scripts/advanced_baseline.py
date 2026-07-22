@@ -515,7 +515,11 @@ def predict_well(
             decoded = physics_anchor_suffix(horizontal)
         else:
             decoded = spatial_plane_suffix(horizontal, spatial_metadata, well_id=well_id)
-    elif method in {"safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9"}:
+    elif method in {
+        "safe_spatial_beam_blend",
+        "safe_spatial_beam_blend_gr_smooth3",
+        "safe_spatial_beam_blend_gr_smooth9",
+    }:
         if spatial_metadata is None:
             decoded = physics_anchor_suffix(horizontal)
         else:
@@ -524,7 +528,13 @@ def predict_well(
                 typewell,
                 spatial_metadata,
                 well_id=well_id,
-                beam_smooth_window=9 if method == "safe_spatial_beam_blend_gr_smooth9" else 5,
+                beam_smooth_window=(
+                    3
+                    if method == "safe_spatial_beam_blend_gr_smooth3"
+                    else 9
+                    if method == "safe_spatial_beam_blend_gr_smooth9"
+                    else 5
+                ),
             )
     elif method == "safe_spatial_beam_ncc_agree":
         if spatial_metadata is None:
@@ -573,6 +583,7 @@ def predict_well(
         return last + 0.10 * np.clip(delta, -60.0, 60.0)
     if method in {
         "safe_spatial_beam_blend",
+        "safe_spatial_beam_blend_gr_smooth3",
         "safe_spatial_beam_blend_gr_smooth9",
         "safe_spatial_beam_ncc_agree",
     }:
@@ -586,7 +597,7 @@ def evaluate(train_dir: Path, method: str, max_wells: int | None = None) -> dict
         files = files[:max_wells]
     if method == "grid":
         return evaluate_grid(train_dir, max_wells)
-    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree"} else None
+    spatial_metadata = build_spatial_metadata(train_dir) if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth3", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree"} else None
     sse = 0.0
     n = 0
     well_rmses = []
@@ -676,7 +687,7 @@ def write_submission(data_root: Path, output: Path, method: str) -> None:
     test_dir = data_root / "test"
     sample = pd.read_csv(data_root / "sample_submission.csv")
     values: dict[str, float] = {}
-    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree"} else None
+    spatial_metadata = build_spatial_metadata(data_root / "train") if method in {"safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth3", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree"} else None
     for fp in sorted(test_dir.glob("*__horizontal_well.csv")):
         wid = fp.name.split("__", 1)[0]
         tw_path = test_dir / f"{wid}__typewell.csv"
@@ -705,7 +716,7 @@ def main() -> None:
     parser.add_argument("--data-root", default="data/raw")
     parser.add_argument(
         "--method",
-        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree", "grid"],
+        choices=["last", "beam", "safe_beam", "ncc", "safe_ncc", "particle", "safe_particle", "safe_physics", "safe_spatial_plane", "safe_spatial_beam_blend", "safe_spatial_beam_blend_gr_smooth3", "safe_spatial_beam_blend_gr_smooth9", "safe_spatial_beam_ncc_agree", "grid"],
         default="safe_beam",
     )
     parser.add_argument("--evaluate", action="store_true")
