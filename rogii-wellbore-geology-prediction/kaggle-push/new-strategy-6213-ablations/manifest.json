@@ -1,0 +1,65 @@
+{
+  "source_sha256": "4b4879a6d427422c127a300e09dc763b71ea5e7878eb3639941c75753a23933c",
+  "variants": [
+    {
+      "name": "no_modelpkg",
+      "profile": "vp_balanced_final",
+      "disable_generic_overlays": false,
+      "source_notebook": "kaggle-push/new-strategy-6213-repro/new-strategy-score-6-213.ipynb",
+      "source_sha256": "4b4879a6d427422c127a300e09dc763b71ea5e7878eb3639941c75753a23933c",
+      "notebook": "kaggle-push/new-strategy-6213-ablations/no_modelpkg/rogii-new-strategy-6-213-no-modelpkg.ipynb",
+      "notebook_sha256": "15455da561cdb99e766db62b3bc2916f1650fe7a864c76d13328921b655cc2a4",
+      "metadata": "kaggle-push/new-strategy-6213-ablations/no_modelpkg/kernel-metadata.json",
+      "kaggle_id": "zacky21/rogii-new-strategy-6-213-no-modelpkg",
+      "dataset_sources": [
+        "phongnguyn23021656/koolbox-offline",
+        "nina2025/rogii-03",
+        "pilkwang/rogii-model-package",
+        "thbdh5765/rogii-v10-fresh-artifacts",
+        "fleongg/rogii-claude-models-pub",
+        "needless090/rogii-tabicl-mirror",
+        "ravaghi/wellbore-geology-prediction-artifacts"
+      ]
+    },
+    {
+      "name": "contact_anchor",
+      "profile": "contact_gated_anchor",
+      "disable_generic_overlays": false,
+      "source_notebook": "kaggle-push/new-strategy-6213-repro/new-strategy-score-6-213.ipynb",
+      "source_sha256": "4b4879a6d427422c127a300e09dc763b71ea5e7878eb3639941c75753a23933c",
+      "notebook": "kaggle-push/new-strategy-6213-ablations/contact_anchor/rogii-new-strategy-6-213-contact-anchor.ipynb",
+      "notebook_sha256": "4c927debe67b7403fe738c593e2f3aecde2acc3b929dd998d3e75b62bdd0b540",
+      "metadata": "kaggle-push/new-strategy-6213-ablations/contact_anchor/kernel-metadata.json",
+      "kaggle_id": "zacky21/rogii-new-strategy-6-213-contact-anchor",
+      "dataset_sources": [
+        "phongnguyn23021656/koolbox-offline",
+        "nina2025/rogii-03",
+        "pilkwang/rogii-model-package",
+        "thbdh5765/rogii-v10-fresh-artifacts",
+        "fleongg/rogii-claude-models-pub",
+        "needless090/rogii-tabicl-mirror",
+        "ravaghi/wellbore-geology-prediction-artifacts"
+      ]
+    },
+    {
+      "name": "generic_core",
+      "profile": "contact_gated_anchor",
+      "disable_generic_overlays": true,
+      "source_notebook": "kaggle-push/new-strategy-6213-repro/new-strategy-score-6-213.ipynb",
+      "source_sha256": "4b4879a6d427422c127a300e09dc763b71ea5e7878eb3639941c75753a23933c",
+      "notebook": "kaggle-push/new-strategy-6213-ablations/generic_core/rogii-new-strategy-6-213-generic-core.ipynb",
+      "notebook_sha256": "16de7962b1234ba9ae5024e87ba6794327221f1f05d1e5b1cc424e508b86ef1a",
+      "metadata": "kaggle-push/new-strategy-6213-ablations/generic_core/kernel-metadata.json",
+      "kaggle_id": "zacky21/rogii-new-strategy-6-213-generic-core",
+      "dataset_sources": [
+        "phongnguyn23021656/koolbox-offline",
+        "nina2025/rogii-03",
+        "pilkwang/rogii-model-package",
+        "thbdh5765/rogii-v10-fresh-artifacts",
+        "fleongg/rogii-claude-models-pub",
+        "needless090/rogii-tabicl-mirror",
+        "ravaghi/wellbore-geology-prediction-artifacts"
+      ]
+    }
+  ]
+}
