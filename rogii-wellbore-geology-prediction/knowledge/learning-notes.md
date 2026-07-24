@@ -354,3 +354,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - これは従来の提出済みbaseline `Safe typewell beam baseline` 15.702から**8.163点改善**している。公開3井のtrain真値を使ったplaceholder診断ではなく、Kaggleが採点した実評価なので、汎用コアのSP45 projection、learned trajectory、60/40 blend、PF branch hedgeに実効性があることを確認できた。
 - 一方、公開作者の6.213には2.326点届かない。完全再現で確認したcontact/visible-prefix層を汎用コアから除外しても7.539まで到達したため、6.213との差は全行置換だけではなく、重み、seed、PF/beam設定、公開testへの最終補正の組合せにある可能性が高い。
 - 次の実験は、提出を連続して増やさず、ローカルで`sp45`と`learned`のblend weight、PF branch hedge、公開artifact model branchを一つずつGroupKFold/OOFで比較する。目標は7.539を再現可能な設定として維持しながら、6点台へ近づく変更だけを採用する。
+
+## 2026-07-24 generic core OOF実行の修正とartifact OOF結合
+
+- generic coreをKaggle上で773井suffix OOFへそのまま展開するNotebookは、screening版（FAST=1、粒子100、seed 8）でも12,000秒経過後に`RUNNING`のまま、ログ・出力ファイルとも空だった。ハングと判断して実行を停止・削除した。OOFスコアは生成されておらず、提出版generic coreの正当な773井OOF値として扱わない。
+- 代替として、ローカルの既存candidate selectorを全3,783,989 suffix行・773井・5-fold GroupKFoldで再実行し、行単位OOFを`outputs/runs/generic_core_local_candidate_oof.csv`へ保存した。candidate decoderはRMSE 15.5180228、HGB selectorはRMSE 14.7196101、井戸別p50/p90は10.0782563/21.0658416で、既存記録と一致した。
+- 保存したOOFを`rogii-model-package`の`blend_oof_postprocessed.npy`と`train_gt.parquet`へID順完全一致で結合した。artifact absolute-TVＴのRMSEは10.6702230で、先の独立再計算10.6702110との差はfloat/読み出し差の範囲だった。
+- 固定blendではartifact比率0.0/0.5/0.9/1.0のRMSEが14.7196101/11.8282175/10.7241645/10.6702230となり、artifact単体が最良だった。fold外でartifact比率を学習するnested blendもRMSE 10.6767886、井戸別p50/p90は7.19590/15.40653で、artifact単体を改善しなかった。
+- 判断: 7.539のKaggle評価と773井OOF 10.67は同じ尺度ではない。公開test 3井の分布・重複・公開専用層の影響が大きく、773井OOFはleaderboardスコアの予測器ではなくリーク検出と候補の相対比較に使う。弱いHGB候補を固定blendでartifactへ混ぜる変更は不採用とする。
+- 次の実験は、artifact OOFを固定baselineにし、PF/beam/projection/Viterbiの各候補を同じID・同じfoldで追加し、OOF上でartifactと補完的な誤差を持つかを検定する。単独RMSEが悪い候補でも、artifactの失敗井戸だけで改善する場合に限りmeta-selectorへ進める。

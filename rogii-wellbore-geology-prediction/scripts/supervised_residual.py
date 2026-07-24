@@ -149,7 +149,13 @@ def build_features(
     return row.reset_index(drop=True), target
 
 
-def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) -> dict[str, float]:
+def run(
+    data_root: Path,
+    max_wells: int | None,
+    rows_per_well: int,
+    folds: int,
+    oof_output: Path | None = None,
+) -> dict[str, float]:
     started = time.perf_counter()
     mod = load_advanced(Path(__file__).with_name("advanced_baseline.py"))
     files = sorted((data_root / "train").glob("*__horizontal_well.csv"))
@@ -175,13 +181,21 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
             selected = np.sort(rng.choice(len(frame), size=rows_per_well, replace=False))
             frame = frame.iloc[selected].reset_index(drop=True)
             target = target[selected]
+            unknown_idx = hw.index[hw["TVT_input"].isna() & hw["TVT"].notna()].to_numpy(int)[selected]
+        else:
+            unknown_idx = hw.index[hw["TVT_input"].isna() & hw["TVT"].notna()].to_numpy(int)
+        frame["_oof_id"] = [f"{wid}_{int(i)}" for i in unknown_idx]
+        frame["_oof_well"] = wid
+        frame["_oof_row_idx"] = unknown_idx
         frames.append(frame)
         targets.append(target)
         groups.append(np.full(len(frame), wid, dtype=object))
         if i % 50 == 0:
             print(f"built {i}/{len(files)} wells", flush=True)
 
-    X = pd.concat(frames, ignore_index=True).astype(np.float32)
+    all_frame = pd.concat(frames, ignore_index=True)
+    oof_meta = all_frame[["_oof_id", "_oof_well", "_oof_row_idx"]].copy()
+    X = all_frame.drop(columns=["_oof_id", "_oof_well", "_oof_row_idx"]).astype(np.float32)
     y = np.concatenate(targets).astype(np.float32)
     group = np.concatenate(groups)
     candidate = X["best_blend"].to_numpy(float)
@@ -215,7 +229,7 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
     hgb_pred = oof[good]
     candidate_pred = candidate[good]
     truth = y[good]
-    return {
+    result = {
         "method": "group_hgb_candidate_selector_all_wells",
         "rows": int(good.sum()),
         "wells": int(pd.Series(group).nunique()),
@@ -243,6 +257,19 @@ def run(data_root: Path, max_wells: int | None, rows_per_well: int, folds: int) 
         "folds": folds,
         "elapsed_sec": float(time.perf_counter() - started),
     }
+    if oof_output is not None:
+        output_frame = oof_meta.loc[good].reset_index(drop=True)
+        output_frame["target_tvt"] = truth
+        output_frame["candidate_tvt"] = candidate_pred
+        output_frame["hgb_oof_tvt"] = hgb_pred
+        output_frame["fold"] = np.nan
+        valid_positions = np.flatnonzero(good)
+        for fold, (_, valid_idx) in enumerate(cv.split(X, residual, group), 1):
+            output_frame.loc[np.isin(valid_positions, valid_idx), "fold"] = fold
+        oof_output.parent.mkdir(parents=True, exist_ok=True)
+        output_frame.to_csv(oof_output, index=False)
+        result["oof_output"] = str(oof_output)
+    return result
 
 
 def fit_and_write_submission(
@@ -318,12 +345,21 @@ def main() -> None:
     parser.add_argument("--rows-per-well", type=int, default=500)
     parser.add_argument("--folds", type=int, default=5)
     parser.add_argument("--output")
+    parser.add_argument("--oof-output")
     args = parser.parse_args()
     root = Path(args.data_root)
     if args.output:
         print(fit_and_write_submission(root, Path(args.output), args.rows_per_well))
     else:
-        print(run(root, args.max_wells, args.rows_per_well, args.folds))
+        print(
+            run(
+                root,
+                args.max_wells,
+                args.rows_per_well,
+                args.folds,
+                Path(args.oof_output) if args.oof_output else None,
+            )
+        )
 
 
 if __name__ == "__main__":
