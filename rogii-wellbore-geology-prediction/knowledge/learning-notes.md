@@ -478,3 +478,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 新100井の60/40代理blendでは、artifact代理が9.87489→**9.83794**（−0.03696、58/100井勝ち、bootstrap改善確率90.11%）、HGB代理が11.98586→**11.94648**（−0.03938、54/100井、92.08%）、Ridge代理が9.88377→**9.85214**（−0.03163、56/100井、88.16%）だった。すべて改善したが、各100井単独のbootstrap 5%点はまだわずかに負だった。
 - 前回discovery 50井と新100井を合わせた150井では、artifact/HGB/Ridge代理の改善量は0.04911/0.04365/0.04065ft、改善確率は97.54/96.54/95.89%。5%点も0.00839/0.00451/0.00227ftと3代理すべて正になった。異なる合法OOF代理で改善方向が再現したため、**full generic-coreの構成を維持しprojectionだけdegree 2/blend 0.5へ交換する候補**を支持する。
 - 判断: 効果は一貫するが約0.03〜0.05ftと小さく、公開learned branchとPF hedgeの完全OOFではない。次の提出候補を作る場合は、7.539を生成したNotebookの60/40 blend・branch hedgeを変更せず、projection定数だけを置換する。今回Kaggleへの提出は行っていない。
+
+## 2026-07-26 full generic-core d2/b0.5候補のKaggle提出
+
+- `build_sp45_projection_submission_notebook.py`へ`full-pipeline`モードを追加した。元のgeneric-core Notebookから変更する推論定数は`SP45_PROJECTION_DEGREE=2`と`SP45_PROJECTION_BLEND_WEIGHT=0.50`だけで、SP45 60%＋learned trajectory 40%と後段branch hedgeを維持する。最終監査cellは`submission.csv`を上書きせず、`submission_audit_copy.csv`および`latest_valid_submission.csv`との完全一致を検証する。
+- 既存Notebook version 2のfull候補は`submission_audit_copy.csv`として保存されていたが、Code Competition APIは提出ファイル名を`submission.csv`に限定するため400で拒否された。この試行は提出として受理されていない。
+- Kaggle Notebook `zacky21/rogii-sp45-ridge030-projection-d2-b050` version 3を新しいfull-pipelineモードで正常完了した。最終`submission.csv`は14,151行、sample ID順一致、重複0、有限値で、`submission_audit_copy.csv`と`latest_valid_submission.csv`に完全一致した。SHA256は`e677d5a1ce6769f9ace053e12d34ed6d4890604479298c2c38650f5fbc92ecc8`。
+- 監査JSONはprojection degree 2、blend 0.5、SP45 learned weight 0.6を確認した。full候補とSP45単体の予測差はRMS 3.20614ftで、SP45単体を誤提出していない。
+- version 2とversion 3のfull候補にはPF乱数由来のRMS 0.46810ftの差がある。以前の保存PF部分比較では候補スコア差が0.00156だったため、同じアルゴリズムの実行揺らぎとして許容した。
+- version 3の`submission.csv`を提出ID **55001998**として受理された。提出メッセージは`Full generic core 60-40 plus hedge; only projection changed to d2 b0.50`。記録時点では採点PENDINGである。

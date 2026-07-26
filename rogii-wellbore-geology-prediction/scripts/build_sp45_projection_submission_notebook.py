@@ -65,6 +65,95 @@ _cand_audit = {
 print('SP45 submission candidate audit:', _cand_audit, flush=True)
 """
 
+FULL_PIPELINE_AUDIT_CELL = """# Audit the full generic-core candidate without replacing submission.csv.
+import hashlib as _full_hashlib
+import json as _full_json
+import numpy as _full_np
+import pandas as _full_pd
+from pathlib import Path as _FullPath
+
+_full_work = _FullPath('/kaggle/working')
+_full_submission = _full_work / 'submission.csv'
+_full_audit_copy = _full_work / 'submission_audit_copy.csv'
+_full_latest = _full_work / 'latest_valid_submission.csv'
+_full_sp45 = _full_work / 'sp45_projection_submission.csv'
+_full_sample = _FullPath(COMPETITION_DATA_ROOT) / 'sample_submission.csv'
+
+def _full_sha256(path):
+    digest = _full_hashlib.sha256()
+    with open(path, 'rb') as stream:
+        for chunk in iter(lambda: stream.read(1 << 20), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+for _required_path in (
+    _full_submission,
+    _full_audit_copy,
+    _full_latest,
+    _full_sp45,
+    _full_sample,
+):
+    if not _required_path.exists():
+        raise RuntimeError(f'missing required output: {_required_path}')
+
+_full = _full_pd.read_csv(_full_submission)
+_audit_copy = _full_pd.read_csv(_full_audit_copy)
+_latest = _full_pd.read_csv(_full_latest)
+_sp45 = _full_pd.read_csv(_full_sp45)
+_sample = _full_pd.read_csv(_full_sample)
+if list(_full.columns) != ['id', 'tvt']:
+    raise RuntimeError(f'full candidate columns mismatch: {list(_full.columns)}')
+if len(_full) != len(_sample):
+    raise RuntimeError(f'full candidate row count mismatch: {len(_full)} != {len(_sample)}')
+if not _full['id'].astype(str).equals(_sample['id'].astype(str)):
+    raise RuntimeError('full candidate ID order does not match sample submission')
+_full_values = _full['tvt'].to_numpy(dtype=float)
+if not _full_np.isfinite(_full_values).all():
+    raise RuntimeError('full candidate contains non-finite TVT values')
+for _name, _copy in (
+    ('submission_audit_copy.csv', _audit_copy),
+    ('latest_valid_submission.csv', _latest),
+):
+    if not _full['id'].astype(str).equals(_copy['id'].astype(str)):
+        raise RuntimeError(f'{_name} ID order differs from submission.csv')
+    if not _full_np.array_equal(
+        _full_values,
+        _copy['tvt'].to_numpy(dtype=float),
+        equal_nan=False,
+    ):
+        raise RuntimeError(f'{_name} values differ from submission.csv')
+
+_sp45_values = _sp45['tvt'].to_numpy(dtype=float)
+_sp45_rms_difference = float(
+    _full_np.sqrt(_full_np.mean((_full_values - _sp45_values) ** 2))
+)
+if not _sp45_rms_difference > 0.01:
+    raise RuntimeError('full candidate unexpectedly matches the SP45-only branch')
+
+_full_audit = {
+    'candidate': 'full generic core: SP45 60% + learned 40% + branch hedge',
+    'projection_degree': int(SP45_PROJECTION_DEGREE),
+    'projection_blend_weight': float(SP45_PROJECTION_BLEND_WEIGHT),
+    'sp45_learned_weight': float(SP45_BLEND_WEIGHT),
+    'rows': int(len(_full)),
+    'id_order_matches_sample': True,
+    'finite_tvt': True,
+    'matches_submission_audit_copy': True,
+    'matches_latest_valid_submission': True,
+    'rms_difference_from_sp45_only': _sp45_rms_difference,
+    'tvt_min': float(_full_values.min()),
+    'tvt_max': float(_full_values.max()),
+    'tvt_mean': float(_full_values.mean()),
+    'tvt_std': float(_full_values.std()),
+    'sha256_submission_csv': _full_sha256(_full_submission),
+}
+(_full_work / 'submission_full_d2_b050_audit.json').write_text(
+    _full_json.dumps(_full_audit, indent=2) + '\\n',
+    encoding='utf-8',
+)
+print('Full generic-core submission audit:', _full_audit, flush=True)
+"""
+
 
 def source_text(cell: dict) -> str:
     source = cell.get("source", "")
@@ -109,13 +198,18 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         control = control.replace(old, new, 1)
     set_source(control_cell, control)
 
+    audit_cell = (
+        FULL_PIPELINE_AUDIT_CELL
+        if args.submission_mode == "full-pipeline"
+        else CANDIDATE_CELL
+    )
     notebook["cells"].append(
         {
             "cell_type": "code",
             "execution_count": None,
             "metadata": {},
             "outputs": [],
-            "source": CANDIDATE_CELL.splitlines(keepends=True),
+            "source": audit_cell.splitlines(keepends=True),
         }
     )
     for index, cell in enumerate(notebook["cells"]):
@@ -154,7 +248,12 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         "projection_blend_weight": 0.50,
         "ridge_weight": 0.30,
         "selector_weight": 0.70,
-        "candidate_output": "submission_sp45_ridge030_d2_b050.csv",
+        "submission_mode": args.submission_mode,
+        "candidate_output": (
+            "submission.csv"
+            if args.submission_mode == "full-pipeline"
+            else "submission_sp45_ridge030_d2_b050.csv"
+        ),
         "code_cells_compiled": sum(
             cell.get("cell_type") == "code" for cell in notebook["cells"]
         ),
@@ -172,6 +271,11 @@ def main() -> None:
     parser.add_argument("--source-notebook", type=Path, required=True)
     parser.add_argument("--source-metadata", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument(
+        "--submission-mode",
+        choices=("sp45-only", "full-pipeline"),
+        default="sp45-only",
+    )
     parser.add_argument("--owner", default="zacky21")
     parser.add_argument(
         "--slug",

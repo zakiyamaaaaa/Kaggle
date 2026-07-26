@@ -2,13 +2,14 @@
   "source_notebook": "kaggle-push/new-strategy-6213-ablations/generic_core/rogii-new-strategy-6-213-generic-core.ipynb",
   "source_sha256": "16de7962b1234ba9ae5024e87ba6794327221f1f05d1e5b1cc424e508b86ef1a",
   "notebook": "kaggle-push/sp45-ridge030-proj-d2-b050/rogii-sp45-ridge030-projection-d2-b050.ipynb",
-  "notebook_sha256": "52ed5e1b4210529d8994654041a132a158b772846066d6bcc7649ea165050096",
+  "notebook_sha256": "f3833ba45069fd8056255bd3e6c88c4c1c19d3081df8de62d7d2827ca8930786",
   "metadata": "kaggle-push/sp45-ridge030-proj-d2-b050/kernel-metadata.json",
   "kaggle_id": "zacky21/rogii-sp45-ridge030-projection-d2-b050",
   "projection_degree": 2,
   "projection_blend_weight": 0.5,
   "ridge_weight": 0.3,
   "selector_weight": 0.7,
-  "candidate_output": "submission_sp45_ridge030_d2_b050.csv",
+  "submission_mode": "full-pipeline",
+  "candidate_output": "submission.csv",
   "code_cells_compiled": 46
 }
