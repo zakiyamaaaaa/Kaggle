@@ -440,3 +440,13 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 全773井を使う推論設定は、Savgol window 601/poly2/alpha1.03、bias scale 0.75、threshold 3.0を5-fold cross-fitで選んだ。公開test 3井のraw予測biasは−0.105〜1.448ftですべてthreshold未満だったため、未提出候補ではbias補正が無効となりSavgol平滑化だけが残った。
 - `scripts/apply_artifact_well_bias_correction.py`へID順一致、列、行数、重複、有限値、SHA256のfail-fast監査を追加した。候補は14,151行、ID順一致、重複0、有限値で、SHA256は`4abe933d77a665dc41ba22493f0855b37289b354f3a0076d5e4a29b211a6a98b`。Kaggle提出は行っていない。
 - Notebook生成器も同じscale 0.75/threshold 3.0、train/test両方で平滑化後のartifact統計を使うよう更新した。生成Notebookは58セル・46コードセルすべてcompile済み。次は公開3井におけるgate無効化を過適合の判断材料にせず、hidden testでbiasが有効になる可能性を残したまま、別の独立信号を検証する。
+
+## 2026-07-26 generic core SP45の完全ローカル評価
+
+- 方針修正: model-package artifact単体の10.6点台を追うループを止め、Kaggle 7.539を得たgeneric coreのbranchへ戻した。Kaggle Notebookのアップロード・実行は行わず、公開Notebook SHA256 `16de7962b1234ba9ae5024e87ba6794327221f1f05d1e5b1cc424e508b86ef1a`のcontrol cell 6とselector cell 11だけをローカルで読み込む`generic_core_sp45_local.py`を実装した。
+- リーク制約: 各train井の予測には`TVT_input` prefix、horizontalの推論可能列、対応typewellだけを使用し、suffix `TVT`は予測完了後の評価にのみ使った。same-well contact lookup、visible-prefix overlay、model-package correction、learned branch、Ridge branchは含めていない。したがって今回はgeneric coreのSP45 selector＋`U=TVT+Z` projection部分のbranch評価である。
+- discovery 50井: seed 0で固定抽出した261,159行をPF 8 seeds・100 particlesで評価した。last-value 13.58776、selector raw 10.05806、現行projection（degree 3・blend 0.75）9.79697で、projectionが0.26109改善した。degree/blend gridを外側5-foldで選ぶnested値は9.88364で、現行固定値には届かなかった。
+- discovery全体で最良だったdegree 2・blend 0.5は9.69786だったが、同じ50井で選んだ値なので採用せず、seed 0の全50井を除外した独立holdout 50井へ設定を固定して検証した。
+- 独立holdout 50井・248,132行では、selector raw 8.68798、現行degree 3/blend 0.75は8.60005、固定challenger degree 2/blend 0.5は**8.53373**だった。未使用井戸上で**0.06633改善**し、井戸別p90も12.93851から12.86324へ改善したため、generic core SP45 projectionの採用候補とする。
+- discovery＋holdoutの100井統合診断では現行9.23322、challenger **9.14920**（−0.08402）、井戸別勝率55/100だった。探索後の統合値は正式採否値ではなく、正式根拠は独立holdoutの改善である。
+- 制約: PFを8 seeds・100 particlesへ縮小した高速評価であり、提出版128 seeds・500 particlesとは精度が異なる。またRidge 30%とlearned branch 40%、PF branch hedgeはまだ未結合。次は同じ100井キャッシュを固定し、Ridge OOFまたはlearned branchの合法な予測をID一致で追加して、SP45全体と60/40 generic-core blendへ段階的に近づける。Kaggleへのアップロード・提出は行っていない。
