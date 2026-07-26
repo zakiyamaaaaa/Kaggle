@@ -460,3 +460,9 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 独立holdout 50井・248,132行では、前回のselector＋degree 2/blend 0.5 projection **8.5337290**に対し、公開30/70 SP45＋同projectionは**8.1205604**へ**0.4131686改善**した。井戸別p90も12.86324から**10.83679**へ改善した。discovery 50井では9.6978575から8.7742634、100井統合診断では9.1492035から**8.4620830**だった。
 - Ridge weightをdiscoveryだけで`0, .1, .2, .3, .4, .5, .6`探索すると0.6が選ばれたが、holdoutは8.4768143で公開固定0.30の8.1205604より悪かった。ローカル小標本への重み再調整は転移しないため不採用とし、公開解法由来の事前固定0.30を維持する。
 - リーク制約: 予測時にsuffix TVT、same-well contact、visible-prefix overlay、learned branch、model-package correctionは使っていない。今回の正式なbranch候補は**SP45 Ridge 30%＋selector 70%＋degree 2/blend 0.5 projection**。次はこの固定候補へ公開learned branchをID一致で追加し、generic coreの60/40 blendに近づける。Kaggleへのアップロード・提出は行っていない。
+
+## 2026-07-26 SP45 degree 2 / blend 0.5候補のKaggle提出
+
+- `scripts/build_sp45_projection_submission_notebook.py`で、generic-core Notebook SHA256 `16de7962...`から提出専用Notebookを生成した。推論変更は`SP45_PROJECTION_DEGREE=2`、`SP45_PROJECTION_BLEND_WEIGHT=0.50`で、Ridge 30%＋selector 70%は維持した。learned branch以降の最終出力ではなく、ローカル8.1205604に対応する`sp45_projection_submission.csv`を最終`submission.csv`へ戻す監査cellを追加した。
+- Kaggle Notebook `zacky21/rogii-sp45-ridge030-projection-d2-b050` version 2は正常完了した。最終`submission.csv`、`sp45_projection_submission.csv`、名前付き候補CSVは完全同一で、14,151行、sample ID順一致、重複0、有限値だった。SHA256は`31f877c3171be71adf70257dadeb23549c6783746cf47d1e499bbfeb5a34cb70`。
+- 通常のファイルAPI提出は、Notebook由来の`submission.csv`のみを許可するCode Competition制約により拒否された。Notebook version 2を明示する方式へ切り替え、提出ID **54991701**として受理された。記録時点の状態は`PENDING`で、公開スコア待ちである。
