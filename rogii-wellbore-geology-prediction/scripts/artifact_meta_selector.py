@@ -68,6 +68,19 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         raise ValueError(f"row count mismatch: candidate={len(candidate)}, train_gt={len(train_gt)}, artifact={len(artifact_delta)}")
     if not candidate["_oof_id"].astype(str).equals(train_gt["id"].astype(str)):
         raise ValueError("candidate OOF IDs do not exactly match train_gt order")
+    viterbi = None
+    if args.viterbi_oof is not None:
+        viterbi = pd.read_csv(
+            args.viterbi_oof,
+            usecols=[
+                "_oof_id", "viterbi_tvt", "viterbi_offset", "calibration_sigma",
+                "calibration_alpha", "offset_std",
+            ],
+        )
+        if len(viterbi) != len(candidate):
+            raise ValueError(f"viterbi OOF row count mismatch: {len(viterbi)} != {len(candidate)}")
+        if not viterbi["_oof_id"].astype(str).equals(candidate["_oof_id"].astype(str)):
+            raise ValueError("viterbi OOF IDs do not exactly match candidate OOF order")
 
     ids = candidate["_oof_id"].astype(str).to_numpy()
     wells = candidate["_oof_well"].astype(str).to_numpy()
@@ -77,6 +90,11 @@ def run(args: argparse.Namespace) -> dict[str, object]:
     row_index = candidate["_oof_row_idx"].to_numpy(dtype=np.float32)
     y = candidate["target_tvt"].to_numpy(dtype=np.float32)
     candidate_tvt = candidate["hgb_oof_tvt"].to_numpy(dtype=np.float32)
+    viterbi_tvt = None if viterbi is None else viterbi["viterbi_tvt"].to_numpy(dtype=np.float32)
+    viterbi_offset = None if viterbi is None else viterbi["viterbi_offset"].to_numpy(dtype=np.float32)
+    calibration_sigma = None if viterbi is None else viterbi["calibration_sigma"].to_numpy(dtype=np.float32)
+    calibration_alpha = None if viterbi is None else viterbi["calibration_alpha"].to_numpy(dtype=np.float32)
+    offset_std = None if viterbi is None else viterbi["offset_std"].to_numpy(dtype=np.float32)
     last_known = train_gt["last_known_TVT"].to_numpy(dtype=np.float32)
     artifact_tvt = last_known + artifact_delta.astype(np.float32)
     artifact_delta = artifact_tvt - last_known
@@ -85,13 +103,24 @@ def run(args: argparse.Namespace) -> dict[str, object]:
     max_index = np.zeros(n_wells, dtype=np.float32)
     np.maximum.at(max_index, well_codes, row_index)
     row_frac = row_index / np.maximum(max_index[well_codes], 1.0)
-    X = np.column_stack(
-        [artifact_tvt, candidate_tvt, artifact_delta, candidate_delta,
-         candidate_minus_artifact, row_frac, row_index, last_known]
-    ).astype(np.float32, copy=False)
+    feature_arrays = [
+        artifact_tvt, candidate_tvt, artifact_delta, candidate_delta,
+        candidate_minus_artifact, row_frac, row_index, last_known,
+    ]
+    if viterbi_tvt is not None:
+        feature_arrays.extend([
+            viterbi_tvt,
+            viterbi_offset,
+            viterbi_tvt - artifact_tvt,
+            viterbi_tvt - candidate_tvt,
+            calibration_sigma,
+            calibration_alpha,
+            offset_std,
+        ])
+    X = np.column_stack(feature_arrays).astype(np.float32, copy=False)
     meta_oof = np.full(len(y), np.nan, dtype=np.float32)
     outer_fold = np.full(len(y), -1, dtype=np.int8)
-    del candidate, train_gt, wells
+    del candidate, train_gt, wells, viterbi
     outer = GroupKFold(n_splits=args.folds)
     shrink_grid = [float(x) for x in args.shrink_grid.split(",")]
     selected_alphas = []
@@ -156,6 +185,8 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         "selected_alphas": selected_alphas,
         "elapsed_sec": float(time.perf_counter() - started),
     }
+    if viterbi_tvt is not None:
+        summary["viterbi"] = metrics(y[valid], viterbi_tvt[valid], well_codes[valid], n_wells)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.unlink(missing_ok=True)
     for start in range(0, len(y), 250_000):
@@ -181,6 +212,7 @@ def main() -> None:
     parser.add_argument("--candidate-oof", type=Path, required=True)
     parser.add_argument("--train-gt", type=Path, required=True)
     parser.add_argument("--artifact-predictions", type=Path, required=True)
+    parser.add_argument("--viterbi-oof", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--summary", type=Path, required=True)
     parser.add_argument("--rows-per-well", type=int, default=300)

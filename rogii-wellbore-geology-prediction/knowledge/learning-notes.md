@@ -372,3 +372,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 診断として、完成した外側OOF上で補正量を後付け選択すると縮小率0.1で10.6607594まで下がったが、これは同じOOFでハイパーパラメータを選んだ値であり採用スコアにはしない。選択バイアスを避けるため、各外側foldの学習坑井をさらに5分割し、縮小率`0, .05, .1, .2, .3, .5, .75, 1`を内側で選んだ。
 - 二重検証の結果: 選択縮小率はfoldごとに0.3/0.5/0.2/0.0/0.3、外側OOF RMSEは10.6986713、井戸別p50/p90は7.28294/15.20159だった。artifact-onlyより0.0284483悪く、保守的な縮小でも改善を確認できなかった。
 - 結論: 現時点のローカル基準はartifact-only OOF 10.6702232を維持する。次は弱い候補をさらにmeta-selectorへ混ぜるのではなく、artifactの誤差が大きい坑井にだけ効く、独立した系列信号（Viterbi offset、calibration uncertainty、GR matching残差など）を同じ外側foldで追加検証する。Kaggle提出は行っていない。
+
+## 2026-07-26 Viterbi補完信号と坑井単位gate
+
+- `scripts/generate_viterbi_oof.py`で、773井・3,783,989 suffix行の行単位Viterbi OOFを生成した。予測はprefix calibration、horizontal GR、typewell GR、既存の合法なspatial/beam/NCC centerだけから計算し、suffix真値は評価時のtarget以外には渡していない。ID順は`train_gt.parquet`と完全一致した。
+- raw ViterbiはRMSE 32.9509115、井戸別p50/p90は26.09433/49.81617で単独利用不可。既存の保守設定（base + 0.2 * clip(Viterbi-base, ±10ft)）は15.4782640で、decoder単体ではbase 15.5180220より0.0397580改善した。
+- artifactとの固定blendではartifact-only 10.6702230が最良だった。raw Viterbiを1%混ぜても10.6926280、保守Viterbiを10%混ぜても10.7591532で、補完信号は全体blendでは使えなかった。
+- Viterbi offset、calibration sigma/alpha、offset分散を行単位meta-selectorに追加し、外側GroupKFold＋内側縮小率選択を実施した。RMSEは10.7004395、井戸別p50/p90は7.19325/15.37615で、artifact-onlyを下回らなかった。
+- さらに坑井単位でartifactと保守Viterbiのblend係数を学習した。学習坑井内の最適係数は0.0が384/773井だったが、診断値から係数を予測する外側GroupKFold gateはRMSE 11.0851452、係数grid最近傍化でも11.0757545だった。学習foldだけで選んだglobal係数は全fold0.0で、artifact-only RMSE 10.6702230を再現した。
+- 判断: Viterbiはdecoder基準の改善信号だが、公開artifactの誤差補正には現状不足している。今回の3方式は不採用とし、今後はGR matching残差やartifact内部の不確実性を直接再現できる場合に限って追加する。Kaggle提出は行っていない。
