@@ -450,3 +450,13 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 独立holdout 50井・248,132行では、selector raw 8.68798、現行degree 3/blend 0.75は8.60005、固定challenger degree 2/blend 0.5は**8.53373**だった。未使用井戸上で**0.06633改善**し、井戸別p90も12.93851から12.86324へ改善したため、generic core SP45 projectionの採用候補とする。
 - discovery＋holdoutの100井統合診断では現行9.23322、challenger **9.14920**（−0.08402）、井戸別勝率55/100だった。探索後の統合値は正式採否値ではなく、正式根拠は独立holdoutの改善である。
 - 制約: PFを8 seeds・100 particlesへ縮小した高速評価であり、提出版128 seeds・500 particlesとは精度が異なる。またRidge 30%とlearned branch 40%、PF branch hedgeはまだ未結合。次は同じ100井キャッシュを固定し、Ridge OOFまたはlearned branchの合法な予測をID一致で追加して、SP45全体と60/40 generic-core blendへ段階的に近づける。Kaggleへのアップロード・提出は行っていない。
+
+## 2026-07-26 公開Ridge枝を結合したSP45ローカル評価
+
+- `scripts/public_ridge_oof.py`を追加し、公開datasetのLightGBM 3本・CatBoost 2本のTrainer pickleからOOFを抽出した。各配列は3,783,989行で`train_gt.parquet`と完全に行対応し、保存RMSEとの差は最大0.0000133だった。差は`train_gt`のtarget deltaが0.01ftに丸められているためで、行ずれではない。
+- 5本のOOFを公開設定のpositive Ridge（alpha 1.660283、GroupKFold 5）で再stackした。Ridge meta-OOFは**10.4172825**で、公開Notebook記載の10.4197を再現した。外側validation井のtargetは各foldの学習に使っていない。
+- `scripts/generic_core_sp45_ridge_blend.py`を追加した。公開Notebook SHA256 `16de7962b1234ba9ae5024e87ba6794327221f1f05d1e5b1cc424e508b86ef1a`から`run_pf_ancc`と定数だけをAST抽出し、固定100井でPF 600 particlesを再実行した。Ridge後処理は`tau=85`、Ridge delta 91%＋PF delta 9%、井戸内Savgol window 17/poly 3、SP45はRidge 30%＋selector 70%である。
+- PFは公開artifact生成時の乱数状態を復元できないため、well ID由来の固定seedで再現可能にした。中断した公開CSV取得の先頭部分に完全なPF値が残っていた7井・35,906行で最終候補を比較すると、再計算PF版と保存PF版の予測差RMSEは0.05653ft、p90絶対差0.08081ft、候補スコア差は0.00156だった。したがってPF乱数差は今回の改善幅を説明しない。
+- 独立holdout 50井・248,132行では、前回のselector＋degree 2/blend 0.5 projection **8.5337290**に対し、公開30/70 SP45＋同projectionは**8.1205604**へ**0.4131686改善**した。井戸別p90も12.86324から**10.83679**へ改善した。discovery 50井では9.6978575から8.7742634、100井統合診断では9.1492035から**8.4620830**だった。
+- Ridge weightをdiscoveryだけで`0, .1, .2, .3, .4, .5, .6`探索すると0.6が選ばれたが、holdoutは8.4768143で公開固定0.30の8.1205604より悪かった。ローカル小標本への重み再調整は転移しないため不採用とし、公開解法由来の事前固定0.30を維持する。
+- リーク制約: 予測時にsuffix TVT、same-well contact、visible-prefix overlay、learned branch、model-package correctionは使っていない。今回の正式なbranch候補は**SP45 Ridge 30%＋selector 70%＋degree 2/blend 0.5 projection**。次はこの固定候補へ公開learned branchをID一致で追加し、generic coreの60/40 blendに近づける。Kaggleへのアップロード・提出は行っていない。
