@@ -381,3 +381,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - Viterbi offset、calibration sigma/alpha、offset分散を行単位meta-selectorに追加し、外側GroupKFold＋内側縮小率選択を実施した。RMSEは10.7004395、井戸別p50/p90は7.19325/15.37615で、artifact-onlyを下回らなかった。
 - さらに坑井単位でartifactと保守Viterbiのblend係数を学習した。学習坑井内の最適係数は0.0が384/773井だったが、診断値から係数を予測する外側GroupKFold gateはRMSE 11.0851452、係数grid最近傍化でも11.0757545だった。学習foldだけで選んだglobal係数は全fold0.0で、artifact-only RMSE 10.6702230を再現した。
 - 判断: Viterbiはdecoder基準の改善信号だが、公開artifactの誤差補正には現状不足している。今回の3方式は不採用とし、今後はGR matching残差やartifact内部の不確実性を直接再現できる場合に限って追加する。Kaggle提出は行っていない。
+
+## 2026-07-26 artifact坑井バイアス補正
+
+- 観測: artifact OOFの坑井平均残差は標準偏差8.1226ftで、±2ftを超える坑井が589/773井あった。行単位HGBではこの坑井共通バイアスを安定して補正できなかったため、坑井単位のprefix特徴からartifact残差平均をRidgeで推定した。
+- 特徴: prefixの行数・全行数・suffix行数、last TVT/GR、prefix TVTの平均/標準偏差/range、MD/Zの全体・直近傾き、prefix GR統計、typewell GRとのprefix calibration残差、さらに推論時にも利用できるartifact deltaの坑井内平均/標準偏差/first/last/min/maxを使用した。suffix真値は特徴へ渡していない。
+- 検証: 773井を外側GroupKFold 5分割し、各外側train fold内でさらにGroupKFold 5分割して、Ridge予測バイアスの縮小率`0.1, 0.25, 0.5, 0.75, 1.0`を選択した。外側validation井のtargetは補正強度選択にも使っていない。
+- 結果: artifact-only RMSE 10.6702230に対し、nested bias correctionは10.6596409（−0.0105821）、井戸別p50/p90は7.203528/15.411979だった。固定縮小率0.5の10.6451631は同一OOF後付け選択を含むため採用せず、nested結果のみを暫定bestとする。
+- 制約: local OOFでは改善を確認したが、artifactのtest予測を生成する公開Notebook側の推論枝へまだ移植していない。したがってKaggle提出は行わず、次はartifact model branchのtest予測取得とこのRidge補正の接続を検証する。
+- 接続確認: `scripts/apply_artifact_well_bias_correction.py`で、既存の未提出`submission_model_package_only.csv`へ同じRidgeをfit-allして適用し、scale 0.1/0.25/0.5の候補を3井・14,151行生成した。予測biasは平均1.0415ft、標準偏差0.4786ftだった。公開testはtrain井との重複があり、placeholder真値での選択は汎化評価にならないため、候補は採点・提出していない。
