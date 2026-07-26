@@ -390,7 +390,7 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - `scripts/artifact_family_residual_meta.py`でfamily相対差、disagreement、MD/row位置を使う残差HGBを外側・内側GroupKFoldで評価した。各井300行では10.6819000、1000行では10.6784515で、artifact-onlyをわずかに下回れず不採用。1000行版はp90 15.31441まで戻ったが、pooled RMSEの改善根拠にはしない。
 - `scripts/artifact_nested_smoothing.py`で、公開postprocessed artifactへ追加Savitzky–Golay平滑化をかけ、各外側foldの学習坑井だけでwindow/poly/追加scaleを選んだ。scaleを0.97〜1.03に制限したstrict OOFは**10.6579876**、artifact 10.6702108から**0.0122232改善**した。選択はfoldごとに`(501,2,1.03)/(601,2,1.03)/(301,1,1.03)/(301,1,1.03)/(601,2,1.0132)`だった。
 - scale上限を1.10へ広げるとstrict OOFは10.6675529へ悪化したため、1.03制約は必要。全OOFでhidden-test用設定をfitした診断上の推奨はwindow 601、poly 2、scale 1.03で10.6490030。ただし採用スコアは全OOF fit値ではなく、外側検証10.6579876とする。
-- 新しいローカルbestは10.6579876。井戸別p50/p90は7.27204/15.41570でartifactより悪化しているため、これはpooled行RMSE向けの改善でありwell-tail改善ではない。公開packageのformation imputerはquery well除外だがfoldごとの再構築ではないというmanifest上の制約も引き続き明示する。Kaggle提出は行っていない。
+- 平滑化単独のローカル値は10.6579876。井戸別p50/p90は7.27204/15.41570でartifactより悪化しているため、これはpooled行RMSE向けの改善でありwell-tail改善ではない。公開packageのformation imputerはquery well除外だがfoldごとの再構築ではないというmanifest上の制約も引き続き明示する。Kaggle提出は行っていない。
 
 ## 2026-07-26 artifact坑井バイアス補正
 
@@ -409,10 +409,18 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - family residual metaへprefix/artifact deltaの坑井bias Ridge補正を重ねても10.6720794（p50/p90 7.19988/15.38064）で、暫定bestのartifact well-bias nested 10.6596409を超えなかった。
 - 判断: family stackの追加は不採用。現在のローカルbestは、package postprocessed artifactへprefixとartifact delta統計から坑井平均biasを推定し、inner GroupKFoldで縮小率を選ぶRidge補正である。
 
+## 2026-07-26 artifact平滑化と坑井biasの統合
+
+- 平滑化OOFと坑井bias OOFをそのまま足す診断では10.6505959、固定bias scale 0.25では10.6410430だった。ただし両実験の外側fold構成が異なるため、この値は採用しない。
+- `scripts/artifact_smoothing_bias_nested.py`でfoldを統一し、各外側foldの学習坑井だけを使って、(1) Savitzky–Golay window/poly/scale選択、(2) smoothed artifact残差平均を予測するprefix-only Ridge、(3) 内側GroupKFoldでbias scale選択、の順に再評価した。
+- 統一foldの平滑化単独は10.6579742、平滑化＋biasは**10.6526241**だった。artifact 10.6702108から**0.0175867改善**、平滑化単独から0.0053501改善した。fold別bias scaleは0.25/0.1/0.1/0.1/0.1である。
+- 井戸別p50/p90は7.26311/15.46103で、pooled RMSEは改善したがp90は悪化した。採用指標はcompetitionと同じpooled行RMSEとし、新しいローカルbestを10.6526241へ更新する。Kaggle提出は行っていない。
+
 ## 2026-07-26 artifact Savgol平滑化＋坑井bias補正
 
 - `scripts/artifact_nested_smoothing.py`でpackage postprocessed artifactのdeltaを坑井内Savgol平滑化し、window/poly/alphaを外側train wellsだけで選択した。fold選択はwindow/poly/alphaをtrain foldで決め、validation井へ適用した。
 - nested平滑化単体はRMSE 10.6579876、井戸別p50/p90は7.27204/15.41570で、artifact-only 10.6702108から0.0122232改善した。fold選択はwindow 501/601/301/301/601、poly 2/2/1/1/2だった。
-- 平滑化OOFをartifactとして、prefix＋artifact delta統計の坑井bias Ridgeをさらに重ねた。inner GroupKFoldでscaleを選ぶ完全nested評価はRMSE **10.6525519**、p50/p90 **7.26148/15.46923**で、今回のローカルbestとなった。選択scaleは0.25/0.1/0.1/0.1/0.1。
+- 平滑化OOFをartifactとして、prefix＋artifact delta統計の坑井bias Ridgeをさらに重ねた別分割screeningはRMSE 10.6525519だったが、Savgol選択とbias補正の外側分割が完全には同一でないため正式採用値にはしない。
+- `scripts/artifact_smoothing_bias_nested.py`でSavgol選択・Ridge学習・inner scale選択を同じ外側fold内に統合した完全nested評価を実施した。RMSE **10.6526241**、p50/p90 **7.26311/15.46103**で、artifact-only 10.6702108から0.0175867改善し、正式な暫定bestとする。fold設定はwindow/poly/alpha = 301/1/1.03, 601/2/1.03, 601/2/1.03, 501/2/1.03, 601/2/1.01197、bias scale = 0.25/0.1/0.1/0.1/0.1。
 - test接続: window 601/poly2/alpha1.03をfit-all設定として既存の未提出model-package test予測へ適用し、bias scale 0.1/0.25の候補を3井・14,151行生成した。test真値は公開重複のため採否に使わず、Kaggle提出もしていない。
-- 判断: 現時点の暫定bestはartifact postprocessed OOF＋nested Savgol＋nested坑井bias Ridge。次はこの構成をNotebookのmodel-package correction枝へ移植し、submission前の構造・ID・有限値監査を行う。
+- 判断: 現時点の正式な暫定bestはartifact postprocessed OOF＋協調nested Savgol＋坑井bias Ridge。次はこの構成をNotebookのmodel-package correction枝へ移植し、submission前の構造・ID・有限値監査を行う。
