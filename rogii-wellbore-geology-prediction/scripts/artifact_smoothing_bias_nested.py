@@ -201,8 +201,9 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         )
         model = make_ridge(args.ridge_alpha)
         model.fit(X[train_wells], labels[train_wells])
-        valid_bias = model.predict(X[valid_wells])
-        valid_bias = valid_bias * (np.abs(valid_bias) >= selected_threshold)
+        raw_valid_bias = model.predict(X[valid_wells])
+        active_bias = np.abs(raw_valid_bias) >= selected_threshold
+        valid_bias = raw_valid_bias * active_bias
         bias_by_well = np.zeros(n_wells, dtype=float)
         bias_by_well[valid_wells] = valid_bias
         combined_oof[valid_rows] = (
@@ -216,6 +217,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             "valid_wells": int(len(valid_wells)),
             "bias_scale": selected_scale,
             "bias_threshold": selected_threshold,
+            "active_bias_wells": int(active_bias.sum()),
             "inner_bias_rmse": inner_bias_rmse,
             "smoothing_valid_rmse": float(
                 np.sqrt(np.mean((smoothing_oof[valid_rows] - target[valid_rows]) ** 2))
@@ -284,7 +286,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         "crossfit_bias_rmse": fit_all_bias_rmse,
     }
     summary = {
-        "method": "artifact_coordinated_nested_smoothing_well_bias",
+        "method": "artifact_coordinated_nested_smoothing_well_bias_gate",
         "rows": int(valid.sum()),
         "wells": int(n_wells),
         "artifact": metrics(target[valid], artifact[valid], groups[valid]),

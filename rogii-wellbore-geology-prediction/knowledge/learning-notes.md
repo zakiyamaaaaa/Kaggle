@@ -427,7 +427,16 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 
 ## 2026-07-26 model-package correction Notebook移植
 
-- `scripts/build_artifact_bias_notebook.py`で、元の57セルNotebookへOOF-trained artifact補正cellを1つだけ挿入した。位置はmodel-package correction cell 51の直後、branch hedge cellの直前で、model-package raw test trajectoryへ固定fit設定（Savgol window 601/poly2/alpha 1.03、Ridge bias scale 0.10）を適用する。
+- `scripts/build_artifact_bias_notebook.py`で、元の57セルNotebookへOOF-trained artifact補正cellを1つだけ挿入した。位置はmodel-package correction cell 51の直後、branch hedge cellの直前で、model-package raw test trajectoryへfit-all設定を適用する。
 - 追加cellはpackage `oof/train_gt.parquet`と`blend_oof_postprocessed.npy`を学習データとして読み、train/testのprefix特徴とartifact delta統計を同じ関数で生成する。公開testの真値やtrain同一井lookupは使わない。
 - 生成先は`kaggle-push/new-strategy-6213-artifact-bias/`。元57セル、追加後58セル、全46コードセルのPython compile、kernel metadata ID、追加marker、test候補の`id,tvt`・14,151行・sample ID順・有限値を監査した。
-- NotebookのKaggle実行とsubmissionはまだ行っていない。ローカルOOFの正式bestは10.6526241であり、Notebook移植後もまず実行ログと監査ファイルを確認してから採否を判断する。
+- NotebookのKaggle実行とsubmissionはまだ行っていない。Notebook移植後もまず実行ログと監査ファイルを確認してから採否を判断する。
+
+## 2026-07-26 坑井bias信頼度ゲート
+
+- 仮説: Ridgeが予測した坑井biasの絶対値が小さい場合は推定ノイズの比率が高いため、一律補正よりも、十分大きい予測biasだけを補正する方が安全である。`scripts/artifact_smoothing_bias_nested.py`へ絶対値thresholdを追加し、各外側foldのtrain坑井だけをさらにGroupKFold分割して、scaleとthresholdを同時選択した。
+- threshold gridは`0, 0.5, 1, 2, 3, 4, 6 ft`、scale gridは`0.1, 0.25, 0.5, 0.75, 1.0`。外側validationの真値はSavgol設定、scale、thresholdの選択に使っていない。fold別の`scale/threshold/有効坑井数`は`1.0/6/0`, `0.25/1/75`, `0.1/6/0`, `0.25/3/4`, `0.5/2/10`だった。
+- 完全nested OOFはRMSE **10.6492996**、井戸別p50/p90 **7.27681/15.46062**。旧best 10.6526241から**0.0033245改善**し、artifact-only 10.6702108から0.0209112改善したため、新しい正式bestとする。改善は小さく、5 fold中2 foldでは補正が完全に無効化されたため、biasモデルの汎化力が限定的という診断も維持する。
+- 全773井を使う推論設定は、Savgol window 601/poly2/alpha1.03、bias scale 0.75、threshold 3.0を5-fold cross-fitで選んだ。公開test 3井のraw予測biasは−0.105〜1.448ftですべてthreshold未満だったため、未提出候補ではbias補正が無効となりSavgol平滑化だけが残った。
+- `scripts/apply_artifact_well_bias_correction.py`へID順一致、列、行数、重複、有限値、SHA256のfail-fast監査を追加した。候補は14,151行、ID順一致、重複0、有限値で、SHA256は`4abe933d77a665dc41ba22493f0855b37289b354f3a0076d5e4a29b211a6a98b`。Kaggle提出は行っていない。
+- Notebook生成器も同じscale 0.75/threshold 3.0、train/test両方で平滑化後のartifact統計を使うよう更新した。生成Notebookは58セル・46コードセルすべてcompile済み。次は公開3井におけるgate無効化を過適合の判断材料にせず、hidden testでbiasが有効になる可能性を残したまま、別の独立信号を検証する。
