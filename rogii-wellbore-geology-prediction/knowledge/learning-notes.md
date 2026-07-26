@@ -468,3 +468,13 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 通常のファイルAPI提出は、Notebook由来の`submission.csv`のみを許可するCode Competition制約により拒否された。Notebook version 2を明示する方式へ切り替え、提出ID **54991701**として受理された。
 - 公開スコアは**7.894**だった。ローカルholdout 8.1205604との差は0.22656で、branch単体の絶対値対応は大きく崩れていない。一方、前回のfull generic-core 7.539より0.355悪い。
 - この提出はローカル評価対象へ忠実に合わせるため、`sp45_projection_submission.csv`を提出した。前回7.539の最終`submission.csv`にはSP45とlearned trajectoryの60/40 blendおよび後段branch hedgeが含まれるため、今回との差をdegree 3/blend 0.75からdegree 2/blend 0.5への変更効果とは解釈できない。次の正しい比較は、7.539と同じfull pipelineを保ち、projection定数だけを変更した候補をローカルで評価することである。
+
+## 2026-07-26 full generic-core投影差分の代理OOF検証
+
+- 目的: Kaggle 7.539のfull generic-coreと同じSP45 60%＋learned trajectory 40%を保ち、SP45のprojectionだけを現行degree 3/blend 0.75からchallenger degree 2/blend 0.5へ変える効果をローカルで分離する。
+- 公開learned branchのtrain OOFは配布されておらず、公開pickleをtrain全井へ直接推論するとリークする。そのため、合法なGroup OOFである(1) model-package artifact OOF、(2) local HGB group OOF、(3) Ridge PPをlearned branchの代理として使った。これは投影差分の感度検証であり、公開learned branchの完全再現スコアではない。後段PF branch hedgeも含めていない。
+- 最初の独立holdout 50井では、60/40 blendの改善量はartifact/HGB/Ridge代理の順に0.04502/0.06588/0.04635ftで、3代理すべて改善した。ただし井戸bootstrapの5%点は負で、単独50井では証拠が弱かった。
+- `generic_core_sp45_local.py`を複数の除外summaryへ対応させ、既存discovery 50井とholdout 50井の計100井を除外した新しい100井・476,493行をseed 2で固定抽出した。SP45 selector単体は12.44366、現行projectionは12.23736。公開Ridge 30%＋selector 70%へ接続すると現行degree 3/blend 0.75は10.79622、challenger degree 2/blend 0.5は**10.69707**で、独立100井でも0.09915改善した。
+- 新100井の60/40代理blendでは、artifact代理が9.87489→**9.83794**（−0.03696、58/100井勝ち、bootstrap改善確率90.11%）、HGB代理が11.98586→**11.94648**（−0.03938、54/100井、92.08%）、Ridge代理が9.88377→**9.85214**（−0.03163、56/100井、88.16%）だった。すべて改善したが、各100井単独のbootstrap 5%点はまだわずかに負だった。
+- 前回discovery 50井と新100井を合わせた150井では、artifact/HGB/Ridge代理の改善量は0.04911/0.04365/0.04065ft、改善確率は97.54/96.54/95.89%。5%点も0.00839/0.00451/0.00227ftと3代理すべて正になった。異なる合法OOF代理で改善方向が再現したため、**full generic-coreの構成を維持しprojectionだけdegree 2/blend 0.5へ交換する候補**を支持する。
+- 判断: 効果は一貫するが約0.03〜0.05ftと小さく、公開learned branchとPF hedgeの完全OOFではない。次の提出候補を作る場合は、7.539を生成したNotebookの60/40 blend・branch hedgeを変更せず、projection定数だけを置換する。今回Kaggleへの提出は行っていない。

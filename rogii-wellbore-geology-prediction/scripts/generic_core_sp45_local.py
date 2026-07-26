@@ -157,9 +157,9 @@ def well_metrics(frame: pd.DataFrame) -> dict[str, float | int]:
 def run(args: argparse.Namespace) -> dict[str, object]:
     started = time.perf_counter()
     excluded_wells: set[str] = set()
-    if args.exclude_summary is not None:
-        exclude_record = json.loads(args.exclude_summary.read_text(encoding="utf-8"))
-        excluded_wells = set(map(str, exclude_record.get("sampled_wells", [])))
+    for exclude_summary in args.exclude_summary:
+        exclude_record = json.loads(exclude_summary.read_text(encoding="utf-8"))
+        excluded_wells.update(map(str, exclude_record.get("sampled_wells", [])))
     wells = select_wells(
         args.data_root,
         args.n_wells,
@@ -318,7 +318,7 @@ def main() -> None:
     parser.add_argument("--data-root", type=Path, default=Path("data/raw"))
     parser.add_argument("--n-wells", type=int, default=50)
     parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--exclude-summary", type=Path)
+    parser.add_argument("--exclude-summary", type=Path, action="append", default=[])
     parser.add_argument("--pf-seeds", type=int, default=8)
     parser.add_argument("--particles", type=int, default=100)
     parser.add_argument("--projection-degree", type=int, default=3)
