@@ -465,4 +465,6 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 
 - `scripts/build_sp45_projection_submission_notebook.py`で、generic-core Notebook SHA256 `16de7962...`から提出専用Notebookを生成した。推論変更は`SP45_PROJECTION_DEGREE=2`、`SP45_PROJECTION_BLEND_WEIGHT=0.50`で、Ridge 30%＋selector 70%は維持した。learned branch以降の最終出力ではなく、ローカル8.1205604に対応する`sp45_projection_submission.csv`を最終`submission.csv`へ戻す監査cellを追加した。
 - Kaggle Notebook `zacky21/rogii-sp45-ridge030-projection-d2-b050` version 2は正常完了した。最終`submission.csv`、`sp45_projection_submission.csv`、名前付き候補CSVは完全同一で、14,151行、sample ID順一致、重複0、有限値だった。SHA256は`31f877c3171be71adf70257dadeb23549c6783746cf47d1e499bbfeb5a34cb70`。
-- 通常のファイルAPI提出は、Notebook由来の`submission.csv`のみを許可するCode Competition制約により拒否された。Notebook version 2を明示する方式へ切り替え、提出ID **54991701**として受理された。記録時点の状態は`PENDING`で、公開スコア待ちである。
+- 通常のファイルAPI提出は、Notebook由来の`submission.csv`のみを許可するCode Competition制約により拒否された。Notebook version 2を明示する方式へ切り替え、提出ID **54991701**として受理された。
+- 公開スコアは**7.894**だった。ローカルholdout 8.1205604との差は0.22656で、branch単体の絶対値対応は大きく崩れていない。一方、前回のfull generic-core 7.539より0.355悪い。
+- この提出はローカル評価対象へ忠実に合わせるため、`sp45_projection_submission.csv`を提出した。前回7.539の最終`submission.csv`にはSP45とlearned trajectoryの60/40 blendおよび後段branch hedgeが含まれるため、今回との差をdegree 3/blend 0.75からdegree 2/blend 0.5への変更効果とは解釈できない。次の正しい比較は、7.539と同じfull pipelineを保ち、projection定数だけを変更した候補をローカルで評価することである。
