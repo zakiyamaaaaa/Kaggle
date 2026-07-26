@@ -78,17 +78,37 @@ def smooth_test_artifact(frame: pd.DataFrame, window: int, poly: int, alpha: flo
     return output
 
 
+def smooth_train_artifact(frame: pd.DataFrame, window: int, poly: int, alpha: float) -> pd.DataFrame:
+    if window <= 0:
+        return frame
+    output = frame.copy()
+    for _, part in frame.groupby("_oof_well", sort=False):
+        positions = part.sort_values("_oof_row_idx").index.to_numpy()
+        local_window = min(int(window), len(positions))
+        if local_window % 2 == 0:
+            local_window -= 1
+        if local_window < int(poly) + 2:
+            continue
+        delta = frame.loc[positions, "artifact_delta"].to_numpy(float)
+        output.loc[positions, "artifact_delta"] = float(alpha) * savgol_filter(
+            delta, window_length=local_window, polyorder=min(int(poly), local_window - 1), mode="interp"
+        )
+    return output
+
+
 def run(args: argparse.Namespace) -> dict[str, object]:
     train_gt = pd.read_parquet(args.train_gt, columns=["id", "last_known_TVT"])
     artifact_delta = np.load(args.artifact_predictions).reshape(-1).astype(float)
-    target_oof = pd.read_csv(args.target_oof, usecols=["_oof_id", "_oof_well", "target_tvt"])
+    target_oof = pd.read_csv(args.target_oof, usecols=["_oof_id", "_oof_well", "_oof_row_idx", "target_tvt"])
     if len(target_oof) != len(train_gt) or not target_oof["_oof_id"].astype(str).equals(train_gt["id"].astype(str)):
         raise ValueError("training OOF IDs do not match train_gt order")
-    train_artifact = train_gt["last_known_TVT"].to_numpy(float) + artifact_delta
     train_rows = pd.DataFrame({
         "_oof_well": target_oof["_oof_well"].astype(str),
-        "artifact_delta": train_artifact - train_gt["last_known_TVT"].to_numpy(float),
+        "_oof_row_idx": target_oof["_oof_row_idx"].to_numpy(int),
+        "artifact_delta": artifact_delta,
     })
+    train_rows = smooth_train_artifact(train_rows, args.savgol_window, args.savgol_poly, args.savgol_alpha)
+    train_artifact = train_gt["last_known_TVT"].to_numpy(float) + train_rows["artifact_delta"].to_numpy(float)
     train_stats = artifact_stats(train_rows)
     train_bias = pd.DataFrame({
         "_oof_well": target_oof["_oof_well"].astype(str),
