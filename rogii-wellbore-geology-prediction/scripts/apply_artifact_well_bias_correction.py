@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy.signal import savgol_filter
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
 from sklearn.pipeline import make_pipeline
@@ -58,6 +59,25 @@ def build_test_artifact_frame(data_root: Path, base_submission: pd.DataFrame) ->
     return frame
 
 
+def smooth_test_artifact(frame: pd.DataFrame, window: int, poly: int, alpha: float) -> pd.DataFrame:
+    if window <= 0:
+        return frame
+    output = frame.copy()
+    for _, part in frame.groupby("_oof_well", sort=False):
+        positions = part.sort_values("_oof_row_idx").index.to_numpy()
+        local_window = min(int(window), len(positions))
+        if local_window % 2 == 0:
+            local_window -= 1
+        if local_window < int(poly) + 2:
+            continue
+        delta = frame.loc[positions, "artifact_delta"].to_numpy(float)
+        output.loc[positions, "artifact_delta"] = float(alpha) * savgol_filter(
+            delta, window_length=local_window, polyorder=min(int(poly), local_window - 1), mode="interp"
+        )
+        output.loc[positions, "artifact_tvt"] = output.loc[positions, "last_tvt"] + output.loc[positions, "artifact_delta"]
+    return output
+
+
 def run(args: argparse.Namespace) -> dict[str, object]:
     train_gt = pd.read_parquet(args.train_gt, columns=["id", "last_known_TVT"])
     artifact_delta = np.load(args.artifact_predictions).reshape(-1).astype(float)
@@ -80,6 +100,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
 
     base_submission = pd.read_csv(args.base_submission)[["id", "tvt"]]
     test_frame = build_test_artifact_frame(args.data_root, base_submission)
+    test_frame = smooth_test_artifact(test_frame, args.savgol_window, args.savgol_poly, args.savgol_alpha)
     test_wells = test_frame["_oof_well"].astype(str).drop_duplicates().to_numpy()
     test_prefix = build_prefix_features(args.data_root, set(test_wells), split="test")
     test_features = pd.DataFrame({"_oof_well": test_wells}).merge(test_prefix, on="_oof_well", how="left").merge(
@@ -111,6 +132,9 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         "test_rows": int(len(test_frame)),
         "ridge_alpha": args.ridge_alpha,
         "scales": args.scales,
+        "savgol_window": args.savgol_window,
+        "savgol_poly": args.savgol_poly,
+        "savgol_alpha": args.savgol_alpha,
         "predicted_bias_summary": {
             "mean": float(np.mean(predicted_bias)),
             "std": float(np.std(predicted_bias)),
@@ -136,6 +160,9 @@ def main() -> None:
     parser.add_argument("--summary", type=Path, required=True)
     parser.add_argument("--ridge-alpha", type=float, default=100.0)
     parser.add_argument("--scales", type=float, nargs="+", default=[0.1, 0.25, 0.5])
+    parser.add_argument("--savgol-window", type=int, default=0)
+    parser.add_argument("--savgol-poly", type=int, default=2)
+    parser.add_argument("--savgol-alpha", type=float, default=1.0)
     run(parser.parse_args())
 
 

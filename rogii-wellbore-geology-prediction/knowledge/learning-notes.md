@@ -382,6 +382,16 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - さらに坑井単位でartifactと保守Viterbiのblend係数を学習した。学習坑井内の最適係数は0.0が384/773井だったが、診断値から係数を予測する外側GroupKFold gateはRMSE 11.0851452、係数grid最近傍化でも11.0757545だった。学習foldだけで選んだglobal係数は全fold0.0で、artifact-only RMSE 10.6702230を再現した。
 - 判断: Viterbiはdecoder基準の改善信号だが、公開artifactの誤差補正には現状不足している。今回の3方式は不採用とし、今後はGR matching残差やartifact内部の不確実性を直接再現できる場合に限って追加する。Kaggle提出は行っていない。
 
+## 2026-07-26 model-package family分解と追加平滑化
+
+- Kaggle dataset `pilkwang/rogii-model-package`を一時領域へ取得し、最終blendだけでなくXGB/CatBoost/HGB/LightGBM/sequence TCNの全3,783,989行OOFを確認した。各RMSEは11.36152/11.02470/11.25584/11.24757/11.25796、raw blend 10.71064、公開postprocess後10.67021だった。
+- family間標準偏差とartifact絶対誤差の相関は0.2986で、不一致decileが上がるほどartifact RMSEも6.217から17.495へ単調悪化した。一方、artifactは全decileで各単独familyより良く、単純なfamily切替や不一致時のlast-known shrinkでは改善しなかった。family row oracleは8.44325、well oracleは9.24901で、selector余地自体は残る。
+- `scripts/artifact_family_nested_stack.py`で、外側GroupKFoldの学習坑井だけから非負・和1のfamily weightをfitし、内側坑井で不一致shrinkと平滑化を選んだ。strict OOFは10.7393770、井戸別p50/p90は7.19653/15.20395で不採用。5 fold中4 foldで不一致shrink係数0が選ばれた。
+- `scripts/artifact_family_residual_meta.py`でfamily相対差、disagreement、MD/row位置を使う残差HGBを外側・内側GroupKFoldで評価した。各井300行では10.6819000、1000行では10.6784515で、artifact-onlyをわずかに下回れず不採用。1000行版はp90 15.31441まで戻ったが、pooled RMSEの改善根拠にはしない。
+- `scripts/artifact_nested_smoothing.py`で、公開postprocessed artifactへ追加Savitzky–Golay平滑化をかけ、各外側foldの学習坑井だけでwindow/poly/追加scaleを選んだ。scaleを0.97〜1.03に制限したstrict OOFは**10.6579876**、artifact 10.6702108から**0.0122232改善**した。選択はfoldごとに`(501,2,1.03)/(601,2,1.03)/(301,1,1.03)/(301,1,1.03)/(601,2,1.0132)`だった。
+- scale上限を1.10へ広げるとstrict OOFは10.6675529へ悪化したため、1.03制約は必要。全OOFでhidden-test用設定をfitした診断上の推奨はwindow 601、poly 2、scale 1.03で10.6490030。ただし採用スコアは全OOF fit値ではなく、外側検証10.6579876とする。
+- 新しいローカルbestは10.6579876。井戸別p50/p90は7.27204/15.41570でartifactより悪化しているため、これはpooled行RMSE向けの改善でありwell-tail改善ではない。公開packageのformation imputerはquery well除外だがfoldごとの再構築ではないというmanifest上の制約も引き続き明示する。Kaggle提出は行っていない。
+
 ## 2026-07-26 artifact坑井バイアス補正
 
 - 観測: artifact OOFの坑井平均残差は標準偏差8.1226ftで、±2ftを超える坑井が589/773井あった。行単位HGBではこの坑井共通バイアスを安定して補正できなかったため、坑井単位のprefix特徴からartifact残差平均をRidgeで推定した。
@@ -390,3 +400,19 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 結果: artifact-only RMSE 10.6702230に対し、nested bias correctionは10.6596409（−0.0105821）、井戸別p50/p90は7.203528/15.411979だった。固定縮小率0.5の10.6451631は同一OOF後付け選択を含むため採用せず、nested結果のみを暫定bestとする。
 - 制約: local OOFでは改善を確認したが、artifactのtest予測を生成する公開Notebook側の推論枝へまだ移植していない。したがってKaggle提出は行わず、次はartifact model branchのtest予測取得とこのRidge補正の接続を検証する。
 - 接続確認: `scripts/apply_artifact_well_bias_correction.py`で、既存の未提出`submission_model_package_only.csv`へ同じRidgeをfit-allして適用し、scale 0.1/0.25/0.5の候補を3井・14,151行生成した。予測biasは平均1.0415ft、標準偏差0.4786ftだった。公開testはtrain井との重複があり、placeholder真値での選択は汎化評価にならないため、候補は採点・提出していない。
+
+## 2026-07-26 model-package family OOF stack
+
+- `/private/tmp/rogii-model-package/oof`に存在するXGB/CatBoost/HGB/LightGBM/sequence-TCNの5枝OOFを使い、`scripts/artifact_family_nested_stack.py`でsimplex weight、disagreement shrink、坑井内Savgolを外側/内側GroupKFoldで選択した。保存family枝自体は各外側fold内で再学習していないためscreening評価として扱う。
+- package postprocessed blendは10.6702108、outer simplex rawは10.7676487、nested postprocessは10.7393770（p50/p90 7.19653/15.20395）で、postprocessed artifactを改善しなかった。
+- `scripts/artifact_family_residual_meta.py`のfamily予測・差分・disagreement・row/MD特徴による残差HGBは、inner shrink込みで10.6819000（p50/p90 7.19598/15.06465）だった。坑井p90は改善したが全体RMSEは悪化した。
+- family residual metaへprefix/artifact deltaの坑井bias Ridge補正を重ねても10.6720794（p50/p90 7.19988/15.38064）で、暫定bestのartifact well-bias nested 10.6596409を超えなかった。
+- 判断: family stackの追加は不採用。現在のローカルbestは、package postprocessed artifactへprefixとartifact delta統計から坑井平均biasを推定し、inner GroupKFoldで縮小率を選ぶRidge補正である。
+
+## 2026-07-26 artifact Savgol平滑化＋坑井bias補正
+
+- `scripts/artifact_nested_smoothing.py`でpackage postprocessed artifactのdeltaを坑井内Savgol平滑化し、window/poly/alphaを外側train wellsだけで選択した。fold選択はwindow/poly/alphaをtrain foldで決め、validation井へ適用した。
+- nested平滑化単体はRMSE 10.6579876、井戸別p50/p90は7.27204/15.41570で、artifact-only 10.6702108から0.0122232改善した。fold選択はwindow 501/601/301/301/601、poly 2/2/1/1/2だった。
+- 平滑化OOFをartifactとして、prefix＋artifact delta統計の坑井bias Ridgeをさらに重ねた。inner GroupKFoldでscaleを選ぶ完全nested評価はRMSE **10.6525519**、p50/p90 **7.26148/15.46923**で、今回のローカルbestとなった。選択scaleは0.25/0.1/0.1/0.1/0.1。
+- test接続: window 601/poly2/alpha1.03をfit-all設定として既存の未提出model-package test予測へ適用し、bias scale 0.1/0.25の候補を3井・14,151行生成した。test真値は公開重複のため採否に使わず、Kaggle提出もしていない。
+- 判断: 現時点の暫定bestはartifact postprocessed OOF＋nested Savgol＋nested坑井bias Ridge。次はこの構成をNotebookのmodel-package correction枝へ移植し、submission前の構造・ID・有限値監査を行う。
