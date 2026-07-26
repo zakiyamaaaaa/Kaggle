@@ -363,3 +363,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 固定blendではartifact比率0.0/0.5/0.9/1.0のRMSEが14.7196101/11.8282175/10.7241645/10.6702230となり、artifact単体が最良だった。fold外でartifact比率を学習するnested blendもRMSE 10.6767886、井戸別p50/p90は7.19590/15.40653で、artifact単体を改善しなかった。
 - 判断: 7.539のKaggle評価と773井OOF 10.67は同じ尺度ではない。公開test 3井の分布・重複・公開専用層の影響が大きく、773井OOFはleaderboardスコアの予測器ではなくリーク検出と候補の相対比較に使う。弱いHGB候補を固定blendでartifactへ混ぜる変更は不採用とする。
 - 次の実験は、artifact OOFを固定baselineにし、PF/beam/projection/Viterbiの各候補を同じID・同じfoldで追加し、OOF上でartifactと補完的な誤差を持つかを検定する。単独RMSEが悪い候補でも、artifactの失敗井戸だけで改善する場合に限りmeta-selectorへ進める。
+
+## 2026-07-26 artifact OOF meta-selector改善ループ
+
+- 目的: `blend_oof_postprocessed.npy`のID整列済みOOFを固定baselineにし、ローカルの合法なHGB候補を特徴として、artifactが弱い行だけを外側GroupKFoldで補正できるか検証した。対象は3,783,989 suffix行・773井、5-fold坑井分離である。
+- 実装: `scripts/artifact_meta_selector.py`を追加。artifact値、ローカルHGB値、last-knownからのdelta、両者の差、坑井内row fraction、row indexを入力し、残差HGBを学習した。各外側foldの学習には各坑井最大300行だけを使い、検証坑井のtargetはモデル学習・縮小率選択に使っていない。
+- 常時補正の結果: artifact-only RMSE 10.6702232に対し、meta-selectorは11.1262960、井戸別p50/p90は7.55624/15.55579だった。ローカルHGB候補は14.7196102であり、artifactとの単純blendだけでなく非線形補正も悪化したため不採用とした。
+- 診断として、完成した外側OOF上で補正量を後付け選択すると縮小率0.1で10.6607594まで下がったが、これは同じOOFでハイパーパラメータを選んだ値であり採用スコアにはしない。選択バイアスを避けるため、各外側foldの学習坑井をさらに5分割し、縮小率`0, .05, .1, .2, .3, .5, .75, 1`を内側で選んだ。
+- 二重検証の結果: 選択縮小率はfoldごとに0.3/0.5/0.2/0.0/0.3、外側OOF RMSEは10.6986713、井戸別p50/p90は7.28294/15.20159だった。artifact-onlyより0.0284483悪く、保守的な縮小でも改善を確認できなかった。
+- 結論: 現時点のローカル基準はartifact-only OOF 10.6702232を維持する。次は弱い候補をさらにmeta-selectorへ混ぜるのではなく、artifactの誤差が大きい坑井にだけ効く、独立した系列信号（Viterbi offset、calibration uncertainty、GR matching残差など）を同じ外側foldで追加検証する。Kaggle提出は行っていない。
