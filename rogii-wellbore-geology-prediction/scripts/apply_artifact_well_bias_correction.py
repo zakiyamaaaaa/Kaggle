@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -15,6 +16,33 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 from artifact_well_bias_correction import build_prefix_features
+
+
+def audit_submission(
+    frame: pd.DataFrame,
+    path: Path,
+    expected_ids: pd.Series,
+) -> dict[str, object]:
+    ids = frame["id"].astype(str).reset_index(drop=True)
+    expected = expected_ids.astype(str).reset_index(drop=True)
+    values = pd.to_numeric(frame["tvt"], errors="coerce").to_numpy(float)
+    audit = {
+        "rows": int(len(frame)),
+        "columns": frame.columns.tolist(),
+        "id_order_match": bool(ids.equals(expected)),
+        "duplicate_ids": int(ids.duplicated().sum()),
+        "finite_tvt": bool(np.isfinite(values).all()),
+        "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+    }
+    if (
+        audit["rows"] != len(expected)
+        or audit["columns"] != ["id", "tvt"]
+        or not audit["id_order_match"]
+        or audit["duplicate_ids"] != 0
+        or not audit["finite_tvt"]
+    ):
+        raise ValueError(f"submission audit failed for {path}: {audit}")
+    return audit
 
 
 def artifact_stats(frame: pd.DataFrame) -> pd.DataFrame:
@@ -131,12 +159,15 @@ def run(args: argparse.Namespace) -> dict[str, object]:
     X_test = test_features[feature_cols].replace([np.inf, -np.inf], np.nan).to_numpy(float)
     model = make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), Ridge(alpha=args.ridge_alpha))
     model.fit(X_train, train_bias["bias"].to_numpy(float))
-    predicted_bias = model.predict(X_test)
+    raw_predicted_bias = model.predict(X_test)
+    predicted_bias = raw_predicted_bias * (
+        np.abs(raw_predicted_bias) >= args.bias_threshold
+    )
     bias_map = dict(zip(test_wells, predicted_bias))
     test_frame["predicted_bias"] = test_frame["_oof_well"].map(bias_map).astype(float)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    outputs = {}
+    outputs: dict[str, dict[str, object]] = {}
     for scale in args.scales:
         corrected = base_submission.copy()
         move = test_frame["_oof_well"].map(bias_map).to_numpy(float) * float(scale)
@@ -144,13 +175,17 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         corrected["tvt"] = corrected["id"].map(correction_map).fillna(corrected["tvt"])
         path = args.output_dir / f"artifact_well_bias_scale_{scale:.3f}.csv"
         corrected.to_csv(path, index=False)
-        outputs[str(scale)] = str(path)
+        outputs[str(scale)] = {
+            "path": str(path),
+            "audit": audit_submission(corrected, path, base_submission["id"]),
+        }
     summary = {
         "method": "apply_prefix_only_artifact_well_bias_ridge",
         "train_wells": int(len(train_wells)),
         "test_wells": int(len(test_wells)),
         "test_rows": int(len(test_frame)),
         "ridge_alpha": args.ridge_alpha,
+        "bias_threshold": args.bias_threshold,
         "scales": args.scales,
         "savgol_window": args.savgol_window,
         "savgol_poly": args.savgol_poly,
@@ -160,6 +195,12 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             "std": float(np.std(predicted_bias)),
             "min": float(np.min(predicted_bias)),
             "max": float(np.max(predicted_bias)),
+        },
+        "raw_predicted_bias_summary": {
+            "mean": float(np.mean(raw_predicted_bias)),
+            "std": float(np.std(raw_predicted_bias)),
+            "min": float(np.min(raw_predicted_bias)),
+            "max": float(np.max(raw_predicted_bias)),
         },
         "outputs": outputs,
     }
@@ -179,6 +220,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--summary", type=Path, required=True)
     parser.add_argument("--ridge-alpha", type=float, default=100.0)
+    parser.add_argument("--bias-threshold", type=float, default=0.0)
     parser.add_argument("--scales", type=float, nargs="+", default=[0.1, 0.25, 0.5])
     parser.add_argument("--savgol-window", type=int, default=0)
     parser.add_argument("--savgol-poly", type=int, default=2)

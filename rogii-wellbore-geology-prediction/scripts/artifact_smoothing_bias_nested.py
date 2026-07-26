@@ -68,6 +68,48 @@ def parse_grid(value: str, cast=int) -> list:
     return [cast(item.strip()) for item in value.split(",") if item.strip()]
 
 
+def select_bias_gate(
+    X: np.ndarray,
+    labels: np.ndarray,
+    well_indices: np.ndarray,
+    row_counts: np.ndarray,
+    scale_grid: np.ndarray,
+    threshold_grid: np.ndarray,
+    folds: int,
+    ridge_alpha: float,
+) -> tuple[float, float, float]:
+    gate_sse = np.zeros((len(scale_grid), len(threshold_grid)), dtype=float)
+    gate_rows = np.zeros((len(scale_grid), len(threshold_grid)), dtype=float)
+    inner = GroupKFold(n_splits=folds)
+    for train_rel, valid_rel in inner.split(
+        well_indices, labels[well_indices], groups=well_indices
+    ):
+        train_wells = well_indices[train_rel]
+        valid_wells = well_indices[valid_rel]
+        model = make_ridge(ridge_alpha)
+        model.fit(X[train_wells], labels[train_wells])
+        predicted_bias = model.predict(X[valid_wells])
+        for scale_position, scale in enumerate(scale_grid):
+            for threshold_position, threshold in enumerate(threshold_grid):
+                gated_bias = predicted_bias * (np.abs(predicted_bias) >= threshold)
+                gate_sse[scale_position, threshold_position] += float(
+                    np.sum(
+                        row_counts[valid_wells]
+                        * (labels[valid_wells] - scale * gated_bias) ** 2
+                    )
+                )
+                gate_rows[scale_position, threshold_position] += float(
+                    np.sum(row_counts[valid_wells])
+                )
+    scores = gate_sse / np.maximum(gate_rows, 1.0)
+    best = np.unravel_index(int(np.argmin(scores)), scores.shape)
+    return (
+        float(scale_grid[best[0]]),
+        float(threshold_grid[best[1]]),
+        float(np.sqrt(scores[best])),
+    )
+
+
 def run(args: argparse.Namespace) -> dict[str, object]:
     started = time.perf_counter()
     oof_root = args.package_root / "oof"
@@ -88,6 +130,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
     windows = parse_grid(args.window_grid, int)
     degrees = parse_grid(args.poly_grid, int)
     scale_grid = np.asarray(parse_grid(args.scale_grid, float))
+    threshold_grid = np.asarray(parse_grid(args.bias_threshold_grid, float))
 
     candidates: dict[tuple[int, int], np.ndarray] = {(0, 0): artifact.copy()}
     for window in windows:
@@ -146,31 +189,20 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         )
         X = np.column_stack([prefix_values, stats_matrix])
 
-        inner = GroupKFold(n_splits=args.inner_folds)
-        scale_sse = np.zeros(len(scale_grid), dtype=float)
-        scale_rows = np.zeros(len(scale_grid), dtype=float)
-        for inner_train_rel, inner_valid_rel in inner.split(
-            train_wells, labels[train_wells], groups=train_wells
-        ):
-            inner_train = train_wells[inner_train_rel]
-            inner_valid = train_wells[inner_valid_rel]
-            inner_model = make_ridge(args.ridge_alpha)
-            inner_model.fit(X[inner_train], labels[inner_train])
-            inner_bias = inner_model.predict(X[inner_valid])
-            for position, scale in enumerate(scale_grid):
-                scale_sse[position] += float(
-                    np.sum(
-                        row_counts[inner_valid]
-                        * (labels[inner_valid] - scale * inner_bias) ** 2
-                    )
-                )
-                scale_rows[position] += float(np.sum(row_counts[inner_valid]))
-        selected_scale = float(
-            scale_grid[int(np.argmin(scale_sse / np.maximum(scale_rows, 1.0)))]
+        selected_scale, selected_threshold, inner_bias_rmse = select_bias_gate(
+            X,
+            labels,
+            train_wells,
+            row_counts,
+            scale_grid,
+            threshold_grid,
+            args.inner_folds,
+            args.ridge_alpha,
         )
         model = make_ridge(args.ridge_alpha)
         model.fit(X[train_wells], labels[train_wells])
         valid_bias = model.predict(X[valid_wells])
+        valid_bias = valid_bias * (np.abs(valid_bias) >= selected_threshold)
         bias_by_well = np.zeros(n_wells, dtype=float)
         bias_by_well[valid_wells] = valid_bias
         combined_oof[valid_rows] = (
@@ -183,6 +215,8 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             "train_wells": int(len(train_wells)),
             "valid_wells": int(len(valid_wells)),
             "bias_scale": selected_scale,
+            "bias_threshold": selected_threshold,
+            "inner_bias_rmse": inner_bias_rmse,
             "smoothing_valid_rmse": float(
                 np.sqrt(np.mean((smoothing_oof[valid_rows] - target[valid_rows]) ** 2))
             ),
@@ -194,6 +228,61 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         print(json.dumps(record), flush=True)
 
     valid = np.isfinite(combined_oof)
+    fit_all_best = None
+    for (window, poly), prediction in candidates.items():
+        denominator = float(np.dot(prediction, prediction))
+        alpha = (
+            float(np.dot(prediction, target) / denominator)
+            if denominator > 1e-12
+            else 1.0
+        )
+        alpha = float(np.clip(alpha, args.alpha_min, args.alpha_max))
+        score = float(np.sqrt(np.mean((alpha * prediction - target) ** 2)))
+        if fit_all_best is None or score < fit_all_best["train_rmse"]:
+            fit_all_best = {
+                "window": int(window),
+                "poly": int(poly),
+                "alpha": alpha,
+                "train_rmse": score,
+            }
+    assert fit_all_best is not None
+    fit_all_delta = (
+        fit_all_best["alpha"]
+        * candidates[(fit_all_best["window"], fit_all_best["poly"])]
+    )
+    fit_all_residual = target - fit_all_delta
+    fit_all_labels = (
+        np.bincount(groups, weights=fit_all_residual, minlength=n_wells)
+        / row_counts
+    )
+    fit_all_stats = aggregate_well(fit_all_delta.astype(float), groups, n_wells)
+    fit_all_X = np.column_stack(
+        [
+            prefix_values,
+            fit_all_stats["mean"],
+            fit_all_stats["std"],
+            fit_all_stats["first"],
+            fit_all_stats["last"],
+            fit_all_stats["min"],
+            fit_all_stats["max"],
+        ]
+    )
+    fit_all_scale, fit_all_threshold, fit_all_bias_rmse = select_bias_gate(
+        fit_all_X,
+        fit_all_labels,
+        np.arange(n_wells),
+        row_counts,
+        scale_grid,
+        threshold_grid,
+        args.inner_folds,
+        args.ridge_alpha,
+    )
+    fit_all_recommendation = {
+        **fit_all_best,
+        "bias_scale": fit_all_scale,
+        "bias_threshold": fit_all_threshold,
+        "crossfit_bias_rmse": fit_all_bias_rmse,
+    }
     summary = {
         "method": "artifact_coordinated_nested_smoothing_well_bias",
         "rows": int(valid.sum()),
@@ -209,6 +298,8 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         ],
         "ridge_alpha": args.ridge_alpha,
         "scale_grid": scale_grid.tolist(),
+        "bias_threshold_grid": threshold_grid.tolist(),
+        "fit_all_recommendation": fit_all_recommendation,
         "elapsed_sec": float(time.perf_counter() - started),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -233,6 +324,7 @@ def main() -> None:
     parser.add_argument("--alpha-max", type=float, default=1.03)
     parser.add_argument("--ridge-alpha", type=float, default=100.0)
     parser.add_argument("--scale-grid", default="0.1,0.25,0.5,0.75,1.0")
+    parser.add_argument("--bias-threshold-grid", default="0.0")
     run(parser.parse_args())
 
 

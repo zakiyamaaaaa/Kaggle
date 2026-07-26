@@ -424,3 +424,10 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - `scripts/artifact_smoothing_bias_nested.py`でSavgol選択・Ridge学習・inner scale選択を同じ外側fold内に統合した完全nested評価を実施した。RMSE **10.6526241**、p50/p90 **7.26311/15.46103**で、artifact-only 10.6702108から0.0175867改善し、正式な暫定bestとする。fold設定はwindow/poly/alpha = 301/1/1.03, 601/2/1.03, 601/2/1.03, 501/2/1.03, 601/2/1.01197、bias scale = 0.25/0.1/0.1/0.1/0.1。
 - test接続: window 601/poly2/alpha1.03をfit-all設定として既存の未提出model-package test予測へ適用し、bias scale 0.1/0.25の候補を3井・14,151行生成した。test真値は公開重複のため採否に使わず、Kaggle提出もしていない。
 - 判断: 現時点の正式な暫定bestはartifact postprocessed OOF＋協調nested Savgol＋坑井bias Ridge。次はこの構成をNotebookのmodel-package correction枝へ移植し、submission前の構造・ID・有限値監査を行う。
+
+## 2026-07-26 model-package correction Notebook移植
+
+- `scripts/build_artifact_bias_notebook.py`で、元の57セルNotebookへOOF-trained artifact補正cellを1つだけ挿入した。位置はmodel-package correction cell 51の直後、branch hedge cellの直前で、model-package raw test trajectoryへ固定fit設定（Savgol window 601/poly2/alpha 1.03、Ridge bias scale 0.10）を適用する。
+- 追加cellはpackage `oof/train_gt.parquet`と`blend_oof_postprocessed.npy`を学習データとして読み、train/testのprefix特徴とartifact delta統計を同じ関数で生成する。公開testの真値やtrain同一井lookupは使わない。
+- 生成先は`kaggle-push/new-strategy-6213-artifact-bias/`。元57セル、追加後58セル、全46コードセルのPython compile、kernel metadata ID、追加marker、test候補の`id,tvt`・14,151行・sample ID順・有限値を監査した。
+- NotebookのKaggle実行とsubmissionはまだ行っていない。ローカルOOFの正式bestは10.6526241であり、Notebook移植後もまず実行ログと監査ファイルを確認してから採否を判断する。
