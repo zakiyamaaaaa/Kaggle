@@ -527,3 +527,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 分割別では、最初の50井は8.16326→8.22829と悪化したが、別の50井は8.30580→8.21467、新しい100井は9.83794→9.57256と改善した。全200井の勝敗は116勝84敗、井戸bootstrap改善確率95.56%、改善量5%点は**+0.00403**で正だった。
 - 診断として最小6本構成は同じ200井で8.88566だったが、これは200井を見た後の比較なので正式候補へ切り替えない。正式候補は573井だけで選ばれた`all13`の8.90028とする。
 - 判断: **新learned meta枝をローカル提出候補へ昇格**する。ただし7.474のKaggle値へ直接対応するローカル絶対値ではなく、同じSP45固定下の差分根拠である。次は公開trainer 5本、model-package 7本、local HGBのtest予測を同じID順で再現し、fit-all係数・Savgol61・60/40 blendだけを加えるNotebookを作る。13入力の列順・delta/absolute単位・14,151 ID・有限値・SHA256を監査するまで提出しない。
+
+## 2026-07-28 all13 test推論とpackage分布差監査
+
+- `scripts/build_learned_branch_test_candidate.py`を追加し、公開trainer 5本はgeneric-core Notebookと同じ特徴生成器・保存foldモデル、model-packageは同梱feature builder・all-train checkpointからtest deltaを再現した。公開5本、package CatBoost、package TCN、local HGB、SP45をsample ID順へ完全整列した。
+- package CatBoost/TCNのtest統計は既存Kaggle実行レポートと一致した。package postprocessed absolute TVTも既存`submission_model_package_only.csv`と最大差0.0ftで一致した。ローカルで極端に遅いpackage HGBは強制終了し、係数0のLGB/XGB、係数0.00614のHGB、raw blendには既存postprocessed/1.05を代理使用した。OOFでraw blend代理誤差はRMSE 0.13593ft、all13係数適用後の影響は0.01500ftである。
+- testではpackage TCN delta平均が−35.5835ftで、OOF平均+1.6337ftから大きくずれた。public 5本のtest平均はおよそ−1.44〜−1.97ftで、無条件all13は従来full候補から平均−5.5034ft、差分RMSE 6.0688ft動く。このため、単純にCSV監査が通っただけでは提出しない。
+- `scripts/learned_branch_ood_gate_holdout.py`で、public中央値に対するTCN/postprocessedの井戸内median gapを773井のmedian/MADで標準化した。固定5σゲートは独立200井を1井も変更せず、正式full RMSE 8.9002756を維持した。testは`000d7d20=6.67σ`、`00bbac68=9.28σ`、`00e12e8b=4.82σ`だった。
+- ただし「乖離が大きい井戸はpublic5へ退避」が正しいかを追加検証した。OOF予測だけで5σ超5井・30,560行を選び、その5井をmeta係数学習から完全除外したtarget-free holdoutでは、public5枝RMSE **16.41466**に対しall13枝は**10.27008**で、all13が**6.14458ft良かった**。大きなpackage/public差は故障だけでなく大きな地質移動の有効信号でもあるため、OOD強制退避は棄却し監査フラグだけ残す。
+- 選出候補は`outputs/submissions/learned_meta_all13_sp45_w060.csv`。fit-all all13、井戸内Savgol61/poly3、SP45 60%＋learned 40%で、14,151行、3井、sample順完全一致、重複0、有限値、absolute TVT単位を確認した。SHA256は`97435ccb145672ec0b11d31721d73d4aa77eec3966aef214990ec5f90501705f`。Kaggle提出はまだ行っていない。

@@ -1,0 +1,16 @@
+{
+  "mode": "fast-reference",
+  "exact_components": [
+    "package_catboost",
+    "package_sequence_tcn",
+    "package_postprocessed"
+  ],
+  "proxy_components": [
+    "package_lgb",
+    "package_xgb",
+    "package_hgb",
+    "package_blend"
+  ],
+  "proxy_oof_raw_blend_rmse_ft": 0.13593225,
+  "proxy_oof_weighted_meta_impact_rmse_ft": 0.015001617
+}
