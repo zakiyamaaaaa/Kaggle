@@ -486,4 +486,6 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - Kaggle Notebook `zacky21/rogii-sp45-ridge030-projection-d2-b050` version 3を新しいfull-pipelineモードで正常完了した。最終`submission.csv`は14,151行、sample ID順一致、重複0、有限値で、`submission_audit_copy.csv`と`latest_valid_submission.csv`に完全一致した。SHA256は`e677d5a1ce6769f9ace053e12d34ed6d4890604479298c2c38650f5fbc92ecc8`。
 - 監査JSONはprojection degree 2、blend 0.5、SP45 learned weight 0.6を確認した。full候補とSP45単体の予測差はRMS 3.20614ftで、SP45単体を誤提出していない。
 - version 2とversion 3のfull候補にはPF乱数由来のRMS 0.46810ftの差がある。以前の保存PF部分比較では候補スコア差が0.00156だったため、同じアルゴリズムの実行揺らぎとして許容した。
-- version 3の`submission.csv`を提出ID **55001998**として受理された。提出メッセージは`Full generic core 60-40 plus hedge; only projection changed to d2 b0.50`。記録時点では採点PENDINGである。
+- version 3の`submission.csv`を提出ID **55001998**として受理された。提出メッセージは`Full generic core 60-40 plus hedge; only projection changed to d2 b0.50`。公開スコアは**7.474**で、同じfull generic-coreの現行projection d3/b0.75による7.539から**0.065改善**した。
+- ローカル60/40代理OOFは、独立100井で0.0316〜0.0394ft、150井統合で0.0407〜0.0491ftの改善を予測していた。Kaggle改善0.065は同じ方向かつ近い規模であり、代理OOFによる投影差分screeningが有効だった。SP45単体提出7.894との差0.420はlearned 40%＋hedgeの寄与を再確認する結果で、以後SP45単体スコアをfull pipelineの採否判断に使わない。
+- 判断: **full generic-core d2/b0.5を新しい提出基準として採用する**。ただし改善幅は0.065で首位4点台との差を埋める規模ではない。次の改善ループは投影係数の微調整よりも、learned branchのOOF再構築、井戸レジーム別ゲート、contact/GR alignmentの独立信号など、枝そのものを改善する方向を優先する。
