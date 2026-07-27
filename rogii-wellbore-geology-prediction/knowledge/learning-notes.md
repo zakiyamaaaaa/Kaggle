@@ -511,3 +511,19 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 2. winner-take-allのprefix候補選択ではなく、PF粒子分散、候補間分散、prefix cut間順位安定性、base枝間disagreementを特徴にした井戸レベルの補正量モデルをnested Group CVで学習する。外側validation井のsuffixは特徴・閾値選択に使わない。
 3. contact/GR alignmentは同一井lookupではなく、typewellとの一般化可能な相互相関・層境界確率として設計する。公開3井固有のID・SHA・固定shiftは使用しない。
 4. untouched well splitで3代理すべてが改善した候補だけを高seed PFへ昇格する。低seed段階でproxy不一致の候補は提出しない。
+
+## 2026-07-28 learned 40%枝の合法meta-OOF再構築
+
+- 以前の提出Notebook全体を773井へ展開する方法は、FAST設定でも12,000秒を超えて出力なしで停止している。同じ重いPF＋booster再学習を繰り返さず、既に合法なwell-group OOFを一段上でstackする方法へ変更した。
+- `scripts/learned_branch_meta_oof.py`を追加した。入力は公開New Strategy trainer 5本のOOF、model-package 7本のOOF、local HGB OOFで、すべて3,783,989行・773井のID順を監査した。metaモデルもGroupKFold 5で井戸分離し、validation井のtargetはそのfoldの係数学習に使っていない。same-well contact、公開well ID、suffix特徴は不使用。
+- 公開5本だけのpositive Ridge meta-OOFはRMSE **10.4172821**、井戸別p50/p90は6.46799/15.06739。公開5本＋package postprocessed 1本の最小構成は**10.0098858**、p50/p90 6.36802/14.28463で、0.40740改善した。
+- 13本すべての`all13`はRMSE **10.0263624**、p50/p90 6.41846/14.44494。最小6本より全体値は0.01648悪いが、公開5本より0.39092改善した。各foldの係数と全773井fit-all係数をsummaryへ保存した。
+
+## 2026-07-28 200井を完全除外したfull generic-core評価
+
+- 上記のfeature-family選択に評価井のtargetが混ざる影響を除くため、既存固定200井をmetaモデルのfeature選択・係数学習から完全に除外した。残り573井だけの内側GroupKFoldで5構成を比較し、`all13`を選択した（inner OOF 10.11605、公開5本のみ10.63960）。その後573井すべてでfitし、初めて200井を予測した。
+- `scripts/generic_core_learned_branch_holdout.py`で、独立learned予測を現行SP45 d2/b0.5へ提出構造どおり60/40で接続した。learned枝は公開設定と同じSavgol window 61/poly3で平滑化した。評価200井・985,784行はモデル・構成選択に不使用である。
+- 枝単体はpackage artifact 10.4699323からlearned meta **9.6216819**へ改善した。full blendはartifact proxy **9.0444052**からlearned meta **8.9002756**へ**0.1441296改善**した。井戸別p50は6.08273→5.87314、p90は11.74212→11.83562で、tailはわずかに悪化した。
+- 分割別では、最初の50井は8.16326→8.22829と悪化したが、別の50井は8.30580→8.21467、新しい100井は9.83794→9.57256と改善した。全200井の勝敗は116勝84敗、井戸bootstrap改善確率95.56%、改善量5%点は**+0.00403**で正だった。
+- 診断として最小6本構成は同じ200井で8.88566だったが、これは200井を見た後の比較なので正式候補へ切り替えない。正式候補は573井だけで選ばれた`all13`の8.90028とする。
+- 判断: **新learned meta枝をローカル提出候補へ昇格**する。ただし7.474のKaggle値へ直接対応するローカル絶対値ではなく、同じSP45固定下の差分根拠である。次は公開trainer 5本、model-package 7本、local HGBのtest予測を同じID順で再現し、fit-all係数・Savgol61・60/40 blendだけを加えるNotebookを作る。13入力の列順・delta/absolute単位・14,151 ID・有限値・SHA256を監査するまで提出しない。
