@@ -489,3 +489,25 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - version 3の`submission.csv`を提出ID **55001998**として受理された。提出メッセージは`Full generic core 60-40 plus hedge; only projection changed to d2 b0.50`。公開スコアは**7.474**で、同じfull generic-coreの現行projection d3/b0.75による7.539から**0.065改善**した。
 - ローカル60/40代理OOFは、独立100井で0.0316〜0.0394ft、150井統合で0.0407〜0.0491ftの改善を予測していた。Kaggle改善0.065は同じ方向かつ近い規模であり、代理OOFによる投影差分screeningが有効だった。SP45単体提出7.894との差0.420はlearned 40%＋hedgeの寄与を再確認する結果で、以後SP45単体スコアをfull pipelineの採否判断に使わない。
 - 判断: **full generic-core d2/b0.5を新しい提出基準として採用する**。ただし改善幅は0.065で首位4点台との差を埋める規模ではない。次の改善ループは投影係数の微調整よりも、learned branchのOOF再構築、井戸レジーム別ゲート、contact/GR alignmentの独立信号など、枝そのものを改善する方向を優先する。
+
+## 2026-07-27 公開frontierの汎用部分とprefix選択の再検証
+
+- 公開Codeを再確認した。[ROGII Public Score Frontier Lab + Visuals](https://www.kaggle.com/code/prvsiyan/rogii-public-score-frontier-lab-visuals)（公開表示6.622）は親版6.568に対しPF likelihood multiplier 1.30と公開井Q0522向け継続を含み、[Another Approach](https://www.kaggle.com/code/yusuketogashi/rogii-another-approach/comments?scriptVersionId=336449836)の公開表示bestは6.858だった。現在の7.474 generic coreにはPF likelihood 1.30とPF seed branch midpoint hedge（strength 0.6、cap 2.0）がすでに入っており、単純な移植漏れではなかった。
+- 公開frontierとの主な差はprofile/contact、visible-prefix選択、model-package補正、公開井固有の継続である。公開test 3井はtrainと重複し、contact枝は同一井情報で全行を置換するため、hidden test汎化を目的とする今回の候補から除外した。Q0522など公開well ID固有補正も除外した。
+- `scripts/visible_prefix_poly_gate.py`で、観測済みprefixだけを使うrobust `U=TVT+Z` polynomial候補15本を、prefixの50/65/75% cutで選択した。same-well contact、formation surface、suffix targetは不使用。discovery 50井の時点で保守ゲートがartifact/HGB/Ridgeを0.24281/0.25449/0.30192悪化させ、独立holdout 150井でも0.33373/0.22183/0.26903悪化した。**prefix内補間で選んだ多項式はsuffix外挿方向を予測しない**ため棄却する。
+- `scripts/generic_core_branch_hedge_local.py`で公開midpoint hedgeのstrength/capを200井・3合法OOF代理で検証した。discoveryはno-hedgeを選んだが、独立holdout 150井では公開設定に対してartifact/HGB/Ridgeが0.00660/0.01070/0.00863悪化した。公開設定strength 0.6/cap 2.0を維持し、この係数の小幅探索を止める。
+
+## 2026-07-27 visible-prefix PF/beam selector
+
+- `scripts/visible_prefix_pf_gate.py`で公開上位解法の汎用部分を再構成した。各井の観測済みprefixを3箇所で擬似マスクし、PF scale/hold/beamの104候補を比較する。候補選択時にsuffix TVT、same-well contact、formation surface、公開well IDは使わない。screeningは2 seeds・50 particlesで、full generic-coreのSP45 60%＋合法learned-branch代理40%へ小さくblendした。
+- 保守ゲートはdiscovery 50井でartifact/HGB/Ridgeを0.10235/0.20792/0.02847改善したが、独立holdout1 50井ではartifact 8.30580→8.34383、HGB 9.64047→9.63788、Ridge 8.36603→8.36664だった。19井中、井戸平均では改善井が多くても、長く難しい数井の損失がpooled RMSEを逆転させた。prefix候補選択の広い適用は棄却する。
+- discoveryの5分割×3代理すべてで非悪化する条件だけを残し、`gain>=3`、`best prefix RMSE<=4`、`candidate-base p95<=15`、`delta RMSE<=10`、`max move<=4`のstrict profileを固定した。holdout1では2/50井へ適用し、artifact/HGB/Ridgeを0.03512/0.03050/0.03607改善した。
+- strict profileを変更せず、さらに未使用のholdout2 100井で評価した。6/100井へ適用し、artifactは9.83794→9.81930（+0.01864）、HGBは11.94648→11.93497（+0.01151）だったが、Ridgeは9.85214→9.87568（−0.02354）と悪化した。
+- holdout1+2の150井・724,625行ではartifact +0.02360、HGB +0.01704、Ridge −0.00529。井戸bootstrap改善確率は94.97%/73.93%/45.77%で、3代理一致基準を満たさない。低seed screening段階のため高seed化・Notebook移植・Kaggle提出は行わず、**有望な信号はあるが候補として棄却**する。
+
+## 次の改善優先順位
+
+1. 公開learned branchの代理比較を卒業し、773井すべてで完全なGroup OOFまたはprequential OOFを構築する。7.474の最終40%枝とローカル評価の対応誤差を最初に減らす。
+2. winner-take-allのprefix候補選択ではなく、PF粒子分散、候補間分散、prefix cut間順位安定性、base枝間disagreementを特徴にした井戸レベルの補正量モデルをnested Group CVで学習する。外側validation井のsuffixは特徴・閾値選択に使わない。
+3. contact/GR alignmentは同一井lookupではなく、typewellとの一般化可能な相互相関・層境界確率として設計する。公開3井固有のID・SHA・固定shiftは使用しない。
+4. untouched well splitで3代理すべてが改善した候補だけを高seed PFへ昇格する。低seed段階でproxy不一致の候補は提出しない。
