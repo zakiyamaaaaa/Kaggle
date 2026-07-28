@@ -1,0 +1,21 @@
+{
+  "id": "zacky21/rogii-all13-sp45-w060-submission",
+  "title": "ROGII All13 SP45 W060 Submission",
+  "code_file": "rogii-all13-sp45-w060-submission.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "submission",
+    "audited"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "rogii-wellbore-geology-prediction"
+  ],
+  "model_sources": []
+}

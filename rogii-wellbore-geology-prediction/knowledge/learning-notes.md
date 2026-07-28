@@ -536,3 +536,12 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - `scripts/learned_branch_ood_gate_holdout.py`で、public中央値に対するTCN/postprocessedの井戸内median gapを773井のmedian/MADで標準化した。固定5σゲートは独立200井を1井も変更せず、正式full RMSE 8.9002756を維持した。testは`000d7d20=6.67σ`、`00bbac68=9.28σ`、`00e12e8b=4.82σ`だった。
 - ただし「乖離が大きい井戸はpublic5へ退避」が正しいかを追加検証した。OOF予測だけで5σ超5井・30,560行を選び、その5井をmeta係数学習から完全除外したtarget-free holdoutでは、public5枝RMSE **16.41466**に対しall13枝は**10.27008**で、all13が**6.14458ft良かった**。大きなpackage/public差は故障だけでなく大きな地質移動の有効信号でもあるため、OOD強制退避は棄却し監査フラグだけ残す。
 - 選出候補は`outputs/submissions/learned_meta_all13_sp45_w060.csv`。fit-all all13、井戸内Savgol61/poly3、SP45 60%＋learned 40%で、14,151行、3井、sample順完全一致、重複0、有限値、absolute TVT単位を確認した。SHA256は`97435ccb145672ec0b11d31721d73d4aa77eec3966aef214990ec5f90501705f`。Kaggle提出はまだ行っていない。
+
+## 2026-07-28 all13 learned-meta候補のKaggle提出
+
+- 候補CSVだけをgzip＋base64で内包する監査専用private Kernel
+  `zacky21/rogii-all13-sp45-w060-submission`を作成した。監査JSONなどの追加データはKaggleへアップロードしていない。
+- Kernelはcompetitionの`sample_submission.csv`に対し、列`id,tvt`、14,151行、ID一意性、ID順、有限値、absolute TVT単位をfail-fastで検査する。検査後もCSVを再serializeせず元バイト列をそのまま`submission.csv`へ出力する。
+- version 1は正常完了した。Kaggleから再取得した`submission.csv`のSHA256は
+  `97435ccb145672ec0b11d31721d73d4aa77eec3966aef214990ec5f90501705f`で、選出したローカル候補と完全一致した。
+- Kernel version 1を提出ID **55053043**として受理された。Kaggle API上の状態は`COMPLETE`だが、初回確認時点では公開スコア欄が空であり、スコア反映待ちである。
