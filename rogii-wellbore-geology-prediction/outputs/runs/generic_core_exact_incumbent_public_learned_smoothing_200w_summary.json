@@ -1,0 +1,121 @@
+{
+  "method": "exact_incumbent_learned_nested_smoothing",
+  "incumbent": {
+    "kaggle_score": 7.474,
+    "sp45_ridge_weight": 0.3,
+    "projection_degree": 2,
+    "projection_blend": 0.5,
+    "sp45_weight": 0.6,
+    "pf_seed_branch_hedge": "public_s060_cap200",
+    "learned_proxy": "public_positive_ridge_meta_oof"
+  },
+  "one_change": "replace raw public_positive_ridge_meta_oof delta with leakage-safe outer-train-selected Savgol OOF delta",
+  "artifact_all_well_oof": {
+    "raw_rmse": 10.417282104492188,
+    "nested_smoothing_rmse": 10.39783000946045,
+    "improvement": 0.01945209503173828,
+    "fit_all_recommendation": {
+      "window": 601,
+      "poly": 2,
+      "alpha": 1.0,
+      "rmse": 10.649003028869629
+    }
+  },
+  "splits": {
+    "discovery": {
+      "rows": 261159,
+      "wells": 50,
+      "incumbent_rmse": 8.498211438535334,
+      "challenger_rmse": 8.497601324868675,
+      "improvement": 0.0006101136666583074,
+      "paired_bootstrap": {
+        "wells": 50,
+        "well_wins": 34,
+        "samples": 20000,
+        "improvement_probability": 0.6663,
+        "improvement_p05": -0.0020164569513111187,
+        "improvement_p50": 0.0006853130676889307,
+        "improvement_p95": 0.0032224605021793353
+      }
+    },
+    "holdout1": {
+      "rows": 248132,
+      "wells": 50,
+      "incumbent_rmse": 8.362127045378044,
+      "challenger_rmse": 8.355625417478208,
+      "improvement": 0.006501627899835327,
+      "paired_bootstrap": {
+        "wells": 50,
+        "well_wins": 41,
+        "samples": 20000,
+        "improvement_probability": 0.9978,
+        "improvement_p05": 0.0028934117591665753,
+        "improvement_p50": 0.006652011642723998,
+        "improvement_p95": 0.01012585264303496
+      }
+    },
+    "holdout2": {
+      "rows": 476493,
+      "wells": 100,
+      "incumbent_rmse": 9.730764963749898,
+      "challenger_rmse": 9.725793135056854,
+      "improvement": 0.004971828693044245,
+      "paired_bootstrap": {
+        "wells": 100,
+        "well_wins": 82,
+        "samples": 20000,
+        "improvement_probability": 1.0,
+        "improvement_p05": 0.003441590927215543,
+        "improvement_p50": 0.005008127533858264,
+        "improvement_p95": 0.006699668496629751
+      }
+    },
+    "holdout_combined": {
+      "rows": 724625,
+      "wells": 150,
+      "incumbent_rmse": 9.28484621454256,
+      "challenger_rmse": 9.279414842613486,
+      "improvement": 0.005431371929073947,
+      "paired_bootstrap": {
+        "wells": 150,
+        "well_wins": 123,
+        "samples": 20000,
+        "improvement_probability": 1.0,
+        "improvement_p05": 0.003893063905100025,
+        "improvement_p50": 0.005472635781051949,
+        "improvement_p95": 0.007093414933701058
+      }
+    },
+    "all": {
+      "rows": 985784,
+      "wells": 200,
+      "incumbent_rmse": 9.083082706451915,
+      "challenger_rmse": 9.078850543153601,
+      "improvement": 0.0042321632983135515,
+      "paired_bootstrap": {
+        "wells": 200,
+        "well_wins": 157,
+        "samples": 20000,
+        "improvement_probability": 1.0,
+        "improvement_p05": 0.002876739507559023,
+        "improvement_p50": 0.004257058429005589,
+        "improvement_p95": 0.005644785087154691
+      }
+    }
+  },
+  "promotion_gate": {
+    "nested_oof_improves_all_773_wells": true,
+    "discovery_improves": true,
+    "each_holdout_improves": true,
+    "combined_holdout_bootstrap_p05_positive": true,
+    "passed": true
+  },
+  "leakage_controls": {
+    "artifact_candidate_is_outer_group_oof": true,
+    "suffix_target_used_only_for_evaluation": true,
+    "same_well_contact_used": false,
+    "public_well_ids_used": false,
+    "incumbent_projection_blend_and_hedge_unchanged": true
+  },
+  "elapsed_sec": 10.195725207973737
+}

@@ -1,0 +1,89 @@
+{
+  "method": "public_learned_artifact_outer_train_selected_savgol",
+  "input_oof": "/private/tmp/rogii-ridge-oof-repro/ridge_meta_oof.npy",
+  "selection_summary": "outputs/runs/artifact_nested_smoothing_summary.json",
+  "selection_target": "independent model-package artifact OOF",
+  "rows": 3783989,
+  "wells": 773,
+  "folds": 5,
+  "raw": {
+    "rmse": 10.417282104492188,
+    "well_rmse_p50": 6.468031773544621,
+    "well_rmse_p90": 15.067365436239033
+  },
+  "nested_smoothing": {
+    "rmse": 10.39783000946045,
+    "well_rmse_p50": 6.413548498618498,
+    "well_rmse_p90": 15.056033625604647
+  },
+  "fold_records": [
+    {
+      "fold": 1,
+      "window": 501,
+      "poly": 2,
+      "alpha": 1.0,
+      "selection_source": "outputs/runs/artifact_nested_smoothing_summary.json",
+      "raw_valid_rmse": 9.709334373474121,
+      "candidate_valid_rmse": 9.68639850616455
+    },
+    {
+      "fold": 2,
+      "window": 601,
+      "poly": 2,
+      "alpha": 1.0,
+      "selection_source": "outputs/runs/artifact_nested_smoothing_summary.json",
+      "raw_valid_rmse": 10.886178016662598,
+      "candidate_valid_rmse": 10.863577842712402
+    },
+    {
+      "fold": 3,
+      "window": 301,
+      "poly": 1,
+      "alpha": 1.0,
+      "selection_source": "outputs/runs/artifact_nested_smoothing_summary.json",
+      "raw_valid_rmse": 9.210732460021973,
+      "candidate_valid_rmse": 9.191752433776855
+    },
+    {
+      "fold": 4,
+      "window": 301,
+      "poly": 1,
+      "alpha": 1.0,
+      "selection_source": "outputs/runs/artifact_nested_smoothing_summary.json",
+      "raw_valid_rmse": 11.294061660766602,
+      "candidate_valid_rmse": 11.279900550842285
+    },
+    {
+      "fold": 5,
+      "window": 601,
+      "poly": 2,
+      "alpha": 1.0,
+      "selection_source": "outputs/runs/artifact_nested_smoothing_summary.json",
+      "raw_valid_rmse": 10.836372375488281,
+      "candidate_valid_rmse": 10.817014694213867
+    }
+  ],
+  "fit_all_recommendation": {
+    "window": 601,
+    "poly": 2,
+    "alpha": 1.0,
+    "rmse": 10.649003028869629
+  },
+  "transfer_alpha": 1.0,
+  "window_grid": [
+    0,
+    61,
+    101,
+    151,
+    301,
+    501,
+    601,
+    801
+  ],
+  "poly_grid": [
+    1,
+    2,
+    3
+  ],
+  "elapsed_sec": 24.477821042004507
+}

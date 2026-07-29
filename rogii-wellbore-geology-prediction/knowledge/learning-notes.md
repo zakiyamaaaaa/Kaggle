@@ -593,3 +593,42 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - all12 learned branchを再利用する場合も40%固定は採用しない。incumbentを基準に
   learned branch追加量を小さくしたweight gridと、井戸単位のOOF予測だけで決める
   target-free gateを検証する。少なくともexact incumbentを超えない候補は提出しない。
+
+## 2026-07-30 7.474構造固定の改善ループ: public learned SG601
+
+- 9.599の反省を受け、`outputs/runs/generic_core_branch_hedge_200w.parquet`を使って、
+  SP45 ridge30、projection d2/b0.50、SP45 60%＋learned 40%、公開PF
+  seed-branch hedgeを固定した。50井discovery、50井holdout1、100井holdout2の順を
+  変更せず、候補選択後にholdoutを一度だけ評価するゲートへ戻した。
+- 最初にSP45内部のRidge比率0.20〜0.60を探索した。discoveryで3つの合法learned代理に
+  対する最小改善を最大化すると、現行0.30がそのまま選ばれた。高い比率はholdout2を
+  大きく改善する一方、holdout1とdiscoveryを悪化させたため棄却した。PF補助比率、
+  warm-up tau、Savgol windowの単独変更も効果が千分の数ft以下またはsplit不一致であり、
+  昇格させなかった。
+- model-package artifact deltaでは、outer-train選択Savgolが全773井OOFを
+  10.6702108から10.6579876へ改善した。このnested OOFを40%代理枝へ入れると、
+  discovery +0.00994、holdout1 +0.01187、holdout2 +0.04512、
+  holdout統合 +0.03482ftだった。これは有望な独立選択器として使うが、artifact代理だけで
+  Kaggle候補にはしない。
+- `/private/tmp/rogii-ridge-oof-repro/ridge_meta_oof.npy`に残っていた公開5 booster＋
+  positive-RidgeのGroup OOFを再利用した。raw RMSEは10.4172821で公開Notebook報告
+  10.4197と一致する。public learned自身のtargetでwindowとalphaを選ぶnested smoothingは
+  10.4175377へ僅かに悪化したため棄却した。
+- 代わりに、独立artifact OOFのouter-train foldで選ばれたwindow/polyだけを同じ
+  GroupKFoldのpublic learned validation foldへ移植し、alphaは現行1.0へ固定した。
+  5 foldすべて改善し、public learned OOFは**10.4172821→10.3978300**
+  （+0.0194521）になった。fold改善は+0.01416〜+0.02294である。fit-all設定は
+  **Savgol window 601 / poly 2 / alpha 1.0**。
+- 200井の最終構造比較では、holdout1 **8.3621270→8.3556254**（+0.0065016）、
+  holdout2 **9.7307650→9.7257931**（+0.0049718）、統合
+  **9.2848462→9.2794148**（+0.0054314）だった。150井中123井勝ち、
+  well bootstrap改善確率100%、5%点+0.003893でpromotion gateを通過した。
+- ただしこのローカル最終比較のlearned枝はpublic positive-Ridgeのmodel deltaをabsolute
+  TVTへ戻したもので、Notebookの後段warm-up・likPF blend・SG61までを完全OOF再現した
+  値ではない。9.599時のartifact-only proxyより実提出枝に近いが、Kaggle 7.474そのものの
+  完全なローカル再現とは表現しない。
+- `scripts/build_public_learned_sg601_notebook.py`を追加した。7.474のversion 3 Notebookを
+  SHA固定で読み、public model deltaへSG601/poly2/alpha1.0を加える以外は変更しない。
+  58 cellすべてをコンパイルし、生成Notebook SHA256は
+  `8e8ce74dcd3115ac561a3d6f1c39b40c11bdd31a055152401533af3830e00268`。
+  現時点ではKaggle kernel pushも提出も行わない。

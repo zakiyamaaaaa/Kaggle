@@ -1,0 +1,157 @@
+{
+  "method": "public_learned_outer_train_selected_savgol",
+  "input_oof": "/private/tmp/rogii-ridge-oof-repro/ridge_meta_oof.npy",
+  "rows": 3783989,
+  "wells": 773,
+  "folds": 5,
+  "raw": {
+    "rmse": 10.417282104492188,
+    "well_rmse_p50": 6.468031773544621,
+    "well_rmse_p90": 15.067365436239033
+  },
+  "nested_smoothing": {
+    "rmse": 10.417537689208984,
+    "well_rmse_p50": 6.441528450558277,
+    "well_rmse_p90": 14.954968147072844
+  },
+  "fold_records": [
+    {
+      "window": 601,
+      "poly": 2,
+      "alpha": 1.0094454288482666,
+      "train_rmse": 10.565451622009277,
+      "fold": 1,
+      "train_wells": 618,
+      "valid_wells": 155,
+      "valid_rmse": 9.692479133605957
+    },
+    {
+      "window": 601,
+      "poly": 2,
+      "alpha": 1.0200779438018799,
+      "train_rmse": 10.272836685180664,
+      "fold": 2,
+      "train_wells": 618,
+      "valid_wells": 155,
+      "valid_rmse": 10.887994766235352
+    },
+    {
+      "window": 501,
+      "poly": 3,
+      "alpha": 0.9897187948226929,
+      "train_rmse": 10.675729751586914,
+      "fold": 3,
+      "train_wells": 619,
+      "valid_wells": 154,
+      "valid_rmse": 9.194456100463867
+    },
+    {
+      "window": 601,
+      "poly": 2,
+      "alpha": 1.0121172666549683,
+      "train_rmse": 10.162874221801758,
+      "fold": 4,
+      "train_wells": 618,
+      "valid_wells": 155,
+      "valid_rmse": 11.284270286560059
+    },
+    {
+      "window": 501,
+      "poly": 2,
+      "alpha": 0.97,
+      "train_rmse": 10.280190467834473,
+      "fold": 5,
+      "train_wells": 619,
+      "valid_wells": 154,
+      "valid_rmse": 10.874861717224121
+    }
+  ],
+  "fit_all_recommendation": {
+    "window": 601,
+    "poly": 2,
+    "alpha": 0.9996496438980103,
+    "rmse": 10.39583969116211
+  },
+  "fit_all_top10": [
+    {
+      "window": 601,
+      "poly": 2,
+      "alpha": 0.9996496438980103,
+      "rmse": 10.39583969116211
+    },
+    {
+      "window": 501,
+      "poly": 2,
+      "alpha": 0.9989195466041565,
+      "rmse": 10.395915031433105
+    },
+    {
+      "window": 501,
+      "poly": 3,
+      "alpha": 0.9988492131233215,
+      "rmse": 10.395994186401367
+    },
+    {
+      "window": 601,
+      "poly": 3,
+      "alpha": 0.9995446801185608,
+      "rmse": 10.396199226379395
+    },
+    {
+      "window": 151,
+      "poly": 1,
+      "alpha": 0.9993411898612976,
+      "rmse": 10.397720336914062
+    },
+    {
+      "window": 301,
+      "poly": 1,
+      "alpha": 1.0039746761322021,
+      "rmse": 10.39884090423584
+    },
+    {
+      "window": 301,
+      "poly": 2,
+      "alpha": 0.9975007772445679,
+      "rmse": 10.3997220993042
+    },
+    {
+      "window": 801,
+      "poly": 3,
+      "alpha": 1.0009673833847046,
+      "rmse": 10.399948120117188
+    },
+    {
+      "window": 301,
+      "poly": 3,
+      "alpha": 0.9974678754806519,
+      "rmse": 10.399996757507324
+    },
+    {
+      "window": 101,
+      "poly": 1,
+      "alpha": 0.9978978633880615,
+      "rmse": 10.401029586791992
+    }
+  ],
+  "window_grid": [
+    0,
+    61,
+    101,
+    151,
+    301,
+    501,
+    601,
+    801
+  ],
+  "poly_grid": [
+    1,
+    2,
+    3
+  ],
+  "alpha_bounds": [
+    0.97,
+    1.03
+  ],
+  "elapsed_sec": 27.164049916958902
+}

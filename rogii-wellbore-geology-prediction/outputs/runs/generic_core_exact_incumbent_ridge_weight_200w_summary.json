@@ -1,0 +1,736 @@
+{
+  "method": "exact_incumbent_one_change_sp45_ridge_weight",
+  "input": "outputs/runs/generic_core_branch_hedge_200w.parquet",
+  "rows": 985784,
+  "wells": 200,
+  "incumbent": {
+    "kaggle_score": 7.474,
+    "ridge_weight": 0.3,
+    "projection_degree": 2,
+    "projection_blend": 0.5,
+    "sp45_weight": 0.6,
+    "pf_seed_branch_hedge": "public_s060_cap200"
+  },
+  "ridge_weight_grid": [
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6
+  ],
+  "selection": {
+    "source": "discovery only",
+    "objective": "maximize minimum improvement across three legal OOF proxies",
+    "selected_ridge_weight": 0.3,
+    "selected_discovery_record": {
+      "ridge_weight": 0.3,
+      "proxy_rmse": {
+        "artifact": 8.208767557992612,
+        "hgb": 9.37401951932425,
+        "ridge": 8.523375803022878
+      },
+      "mean_proxy_rmse": 8.70205429344658,
+      "worst_proxy_rmse": 9.37401951932425,
+      "improvements_vs_incumbent": {
+        "artifact": 0.0,
+        "hgb": 0.0,
+        "ridge": 0.0
+      },
+      "minimum_improvement": 0.0,
+      "mean_improvement": 0.0
+    }
+  },
+  "validation": {
+    "holdout1": {
+      "artifact": {
+        "incumbent_rmse": 8.333327753872247,
+        "selected_rmse": 8.333327753872247,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 50,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      },
+      "hgb": {
+        "incumbent_rmse": 9.673804782482105,
+        "selected_rmse": 9.673804782482105,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 50,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      },
+      "ridge": {
+        "incumbent_rmse": 8.38319987869902,
+        "selected_rmse": 8.38319987869902,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 50,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      }
+    },
+    "holdout2": {
+      "artifact": {
+        "incumbent_rmse": 9.816257850093265,
+        "selected_rmse": 9.816257850093265,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 100,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      },
+      "hgb": {
+        "incumbent_rmse": 11.917144189229543,
+        "selected_rmse": 11.917144189229543,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 100,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      },
+      "ridge": {
+        "incumbent_rmse": 9.832036047608007,
+        "selected_rmse": 9.832036047608007,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 100,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      }
+    },
+    "holdout_combined": {
+      "artifact": {
+        "incumbent_rmse": 9.335020772358902,
+        "selected_rmse": 9.335020772358902,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 150,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      },
+      "hgb": {
+        "incumbent_rmse": 11.199666735674253,
+        "selected_rmse": 11.199666735674253,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 150,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      },
+      "ridge": {
+        "incumbent_rmse": 9.361193739782564,
+        "selected_rmse": 9.361193739782564,
+        "improvement": 0.0,
+        "paired_bootstrap": {
+          "wells": 150,
+          "well_wins": 0,
+          "samples": 10000,
+          "improvement_probability": 0.0,
+          "improvement_p05": 0.0,
+          "improvement_p50": 0.0,
+          "improvement_p95": 0.0
+        }
+      }
+    }
+  },
+  "promotion_gate": {
+    "selected_differs_from_incumbent": false,
+    "discovery_all_proxies_improve": false,
+    "each_holdout_all_proxies_improve": false,
+    "combined_all_proxies_bootstrap_p05_positive": false,
+    "passed": false
+  },
+  "suffix_target_used_for_prediction": false,
+  "same_well_contact_used": false,
+  "elapsed_sec": 16.328323459019884,
+  "split_results": {
+    "discovery": {
+      "rows": 261159,
+      "wells": 50,
+      "records": [
+        {
+          "ridge_weight": 0.2,
+          "proxy_rmse": {
+            "artifact": 8.227429137782664,
+            "hgb": 9.427997473439415,
+            "ridge": 8.528647017930242
+          },
+          "mean_proxy_rmse": 8.728024543050774,
+          "worst_proxy_rmse": 9.427997473439415,
+          "improvements_vs_incumbent": {
+            "artifact": -0.01866157979005223,
+            "hgb": -0.05397795411516526,
+            "ridge": -0.005271214907363486
+          },
+          "minimum_improvement": -0.05397795411516526,
+          "mean_improvement": -0.025970249604193658
+        },
+        {
+          "ridge_weight": 0.25,
+          "proxy_rmse": {
+            "artifact": 8.213716193801142,
+            "hgb": 9.397221344608957,
+            "ridge": 8.521721847401391
+          },
+          "mean_proxy_rmse": 8.710886461937163,
+          "worst_proxy_rmse": 9.397221344608957,
+          "improvements_vs_incumbent": {
+            "artifact": -0.00494863580853,
+            "hgb": -0.0232018252847066,
+            "ridge": 0.0016539556214869577
+          },
+          "minimum_improvement": -0.0232018252847066,
+          "mean_improvement": -0.008832168490583214
+        },
+        {
+          "ridge_weight": 0.3,
+          "proxy_rmse": {
+            "artifact": 8.208767557992612,
+            "hgb": 9.37401951932425,
+            "ridge": 8.523375803022878
+          },
+          "mean_proxy_rmse": 8.70205429344658,
+          "worst_proxy_rmse": 9.37401951932425,
+          "improvements_vs_incumbent": {
+            "artifact": 0.0,
+            "hgb": 0.0,
+            "ridge": 0.0
+          },
+          "minimum_improvement": 0.0,
+          "mean_improvement": 0.0
+        },
+        {
+          "ridge_weight": 0.35,
+          "proxy_rmse": {
+            "artifact": 8.211308374108265,
+            "hgb": 9.357432203239282,
+            "ridge": 8.532205380572584
+          },
+          "mean_proxy_rmse": 8.70031531930671,
+          "worst_proxy_rmse": 9.357432203239282,
+          "improvements_vs_incumbent": {
+            "artifact": -0.002540816115653044,
+            "hgb": 0.01658731608496744,
+            "ridge": -0.008829577549706258
+          },
+          "minimum_improvement": -0.008829577549706258,
+          "mean_improvement": 0.0017389741398693797
+        },
+        {
+          "ridge_weight": 0.4,
+          "proxy_rmse": {
+            "artifact": 8.221440928646235,
+            "hgb": 9.347673529627524,
+            "ridge": 8.548350992270384
+          },
+          "mean_proxy_rmse": 8.705821816848049,
+          "worst_proxy_rmse": 9.347673529627524,
+          "improvements_vs_incumbent": {
+            "artifact": -0.01267337065362284,
+            "hgb": 0.026345989696725525,
+            "ridge": -0.02497518924750608
+          },
+          "minimum_improvement": -0.02497518924750608,
+          "mean_improvement": -0.0037675234014677983
+        },
+        {
+          "ridge_weight": 0.45,
+          "proxy_rmse": {
+            "artifact": 8.238533259326974,
+            "hgb": 9.344103474748342,
+            "ridge": 8.571162106002854
+          },
+          "mean_proxy_rmse": 8.717932946692722,
+          "worst_proxy_rmse": 9.344103474748342,
+          "improvements_vs_incumbent": {
+            "artifact": -0.029765701334362404,
+            "hgb": 0.029916044575907463,
+            "ridge": -0.04778630297997566
+          },
+          "minimum_improvement": -0.04778630297997566,
+          "mean_improvement": -0.015878653246143532
+        },
+        {
+          "ridge_weight": 0.5,
+          "proxy_rmse": {
+            "artifact": 8.263595526533138,
+            "hgb": 9.347702348056712,
+            "ridge": 8.60156297604617
+          },
+          "mean_proxy_rmse": 8.73762028354534,
+          "worst_proxy_rmse": 9.347702348056712,
+          "improvements_vs_incumbent": {
+            "artifact": -0.05482796854052552,
+            "hgb": 0.02631717126753763,
+            "ridge": -0.07818717302329148
+          },
+          "minimum_improvement": -0.07818717302329148,
+          "mean_improvement": -0.03556599009875979
+        },
+        {
+          "ridge_weight": 0.55,
+          "proxy_rmse": {
+            "artifact": 8.295926155308546,
+            "hgb": 9.358018622026998,
+            "ridge": 8.638832334610049
+          },
+          "mean_proxy_rmse": 8.764259037315199,
+          "worst_proxy_rmse": 9.358018622026998,
+          "improvements_vs_incumbent": {
+            "artifact": -0.08715859731593412,
+            "hgb": 0.016000897297251626,
+            "ridge": -0.11545653158717073
+          },
+          "minimum_improvement": -0.11545653158717073,
+          "mean_improvement": -0.06220474386861774
+        },
+        {
+          "ridge_weight": 0.6,
+          "proxy_rmse": {
+            "artifact": 8.335077497808008,
+            "hgb": 9.37460394106908,
+            "ridge": 8.682431870578707
+          },
+          "mean_proxy_rmse": 8.797371103151931,
+          "worst_proxy_rmse": 9.37460394106908,
+          "improvements_vs_incumbent": {
+            "artifact": -0.12630993981539618,
+            "hgb": -0.0005844217448292,
+            "ridge": -0.15905606755582902
+          },
+          "minimum_improvement": -0.15905606755582902,
+          "mean_improvement": -0.09531680970535146
+        }
+      ]
+    },
+    "holdout1": {
+      "rows": 248132,
+      "wells": 50,
+      "records": [
+        {
+          "ridge_weight": 0.2,
+          "proxy_rmse": {
+            "artifact": 8.235866282797542,
+            "hgb": 9.628685643148902,
+            "ridge": 8.265805263617626
+          },
+          "mean_proxy_rmse": 8.710119063188023,
+          "worst_proxy_rmse": 9.628685643148902
+        },
+        {
+          "ridge_weight": 0.25,
+          "proxy_rmse": {
+            "artifact": 8.280737774398682,
+            "hgb": 9.647812034242499,
+            "ridge": 8.320735096278595
+          },
+          "mean_proxy_rmse": 8.74976163497326,
+          "worst_proxy_rmse": 9.647812034242499
+        },
+        {
+          "ridge_weight": 0.3,
+          "proxy_rmse": {
+            "artifact": 8.333327753872247,
+            "hgb": 9.673804782482105,
+            "ridge": 8.38319987869902
+          },
+          "mean_proxy_rmse": 8.796777471684457,
+          "worst_proxy_rmse": 9.673804782482105
+        },
+        {
+          "ridge_weight": 0.35,
+          "proxy_rmse": {
+            "artifact": 8.39323699880392,
+            "hgb": 9.706349690721208,
+            "ridge": 8.452730913869317
+          },
+          "mean_proxy_rmse": 8.850772534464815,
+          "worst_proxy_rmse": 9.706349690721208
+        },
+        {
+          "ridge_weight": 0.4,
+          "proxy_rmse": {
+            "artifact": 8.460614617865776,
+            "hgb": 9.74562883071194,
+            "ridge": 8.529467267854228
+          },
+          "mean_proxy_rmse": 8.911903572143983,
+          "worst_proxy_rmse": 9.74562883071194
+        },
+        {
+          "ridge_weight": 0.45,
+          "proxy_rmse": {
+            "artifact": 8.53497370042235,
+            "hgb": 9.791348887428526,
+            "ridge": 8.612950422805216
+          },
+          "mean_proxy_rmse": 8.979757670218698,
+          "worst_proxy_rmse": 9.791348887428526
+        },
+        {
+          "ridge_weight": 0.5,
+          "proxy_rmse": {
+            "artifact": 8.615903563287596,
+            "hgb": 9.843139642678006,
+            "ridge": 8.70271239797177
+          },
+          "mean_proxy_rmse": 9.05391853464579,
+          "worst_proxy_rmse": 9.843139642678006
+        },
+        {
+          "ridge_weight": 0.55,
+          "proxy_rmse": {
+            "artifact": 8.70268080223406,
+            "hgb": 9.900541849960241,
+            "ridge": 8.79801761003014
+          },
+          "mean_proxy_rmse": 9.133746754074814,
+          "worst_proxy_rmse": 9.900541849960241
+        },
+        {
+          "ridge_weight": 0.6,
+          "proxy_rmse": {
+            "artifact": 8.795619286529723,
+            "hgb": 9.963812544990839,
+            "ridge": 8.89908759429974
+          },
+          "mean_proxy_rmse": 9.219506475273434,
+          "worst_proxy_rmse": 9.963812544990839
+        }
+      ]
+    },
+    "holdout2": {
+      "rows": 476493,
+      "wells": 100,
+      "records": [
+        {
+          "ridge_weight": 0.2,
+          "proxy_rmse": {
+            "artifact": 9.948109347735858,
+            "hgb": 12.09688253219078,
+            "ridge": 9.95972299174496
+          },
+          "mean_proxy_rmse": 10.668238290557198,
+          "worst_proxy_rmse": 12.09688253219078
+        },
+        {
+          "ridge_weight": 0.25,
+          "proxy_rmse": {
+            "artifact": 9.878938243055302,
+            "hgb": 12.004595294071017,
+            "ridge": 9.892669853716434
+          },
+          "mean_proxy_rmse": 10.592067796947584,
+          "worst_proxy_rmse": 12.004595294071017
+        },
+        {
+          "ridge_weight": 0.3,
+          "proxy_rmse": {
+            "artifact": 9.816257850093265,
+            "hgb": 11.917144189229543,
+            "ridge": 9.832036047608007
+          },
+          "mean_proxy_rmse": 10.521812695643606,
+          "worst_proxy_rmse": 11.917144189229543
+        },
+        {
+          "ridge_weight": 0.35,
+          "proxy_rmse": {
+            "artifact": 9.760829249461041,
+            "hgb": 11.835328293743622,
+            "ridge": 9.778693941782656
+          },
+          "mean_proxy_rmse": 10.458283828329106,
+          "worst_proxy_rmse": 11.835328293743622
+        },
+        {
+          "ridge_weight": 0.4,
+          "proxy_rmse": {
+            "artifact": 9.712758246504716,
+            "hgb": 11.759237934350619,
+            "ridge": 9.732744819042326
+          },
+          "mean_proxy_rmse": 10.40158033329922,
+          "worst_proxy_rmse": 11.759237934350619
+        },
+        {
+          "ridge_weight": 0.45,
+          "proxy_rmse": {
+            "artifact": 9.671657169743636,
+            "hgb": 11.688491925117496,
+            "ridge": 9.693727458685773
+          },
+          "mean_proxy_rmse": 10.351292184515636,
+          "worst_proxy_rmse": 11.688491925117496
+        },
+        {
+          "ridge_weight": 0.5,
+          "proxy_rmse": {
+            "artifact": 9.638377779166941,
+            "hgb": 11.62387662189002,
+            "ridge": 9.662607583138913
+          },
+          "mean_proxy_rmse": 10.30828732806529,
+          "worst_proxy_rmse": 11.62387662189002
+        },
+        {
+          "ridge_weight": 0.55,
+          "proxy_rmse": {
+            "artifact": 9.612813138871337,
+            "hgb": 11.565454034312735,
+            "ridge": 9.639297139145818
+          },
+          "mean_proxy_rmse": 10.272521437443297,
+          "worst_proxy_rmse": 11.565454034312735
+        },
+        {
+          "ridge_weight": 0.6,
+          "proxy_rmse": {
+            "artifact": 9.594710251634575,
+            "hgb": 11.512821897840533,
+            "ridge": 9.623380045586604
+          },
+          "mean_proxy_rmse": 10.243637398353904,
+          "worst_proxy_rmse": 11.512821897840533
+        }
+      ]
+    },
+    "holdout_combined": {
+      "rows": 724625,
+      "wells": 150,
+      "records": [
+        {
+          "ridge_weight": 0.2,
+          "proxy_rmse": {
+            "artifact": 9.396980729596473,
+            "hgb": 11.312495264059299,
+            "ridge": 9.41405615994841
+          },
+          "mean_proxy_rmse": 10.041177384534727,
+          "worst_proxy_rmse": 11.312495264059299
+        },
+        {
+          "ridge_weight": 0.25,
+          "proxy_rmse": {
+            "artifact": 9.362435371949621,
+            "hgb": 11.253274585390244,
+            "ridge": 9.384087674308905
+          },
+          "mean_proxy_rmse": 9.999932543882924,
+          "worst_proxy_rmse": 11.253274585390244
+        },
+        {
+          "ridge_weight": 0.3,
+          "proxy_rmse": {
+            "artifact": 9.335020772358902,
+            "hgb": 11.199666735674253,
+            "ridge": 9.361193739782564
+          },
+          "mean_proxy_rmse": 9.965293749271906,
+          "worst_proxy_rmse": 11.199666735674253
+        },
+        {
+          "ridge_weight": 0.35,
+          "proxy_rmse": {
+            "artifact": 9.315159714777543,
+            "hgb": 11.152158272512763,
+            "ridge": 9.34585096023074
+          },
+          "mean_proxy_rmse": 9.937722982507017,
+          "worst_proxy_rmse": 11.152158272512763
+        },
+        {
+          "ridge_weight": 0.4,
+          "proxy_rmse": {
+            "artifact": 9.302982837574366,
+            "hgb": 11.110882841173993,
+            "ridge": 9.338181348979388
+          },
+          "mean_proxy_rmse": 9.917349009242583,
+          "worst_proxy_rmse": 11.110882841173993
+        },
+        {
+          "ridge_weight": 0.45,
+          "proxy_rmse": {
+            "artifact": 9.298082673793575,
+            "hgb": 11.075503740900356,
+            "ridge": 9.337733203802308
+          },
+          "mean_proxy_rmse": 9.903773206165413,
+          "worst_proxy_rmse": 11.075503740900356
+        },
+        {
+          "ridge_weight": 0.5,
+          "proxy_rmse": {
+            "artifact": 9.30091742804606,
+            "hgb": 11.046468629055225,
+            "ridge": 9.345019741985588
+          },
+          "mean_proxy_rmse": 9.897468599695623,
+          "worst_proxy_rmse": 11.046468629055225
+        },
+        {
+          "ridge_weight": 0.55,
+          "proxy_rmse": {
+            "artifact": 9.311179429977434,
+            "hgb": 11.023687583087185,
+            "ridge": 9.359736553995617
+          },
+          "mean_proxy_rmse": 9.898201189020078,
+          "worst_proxy_rmse": 11.023687583087185
+        },
+        {
+          "ridge_weight": 0.6,
+          "proxy_rmse": {
+            "artifact": 9.328788564695365,
+            "hgb": 11.006967651408528,
+            "ridge": 9.381659543472146
+          },
+          "mean_proxy_rmse": 9.905805253192014,
+          "worst_proxy_rmse": 11.006967651408528
+        }
+      ]
+    },
+    "all": {
+      "rows": 985784,
+      "wells": 200,
+      "records": [
+        {
+          "ridge_weight": 0.2,
+          "proxy_rmse": {
+            "artifact": 9.101781976321464,
+            "hgb": 10.845175850956199,
+            "ridge": 9.187800837050652
+          },
+          "mean_proxy_rmse": 9.711586221442772,
+          "worst_proxy_rmse": 10.845175850956199
+        },
+        {
+          "ridge_weight": 0.25,
+          "proxy_rmse": {
+            "artifact": 9.07228418083591,
+            "hgb": 10.792683887526042,
+            "ridge": 9.163530811122694
+          },
+          "mean_proxy_rmse": 9.676166293161549,
+          "worst_proxy_rmse": 10.792683887526042
+        },
+        {
+          "ridge_weight": 0.3,
+          "proxy_rmse": {
+            "artifact": 9.050305134252968,
+            "hgb": 10.746249007631963,
+            "ridge": 9.146710113865746
+          },
+          "mean_proxy_rmse": 9.647754751916892,
+          "worst_proxy_rmse": 10.746249007631963
+        },
+        {
+          "ridge_weight": 0.35,
+          "proxy_rmse": {
+            "artifact": 9.035861610455031,
+            "hgb": 10.706025299010633,
+            "ridge": 9.137353127956368
+          },
+          "mean_proxy_rmse": 9.626413345807343,
+          "worst_proxy_rmse": 10.706025299010633
+        },
+        {
+          "ridge_weight": 0.4,
+          "proxy_rmse": {
+            "artifact": 9.029078423364288,
+            "hgb": 10.672166910912283,
+            "ridge": 9.135586818427187
+          },
+          "mean_proxy_rmse": 9.612277384234586,
+          "worst_proxy_rmse": 10.672166910912283
+        },
+        {
+          "ridge_weight": 0.45,
+          "proxy_rmse": {
+            "artifact": 9.02949556996581,
+            "hgb": 10.644269933982441,
+            "ridge": 9.140910873130881
+          },
+          "mean_proxy_rmse": 9.604892125693045,
+          "worst_proxy_rmse": 10.644269933982441
+        },
+        {
+          "ridge_weight": 0.5,
+          "proxy_rmse": {
+            "artifact": 9.037705128577254,
+            "hgb": 10.622907087438286,
+            "ridge": 9.153940550486768
+          },
+          "mean_proxy_rmse": 9.604850922167437,
+          "worst_proxy_rmse": 10.622907087438286
+        },
+        {
+          "ridge_weight": 0.55,
+          "proxy_rmse": {
+            "artifact": 9.053305856218554,
+            "hgb": 10.607907270116636,
+            "ridge": 9.174268335317413
+          },
+          "mean_proxy_rmse": 9.611827153884201,
+          "worst_proxy_rmse": 10.607907270116636
+        },
+        {
+          "ridge_weight": 0.6,
+          "proxy_rmse": {
+            "artifact": 9.076129294094878,
+            "hgb": 10.599020697665111,
+            "ridge": 9.201591658051655
+          },
+          "mean_proxy_rmse": 9.625580549937213,
+          "worst_proxy_rmse": 10.599020697665111
+        }
+      ]
+    }
+  }
+}
