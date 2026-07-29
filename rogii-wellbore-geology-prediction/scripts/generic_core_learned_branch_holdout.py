@@ -222,10 +222,16 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             flush=True,
         )
         del matrix
-    selected_variant = min(
-        selection_records,
-        key=lambda name: selection_records[name]["inner_oof_rmse"],
+    selected_variant = (
+        args.selected_variant
+        if args.selected_variant is not None
+        else min(
+            selection_records,
+            key=lambda name: selection_records[name]["inner_oof_rmse"],
+        )
     )
+    if selected_variant not in selection_records:
+        raise RuntimeError(f"unknown selected variant: {selected_variant}")
     selected_features = VARIANTS[selected_variant]
     train_matrix = np.column_stack(
         [arrays[name][train_positions] for name in selected_features]
@@ -412,6 +418,7 @@ def main() -> None:
         "--sp45-cache", type=Path, action="append", required=True
     )
     parser.add_argument("--inner-folds", type=int, default=5)
+    parser.add_argument("--selected-variant", choices=sorted(VARIANTS))
     parser.add_argument("--sp45-weight", type=float, default=0.60)
     parser.add_argument("--smooth-window", type=int, default=61)
     parser.add_argument("--bootstrap-samples", type=int, default=10_000)

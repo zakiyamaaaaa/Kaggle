@@ -545,3 +545,30 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - version 1は正常完了した。Kaggleから再取得した`submission.csv`のSHA256は
   `97435ccb145672ec0b11d31721d73d4aa77eec3966aef214990ec5f90501705f`で、選出したローカル候補と完全一致した。
 - Kernel version 1を提出ID **55053043**として受理された。Kaggle API上の状態は`COMPLETE`だが、初回確認時点では公開スコア欄が空であり、スコア反映待ちである。
+
+## 2026-07-29 固定CSV提出の失敗とhidden対応all12への修正
+
+- 提出ID 55053043は`Notebook Threw Exception`になった。通常のKernel実行では公開
+  `sample_submission.csv`と固定CSVが一致していたが、Code Competitionの採点時には
+  サイズ・IDが異なるhidden testでNotebookが再実行される。version 1は公開14,151行・
+  公開ID・固定SHA256を必須にしたためhiddenで例外になった。静的CSVをKernelへ内包する
+  方式そのものを棄却した。
+- hiddenで動的生成できない`local_hgb`を代理値へ置換せず、最初から除いた
+  `all12_dynamic`を追加した。5 public trainer＋model-packageのLGB/XGB/CatBoost/HGB/
+  sequence-TCN/raw blend/postprocessedの12成分である。
+- 573井だけのinner OOFはall12 **10.1160297**、all13 10.1160469でall12が僅かに良かった。
+  完全除外200井のSP45 60%＋meta 40%はall12 **8.8945148**、all13 8.9002756で、
+  all12が0.0057608改善した。artifact proxy 9.0444052からの改善は0.1498905、
+  121/200井勝ち、井戸bootstrap改善確率95.95%、5%点+0.00639だった。
+- 全773井のGroup OOFではall12 10.0242119、all13 10.0263624。production fit-all係数は
+  `outputs/runs/learned_branch_meta_all12_dynamic_oof_summary.json`へ保存した。
+- version 2はhidden対応ロジックとして完走したが、public trainer artifactの旧mount path
+  `/kaggle/input/datasets/...`が現行環境に存在せず、5モデルを再学習して約2時間23分を
+  要した。出力は有効でもproduction OOFと同じ保存trainerではないため提出版に採用しなかった。
+- version 3はmountを`/kaggle/input/wellbore-geology-prediction-artifacts`へ修正した。
+  LightGBM 3本・CatBoost 2本をすべて保存trainerから読み、再学習0本、約670秒で完走した。
+  model-package 7成分とSP45もactive sampleから動的生成し、14,151行・ID順・有限値を監査した。
+  最終`submission.csv`、`submission_all12_dynamic_w060.csv`、監査コピーは値が完全一致し、
+  SHA256は`67a3a4d2acbf61911466dd36e8199031f6713469acc38de3e379abaa85c74877`だった。
+- Kernelは`zacky21/rogii-dynamic-all12-sp45-w060-submission` version 3。提出ID
+  **55072030**として受理され、hidden再実行の結果待ちである。

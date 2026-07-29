@@ -1,21 +1,28 @@
 {
-  "id": "zacky21/rogii-all13-sp45-w060-submission",
-  "title": "ROGII All13 SP45 W060 Submission",
+  "id": "zacky21/rogii-dynamic-all12-sp45-w060-submission",
+  "title": "ROGII Dynamic All12 SP45 W060 Submission",
   "code_file": "rogii-all13-sp45-w060-submission.ipynb",
   "language": "python",
   "kernel_type": "notebook",
   "is_private": true,
-  "enable_gpu": false,
+  "enable_gpu": true,
   "enable_tpu": false,
   "enable_internet": false,
-  "keywords": [
-    "submission",
-    "audited"
+  "keywords": [],
+  "dataset_sources": [
+    "phongnguyn23021656/koolbox-offline",
+    "nina2025/rogii-03",
+    "pilkwang/rogii-model-package",
+    "thbdh5765/rogii-v10-fresh-artifacts",
+    "fleongg/rogii-claude-models-pub",
+    "needless090/rogii-tabicl-mirror",
+    "ravaghi/wellbore-geology-prediction-artifacts"
   ],
-  "dataset_sources": [],
   "kernel_sources": [],
   "competition_sources": [
     "rogii-wellbore-geology-prediction"
   ],
-  "model_sources": []
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "machine_shape": "Gpu"
 }

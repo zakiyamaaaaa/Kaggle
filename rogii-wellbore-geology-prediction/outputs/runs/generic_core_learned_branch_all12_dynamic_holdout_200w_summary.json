@@ -1,0 +1,347 @@
+{
+  "method": "independent_well_learned_branch_meta_selection",
+  "train_wells": 573,
+  "evaluation_wells": 200,
+  "evaluation_rows": 985784,
+  "inner_folds": 5,
+  "selection_records": {
+    "public5": {
+      "features": [
+        "public_0",
+        "public_1",
+        "public_2",
+        "public_3",
+        "public_4"
+      ],
+      "inner_oof_rmse": 10.63959789276123,
+      "fold_rmse": [
+        10.737103462219238,
+        12.422857284545898,
+        11.363862037658691,
+        8.265822410583496,
+        9.938013076782227
+      ]
+    },
+    "public5_pkg_post": {
+      "features": [
+        "public_0",
+        "public_1",
+        "public_2",
+        "public_3",
+        "public_4",
+        "package_postprocessed"
+      ],
+      "inner_oof_rmse": 10.137521743774414,
+      "fold_rmse": [
+        10.282264709472656,
+        11.81564712524414,
+        10.525556564331055,
+        8.188767433166504,
+        9.514979362487793
+      ]
+    },
+    "public5_pkg_post_local": {
+      "features": [
+        "public_0",
+        "public_1",
+        "public_2",
+        "public_3",
+        "public_4",
+        "package_postprocessed",
+        "local_hgb"
+      ],
+      "inner_oof_rmse": 10.139337539672852,
+      "fold_rmse": [
+        10.246294021606445,
+        11.876388549804688,
+        10.520477294921875,
+        8.169410705566406,
+        9.510031700134277
+      ]
+    },
+    "public5_pkg_raw": {
+      "features": [
+        "public_0",
+        "public_1",
+        "public_2",
+        "public_3",
+        "public_4",
+        "package_lgb",
+        "package_xgb",
+        "package_catboost",
+        "package_hgb",
+        "package_sequence_tcn"
+      ],
+      "inner_oof_rmse": 10.12729263305664,
+      "fold_rmse": [
+        10.399222373962402,
+        11.774092674255371,
+        10.500540733337402,
+        8.131475448608398,
+        9.461283683776855
+      ]
+    },
+    "all12_dynamic": {
+      "features": [
+        "public_0",
+        "public_1",
+        "public_2",
+        "public_3",
+        "public_4",
+        "package_lgb",
+        "package_xgb",
+        "package_catboost",
+        "package_hgb",
+        "package_sequence_tcn",
+        "package_blend",
+        "package_postprocessed"
+      ],
+      "inner_oof_rmse": 10.116029739379883,
+      "fold_rmse": [
+        10.364498138427734,
+        11.766619682312012,
+        10.484347343444824,
+        8.129430770874023,
+        9.468239784240723
+      ]
+    },
+    "all13": {
+      "features": [
+        "public_0",
+        "public_1",
+        "public_2",
+        "public_3",
+        "public_4",
+        "package_lgb",
+        "package_xgb",
+        "package_catboost",
+        "package_hgb",
+        "package_sequence_tcn",
+        "package_blend",
+        "package_postprocessed",
+        "local_hgb"
+      ],
+      "inner_oof_rmse": 10.116046905517578,
+      "fold_rmse": [
+        10.332843780517578,
+        11.81360912322998,
+        10.492396354675293,
+        8.10002613067627,
+        9.460615158081055
+      ]
+    }
+  },
+  "selected_variant": "all12_dynamic",
+  "selected_features": [
+    "public_0",
+    "public_1",
+    "public_2",
+    "public_3",
+    "public_4",
+    "package_lgb",
+    "package_xgb",
+    "package_catboost",
+    "package_hgb",
+    "package_sequence_tcn",
+    "package_blend",
+    "package_postprocessed"
+  ],
+  "fit_all_coef": [
+    0.003767499001696706,
+    0.0979396179318428,
+    0.15085572004318237,
+    0.1650194227695465,
+    0.20378322899341583,
+    0.0,
+    0.0,
+    0.0345223993062973,
+    0.0,
+    0.2578119933605194,
+    0.11839647591114044,
+    0.12569738924503326
+  ],
+  "fit_all_intercept": -0.34233391284942627,
+  "sp45_weight": 0.6,
+  "smooth_window": 61,
+  "metrics": {
+    "all": {
+      "artifact_proxy_full": {
+        "rmse": 9.04440522737956,
+        "well_rmse_p50": 6.082726112497895,
+        "well_rmse_p90": 11.7421224039649
+      },
+      "ridge_proxy_full": {
+        "rmse": 9.142898614096728,
+        "well_rmse_p50": 6.043461707291916,
+        "well_rmse_p90": 12.12687276049521
+      },
+      "learned_meta_full_raw": {
+        "rmse": 8.895099134716599,
+        "well_rmse_p50": 5.929218926708929,
+        "well_rmse_p90": 11.90548072478456
+      },
+      "learned_meta_full_smooth": {
+        "rmse": 8.894514771081122,
+        "well_rmse_p50": 5.928513385513479,
+        "well_rmse_p90": 11.90520195303382
+      }
+    },
+    "generic_core_sp45_50w_summary": {
+      "artifact_proxy_full": {
+        "rmse": 8.163257481144823,
+        "well_rmse_p50": 6.340272689963543,
+        "well_rmse_p90": 11.49004572987864
+      },
+      "ridge_proxy_full": {
+        "rmse": 8.481512405772369,
+        "well_rmse_p50": 6.637198750722481,
+        "well_rmse_p90": 13.076899655738032
+      },
+      "learned_meta_full_raw": {
+        "rmse": 8.21369725019167,
+        "well_rmse_p50": 6.953079020304865,
+        "well_rmse_p90": 12.438781979210336
+      },
+      "learned_meta_full_smooth": {
+        "rmse": 8.213137575519331,
+        "well_rmse_p50": 6.952227860472796,
+        "well_rmse_p90": 12.43795278083438
+      }
+    },
+    "generic_core_sp45_holdout_50w_summary": {
+      "artifact_proxy_full": {
+        "rmse": 8.305795719766936,
+        "well_rmse_p50": 5.876879851232511,
+        "well_rmse_p90": 12.724861073383625
+      },
+      "ridge_proxy_full": {
+        "rmse": 8.366029201145539,
+        "well_rmse_p50": 5.987600170943432,
+        "well_rmse_p90": 11.246914088087747
+      },
+      "learned_meta_full_raw": {
+        "rmse": 8.196410414174151,
+        "well_rmse_p50": 5.711463615200259,
+        "well_rmse_p90": 11.909693535852549
+      },
+      "learned_meta_full_smooth": {
+        "rmse": 8.195750040572406,
+        "well_rmse_p50": 5.7105317964188345,
+        "well_rmse_p90": 11.908942319599088
+      }
+    },
+    "generic_core_sp45_validation2_100w_summary": {
+      "artifact_proxy_full": {
+        "rmse": 9.837936193376377,
+        "well_rmse_p50": 5.898957124367973,
+        "well_rmse_p90": 11.7421224039649
+      },
+      "ridge_proxy_full": {
+        "rmse": 9.85213934894208,
+        "well_rmse_p50": 5.950061147214263,
+        "well_rmse_p90": 12.033477266395362
+      },
+      "learned_meta_full_raw": {
+        "rmse": 9.577626083292005,
+        "well_rmse_p50": 5.771034054447378,
+        "well_rmse_p90": 11.285871413931046
+      },
+      "learned_meta_full_smooth": {
+        "rmse": 9.57706064580242,
+        "well_rmse_p50": 5.770342195053451,
+        "well_rmse_p90": 11.285045709857743
+      }
+    }
+  },
+  "branch_metrics": {
+    "all": {
+      "artifact_tvt": {
+        "rmse": 10.469932293946686,
+        "well_rmse_p50": 7.318965694224428,
+        "well_rmse_p90": 15.585084026460326
+      },
+      "learned_meta_tvt": {
+        "rmse": 9.608228783080405,
+        "well_rmse_p50": 6.65902597867798,
+        "well_rmse_p90": 14.698046862667558
+      },
+      "learned_meta_smooth": {
+        "rmse": 9.605688768581931,
+        "well_rmse_p50": 6.652955144110134,
+        "well_rmse_p90": 14.696385335164317
+      }
+    },
+    "generic_core_sp45_50w_summary": {
+      "artifact_tvt": {
+        "rmse": 9.585183306340502,
+        "well_rmse_p50": 7.523695695833609,
+        "well_rmse_p90": 12.434898005991487
+      },
+      "learned_meta_tvt": {
+        "rmse": 9.091252856675808,
+        "well_rmse_p50": 6.911901008642726,
+        "well_rmse_p90": 12.433077201975161
+      },
+      "learned_meta_smooth": {
+        "rmse": 9.088859842740984,
+        "well_rmse_p50": 6.909684159117172,
+        "well_rmse_p90": 12.431613297622983
+      }
+    },
+    "generic_core_sp45_holdout_50w_summary": {
+      "artifact_tvt": {
+        "rmse": 10.703751866224957,
+        "well_rmse_p50": 7.99068010168282,
+        "well_rmse_p90": 18.10234624816009
+      },
+      "learned_meta_tvt": {
+        "rmse": 9.911238402780377,
+        "well_rmse_p50": 6.852099258990048,
+        "well_rmse_p90": 16.593228770037886
+      },
+      "learned_meta_smooth": {
+        "rmse": 9.908656176028952,
+        "well_rmse_p50": 6.847672079679467,
+        "well_rmse_p90": 16.591545468511445
+      }
+    },
+    "generic_core_sp45_validation2_100w_summary": {
+      "artifact_tvt": {
+        "rmse": 10.805852660444826,
+        "well_rmse_p50": 7.198007974736392,
+        "well_rmse_p90": 15.042330328949193
+      },
+      "learned_meta_tvt": {
+        "rmse": 9.722988487467466,
+        "well_rmse_p50": 5.899518725233504,
+        "well_rmse_p90": 14.031544091497002
+      },
+      "learned_meta_smooth": {
+        "rmse": 9.7203927259079,
+        "well_rmse_p50": 5.894010541478081,
+        "well_rmse_p90": 14.028057104473477
+      }
+    }
+  },
+  "full_blend_improvement_vs_artifact": 0.14989045629843822,
+  "well_wins_vs_artifact": {
+    "wins": 121,
+    "losses": 79,
+    "ties": 0
+  },
+  "bootstrap_vs_artifact_proxy": {
+    "probability_improve": 0.9595,
+    "q05": 0.0063864627740431775,
+    "median": 0.14612901915804244,
+    "q95": 0.2888464636724249
+  },
+  "leakage_controls": {
+    "evaluation_wells_excluded_from_feature_selection": true,
+    "evaluation_wells_excluded_from_meta_fit": true,
+    "all_base_predictions_are_well_group_oof": true,
+    "same_well_contact_used": false,
+    "public_well_ids_used": false
+  },
+  "output": "outputs/runs/generic_core_learned_branch_all12_dynamic_holdout_200w.parquet",
+  "elapsed_sec": 27.447761708986945
+}

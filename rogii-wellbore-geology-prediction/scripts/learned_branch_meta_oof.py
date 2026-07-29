@@ -42,6 +42,16 @@ VARIANTS = {
         "package_hgb",
         "package_sequence_tcn",
     ),
+    "all12_dynamic": tuple(f"public_{index}" for index in range(5))
+    + (
+        "package_lgb",
+        "package_xgb",
+        "package_catboost",
+        "package_hgb",
+        "package_sequence_tcn",
+        "package_blend",
+        "package_postprocessed",
+    ),
     "all13": tuple(f"public_{index}" for index in range(5))
     + (
         "package_lgb",
