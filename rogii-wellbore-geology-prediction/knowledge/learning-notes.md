@@ -571,4 +571,25 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   最終`submission.csv`、`submission_all12_dynamic_w060.csv`、監査コピーは値が完全一致し、
   SHA256は`67a3a4d2acbf61911466dd36e8199031f6713469acc38de3e379abaa85c74877`だった。
 - Kernelは`zacky21/rogii-dynamic-all12-sp45-w060-submission` version 3。提出ID
-  **55072030**として受理され、hidden再実行の結果待ちである。
+  **55072030**として受理された。hidden再実行の確定結果は次節に記録する。
+
+## 2026-07-30 all12 dynamicのKaggle 9.599と選出ゲートの反省
+
+- 提出ID **55072030**のhidden再実行は例外なく完了し、公開スコアは**9.599**だった。
+  ローカル完全除外200井の8.8945148より0.7044852悪く、現行Kaggleベスト7.474より
+  2.125悪い。hidden対応の実装エラーは解消したが、予測手法としては棄却する。
+- all12の選出根拠は、同じ200井でall13を0.0057608、artifact proxyを0.1498905
+  改善したという枝内比較だった。この差はKaggleで観測した2.125の劣化より桁違いに小さく、
+  「現行7.474の最終パイプラインを超える」という証拠にはなっていなかった。異なるholdout・
+  proxy・最終処理をまたいだ絶対RMSE比較を候補昇格に使ったことが選出ゲートの問題である。
+- 7.474のgeneric-core最終出力にはPF likelihood 1.30とPF seed-branch midpoint hedgeが
+  含まれる。一方、dynamic all12 cellはhedge実行後に`submission.csv`をSP45 60%＋all12
+  40%で上書きしたため、Kaggleで効いていたhedgeを保持していなかった。ローカル8.8945も
+  このall12構成を評価した値であり、7.474候補の完全な差し替え比較ではない。
+- 次の必須ゲートは、まずhidden-compatible Notebookで7.474の現行generic-coreを変更せず
+  再現すること。その同一コードパス・同一holdout上で、最終hedgeまで含めたincumbentと
+  変更候補の行単位予測を比較する。複数の固定well splitで一貫して改善し、井戸bootstrap
+  5%点も正で、かつ変更を一要素に限定した場合だけ提出候補へ昇格する。
+- all12 learned branchを再利用する場合も40%固定は採用しない。incumbentを基準に
+  learned branch追加量を小さくしたweight gridと、井戸単位のOOF予測だけで決める
+  target-free gateを検証する。少なくともexact incumbentを超えない候補は提出しない。
