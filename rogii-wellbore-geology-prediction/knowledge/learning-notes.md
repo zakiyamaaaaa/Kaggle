@@ -632,3 +632,37 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   58 cellすべてをコンパイルし、生成Notebook SHA256は
   `8e8ce74dcd3115ac561a3d6f1c39b40c11bdd31a055152401533af3830e00268`。
   現時点ではKaggle kernel pushも提出も行わない。
+
+## 2026-07-30 Discussion / Code再調査
+
+### 最重要: hidden相当CVのリーク除去
+
+- [The public LB is a precise ruler and a biased one](https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/discussion/728477)の最新コメントで、公開forkをtrain井へ適用するとhiddenでは存在しない2種類の自己参照が入ることが示された。(1) contact lookupがtrain-only同一井ファイルからsuffixをほぼ復元する、(2) formation / dense imputerを`self_wid=None`で呼ぶと評価井自身のtopsが近傍集合へ入る。hidden相当評価ではcontact候補を作らず、imputerへ評価well IDを渡して自己井を除外する必要がある。
+- 現行generic-coreの差分実験はsame-well contactを無効化しているが、保存OOFや公開artifactを使う実験では、元artifact生成時のself-exclusionまで一律に保証できていない。以後の候補昇格前に、各入力枝について「contactなし」「query well除外」「suffix targetは評価時のみ」をmanifest化する。
+- 公開`test/`の3井はtrainのコピーで、hidden採点時には実testへ置換されるため、公開3井のスコア・ID・row数・contact成立をモデル選択へ使わない。[train-copy overlap thread](https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/discussion/729837)でも、hiddenにtrain overlapはないと上位参加者が明言している。
+- CVは少なくともwhole-well GroupKFold、空間特徴を使う枝はmedian X/Yのfield holdoutも併記する。[How are you validating locally?](https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/discussion/727570)では単純baselineでもfield-CVがwell-CVより約0.3–0.4ft悪く、worst fieldも見る方針が共有されている。ただしper-well-onlyモデルにはwhole-well CVが直接的な主評価で、field-CVは悲観的guardrailとする。
+
+### 上位との差を埋める有力方向
+
+- [Where does the top-team signal come from below the per-well line-oracle?](https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/discussion/726465)の追加コメントでは、4位参加者が「近傍井を使わないcomplete-wellモデル」で、test時と同じprefix/hidden-suffix入力、5-fold whole-well CV、fold 4.5–5.3ft、pooled 5ft未満と報告した。公開forkの小幅blend調整ではなく、1井全体を一つの系列としてtypewellへ整列するモデルに大きな未回収signalがある。
+- [Measure your noise floor before believing a lever](https://www.kaggle.com/code/georgymamarin/measure-your-noise-floor-before-believing-a-lever)のaligner比較では、bounded windowのshape-matching PFだけが5 seedsすべてで改善し、平均約0.18±0.04ft。DTWとwindowed cross-correlationは改善せず、広い探索帯のViterbi/PFは自己相似GRの別周期へ飛んで大幅悪化した。探索はlast-known周辺およそ±60ftへ制限し、heelでoffsetを固定したsequential matcherを優先する。
+- 同ノートではPFの予測値そのものよりposterior spreadが実誤差と相関（約+0.23）し、alignmentの価値は「予測枝」より「anchorを信じる量の特徴」にあった。公開solution writeupでも候補間disagreementとmatcher ambiguityをcombiner入力から除くと約0.35ft悪化する一方、後付けconfidence gateは悪化したと報告されている。次の新規モデルは、PF posterior quantile、mode mass、top-2 margin、seed間分散を行/井戸特徴としてOOF combinerへ入れ、最終段のhard gateにはしない。
+- bimodal井は単一modeへcommitせず、2 minimaの相対尤度からposterior meanを出す。難しいworst tailを特別処理するより、median井のpiecewise dipとGR alignmentを改善する。worst 10%がSSEの約40%を持つが、modeが観測不能ならhard correctionは期待RMSEを悪化させる。
+
+### LB差分の解釈を修正
+
+- 同一Notebook再実行14件の観測では、代表的PF pipelineのrun-to-run標準偏差は約0.027–0.037ft。固定seedでもthread並列、GPU learner、候補argminの僅差反転が残り得る。別のleak-free 60井holdoutではtop-2候補差が0.05ft未満の井戸が62%、0.10ft未満が67%で、winner-take-all selector自体が不安定だった。
+- したがって今回のpublic learned SG601の最終構造改善+0.00543ftは、方向性の診断には使えても単独のKaggle候補昇格根拠としては小さすぎる。原則として同一base上でseed sweepを行い、少なくとも約0.08–0.10ft、または複数seedの信頼区間が0を跨がない差を要求する。候補argminはmarginを記録するが、単純なtie平均も効果が小さく符号不安定だったため自動採用しない。
+
+### 最新公開Codeの採否
+
+- `ROGII Stacked Ensemble-HighScoring 6.391`、`Well-Level GBDT Gate`、`ROGII GeoAnchor`、`ROGII Public Frontier Blend Research`、`ROGII Ultra Sub-6`を取得して本体を確認した。多くは同じ公開stackを基礎に、公開スコア6.568/6.390、well `00e12e8b`、4,301 target rows、固定SHA、Q0522/R2000/DYNQ1310などのLB応答から最終shiftを決める構成だった。タイトルの6点台は新しい汎用モデルの根拠ではなく、hidden汎化候補へ直接移植しない。
+- `Well-Level GBDT Gate`の汎用部分は、各train井のoracle residualをshift+slopeの2係数へ圧縮し、井戸集約特徴からGBDTで係数を予測するもの。ただし通常KFold、公開target well lock、公開anchor前提なので、そのまま採用しない。上記のhidden-exact whole-well/field CVで再実装できる場合だけscreening対象とする。
+- `gs ×1.3`はDiscussionでも再共有されたが、現行7.474 generic coreに導入済みで新規差分ではない。`Hellbore V.6`は必要なloader/import/定数がなく実行不能、`Geographic Restoration V92`は取得sourceが0 byteで、検証可能な新手法ではなかった。
+
+### 次の実験順
+
+1. まず773井評価runnerへhidden-exact modeを追加し、contact候補の完全無効化、formation/dense query-well除外、whole-well 5-fold、field holdout、seed/margin監査を一つの共通contractにする。
+2. そのcontract上で、last-knownにanchorした±60ft bounded complete-well sequential matcherを実装する。比較対象は現行PF、windowed shape-PF、posterior-mean 2-mode版で、DTWや無制限Viterbiの再探索はしない。
+3. matcherのTVTを直接大きくblendせず、posterior spread・top-2 margin・mode mass・候補間disagreementを既存public learned/Ridge/SP45のOOF combinerへ追加する。well-CVとfield-CVの両方、5 seeds、worst-field、pooled RMSEで判定する。
+4. 公開7.474の最終hedgeまで含むincumbentと同一コードパスで比較し、改善が0.08ft級またはseed信頼区間で明確になるまでKaggle提出しない。
