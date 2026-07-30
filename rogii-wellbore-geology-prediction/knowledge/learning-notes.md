@@ -666,3 +666,39 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 2. そのcontract上で、last-knownにanchorした±60ft bounded complete-well sequential matcherを実装する。比較対象は現行PF、windowed shape-PF、posterior-mean 2-mode版で、DTWや無制限Viterbiの再探索はしない。
 3. matcherのTVTを直接大きくblendせず、posterior spread・top-2 margin・mode mass・候補間disagreementを既存public learned/Ridge/SP45のOOF combinerへ追加する。well-CVとfield-CVの両方、5 seeds、worst-field、pooled RMSEで判定する。
 4. 公開7.474の最終hedgeまで含むincumbentと同一コードパスで比較し、改善が0.08ft級またはseed信頼区間で明確になるまでKaggle提出しない。
+
+## 2026-07-30 bounded complete-well posterior matcher
+
+- 固定済みの7.474構造代理キャッシュ
+  `outputs/runs/generic_core_branch_hedge_200w.parquet`を変更せず、50井discovery、
+  50井holdout1、100井holdout2で評価した。全985,784行・200井について、cacheの
+  `row_idx`が各horizontal wellのhidden suffixと完全一致し、井戸・行の重複、posterior
+  特徴の欠損はなかった。
+- 新しいmatcherは同一井のcontact、formation/dense imputer、suffix TVTを使わない。
+  prefix TVTでtypewell GRをrobust affine calibrationし、既存の合法SP45軌跡を中心に
+  ±60ft・1ft間隔だけを探索した。全hidden GRをlook-aheadし、256行の局所windowごとに
+  likelihoodを作り、softmax posteriorのmean、spread、entropy、mode mass、top-2
+  marginを出した。
+- discoveryで3つのincumbent代理すべてに対する最小改善を最大化すると、
+  temperature 0.1、offset cap 4ft、warm-up tau 300、scale 0.2が選ばれた。最終補正は
+  最大±0.8ftで、holdout上の絶対値中央値/90%点はともに約0.80ftだった。
+- 未使用holdout統合150井の直接補正は、artifact代理
+  **9.3350208→9.3174133（+0.0176075）**、HGB代理
+  **11.1996667→11.1781157（+0.0215510）**、Ridge代理
+  **9.3611937→9.3204524（+0.0407413）**。3代理すべて同方向だが、最小改善は
+  0.0176ftで0.08ftの昇格基準に未達だった。artifactでは150井中78井勝ち、
+  candidateの井戸RMSE p50/p90は5.6568/11.8436。井戸bootstrap改善確率は
+  artifact 74.85%、HGB 81.70%、Ridge 94.30%で、5%点はそれぞれ
+  -0.0245/-0.0183/-0.0015ftと0を跨いだ。
+- discoveryだけでposterior spread、entropy、margin、suffix進捗を使うRidge補正も
+  学習したが、holdout統合ではartifact -0.0444、HGB -0.0213、Ridge -0.0052ftと
+  全代理で悪化した。公開writeupの「不確実性はcombiner入力として有効」は、この小さな
+  後付けlinear residual combinerでは再現せず、棄却した。
+- field別では改善と悪化が混在し、特にcluster 2で符号が安定しなかった。bounded
+  shape-matchingの弱い正信号自体は確認できたが、既存予測への後付け定数幅補正では
+  金メダル圏との差を埋めない。次はmatcher posteriorを最終出力へ足すのではなく、
+  complete-well系列モデルの学習中にalignment latent/ambiguityとして統合し、
+  hidden-exact whole-well OOFで5ft台を直接狙う。
+- 実装は`scripts/bounded_complete_well_matcher.py`、監査出力は
+  `outputs/runs/bounded_complete_well_matcher_200w_summary.json`。効果量ゲート未達のため
+  Kaggle kernel push・提出は行わない。
