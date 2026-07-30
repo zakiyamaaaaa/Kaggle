@@ -702,3 +702,53 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 実装は`scripts/bounded_complete_well_matcher.py`、監査出力は
   `outputs/runs/bounded_complete_well_matcher_200w_summary.json`。効果量ゲート未達のため
   Kaggle kernel push・提出は行わない。
+
+## 2026-07-30 complete-well残差曲線と0.08ft級候補
+
+### 棄却したformation surface補間
+
+- train horizontalの6 formation surfaceを対象井自身から読むoracleでは、typewellの
+  formation top TVTと`surface_Z - Z`を組み合わせ、visible prefixで定数biasを校正すると
+  200井RMSEは約0.006ftになる。formation列がTVTをほぼ厳密に符号化すること自体は確認した。
+- ただし対象200井を完全に空間データベースから除き、残り573井だけからformation surfaceを
+  補間すると、64近傍の距離加重KNNはRMSE 22.06、field別低次多項式はRMSE 33以上だった。
+  近傍点local-planeも坑井軌跡方向への偏りで数値的に不安定になった。直接blendはdiscoveryで
+  比率0が選ばれたため、self-well surfaceの強さをhidden汎化signalと誤認しない。
+
+### 1井1サンプルのwhole-well curve model
+
+- `scripts/complete_well_curve_model.py`を追加した。固定評価200井を学習から完全に除外し、
+  残り573井を5-fold whole-well OOFで学習する。各井はvisible prefix、suffix全体の
+  MD/XYZ/GR、typewell GRと合法artifact軌跡の不一致をLegendre係数へ圧縮した207特徴の
+  1サンプルになる。目的はartifact残差曲線の6 Legendre係数で、suffix TVTは教師だけに使う。
+- artifact residualは井戸ごとのoracle定数を除くだけで10.67→6.65、3次曲線で3.20、
+  5次曲線で2.42まで下がるため、行単位の小修正より大きなcurve-level signalが存在する。
+- 573井OOFはartifact **10.7398941**に対し、ExtraTrees 10.5833224、
+  CatBoost 10.5952945、ET/Cat平均10.5794428。LightGBM単体は10.7570288だったが、
+  3モデル平均は**10.5508116（+0.1890825）**まで改善した。ただし外部discoveryで
+  選ばれたのはET/Cat平均のdegree 0、cap 4、tau 300、scale 0.5であり、LightGBM追加は
+  最終候補を変えなかった。
+- このcurve補正単独は未使用holdout統合150井でartifact +0.02586、HGB +0.04131、
+  Ridge +0.01345。3代理とも改善したがholdout1 Ridgeだけ-0.03032で、単独提出はしない。
+
+### exact 7.474 proxy上の三信号合成
+
+- `/private/tmp/rogii-ridge-oof-repro/ridge_meta_oof.npy`を使い、
+  SP45 60%＋public positive-Ridge learned 40%＋同一PF seed-branch hedgeとして
+  exact 7.474 proxyを再構築した。既存SG601評価の数値と数千分の1ft以内で一致した。
+- discoveryだけで選んだ固定構成は、bounded matcher 1.0、whole-well curve 1.2、
+  public learned SG601差分1.0、全行global shift +0.20ft。三信号の事前合成は
+  holdoutで+0.06190、discoveryの残差平均から選んだ+0.20ftを加えると、
+  holdout1 **8.3621172→8.3242376（+0.0378796）**、holdout2
+  **9.7307673→9.6321092（+0.0986581）**、統合
+  **9.2848448→9.2052019（+0.0796429）**となった。
+- 統合150井では80井勝ち、井戸bootstrap改善確率91.15%、中央値+0.08083、
+  5%点-0.01792。厳密な0.08000ft gateには0.00036ft届かず、信頼区間も0を跨ぐため
+  「確実な改善」とは扱わない。一方で独立holdout 2本がともに改善し、0.08ft級へ初めて
+  到達したため、hidden-dynamic Notebookを作って1回だけ制御提出する候補へ昇格する。
+- `scripts/evaluate_complete_well_submission_candidate.py`がexact proxy、各補正、bootstrapを
+  再現する。監査結果は
+  `outputs/runs/complete_well_submission_candidate_200w_summary.json`。静的CSVは使わず、
+  Notebook内でactive hidden testのGR/typewell/SP45を再計算し、whole-well係数モデルも
+  train 773井でfit-allしてhidden testへ動的適用する必要がある。現時点ではKaggleへ
+  kernel push・提出していない。
