@@ -752,3 +752,31 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   Notebook内でactive hidden testのGR/typewell/SP45を再計算し、whole-well係数モデルも
   train 773井でfit-allしてhidden testへ動的適用する必要がある。現時点ではKaggleへ
   kernel push・提出していない。
+
+## 2026-07-30 complete-well 0.08ft級候補のhidden動的提出
+
+- `scripts/build_complete_well_candidate_notebook.py`を追加し、7.474のversion 3を
+  SHA256固定で読み込むhidden-dynamic Notebookを生成した。既存のSP45
+  ridge30/selector70、projection d2/b0.50、public learned 40%、PF seed-branch hedgeを
+  保持し、public learned deltaのSG601、bounded matcher、whole-well curve補正、
+  全行+0.20ftを後段で加える。生成Notebook SHA256は
+  `ee8efba5da1a0825c49bcc802d78bced22da306265c63aef4b0ac01bb6509818`。
+- model-packageはhidden testの合法artifact軌跡を作るためだけに動的実行する。
+  直接blend weightは0.0に固定し、Kaggle出力でもgate mean/max、最終moveがすべて
+  0.0であることを確認した。OOF `train_gt.parquet`と
+  `blend_oof_postprocessed.npy`から773井×207特徴を再構築し、ET/CatBoostの
+  6係数モデルをfit-allする。testではdegree 0、cap 4、tau 300、local scale 0.50、
+  ensemble weight 1.20を適用する。
+- Kaggle push前に同じ生成セルをローカル3井14,151行で実行した。773井の特徴生成、
+  ET/CatBoost学習、3井matcher、component CSV、最終submissionまで例外なく完走した。
+  最初の監査では生成器が`@dataclass`行を抽出していない不具合を検出し、decoratorを含む
+  AST範囲へ修正してからKaggleへ送った。
+- private Kernel
+  `zacky21/rogii-complete-well-008-candidate` version 1は`COMPLETE`。最終出力は
+  14,151行、sample ID順一致、重複なし、全値有限。component式と最終TVTの最大差は
+  1.82e-12、`submission.csv` SHA256は
+  `76867de928369d0b497e4f03dbfa97237b01682d759dac5ce7feb7472430ddfb`。
+  active test上の総補正は平均-0.30366ft、絶対値95%点1.41527ft、最大1.69421ftだった。
+- 完走済みNotebook version 1をsubmission ref **55101733**として提出した。提出時点の
+  statusは`PENDING`で、public scoreは未確定。スコア確定後、7.474 incumbentとの差と
+  ローカル+0.0796429ftの方向一致を記録する。

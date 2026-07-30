@@ -1,0 +1,27 @@
+{
+  "competition": "rogii-wellbore-geology-prediction",
+  "kernel": "zacky21/rogii-complete-well-008-candidate",
+  "kernel_version": 1,
+  "kernel_status": "COMPLETE",
+  "submission_ref": 55101733,
+  "submission_status_at_record": "PENDING",
+  "public_score": null,
+  "description": "Complete-well 0.08-class: SG601 + bounded matcher + ET/Cat whole-well +0.20; local holdout +0.07964; audited SHA 76867de",
+  "local_exact_7474_proxy": {
+    "baseline_rmse": 9.2848448088,
+    "candidate_rmse": 9.2052018595,
+    "improvement_ft": 0.0796429493
+  },
+  "kernel_output_audit": {
+    "rows": 14151,
+    "id_order_matches_sample": true,
+    "ids_unique": true,
+    "finite": true,
+    "component_identity_max_abs": 1.8189894035458565e-12,
+    "model_package_direct_blend_weight": 0.0,
+    "total_correction_mean_ft": -0.3036596426563145,
+    "total_correction_p95_abs_ft": 1.4152666822207083,
+    "total_correction_max_abs_ft": 1.6942075678124715,
+    "submission_sha256": "76867de928369d0b497e4f03dbfa97237b01682d759dac5ce7feb7472430ddfb"
+  }
+}
