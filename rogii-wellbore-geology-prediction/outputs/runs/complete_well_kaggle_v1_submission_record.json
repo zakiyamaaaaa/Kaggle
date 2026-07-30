@@ -4,13 +4,21 @@
   "kernel_version": 1,
   "kernel_status": "COMPLETE",
   "submission_ref": 55101733,
-  "submission_status_at_record": "PENDING",
-  "public_score": null,
+  "submission_status_at_record": "COMPLETE",
+  "public_score": 7.625,
   "description": "Complete-well 0.08-class: SG601 + bounded matcher + ET/Cat whole-well +0.20; local holdout +0.07964; audited SHA 76867de",
   "local_exact_7474_proxy": {
     "baseline_rmse": 9.2848448088,
     "candidate_rmse": 9.2052018595,
     "improvement_ft": 0.0796429493
+  },
+  "public_evaluation": {
+    "incumbent_submission_ref": 55001998,
+    "incumbent_public_score": 7.474,
+    "candidate_minus_incumbent_ft": 0.151,
+    "expected_candidate_minus_incumbent_ft": -0.0796429493,
+    "local_to_public_delta_discrepancy_ft": 0.2306429493,
+    "decision": "REJECT_KEEP_7_474_INCUMBENT"
   },
   "kernel_output_audit": {
     "rows": 14151,

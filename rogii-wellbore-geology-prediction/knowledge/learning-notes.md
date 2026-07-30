@@ -777,6 +777,18 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   1.82e-12、`submission.csv` SHA256は
   `76867de928369d0b497e4f03dbfa97237b01682d759dac5ce7feb7472430ddfb`。
   active test上の総補正は平均-0.30366ft、絶対値95%点1.41527ft、最大1.69421ftだった。
-- 完走済みNotebook version 1をsubmission ref **55101733**として提出した。提出時点の
-  statusは`PENDING`で、public scoreは未確定。スコア確定後、7.474 incumbentとの差と
-  ローカル+0.0796429ftの方向一致を記録する。
+- 完走済みNotebook version 1をsubmission ref **55101733**として提出し、public scoreは
+  **7.625**だった。7.474 incumbentより**0.151悪化**しており、ローカルで予測した
+  +0.0796429ft改善とは方向が反転した。candidate-minus-incumbentのローカル予測
+  -0.0796429に対してpublic実績は+0.151で、delta discrepancyは**0.2306429ft**。
+- この結果から、`exact 7.474 proxy`は構造を再現した代理評価ではあっても、hidden testの
+  分布を正確に再現するものではなかったと判断する。特に、SG601、matcher、whole-well
+  curve、global +0.20の4変更を同時投入したため、どの成分または相互作用が悪化原因かを
+  public scoreから分離できない。fit-all 773井で推定したactive test補正の平均が
+  -0.30366ftまで偏ったことも、外部holdoutとactive testの補正分布差を監査すべき兆候だった。
+- ローカル時点でも統合150井の勝率は80/150、bootstrap 5%点は-0.01792で0を跨ぎ、
+  strict 0.08000ft gateを0.00036ft下回っていた。今後は境界候補を丸めて昇格させず、
+  **bootstrap p05 >= 0**を必須にする。複数成分を同時に追加せず、同一hidden-dynamic
+  Notebook構造でSG601-only、matcher-only、whole-well-only、shift-onlyのablationを行う。
+  active testの補正平均・分位点が外部holdoutの分布から外れる候補も提出対象から除外する。
+- version 1は不採用とし、現行public bestはsubmission ref **55001998**の**7.474**を維持する。
