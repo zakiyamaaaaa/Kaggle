@@ -1,0 +1,13 @@
+{
+  "source_notebook": "kaggle-push/new-strategy-6213-ablations/generic_core/rogii-new-strategy-6-213-generic-core.ipynb",
+  "source_sha256": "16de7962b1234ba9ae5024e87ba6794327221f1f05d1e5b1cc424e508b86ef1a",
+  "notebook": "kaggle-push/new-strategy-6213-sp45-oof-smoke/rogii-new-strategy-6-213-generic-core-oof.ipynb",
+  "notebook_sha256": "2b0651e4c32012e564497eecbb4fef30bf4561c8bef02ab0e47d576a3a8e92fd",
+  "kaggle_id": "zacky21/rogii-new-strategy-sp45-oof-smoke",
+  "evaluation": "target-free SP45/Ridge/selector/projection sampled-well OOF; no contact/visible-prefix/model-package overlays",
+  "n_wells": 50,
+  "sp45_only": true,
+  "selector_pf_seeds": 8,
+  "selector_particles": 100,
+  "fast": true
+}

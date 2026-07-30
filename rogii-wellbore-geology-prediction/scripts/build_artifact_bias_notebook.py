@@ -29,11 +29,12 @@ if bool(globals().get('RUN_ARTIFACT_WELL_BIAS_CORRECTION', False)):
         _wb_oof = _wb_pkg_root / 'oof'
         _wb_gt = _wb_pd.read_parquet(_wb_oof / 'train_gt.parquet')
         _wb_raw_delta = _wb_np.load(_wb_oof / 'blend_oof_postprocessed.npy').reshape(-1).astype(float)
-        _wb_smooth_window = 601
-        _wb_smooth_poly = 2
+        _wb_smooth_window = 251
+        _wb_smooth_poly = 1
         _wb_smooth_alpha = 1.03
-        _wb_bias_scale = 0.75
-        _wb_bias_threshold = 3.0
+        _wb_bias_scale = 0.50
+        _wb_bias_threshold = 0.0
+        _wb_ridge_alpha = 1.0
 
         def _wb_slope(x, y):
             good = _wb_np.isfinite(x) & _wb_np.isfinite(y)
@@ -127,7 +128,7 @@ if bool(globals().get('RUN_ARTIFACT_WELL_BIAS_CORRECTION', False)):
         _wb_train_features = _wb_pd.DataFrame({'_oof_well': _wb_train_wells}).merge(_wb_train_prefix, on='_oof_well', how='left').merge(_wb_train_stats, on='_oof_well', how='left')
         _wb_labels = _wb_pd.DataFrame({'_oof_well': _wb_train_well_arr, 'residual': _wb_gt['target_tvt'].to_numpy(float) - _wb_train_abs}).groupby('_oof_well', sort=False)['residual'].mean().reindex(_wb_train_wells).to_numpy(float)
         _wb_feature_cols = [c for c in _wb_train_features.columns if c != '_oof_well']
-        _wb_model = _wb_pipeline(_WBImputer(strategy='median'), _WBScaler(), _WBRidge(alpha=100.0))
+        _wb_model = _wb_pipeline(_WBImputer(strategy='median'), _WBScaler(), _WBRidge(alpha=_wb_ridge_alpha))
         _wb_model.fit(_wb_train_features[_wb_feature_cols].replace([_wb_np.inf, -_wb_np.inf], _wb_np.nan), _wb_labels)
 
         _wb_base = _mp_pkg_sub[['id', 'tvt']].copy()
@@ -158,7 +159,7 @@ if bool(globals().get('RUN_ARTIFACT_WELL_BIAS_CORRECTION', False)):
         _wb_final = _mp_validate_submission_ids(_wb_final, _mp_sample, 'artifact_well_bias_submission')
         _wb_final.to_csv(_mp_work / 'submission_artifact_well_bias.csv', index=False)
         _wb_final.to_csv(_mp_final_output, index=False)
-        globals()['FINAL_BASE_SOURCE_LABEL'] = 'artifact_smoothing_well_bias_gate_scale_075_threshold_300'
+        globals()['FINAL_BASE_SOURCE_LABEL'] = 'artifact_smoothing_well_bias_ridge_alpha_1_scale_050'
         globals()['FINAL_ARTIFACT_WELL_BIAS_CORRECTION'] = True
         _wb_pd.Series({
             'train_wells': int(len(_wb_train_wells)),
@@ -169,6 +170,7 @@ if bool(globals().get('RUN_ARTIFACT_WELL_BIAS_CORRECTION', False)):
             'smooth_alpha': _wb_smooth_alpha,
             'bias_scale': _wb_bias_scale,
             'bias_threshold': _wb_bias_threshold,
+            'ridge_alpha': _wb_ridge_alpha,
             'raw_predicted_bias_mean': float(_wb_np.mean(_wb_raw_bias)),
             'raw_predicted_bias_std': float(_wb_np.std(_wb_raw_bias)),
             'predicted_bias_mean': float(_wb_np.mean(list(_wb_bias_by_well.values()))),
@@ -224,8 +226,9 @@ def build(args: argparse.Namespace) -> None:
         "bias_cell_markers": [
             "RUN_ARTIFACT_WELL_BIAS_CORRECTION",
             "submission_artifact_well_bias.csv",
-            "bias_scale = 0.75",
-            "bias_threshold = 3.0",
+            "bias_scale = 0.50",
+            "bias_threshold = 0.0",
+            "ridge_alpha = 1.0",
         ],
     }
     (args.output_dir / "build_report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

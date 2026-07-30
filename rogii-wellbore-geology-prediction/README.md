@@ -44,6 +44,7 @@ typewellのGR波形をbounded beam searchで追跡し、最後の `TVT_input` �
 
 さらに、周辺学習井のprefix-only `TVT_input + Z` anchorをXY上の局所加重平面で補間し、対象井のZへ変換する `safe_spatial_plane` を追加しました。typewell beamの保守候補を25%、局所平面候補を75%でblendする `safe_spatial_beam_blend` は、全773井でローカルRMSE `15.518195`（p50 `10.480521`、p90 `21.871322`）となり、現時点のローカル基準です。ローカル候補 `outputs/submissions/safe_spatial_beam_blend.csv` を生成済みですが、Kaggleへの提出は行っていません。
 
+
 改善の根拠と次の実験は [knowledge/learning-notes.md](knowledge/learning-notes.md)、全実験の数値は [experiments/results.csv](experiments/results.csv) に記録しています。
 
 Kaggle提出用のコマンド例：

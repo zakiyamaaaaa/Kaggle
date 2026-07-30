@@ -24,3 +24,15 @@ access_token
 
 # Kaggle download cache (optional; keep data/ tracked only if small)
 # data/
+
+# ROGII local data and generated experiment artifacts. Cloud runs rebuild these
+# from Kaggle datasets; keep only source, notebooks, manifests, and summaries.
+/rogii-wellbore-geology-prediction/data/
+/rogii-wellbore-geology-prediction/catboost_info/
+/rogii-wellbore-geology-prediction/outputs/cache/
+/rogii-wellbore-geology-prediction/outputs/runs/
+/rogii-wellbore-geology-prediction/outputs/submissions/
+
+# Downloaded external datasets for the separate LLM science-exam project.
+/kaggle_llm_science_exam/data/external/mbanaei/data-00000-of-00004.arrow
+/kaggle_llm_science_exam/data/external/mbanaei/data-00000-of-00004.arrow.zip

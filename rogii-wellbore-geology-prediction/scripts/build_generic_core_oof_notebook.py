@@ -31,12 +31,20 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def patch_control(source: str, selector_pf_seeds: int, selector_particles: int, run_cv_report: bool, fast: bool) -> str:
+def patch_control(
+    source: str,
+    selector_pf_seeds: int,
+    selector_particles: int,
+    run_cv_report: bool,
+    fast: bool,
+    n_wells: int,
+    run_learned_oof: bool,
+) -> str:
     replacements = {
         "RUN_CV_REPORT = False": f"RUN_CV_REPORT = {bool(run_cv_report)}",
         "RUN_FULL_STACK_CV_ABLATION = False": "RUN_FULL_STACK_CV_ABLATION = True",
-        "CV_N_WELLS = 250": "CV_N_WELLS = 773",
-        "CV_ABLATION_N_WELLS = 250": "CV_ABLATION_N_WELLS = 773",
+        "CV_N_WELLS = 250": f"CV_N_WELLS = {int(n_wells)}",
+        "CV_ABLATION_N_WELLS = 250": f"CV_ABLATION_N_WELLS = {int(n_wells)}",
         "CV_SELECTOR_PF_SEEDS = 24": f"CV_SELECTOR_PF_SEEDS = {int(selector_pf_seeds)}",
         "SP45_SELECTOR_N_PARTICLES = 500": f"SP45_SELECTOR_N_PARTICLES = {int(selector_particles)}",
     }
@@ -45,7 +53,14 @@ def patch_control(source: str, selector_pf_seeds: int, selector_particles: int, 
             raise RuntimeError(f"Expected one control assignment {old!r}")
         source = source.replace(old, new, 1)
     marker = f"CV_SELECTOR_PF_SEEDS = {int(selector_pf_seeds)}\n"
-    source = source.replace(marker, marker + "RUN_HEEL_ABLATION_GRID = False\nRUN_GENERIC_CORE_OOF = True\n", 1)
+    source = source.replace(
+        marker,
+        marker
+        + "RUN_HEEL_ABLATION_GRID = False\n"
+        + f"RUN_GENERIC_CORE_OOF = {bool(run_learned_oof)}\n"
+        + "RUN_GENERIC_CORE_SP45_OOF = True\n",
+        1,
+    )
     if fast:
         source = source.replace("RUN_GENERIC_CORE_OOF = True\n", "RUN_GENERIC_CORE_OOF = True\nimport os as _gc_fast_os\n_gc_fast_os.environ['FAST'] = '1'\n", 1)
     return source
@@ -71,8 +86,9 @@ def patch_full_stack_cell(source: str, single_generic_core_grid: bool) -> str:
                             'well': wid,
                             'row_idx': int(_ri),
                             'sp45_oof': float(_pv),
+                            'target_tvt': float(_yv),
                         }
-                        for _ri, _pv in zip(row_idx, final)
+                        for _ri, _pv, _yv in zip(row_idx, final, y)
                     ])
                 rows.append({
 """
@@ -85,6 +101,56 @@ def patch_full_stack_cell(source: str, single_generic_core_grid: bool) -> str:
     if source.count(old) != 1:
         raise RuntimeError("Could not write the selected SP45 OOF file")
     return source.replace(old, new, 1)
+
+
+SP45_SUMMARY_CELL = r'''# Cached target-free SP45 OOF summary.
+if bool(globals().get('RUN_GENERIC_CORE_SP45_OOF', False)):
+    import json as _sp_json
+    import numpy as _sp_np
+    import pandas as _sp_pd
+    from pathlib import Path as _SpPath
+
+    _sp_work = _SpPath('/kaggle/working') if _SpPath('/kaggle/working').exists() else _SpPath('.')
+    _sp_oof = _sp_pd.read_csv(_sp_work / 'generic_core_sp45_oof.csv')
+    _sp_required = {'id', 'well', 'row_idx', 'sp45_oof', 'target_tvt'}
+    if not _sp_required.issubset(_sp_oof.columns):
+        raise RuntimeError(f'SP45 OOF cache missing columns: {sorted(_sp_required - set(_sp_oof.columns))}')
+    if _sp_oof['id'].duplicated().any():
+        raise RuntimeError('SP45 OOF cache contains duplicate ids')
+    _sp_values = _sp_oof[['sp45_oof', 'target_tvt']].to_numpy(float)
+    if not _sp_np.isfinite(_sp_values).all():
+        raise RuntimeError('SP45 OOF cache contains non-finite values')
+    _sp_oof['square_error'] = (_sp_oof['sp45_oof'] - _sp_oof['target_tvt']) ** 2
+    _sp_by_well = _sp_oof.groupby('well', sort=True).agg(
+        rows=('id', 'size'),
+        mse=('square_error', 'mean'),
+    ).reset_index()
+    _sp_by_well['sp45_oof_rmse'] = _sp_np.sqrt(_sp_by_well['mse'])
+    _sp_by_well.drop(columns=['mse']).to_csv(
+        _sp_work / 'generic_core_sp45_oof_by_well.csv', index=False
+    )
+    _sp_summary = {
+        'evaluation': 'target-free generic-core SP45 branch on fixed sampled train wells',
+        'sample_seed': int(globals().get('CV_SEED', 0)),
+        'requested_wells': int(globals().get('CV_ABLATION_N_WELLS', 0)),
+        'wells': int(_sp_by_well['well'].nunique()),
+        'rows': int(len(_sp_oof)),
+        'sp45_oof_rmse': float(_sp_np.sqrt(_sp_oof['square_error'].mean())),
+        'well_rmse_p50': float(_sp_by_well['sp45_oof_rmse'].quantile(0.50)),
+        'well_rmse_p90': float(_sp_by_well['sp45_oof_rmse'].quantile(0.90)),
+        'selector_pf_seeds': int(globals().get('CV_SELECTOR_PF_SEEDS', 0)),
+        'selector_particles': int(globals().get('SP45_SELECTOR_N_PARTICLES', 0)),
+        'fast': bool(getattr(CFG, 'FAST', False)),
+        'same_well_contact_included': False,
+        'visible_prefix_overlay_included': False,
+        'model_package_correction_included': False,
+    }
+    (_sp_work / 'generic_core_sp45_oof_summary.json').write_text(
+        _sp_json.dumps(_sp_summary, indent=2) + '\n', encoding='utf-8'
+    )
+    print('generic-core SP45 OOF summary')
+    print(_sp_json.dumps(_sp_summary, indent=2))
+'''
 
 
 OOF_CELL = r'''# Leakage-safe generic-core OOF: retrain only the learned branch by GroupKFold.
@@ -176,6 +242,8 @@ def main() -> None:
     parser.add_argument("--run-cv-report", action="store_true")
     parser.add_argument("--single-generic-core-grid", action="store_true")
     parser.add_argument("--fast", action="store_true")
+    parser.add_argument("--n-wells", type=int, default=773)
+    parser.add_argument("--sp45-only", action="store_true")
     parser.add_argument("--slug", default="rogii-new-strategy-6-213-generic-core-oof")
     parser.add_argument("--title", default="ROGII New Strategy 6.213 Generic Core Group OOF")
     args = parser.parse_args()
@@ -186,13 +254,38 @@ def main() -> None:
         c for c in notebook['cells']
         if c.get('cell_type') == 'code' and 'RUN_CV_REPORT' in source_text(c)
     )
-    set_source(control, patch_control(source_text(control), args.selector_pf_seeds, args.selector_particles, args.run_cv_report, args.fast))
+    set_source(
+        control,
+        patch_control(
+            source_text(control),
+            args.selector_pf_seeds,
+            args.selector_particles,
+            args.run_cv_report,
+            args.fast,
+            args.n_wells,
+            not args.sp45_only,
+        ),
+    )
     full_stack = next(
         c for c in notebook['cells']
         if c.get('cell_type') == 'code' and 'Full-stack bimodal CV ablation' in source_text(c)
     )
     set_source(full_stack, patch_full_stack_cell(source_text(full_stack), args.single_generic_core_grid))
-    notebook['cells'].append({'cell_type': 'code', 'execution_count': None, 'metadata': {}, 'outputs': [], 'source': OOF_CELL.splitlines(keepends=True)})
+    notebook['cells'].append({
+        'cell_type': 'code',
+        'execution_count': None,
+        'metadata': {},
+        'outputs': [],
+        'source': SP45_SUMMARY_CELL.splitlines(keepends=True),
+    })
+    if not args.sp45_only:
+        notebook['cells'].append({
+            'cell_type': 'code',
+            'execution_count': None,
+            'metadata': {},
+            'outputs': [],
+            'source': OOF_CELL.splitlines(keepends=True),
+        })
 
     metadata = json.loads(args.source_metadata.read_text(encoding='utf-8'))
     metadata['id'] = f"{args.owner}/{args.slug}"
@@ -208,7 +301,16 @@ def main() -> None:
         'notebook': str(output_notebook),
         'notebook_sha256': sha256(output_notebook),
         'kaggle_id': metadata['id'],
-        'evaluation': 'GroupKFold learned branch + target-free SP45/Ridge/selector/projection; no contact/visible-prefix/model-package overlays',
+        'evaluation': (
+            'target-free SP45/Ridge/selector/projection sampled-well OOF'
+            if args.sp45_only
+            else 'GroupKFold learned branch + target-free SP45/Ridge/selector/projection'
+        ) + '; no contact/visible-prefix/model-package overlays',
+        'n_wells': int(args.n_wells),
+        'sp45_only': bool(args.sp45_only),
+        'selector_pf_seeds': int(args.selector_pf_seeds),
+        'selector_particles': int(args.selector_particles),
+        'fast': bool(args.fast),
     }
     (args.output_dir / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(manifest, indent=2))

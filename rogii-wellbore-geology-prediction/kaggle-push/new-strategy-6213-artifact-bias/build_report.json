@@ -1,13 +1,14 @@
 {
   "source_sha256": "4b4879a6d427422c127a300e09dc763b71ea5e7878eb3639941c75753a23933c",
-  "output_sha256": "635edf7af3bec8e2ff145e6d65894c593748dd2667639b306450b5e6dbd74fea",
+  "output_sha256": "3dd212ad12238703aa6a1ecd367da35bdc681ee720b99db5c48c3c4e5bb19e50",
   "source_cells": 57,
   "output_cells": 58,
   "inserted_after_source_cell": 51,
   "bias_cell_markers": [
     "RUN_ARTIFACT_WELL_BIAS_CORRECTION",
     "submission_artifact_well_bias.csv",
-    "bias_scale = 0.75",
-    "bias_threshold = 3.0"
+    "bias_scale = 0.50",
+    "bias_threshold = 0.0",
+    "ridge_alpha = 1.0"
   ]
 }

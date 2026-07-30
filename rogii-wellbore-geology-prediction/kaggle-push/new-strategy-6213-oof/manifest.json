@@ -1,0 +1,8 @@
+{
+  "source_notebook": "kaggle-push/new-strategy-6213-ablations/generic_core/rogii-new-strategy-6-213-generic-core.ipynb",
+  "source_sha256": "16de7962b1234ba9ae5024e87ba6794327221f1f05d1e5b1cc424e508b86ef1a",
+  "notebook": "kaggle-push/new-strategy-6213-oof/rogii-new-strategy-6-213-generic-core-oof.ipynb",
+  "notebook_sha256": "b078a21d3e340067b12c6cca0c7ead832b8da7ac151c641326167769e8503c7b",
+  "kaggle_id": "zacky21/rogii-new-strategy-6-213-generic-core-oof",
+  "evaluation": "GroupKFold learned branch + target-free SP45/Ridge/selector/projection; no contact/visible-prefix/model-package overlays"
+}
