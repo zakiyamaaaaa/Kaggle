@@ -856,3 +856,16 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - これはKaggleへpush可能なguarded候補だが、現時点ではkernel pushもsubmissionもしていない。
   監査要約は`outputs/runs/field_nested_k6_hidden_active_audit.json`、ローカル詳細は
   `outputs/runs/field_nested_component_blend_k6_field4_curve050_200w_summary.json`に保存する。
+
+## 2026-07-31 field-nested K6 guarded提出
+
+- private Kernel `zacky21/rogii-field-nested-k6-candidate` version 1は`COMPLETE`。Kaggle実行は
+  773井×207特徴のfit-all、3井matcher、CatBoost curve、field blend、最終auditまで完走した。
+- Kaggle出力のactive補正は平均**-0.199566ft**、絶対値p50 **0.647008ft**、p95
+  **1.199301ft**、最大**1.201435ft**で、全distribution guardを通過した。14,151行、
+  sample ID順一致、重複なし、全値有限、component式の最大差1.82e-12を確認した。
+  `submission.csv` SHA256は
+  `b41a87fd5229c5bed4df54c61332ef4b647235409db6e049b5a508786004d809`。
+- ローカルファイルを直接送る通常提出はcode competition APIに400で拒否され、提出レコードを
+  作らなかった。監査済みKernel slug、version 1、output `submission.csv`を明示する正規経路で
+  再実行し、submission ref **55138088**を作成した。現在は`PENDING`でpublic score待ち。

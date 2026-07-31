@@ -39,6 +39,18 @@
   "submission_sha256": "f638a17803a95cc3e538dac97321c3042d0ca430f3187ae704e8ad1eb4c628da",
   "components_sha256": "12d67bbaeb93bd18b40886c8a0b9d53efde8c262e5064e9964951471e5f1fd0a",
   "notebook_sha256": "0cd142f150e94d88e04240f47587541d5e4a1d68c22e230d35216123c6e5481d",
-  "kaggle_kernel_pushed": false,
-  "kaggle_submission_created": false
+  "kaggle_version_1_correction_distribution": {
+    "mean": -0.19956642291547438,
+    "p50_abs": 0.647007788750259,
+    "p95_abs": 1.1993007426112106,
+    "maximum_abs": 1.2014348222084918
+  },
+  "kaggle_version_1_formula_max_abs_diff": 1.8189894035458565e-12,
+  "kaggle_version_1_submission_sha256": "b41a87fd5229c5bed4df54c61332ef4b647235409db6e049b5a508786004d809",
+  "kaggle_kernel_slug": "zacky21/rogii-field-nested-k6-candidate",
+  "kaggle_kernel_version": 1,
+  "kaggle_kernel_pushed": true,
+  "kaggle_submission_created": true,
+  "kaggle_submission_ref": 55138088,
+  "kaggle_submission_status": "PENDING"
 }
