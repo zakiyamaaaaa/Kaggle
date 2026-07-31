@@ -1,0 +1,15 @@
+{
+  "output": "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/kaggle-push/field-nested-k6-candidate/rogii-field-nested-k6-candidate.ipynb",
+  "source_sha256": "f3833ba45069fd8056255bd3e6c88c4c1c19d3081df8de62d7d2827ca8930786",
+  "output_sha256": "0cd142f150e94d88e04240f47587541d5e4a1d68c22e230d35216123c6e5481d",
+  "cells": 59,
+  "insertion_index": 53,
+  "hidden_dynamic": true,
+  "field_count": 6,
+  "model_package_direct_weight": 0.0,
+  "global_shift_ft": 0.0,
+  "local_improvement_ft": 0.08115770372225661,
+  "local_bootstrap_p01_ft": 0.0013789852871657438,
+  "local_bootstrap_p05_ft": 0.022530056192712155,
+  "guarded_submission": true
+}

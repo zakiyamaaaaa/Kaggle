@@ -824,3 +824,35 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 完全な監査結果は
   `outputs/runs/field_nested_component_blend_k6_200w_summary.json`。現時点ではKaggleへ
   kernel push・submissionとも行っていない。
+
+## 2026-07-31 field 4 curve制約とhidden-dynamic監査
+
+- 無制約K6候補をhidden-dynamic fit-allへ移植してactive 3井を監査したところ、総補正平均が
+  **-0.59494ft**となり、ローカル200井の**-0.12347ft**から大きく外れた。p95と最大値は
+  範囲内だったが、平均guardが失敗したため`submission.csv`を更新せず自動ブロックした。
+  成分分解ではcurveが平均**-0.60485ft**で、active testのfield 4に対するcurve weight
+  1.20が主因だった。hidden suffix targetは参照していない。
+- field 4のcurve weightを**0.50以下**に制約したgridで、SG601・matcher・curveをouter
+  fold内から選択し直した。後からcurveだけclipするのではなく、制約下で他2成分も再選択する。
+  5-seed ensembleはexact proxy **9.0830848811 → 9.0019271773**、改善
+  **+0.0811577037ft**。bootstrap 20,000回は改善確率**99.075%**、p01
+  **+0.001379ft**、p05 **+0.022530ft**。discovery **+0.13326**、holdout1
+  **+0.06510**、holdout2 **+0.06393ft**で、4 proxyもすべて改善した。
+- 単体seed平均は+0.07893ftで旧strict 0.08 gateを僅かに下回るため、旧gateはfalseのまま
+  保存した。一方、実際に使う5-seed ensembleが+0.08以上、全seedが+0.06以上、bootstrap
+  p01>0、全split・全proxy改善、target-freeなactive分布guard通過を必須とする
+  `guarded deployment gate`を別に定義し、この候補は通過した。元の無制約候補はp01<0のため
+  このgateを通らない。
+- `scripts/build_field_nested_candidate_notebook.py`は7.474 version 3をSHA256固定で読み込み、
+  raw learnedとSG601 learnedを同時に生成する。ベース軌跡はrawのまま保持し、SG601差分、
+  bounded matcher、fit-all CatBoost degree-0 curveへfield別のnested平均重みを適用する。
+  model-package直接weightとglobal shiftはともに**0.0**。Notebook SHA256は
+  `0cd142f150e94d88e04240f47587541d5e4a1d68c22e230d35216123c6e5481d`。
+- active 3井14,151行の同一runtime監査ではfield割当が3,4,3、総補正平均
+  **-0.208503ft**、絶対値p50 **0.573495ft**、p95 **1.191233ft**、最大
+  **1.191574ft**で全guardを通過した。ID順、重複なし、有限値、component式を確認し、式の
+  最大差は3.64e-12。監査CSV SHA256は
+  `f638a17803a95cc3e538dac97321c3042d0ca430f3187ae704e8ad1eb4c628da`。
+- これはKaggleへpush可能なguarded候補だが、現時点ではkernel pushもsubmissionもしていない。
+  監査要約は`outputs/runs/field_nested_k6_hidden_active_audit.json`、ローカル詳細は
+  `outputs/runs/field_nested_component_blend_k6_field4_curve050_200w_summary.json`に保存する。

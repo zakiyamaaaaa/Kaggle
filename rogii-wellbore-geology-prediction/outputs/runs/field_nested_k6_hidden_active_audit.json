@@ -1,0 +1,44 @@
+{
+  "method": "active_three_well_hidden_runtime_audit",
+  "candidate": "field_nested_component_blend_k6_hidden_dynamic_v1",
+  "rows": 14151,
+  "wells": 3,
+  "well_fields": {
+    "000d7d20": 3,
+    "00bbac68": 4,
+    "00e12e8b": 3
+  },
+  "train_wells": 773,
+  "train_feature_shape": [773, 207],
+  "correction_distribution": {
+    "mean": -0.2085030936478706,
+    "p50_abs": 0.5734953535087717,
+    "p95_abs": 1.1912330747952824,
+    "maximum_abs": 1.1915743659543225
+  },
+  "local_reference": {
+    "mean": -0.1239262546960639,
+    "p95_abs": 1.9036587888642307,
+    "maximum_abs": 3.6109707802042976,
+    "mean_tolerance": 0.15,
+    "p95_ratio_limit": 1.5,
+    "maximum_ratio_limit": 1.5
+  },
+  "guards": {
+    "mean_near_local": true,
+    "p95_within_local_ratio": true,
+    "maximum_within_local_ratio": true,
+    "all_values_finite": true,
+    "all_test_wells_assigned": true
+  },
+  "guard_passed": true,
+  "id_order_matches_sample": true,
+  "duplicate_ids": 0,
+  "formula_max_abs_diff": 3.637978807091713e-12,
+  "candidate_csv_max_abs_diff": 0.0,
+  "submission_sha256": "f638a17803a95cc3e538dac97321c3042d0ca430f3187ae704e8ad1eb4c628da",
+  "components_sha256": "12d67bbaeb93bd18b40886c8a0b9d53efde8c262e5064e9964951471e5f1fd0a",
+  "notebook_sha256": "0cd142f150e94d88e04240f47587541d5e4a1d68c22e230d35216123c6e5481d",
+  "kaggle_kernel_pushed": false,
+  "kaggle_submission_created": false
+}

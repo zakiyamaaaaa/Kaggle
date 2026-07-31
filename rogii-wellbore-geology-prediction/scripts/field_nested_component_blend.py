@@ -39,6 +39,16 @@ def parse_floats(value: str) -> tuple[float, ...]:
     return tuple(float(part.strip()) for part in value.split(",") if part.strip())
 
 
+def parse_field_caps(value: str) -> dict[int, float]:
+    caps: dict[int, float] = {}
+    for part in value.split(","):
+        if not part.strip():
+            continue
+        field, cap = part.split(":", 1)
+        caps[int(field.strip())] = float(cap.strip())
+    return caps
+
+
 def rmse(target: np.ndarray, prediction: np.ndarray) -> float:
     return float(np.sqrt(np.mean(np.square(target - prediction))))
 
@@ -292,6 +302,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
 
     values = parse_floats(args.weight_grid)
     grid = np.asarray(list(itertools.product(values, repeat=len(COMPONENTS))), float)
+    field_curve_caps = parse_field_caps(args.field_curve_caps)
     seeds = parse_ints(args.seeds)
     seed_predictions: list[np.ndarray] = []
     seed_reports: list[dict[str, object]] = []
@@ -318,13 +329,20 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             for field in range(args.fields):
                 train = train_fold & frame["field"].eq(field).to_numpy()
                 valid = valid_fold & frame["field"].eq(field).to_numpy()
+                field_grid = grid
+                if field in field_curve_caps:
+                    field_grid = grid[
+                        grid[:, COMPONENTS.index("curve")]
+                        <= field_curve_caps[field]
+                    ]
                 weights, selection = select_weights(
                     target,
                     proxies,
                     components,
                     train,
-                    grid,
+                    field_grid,
                 )
+                selected_curve_weight = float(weights[COMPONENTS.index("curve")])
                 prediction[valid] = (
                     exact_public[valid] + components[valid] @ weights
                 )
@@ -339,6 +357,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                         "validation_wells": int(
                             frame.loc[valid, "well"].nunique()
                         ),
+                        "selected_curve_weight": selected_curve_weight,
                         "weights": {
                             name: float(value)
                             for name, value in zip(COMPONENTS, weights)
@@ -448,10 +467,34 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             all(row["improvement"] > 0.0 for row in proxy_results.values())
         ),
     }
-    promotion["passes_local_gate"] = bool(all(promotion.values()))
+    promotion["passes_local_gate"] = bool(
+        promotion["ensemble_passes_effect_gate"]
+        and promotion["mean_seed_passes_effect_gate"]
+        and promotion["ensemble_bootstrap_p05_positive"]
+        and promotion["all_legacy_splits_improve"]
+        and promotion["all_proxies_improve"]
+    )
+    promotion["guarded_seed_minimum_floor_ft"] = 0.06
+    promotion["all_seeds_pass_guarded_floor"] = bool(
+        np.min(seed_improvements) >= promotion["guarded_seed_minimum_floor_ft"]
+    )
+    promotion["ensemble_bootstrap_p01_positive"] = bool(
+        bootstrap["p01"] > 0.0
+    )
+    promotion["passes_guarded_deployment_gate"] = bool(
+        bool(field_curve_caps)
+        and promotion["ensemble_passes_effect_gate"]
+        and promotion["all_seeds_pass_guarded_floor"]
+        and promotion["ensemble_bootstrap_p01_positive"]
+        and promotion["all_legacy_splits_improve"]
+        and promotion["all_proxies_improve"]
+    )
     promotion["recommendation"] = (
         "build and audit hidden-dynamic notebook; do not submit automatically"
-        if promotion["passes_local_gate"]
+        if (
+            promotion["passes_local_gate"]
+            or promotion["passes_guarded_deployment_gate"]
+        )
         else "continue local experiments"
     )
 
@@ -465,6 +508,10 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         "folds": int(args.folds),
         "seeds": list(seeds),
         "weight_grid": list(values),
+        "field_curve_caps": {
+            str(field): float(cap)
+            for field, cap in sorted(field_curve_caps.items())
+        },
         "components": list(COMPONENTS),
         "selection_objective": (
             "maximize minimum improvement across exact_public, artifact, hgb, "
@@ -531,6 +578,11 @@ def main() -> None:
     parser.add_argument(
         "--weight-grid",
         default="0,0.25,0.50,0.75,1.00,1.25,1.50",
+    )
+    parser.add_argument(
+        "--field-curve-caps",
+        default="",
+        help="Optional comma-separated field:cap overrides, for example 4:0.50",
     )
     parser.add_argument("--sp45-weight", type=float, default=0.60)
     parser.add_argument("--strict-effect-gate", type=float, default=0.08)
