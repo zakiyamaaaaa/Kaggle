@@ -869,3 +869,15 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - ローカルファイルを直接送る通常提出はcode competition APIに400で拒否され、提出レコードを
   作らなかった。監査済みKernel slug、version 1、output `submission.csv`を明示する正規経路で
   再実行し、submission ref **55138088**を作成した。現在は`PENDING`でpublic score待ち。
+- public scoreは**7.577**だった。7.625のcomplete-well候補より**0.048改善**したが、現行
+  best 7.474より**0.103悪化**した。ローカルは7.474 proxyに対して+0.0811577ft改善を予測
+  していたため、candidate-minus-incumbentはローカル-0.0811577、public実績+0.103となり、
+  delta discrepancyは**0.1841577ft**。
+- 分布guardによりactive平均補正を前回7.625の-0.30366ftから-0.19957ftへ縮め、publicも
+  0.048改善した点は有効だった。ただし補正量がローカル範囲内でも方向の正しさは保証されず、
+  hidden 3井だけのfield構成に対するdomain shiftを解消できなかった。active加重成分はSG601
+  平均-0.00007ft、matcher+0.05131ft、curve-0.25080ftで、総和-0.19957ft。public score
+  だけではどの成分が原因か分離できない。
+- この候補は不採用とし、bestは7.474を維持する。次の提出前に、field 3/4を対象として
+  `matcher-only`、`curve-only`、`SG601-only`、matcher/curve符号・縮小のnested OOF ablationを
+  作り、同じ補正分布契約で比較する。複数成分を一度に変えた提出は行わない。

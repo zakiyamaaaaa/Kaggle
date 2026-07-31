@@ -52,5 +52,11 @@
   "kaggle_kernel_pushed": true,
   "kaggle_submission_created": true,
   "kaggle_submission_ref": 55138088,
-  "kaggle_submission_status": "PENDING"
+  "kaggle_submission_status": "COMPLETE",
+  "kaggle_public_score": 7.577,
+  "incumbent_public_score": 7.474,
+  "public_regression_vs_incumbent": 0.103,
+  "local_predicted_improvement": 0.08115770372225661,
+  "candidate_minus_incumbent_delta_discrepancy": 0.1841577037222566,
+  "decision": "reject candidate; keep 7.474 incumbent"
 }
