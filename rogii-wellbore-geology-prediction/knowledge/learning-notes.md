@@ -792,3 +792,35 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   Notebook構造でSG601-only、matcher-only、whole-well-only、shift-onlyのablationを行う。
   active testの補正平均・分位点が外部holdoutの分布から外れる候補も提出対象から除外する。
 - version 1は不採用とし、現行public bestはsubmission ref **55001998**の**7.474**を維持する。
+
+## 2026-07-31 field-aware repeated nested component blend
+
+- public **7.625**へ悪化したcomplete-well候補を成分分解した。exact 7.474 proxyの固定200井では、
+  SG601単体は統合holdoutで+0.00543ft、global +0.20単体は+0.01473ftに留まった。
+  bounded matcherとwhole-well curveも単体の改善量またはbootstrap下限が不足し、いずれも
+  単独では提出基準を満たさなかった。固定shiftは廃止し、補正量を井戸の位置クラスタごとに
+  学習する方針へ切り替えた。
+- `scripts/field_nested_component_blend.py`は、全773 train井のX/Y中央値だけを使って6つの
+  target-free fieldを作り、固定評価200井に対して5-fold outer OOFを5 seedで反復する。
+  各validation井は、そのseedでSG601・matcher・curveの重みを選ぶ処理から完全に除外される。
+  重みは0.00〜1.50のgridから、exact-public、artifact、HGB、Ridgeの4 OOF proxyに対する
+  最小改善量を最大化して選ぶ。field数は3〜8の初期探索で6を選んだ後、選択に使っていない
+  seed `20260736..20260740`だけで最終評価した。
+- 5-seed ensembleはexact 7.474 proxyで **9.0830848811 → 8.9984874059**
+  （**+0.0845974752ft**）。seed別改善は+0.06529〜+0.09973ft、平均+0.08116ft。
+  井戸bootstrap 20,000回の改善確率は**97.915%**、5%点は**+0.015513ft**だった。
+  legacy splitもdiscovery **+0.18657**、holdout1 **+0.03885**、holdout2
+  **+0.05711ft**とすべて改善した。
+- 4つの独立proxyもexact-public **+0.08460**、artifact **+0.04601**、HGB
+  **+0.02945**、Ridge **+0.08474ft**ですべて改善した。ensemble補正分布は平均
+  **-0.12347ft**、絶対値p50 **0.50424ft**、p95 **2.06995ft**、最大
+  **3.61097ft**。strict effect >=0.08ft、seed平均>=0.08ft、ensemble bootstrap
+  p05>0、全split改善、全proxy改善の昇格条件をすべて満たした。
+- これはローカル提出候補への昇格であり、Kaggle scoreを保証しない。次は同じ重み学習を
+  hidden-dynamic Notebookに移植し、active testの補正平均・p95・最大値を上記OOF分布と
+  比較する。特に平均が前回の-0.30366ftのように大きくずれる場合は提出を止める。
+  field数を候補集合から選んだmodel-selection riskも残るため、自動提出はせず、Notebookの
+  再現性と補正分布を監査してから1枠だけを判断する。
+- 完全な監査結果は
+  `outputs/runs/field_nested_component_blend_k6_200w_summary.json`。現時点ではKaggleへ
+  kernel push・submissionとも行っていない。
