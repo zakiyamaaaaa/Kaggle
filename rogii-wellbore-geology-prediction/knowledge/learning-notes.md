@@ -904,3 +904,34 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 今回の改善ループでは提出候補なし。次はfield分類そのものへの依存を減らし、7.474本体の
   trajectory候補間でwell-level stackingまたはbaggingを行う。public feedbackから補正符号を
   直接反転させる案はleaderboard過学習の危険があるため、ローカル昇格対象にしない。
+
+## 2026-08-01 field-free trajectory bagging
+
+- `scripts/well_level_sp45_disagreement_bag.py`で、field/XYを使わず、候補軌跡の集約値と
+  disagreementだけから井戸別SP45比率を予測した。外側5-fold×5 seedで評価井をモデル学習・
+  hyperparameter選択の両方から除外し、内側4-foldでRidge正則化、全井共通比率への縮小率、
+  最大移動量を選んだ。4つの合法OOF proxyをまとめたoracle比率は200井中185井が±0.10の
+  上下限に張り付き、target-free特徴からの連続回帰問題として不安定だった。
+- global比率へ縮小した最終ensembleでもexact proxyは**9.0830849→9.0793000**
+  （+0.0037848ft）だけだった。artifact/HGB/Ridgeを含む全proxyは全体で改善したが、discovery
+  はexact -0.02164、Ridge -0.01480ft。bootstrap 50,000回は改善確率58.0%、p05
+  -0.03222ftで棄却した。後付けwell-level gateより、固定された低比率bagの方が適切である。
+- 候補bankを調べると、exact 7.474 proxyとmodel-package artifact系軌跡の誤差相関に
+  headroomがあった。ただしouter OOFで自由に比率を選ぶと平均約0.47まで上がり、全体
+  +0.09381ftでもbootstrap p05=-0.01474ftとなった。9.599提出で確認済みのartifact枝の
+  hidden分布ずれもあるため、高比率は採用しない。
+- `scripts/conservative_artifact_trajectory_bag.py`で、field非依存の固定構成
+  **base-artifact 10% + public learned SG601 1.0 + bounded matcher 0.10**を監査した。
+  exact proxyは全200井で**9.0830849→9.0383940（+0.0446909ft）**。discovery
+  +0.07300、holdout1 +0.05329、holdout2 +0.02757、legacy holdout統合150井
+  **9.2848448→9.2494247（+0.0354201ft）**で全splitが改善した。
+- exact proxyの50,000回well bootstrapは、全200井で改善確率99.928%、p01
+  **+0.012523**、p05+0.021980ft。holdout 150井でも改善確率99.318%、p01
+  **+0.002091**、p05+0.012055ftだった。補正は平均+0.01220ft、絶対値p50/p95
+  0.25673/0.86333ft、最大3.80632ftで、前回field curve候補より小さい。
+- ただしanalogous proxy感度ではRidge +0.01077ftに対し、artifact -0.000474、HGB
+  -0.000253ftの微悪化が残り、strict local gateは未通過とした。exact 7.474 proxyに対しては
+  現時点の最有望なfield-free候補だが、同じ200井screening内で構成を選んだためlegacy
+  holdoutを完全な未使用評価とは扱わず、まだKaggleへ提出しない。次は同一hidden-dynamic
+  runtimeでartifact 10%枝を再現し、active 3井の補正分布と、9.599時のall12上書き経路を
+  使っていないことを監査する。proxy微悪化を解消できない場合はartifact 10%単体へ戻す。

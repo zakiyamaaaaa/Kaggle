@@ -1,0 +1,205 @@
+{
+  "method": "conservative_field_free_artifact_trajectory_bag",
+  "weights": {
+    "artifact": 0.1,
+    "public_learned_sg601": 1.0,
+    "matcher": 0.1,
+    "public_learned_branch": 0.4
+  },
+  "contracts": {
+    "weights_are_fixed_for_reproduction": true,
+    "candidate_selected_during_current_200w_screening": true,
+    "legacy_holdout_is_not_fully_untouched_after_screening": true,
+    "suffix_target_used_only_for_evaluation": true,
+    "field_and_xy_not_used": true,
+    "same_well_contact_not_used": true,
+    "artifact_and_components_are_legal_well_oof": true
+  },
+  "proxy_results": {
+    "exact_public": {
+      "discovery": {
+        "rows": 261159,
+        "wells": 50,
+        "baseline_rmse": 8.498224473502306,
+        "candidate_rmse": 8.425222973708246,
+        "improvement": 0.07300149979406001
+      },
+      "holdout1": {
+        "rows": 248132,
+        "wells": 50,
+        "baseline_rmse": 8.362117199542336,
+        "candidate_rmse": 8.308825179246346,
+        "improvement": 0.05329202029598967
+      },
+      "holdout2": {
+        "rows": 476493,
+        "wells": 100,
+        "baseline_rmse": 9.730767329905603,
+        "candidate_rmse": 9.703202022220633,
+        "improvement": 0.02756530768497001
+      },
+      "holdout": {
+        "rows": 724625,
+        "wells": 150,
+        "baseline_rmse": 9.284844808751362,
+        "candidate_rmse": 9.249424677106864,
+        "improvement": 0.0354201316444982
+      },
+      "all": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.08308488106744,
+        "candidate_rmse": 9.038393997499375,
+        "improvement": 0.04469088356806594
+      }
+    },
+    "artifact": {
+      "discovery": {
+        "rows": 261159,
+        "wells": 50,
+        "baseline_rmse": 8.208767557992612,
+        "candidate_rmse": 8.207276229155548,
+        "improvement": 0.0014913288370639322
+      },
+      "holdout1": {
+        "rows": 248132,
+        "wells": 50,
+        "baseline_rmse": 8.333327753872247,
+        "candidate_rmse": 8.332689706326573,
+        "improvement": 0.000638047545674425
+      },
+      "holdout2": {
+        "rows": 476493,
+        "wells": 100,
+        "baseline_rmse": 9.816257850093265,
+        "candidate_rmse": 9.818126545746976,
+        "improvement": -0.001868695653710617
+      },
+      "holdout": {
+        "rows": 724625,
+        "wells": 150,
+        "baseline_rmse": 9.335020772358902,
+        "candidate_rmse": 9.336117946030162,
+        "improvement": -0.0010971736712601654
+      },
+      "all": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.050305134252968,
+        "candidate_rmse": 9.050778726781816,
+        "improvement": -0.0004735925288485987
+      }
+    },
+    "hgb": {
+      "discovery": {
+        "rows": 261159,
+        "wells": 50,
+        "baseline_rmse": 8.309279334753635,
+        "candidate_rmse": 8.308344648729907,
+        "improvement": 0.0009346860237275934
+      },
+      "holdout1": {
+        "rows": 248132,
+        "wells": 50,
+        "baseline_rmse": 8.580062040284016,
+        "candidate_rmse": 8.579736342376933,
+        "improvement": 0.00032569790708336654
+      },
+      "holdout2": {
+        "rows": 476493,
+        "wells": 100,
+        "baseline_rmse": 9.928419611659187,
+        "candidate_rmse": 9.929480156795005,
+        "improvement": -0.0010605451358181028
+      },
+      "holdout": {
+        "rows": 724625,
+        "wells": 150,
+        "baseline_rmse": 9.488301292698202,
+        "candidate_rmse": 9.488930193373696,
+        "improvement": -0.0006289006754940374
+      },
+      "all": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.190687723829157,
+        "candidate_rmse": 9.190941133331552,
+        "improvement": -0.0002534095023953853
+      }
+    },
+    "ridge": {
+      "discovery": {
+        "rows": 261159,
+        "wells": 50,
+        "baseline_rmse": 8.523375803022878,
+        "candidate_rmse": 8.511167927170117,
+        "improvement": 0.012207875852761063
+      },
+      "holdout1": {
+        "rows": 248132,
+        "wells": 50,
+        "baseline_rmse": 8.38319987869902,
+        "candidate_rmse": 8.368047292851925,
+        "improvement": 0.015152585847095779
+      },
+      "holdout2": {
+        "rows": 476493,
+        "wells": 100,
+        "baseline_rmse": 9.832036047608007,
+        "candidate_rmse": 9.82383708358765,
+        "improvement": 0.008198964020357025
+      },
+      "holdout": {
+        "rows": 724625,
+        "wells": 150,
+        "baseline_rmse": 9.361193739782564,
+        "candidate_rmse": 9.350885448818142,
+        "improvement": 0.01030829096442254
+      },
+      "all": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.146710113865746,
+        "candidate_rmse": 9.135941384303603,
+        "improvement": 0.01076872956214281
+      }
+    }
+  },
+  "bootstrap": {
+    "all_wells": {
+      "wells": 200,
+      "draws": 50000,
+      "probability_positive": 0.99928,
+      "p01": 0.012523186093164149,
+      "p05": 0.021980484208300767,
+      "p50": 0.04485112711778161,
+      "p95": 0.06784984014749254
+    },
+    "holdout_only": {
+      "wells": 150,
+      "draws": 50000,
+      "probability_positive": 0.99318,
+      "p01": 0.0020912119806564358,
+      "p05": 0.012054805643446898,
+      "p50": 0.03579089881101982,
+      "p95": 0.05957947323709488
+    }
+  },
+  "exact_correction_distribution": {
+    "mean": 0.012201864468955995,
+    "std": 0.4293302836479657,
+    "p50_abs": 0.2567294067439434,
+    "p95_abs": 0.8633261020625467,
+    "maximum_abs": 3.8063178668689943
+  },
+  "proxy_sensitivity_floor": -0.0004735925288485987,
+  "promotion": {
+    "exact_effect_gate_ft": 0.03,
+    "passes_exact_effect_gate": true,
+    "all_exact_splits_improve": true,
+    "all_well_bootstrap_p01_positive": true,
+    "holdout_bootstrap_p01_positive": true,
+    "all_proxy_sensitivity_nonnegative": false,
+    "passes_strict_local_gate": false
+  }
+}
