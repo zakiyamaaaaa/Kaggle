@@ -881,3 +881,26 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - この候補は不採用とし、bestは7.474を維持する。次の提出前に、field 3/4を対象として
   `matcher-only`、`curve-only`、`SG601-only`、matcher/curve符号・縮小のnested OOF ablationを
   作り、同じ補正分布契約で比較する。複数成分を一度に変えた提出は行わない。
+
+## 2026-08-01 active field成分分解とSP45比率regularization
+
+- `scripts/field_active_component_ablation.py`で、K6のouter-OOF component weightを維持したまま、
+  active testと同じfield 3/4のSG601・matcher・curveへ事前定義scaleを適用した。curve-onlyは
+  active holdout exactで**-0.01268ft**、全proxy最小**-0.01520ft**と悪化した。no-curveは
+  active holdout+0.02607ftまで改善したがbootstrap p05=-0.00737で不安定。7.577候補の
+  curve平均-0.25080ftは、量だけでなく方向も再検討すべき成分と判断する。
+- matcher単体は0.25倍と0.50倍でactive holdout全proxyおよびbootstrap p05が正になったが、
+  p01は負だった。SG601を残しmatcherを**0.10倍**、curveを0にすると、active 68井で
+  discovery **+0.01488**、holdout1 **+0.00968**、holdout2 **+0.00454ft**、全4 proxyが
+  改善した。50,000回bootstrapは改善確率**99.386%**、p01 **+0.000554**、p05
+  **+0.002628ft**。補正平均は+0.00766ft、絶対値p95は0.12561ft。
+- ただし全200井のexact改善は**+0.0030916ft**（9.0830849→9.0799933）だけで、提出枠を
+  使う効果量ではない。安全な微修正候補として保持するが、Kaggleへ提出しない。
+- `scripts/field_nested_sp45_weight.py`では、field別SP45/learned比率を各outer training foldで
+  4-proxy minimax選択した。広い0.40〜0.80 gridは全体+0.04209ftでもdiscovery-0.08832、
+  bootstrap p05-0.07933で過適合。0.575/0.600/0.625へ制限すると、全split・全proxy・全seedが
+  改善し、9.0830849→**9.0654884**（+0.0175965ft）となったが、bootstrap p05
+  **-0.001671ft**、p01-0.009587ftで不確実性gateを通らなかった。
+- 今回の改善ループでは提出候補なし。次はfield分類そのものへの依存を減らし、7.474本体の
+  trajectory候補間でwell-level stackingまたはbaggingを行う。public feedbackから補正符号を
+  直接反転させる案はleaderboard過学習の危険があるため、ローカル昇格対象にしない。
