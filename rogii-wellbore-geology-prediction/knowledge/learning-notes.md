@@ -967,3 +967,19 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 現時点の結論は**提出可能なローカル候補**であり、Kaggle scoreの保証ではない。kernel push・
   competition submissionはまだ行っていない。正式評価は
   `outputs/runs/full773_artifact015_sg601_matcher010_centered_exact_summary.json`を参照する。
+
+## 2026-08-02 centered artifact候補のKaggle提出
+
+- private Kernel `zacky21/rogii-artifact015-sg601-matcher010-centered` version 1をpushし、
+  約12分で`COMPLETE`した。Kaggle側出力の`artifact015_candidate_summary.json`は
+  `guard_passed=true`、4つの個別guardもすべてtrueだった。
+- Kaggle環境の最終補正は平均ほぼ0、標準偏差**0.470267ft**、絶対値p50
+  **0.346172ft**、p95 **0.856722ft**、最大**1.298413ft**。target-free centering前の
+  平均は-1.181382ftで、centeringがhidden 3井のdomain shiftを意図どおり除去した。
+  runtime式誤差は3.64e-12、component CSVからsubmissionへの差は2.73e-12だった。
+- 最終`submission.csv`は14,151行、ID順はsampleと一致、重複・非有限値なし。SHA256は
+  `9d114ccc1a1ce21c96b05bc62028258d7c1c6cdd23d8b4be2a1c838a2254b476`。
+- Kernel outputを指定するCode Competition正規経路でcompetition submissionを作成した。
+  Notebook version URLのscriptVersionIdは**339567490**。Kaggle画面で最新レコードが
+  `Notebook Running`になっていることを確認した。public scoreは約5時間後の見込みで未確定。
+  監査要約は`outputs/runs/artifact015_centered_kaggle_v1_audit.json`に保存する。

@@ -1,0 +1,29 @@
+{
+  "kernel": "zacky21/rogii-artifact015-sg601-matcher010-centered",
+  "kernel_version": 1,
+  "script_version_id": 339567490,
+  "kernel_status": "COMPLETE",
+  "competition_submission_status": "Notebook Running",
+  "public_score": null,
+  "rows": 14151,
+  "id_order_matches_sample": true,
+  "candidate": "artifact015_sg601_matcher010_centered_hidden_dynamic_v1",
+  "guard_passed": true,
+  "guards": {
+    "formula_exact": true,
+    "mean_near_local": true,
+    "p95_within_local_ratio": true,
+    "maximum_within_local_ratio": true
+  },
+  "target_free_centering_shift": -1.1813819023604442,
+  "correction_distribution": {
+    "mean": 1.9281210552743867e-16,
+    "std": 0.4702668456504763,
+    "p50_abs": 0.3461723541805083,
+    "p95_abs": 0.8567221746865744,
+    "maximum_abs": 1.2984131264369219
+  },
+  "formula_max_abs_error": 3.637978807091713e-12,
+  "component_formula_max_abs_difference": 2.7284841053187847e-12,
+  "submission_sha256": "9d114ccc1a1ce21c96b05bc62028258d7c1c6cdd23d8b4be2a1c838a2254b476"
+}
