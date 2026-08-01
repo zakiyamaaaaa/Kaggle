@@ -935,3 +935,35 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   holdoutを完全な未使用評価とは扱わず、まだKaggleへ提出しない。次は同一hidden-dynamic
   runtimeでartifact 10%枝を再現し、active 3井の補正分布と、9.599時のall12上書き経路を
   使っていないことを監査する。proxy微悪化を解消できない場合はartifact 10%単体へ戻す。
+
+## 2026-08-01 全773井評価とcentered artifact提出候補
+
+- 固定200井だけでなく、公開model-packageの773井row contractを使ってexact 7.474 proxyを
+  完全再現した。最初の全井生成ではSelectorのみのSP45を誤って使用して9.266系の値になったが、
+  これは提出版のRidge30%を欠くため無効とした。Ridge30/Selector70、Savgol17、projection
+  degree2/blend0.50を再生成し、既存200井SP45と最大差・平均差とも**0**を確認した。
+  数字だけのように見えるwell IDをCSVが指数表記として推論した問題も、ID列を文字列固定して
+  解消した。
+- 既存screening 200井と一度も比率選択に使っていない573井を分離し、事前に診断候補として
+  用意したartifact 15% + SG601 + matcher 10%を評価した。未見573井はexact proxy
+  **9.7300987232→9.6488721115（+0.0812266117ft）**、全773井は
+  **9.5657584330→9.4900716250（+0.0756868080ft）**。未見573井の50,000回well bootstrap
+  はp01 **+0.048625ft**、5 fieldおよびexact/artifact/HGB proxyがすべて改善した。
+- hidden active 3井へそのまま移植すると、artifact成分が平均**-1.17699ft**へ偏り、raw総補正
+  平均が**-1.24770ft**となったため分布guardが提出を止めた。これはsuffix targetを見ずに
+  検出したtest-domain shiftである。OOF全体の総補正平均が+0.00762ftとほぼ0だったことから、
+  最終補正のtest-row平均を引くtarget-free centeringを追加した。
+- centered版は未見573井 **9.7300987232→9.6492549260（+0.0808437972ft）**、全773井
+  **9.5657584330→9.4904778639（+0.0752805690ft）**。bootstrap p01は未見573井
+  **+0.048257ft**、全773井+0.047766ft。5 fieldの最小改善はfield 0の+0.035249ftで、
+  3 proxyもすべて改善し、strict 0.08ft submission gateを通過した。centeringはhidden分布
+  監査への対応後に追加したため、未見573井に対する二度目の確認というmodel-selection riskは
+  明示して扱う。
+- 3井14,151行の同一runtime監査は補正平均ほぼ0、絶対値p50 **0.40519ft**、p95
+  **0.97746ft**、最大**1.27900ft**。式誤差3.64e-12、ID/有限値/分布guardをすべて通過し、
+  guarded `submission.csv`を生成した。Notebookは7.474 version 3をSHA256固定してraw/SG601
+  learnedを同時生成し、model-packageの直接blendは0。Notebook SHA256は
+  `d96fba5beb03e25460969e497cc7a96a6268802b5e7af9974394c2d83ed72dfd`。
+- 現時点の結論は**提出可能なローカル候補**であり、Kaggle scoreの保証ではない。kernel push・
+  competition submissionはまだ行っていない。正式評価は
+  `outputs/runs/full773_artifact015_sg601_matcher010_centered_exact_summary.json`を参照する。

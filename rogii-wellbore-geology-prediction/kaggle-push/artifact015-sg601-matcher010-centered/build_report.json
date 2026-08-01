@@ -1,0 +1,12 @@
+{
+  "output": "/Users/shoichiyamazaki/Kaggle/rogii-wellbore-geology-prediction/kaggle-push/artifact015-sg601-matcher010-centered/rogii-artifact015-sg601-matcher010-centered.ipynb",
+  "source_sha256": "f3833ba45069fd8056255bd3e6c88c4c1c19d3081df8de62d7d2827ca8930786",
+  "output_sha256": "d96fba5beb03e25460969e497cc7a96a6268802b5e7af9974394c2d83ed72dfd",
+  "cells": 59,
+  "insertion_index": 53,
+  "hidden_dynamic": true,
+  "full773_primary": "artifact015_sg601_matcher010_centered",
+  "full773_rmse": 9.490477863947113,
+  "unseen573_improvement_ft": 0.08084379720631674,
+  "guarded_submission": true
+}

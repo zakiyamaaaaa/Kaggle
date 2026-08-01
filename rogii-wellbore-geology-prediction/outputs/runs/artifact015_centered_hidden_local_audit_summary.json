@@ -1,0 +1,25 @@
+{
+  "method": "active_three_well_artifact015_centered_hidden_runtime_audit",
+  "rows": 14151,
+  "test_wells": 3,
+  "candidate": "artifact015_sg601_matcher010_centered_hidden_dynamic_v1",
+  "raw_correction_mean": -1.2476978326325396,
+  "target_free_centering_shift": -1.2476978326325396,
+  "centered_correction": {
+    "mean": 3.213535092123978e-17,
+    "p50_abs": 0.4051887482882568,
+    "p95_abs": 0.9774604269962415,
+    "maximum_abs": 1.2789976830234027
+  },
+  "formula_max_abs_error": 3.637978807091713e-12,
+  "guards": {
+    "formula_exact": true,
+    "mean_near_local": true,
+    "p95_within_local_ratio": true,
+    "maximum_within_local_ratio": true
+  },
+  "guard_passed": true,
+  "submission_written_in_local_audit": true,
+  "kaggle_kernel_pushed": false,
+  "competition_submission_created": false
+}

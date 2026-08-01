@@ -1,0 +1,346 @@
+{
+  "method": "frozen_conservative_artifact_bag_full773",
+  "primary_variant": "artifact015_sg601_matcher010_centered",
+  "screening_wells": 200,
+  "unseen_wells": 573,
+  "contracts": {
+    "artifact015_predeclared_before_unseen573_metrics": true,
+    "unseen_573_not_used_for_primary_weights": true,
+    "same_well_contact_used": false,
+    "suffix_target_used_only_for_metrics": true,
+    "matcher_uses_visible_prefix_and_full_suffix_gr_only": true,
+    "final_correction_is_target_free_test_row_mean_centered": true
+  },
+  "matcher_cache_counts": {
+    "fixed_cached": 773,
+    "legacy_cached": 0,
+    "computed": 0
+  },
+  "variant_results": {
+    "artifact010": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.083084326517223,
+        "candidate_rmse": 9.048151566982476,
+        "improvement": 0.034932759534747504,
+        "candidate_well_rmse_p50": 6.028735218748994,
+        "candidate_well_rmse_p90": 12.382768773960809
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.730098723218854,
+        "candidate_rmse": 9.681187605545674,
+        "improvement": 0.048911117673180016,
+        "candidate_well_rmse_p50": 5.626947816836133,
+        "candidate_well_rmse_p90": 14.05216645189095
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.56575843297955,
+        "candidate_rmse": 9.520327895368034,
+        "improvement": 0.04543053761151583,
+        "candidate_well_rmse_p50": 5.696097970565352,
+        "candidate_well_rmse_p90": 13.49763997719521
+      }
+    },
+    "artifact010_sg601": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.083084326517223,
+        "candidate_rmse": 9.044943342950424,
+        "improvement": 0.038140983566799846,
+        "candidate_well_rmse_p50": 6.025816971592935,
+        "candidate_well_rmse_p90": 12.381645988837024
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.730098723218854,
+        "candidate_rmse": 9.678728749998491,
+        "improvement": 0.0513699732203623,
+        "candidate_well_rmse_p50": 5.606939353774624,
+        "candidate_well_rmse_p90": 14.04825528334988
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.56575843297955,
+        "candidate_rmse": 9.517684556852899,
+        "improvement": 0.048073876126650816,
+        "candidate_well_rmse_p50": 5.710559202579058,
+        "candidate_well_rmse_p90": 13.494056666112836
+      }
+    },
+    "artifact010_sg601_matcher010": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.083084326517223,
+        "candidate_rmse": 9.038393432769649,
+        "improvement": 0.044690893747574734,
+        "candidate_well_rmse_p50": 6.011205756375681,
+        "candidate_well_rmse_p90": 12.364557608020538
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.730098723218854,
+        "candidate_rmse": 9.670219615428095,
+        "improvement": 0.05987910779075811,
+        "candidate_well_rmse_p50": 5.589281161517378,
+        "candidate_well_rmse_p90": 14.103711778822362
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.56575843297955,
+        "candidate_rmse": 9.509664132693723,
+        "improvement": 0.05609430028582629,
+        "candidate_well_rmse_p50": 5.711609784974118,
+        "candidate_well_rmse_p90": 13.438851360808732
+      }
+    },
+    "artifact015_sg601_matcher010": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.083084326517223,
+        "candidate_rmse": 9.024095816511696,
+        "improvement": 0.05898851000552696,
+        "candidate_well_rmse_p50": 6.01258916392705,
+        "candidate_well_rmse_p90": 12.314841500593111
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.730098723218854,
+        "candidate_rmse": 9.648872111494368,
+        "improvement": 0.08122661172448531,
+        "candidate_well_rmse_p50": 5.5884404320209615,
+        "candidate_well_rmse_p90": 14.067642892448623
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.56575843297955,
+        "candidate_rmse": 9.490071624985099,
+        "improvement": 0.07568680799445104,
+        "candidate_well_rmse_p50": 5.675699653879185,
+        "candidate_well_rmse_p90": 13.555220167612646
+      }
+    },
+    "artifact015_sg601_matcher010_centered": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.083084326517223,
+        "candidate_rmse": 9.0245738347772,
+        "improvement": 0.058510491740022985,
+        "candidate_well_rmse_p50": 6.014101538729314,
+        "candidate_well_rmse_p90": 12.320556061661064
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.730098723218854,
+        "candidate_rmse": 9.649254926012537,
+        "improvement": 0.08084379720631674,
+        "candidate_well_rmse_p50": 5.5816646817083955,
+        "candidate_well_rmse_p90": 14.074036617387069
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.56575843297955,
+        "candidate_rmse": 9.490477863947113,
+        "improvement": 0.07528056903243652,
+        "candidate_well_rmse_p50": 5.669825849205809,
+        "candidate_well_rmse_p90": 13.561788766197846
+      }
+    }
+  },
+  "proxy_results": {
+    "exact_public": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.083084326517223,
+        "candidate_rmse": 9.0245738347772,
+        "improvement": 0.058510491740022985,
+        "candidate_well_rmse_p50": 6.014101538729314,
+        "candidate_well_rmse_p90": 12.320556061661064
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.730098723218854,
+        "candidate_rmse": 9.649254926012537,
+        "improvement": 0.08084379720631674,
+        "candidate_well_rmse_p50": 5.5816646817083955,
+        "candidate_well_rmse_p90": 14.074036617387069
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.56575843297955,
+        "candidate_rmse": 9.490477863947113,
+        "improvement": 0.07528056903243652,
+        "candidate_well_rmse_p50": 5.669825849205809,
+        "candidate_well_rmse_p90": 13.561788766197846
+      }
+    },
+    "artifact": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.0503046210641,
+        "candidate_rmse": 9.050192474095484,
+        "improvement": 0.00011214696861649998,
+        "candidate_well_rmse_p50": 6.122298545645005,
+        "candidate_well_rmse_p90": 11.68540628850857
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.562567540168999,
+        "candidate_rmse": 9.560151092246244,
+        "improvement": 0.002416447922755083,
+        "candidate_well_rmse_p50": 5.7907308422926445,
+        "candidate_well_rmse_p90": 13.710894183882088
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.431795930380096,
+        "candidate_rmse": 9.429956241923636,
+        "improvement": 0.001839688456460209,
+        "candidate_well_rmse_p50": 5.856206399113921,
+        "candidate_well_rmse_p90": 13.27844087831173
+      }
+    },
+    "hgb": {
+      "screening_200": {
+        "rows": 985784,
+        "wells": 200,
+        "baseline_rmse": 9.19068727317154,
+        "candidate_rmse": 9.19027156691451,
+        "improvement": 0.00041570625703002406,
+        "candidate_well_rmse_p50": 6.039327741982243,
+        "candidate_well_rmse_p90": 11.852082848552612
+      },
+      "unseen_573": {
+        "rows": 2798205,
+        "wells": 573,
+        "baseline_rmse": 9.818027423513913,
+        "candidate_rmse": 9.815760725331502,
+        "improvement": 0.0022666981824102095,
+        "candidate_well_rmse_p50": 5.886815330292435,
+        "candidate_well_rmse_p90": 14.224805106378026
+      },
+      "all_773": {
+        "rows": 3783989,
+        "wells": 773,
+        "baseline_rmse": 9.65852190226488,
+        "candidate_rmse": 9.656715008557736,
+        "improvement": 0.0018068937071440416,
+        "candidate_well_rmse_p50": 5.936717771455012,
+        "candidate_well_rmse_p90": 13.196754576285933
+      }
+    }
+  },
+  "unseen_field_results": {
+    "0": {
+      "rows": 696566,
+      "wells": 132,
+      "baseline_rmse": 8.731306152510774,
+      "candidate_rmse": 8.696056972904783,
+      "improvement": 0.03524917960599083,
+      "candidate_well_rmse_p50": 5.161151611876052,
+      "candidate_well_rmse_p90": 11.931858779509453
+    },
+    "1": {
+      "rows": 760316,
+      "wells": 161,
+      "baseline_rmse": 9.325493322246603,
+      "candidate_rmse": 9.227507879487796,
+      "improvement": 0.09798544275880694,
+      "candidate_well_rmse_p50": 5.837327328529662,
+      "candidate_well_rmse_p90": 13.861321081952626
+    },
+    "2": {
+      "rows": 569105,
+      "wells": 116,
+      "baseline_rmse": 11.630463290869011,
+      "candidate_rmse": 11.56122389299196,
+      "improvement": 0.0692393978770518,
+      "candidate_well_rmse_p50": 6.055863680516239,
+      "candidate_well_rmse_p90": 15.701662862210096
+    },
+    "3": {
+      "rows": 341581,
+      "wells": 79,
+      "baseline_rmse": 9.200945963979429,
+      "candidate_rmse": 9.115473171541467,
+      "improvement": 0.08547279243796169,
+      "candidate_well_rmse_p50": 5.323801602472358,
+      "candidate_well_rmse_p90": 14.047175589202846
+    },
+    "4": {
+      "rows": 430637,
+      "wells": 85,
+      "baseline_rmse": 9.61320166643975,
+      "candidate_rmse": 9.476323130702303,
+      "improvement": 0.13687853573744668,
+      "candidate_well_rmse_p50": 5.777630114507172,
+      "candidate_well_rmse_p90": 13.051196150490695
+    }
+  },
+  "bootstrap": {
+    "screening_200": {
+      "wells": 200,
+      "draws": 50000,
+      "probability_positive": 0.9977,
+      "p01": 0.01064820293722132,
+      "p05": 0.024646570549235313,
+      "p50": 0.05902607173168928,
+      "p95": 0.09322831718177076
+    },
+    "unseen_573": {
+      "wells": 573,
+      "draws": 50000,
+      "probability_positive": 1.0,
+      "p01": 0.04825734641082995,
+      "p05": 0.057610603533151485,
+      "p50": 0.08068511060539496,
+      "p95": 0.10452039035070856
+    },
+    "all_773": {
+      "wells": 773,
+      "draws": 50000,
+      "probability_positive": 1.0,
+      "p01": 0.04776550008296411,
+      "p05": 0.0556623380981752,
+      "p50": 0.0752923568944972,
+      "p95": 0.09504412128464884
+    }
+  },
+  "primary_correction_distribution": {
+    "mean": 5.528128686626031e-18,
+    "std": 0.5363437439809051,
+    "p50_abs": 0.31710122301277704,
+    "p95_abs": 1.0859600167549992,
+    "maximum_abs": 6.901472447374527
+  },
+  "promotion": {
+    "required_effect_ft": 0.08,
+    "unseen_effect_pass": true,
+    "unseen_bootstrap_p01_positive": true,
+    "all_unseen_proxies_improve": true,
+    "all_unseen_fields_improve": true,
+    "passes_local_submission_gate": true
+  }
+}

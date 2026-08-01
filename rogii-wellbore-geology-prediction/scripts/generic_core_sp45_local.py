@@ -173,6 +173,8 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         args.pf_seeds,
     )
     args.cache_dir.mkdir(parents=True, exist_ok=True)
+    if args.branch_stats_cache is not None:
+        args.branch_stats_cache.mkdir(parents=True, exist_ok=True)
     selector_well_code = namespace["selector_well_code"]
     run_pf_scales = namespace["run_pf_lik_ensemble_scales"]
     run_beam = namespace["run_beam_ensemble"]
@@ -184,7 +186,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         cache_path = args.cache_dir / f"{well}.csv"
         diagnostic_path = args.cache_dir / f"{well}.json"
         if cache_path.exists() and diagnostic_path.exists() and not args.overwrite:
-            records.append(pd.read_csv(cache_path))
+            records.append(pd.read_csv(cache_path, dtype={"id": str, "well": str}))
             diagnostics.append(json.loads(diagnostic_path.read_text(encoding="utf-8")))
             print(f"{position}/{len(wells)} {well}: cached", flush=True)
             continue
@@ -196,12 +198,26 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         if len(row_indices) < 10:
             continue
         selector_code, selector_variant, n_eval, z_span = selector_well_code(horizontal)
-        pf_by_scale = run_pf_scales(
-            horizontal,
-            typewell,
-            n_particles=args.particles,
-            n_seeds=args.pf_seeds,
-        )
+        branch_stats: dict[str, object] = {}
+        pf_kwargs = {
+            "n_particles": args.particles,
+            "n_seeds": args.pf_seeds,
+        }
+        if args.branch_stats_cache is not None:
+            pf_kwargs["branch_stats"] = branch_stats
+        pf_by_scale = run_pf_scales(horizontal, typewell, **pf_kwargs)
+        if args.branch_stats_cache is not None:
+            branch_stats.update(
+                {
+                    "well": str(well),
+                    "pf_seeds": int(args.pf_seeds),
+                    "particles": int(args.particles),
+                }
+            )
+            (args.branch_stats_cache / f"{well}.json").write_text(
+                json.dumps(branch_stats, indent=2) + "\n",
+                encoding="utf-8",
+            )
         try:
             beam = run_beam(horizontal, typewell)
         except Exception:
@@ -324,6 +340,7 @@ def main() -> None:
     parser.add_argument("--projection-degree", type=int, default=3)
     parser.add_argument("--projection-blend", type=float, default=0.75)
     parser.add_argument("--cache-dir", type=Path, required=True)
+    parser.add_argument("--branch-stats-cache", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--summary", type=Path, required=True)
     parser.add_argument("--overwrite", action="store_true")
