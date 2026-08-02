@@ -983,3 +983,21 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   Notebook version URLのscriptVersionIdは**339567490**。Kaggle画面で最新レコードが
   `Notebook Running`になっていることを確認した。public scoreは約5時間後の見込みで未確定。
   監査要約は`outputs/runs/artifact015_centered_kaggle_v1_audit.json`に保存する。
+
+## 2026-08-02 centered artifact候補のpublic 7.784
+
+- public scoreは**7.784**。現行best 7.474より**0.310悪化**し、直前のfield-nested
+  7.577よりも0.207悪い。未見573井では7.474 proxyに対して+0.0808438ftの改善を予測して
+  いたため、candidate-minus-incumbentはローカル-0.0808438、public実績+0.310となり、
+  delta discrepancyは**0.3908438ft**。
+- Kernelは例外なく完走し、ID・式・有限値・補正分布の全guardを通過している。補正平均も
+  centeringでほぼ0、p95 0.8567ft、最大1.2984ftだった。それでも悪化したため、今回の問題は
+  実装失敗や補正量の暴走ではなく、train 773井で有効だった補正形状とhidden 3井の真の誤差方向が
+  一致しない**conditional domain shift**である。
+- 1回の合成提出だけではartifact、SG601、matcherを厳密に原因分離できない。ただしartifact枝を
+  含まないfield-nestedが7.577、artifact15%を含む今回は7.784であり、過去のartifact系9.599も
+  合わせるとmodel-package artifact方向のhidden転移性には強い否定材料がある。今後artifact OOFの
+  ローカル改善を昇格根拠に使わず、この枝は不採用とする。
+- bestは**7.474**を維持する。次の提出は複数補正の再ブレンドではなく、7.474から一成分だけを
+  変更し、変更量を行単位・井戸単位で照合できる候補に限定する。SG601単体はローカル改善が
+  +0.0054ftしかなく提出価値が低く、matcher単体も不確実性が高いため、現状ではどちらも提出しない。
