@@ -1002,7 +1002,7 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   変更し、変更量を行単位・井戸単位で照合できる候補に限定する。SG601単体はローカル改善が
   +0.0054ftしかなく提出価値が低く、matcher単体も不確実性が高いため、現状ではどちらも提出しない。
 
-## 2026-08-02 締切前戦略への切替
+## 2026-08-02 締切前戦略への切替（後続v2で撤回）
 
 - 締切は2026-08-05 23:59 UTC（JST 2026-08-06 08:59）で、残りは約3日11時間。採点待ちが
   約5時間、提出上限が1日5回なので、ローカル微改善の反復を停止し、公開高得点Codeの完全再現と
@@ -1011,8 +1011,26 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
   Notebook SHA256 `4b4879a6...a23933c`、code cell 45/45、ファイル全体が一致することを再確認した。
   private Kernel実行と出力一致は済んでいるが、competition submissionは未実施である。以前の
   public 7.539は完全版ではなく`generic_core` ablationだった。
-- 次の最優先は6.213完全版を変更なしで1回提出すること。6.30以下なら凍結、6.30〜6.60なら
-  source/runtime差を監査、6.60超または失敗なら同系統のparameter探索を止める。
+- この時点では6.213完全版の診断提出を最優先としたが、直後の再検討でcontact全行置換の
+  private過学習リスクを重く見て撤回した。現在の判断は後続v2を正とする。
 - 最終2枠は最高publicと、特定well/contact後処理への依存が弱い別系統に分ける。締切前の詳細な
   wave、提出枠、昇格条件、停止条件は
   [`knowledge/deadline-strategy-2026-08-02.md`](deadline-strategy-2026-08-02.md)を正本とする。
+
+## 2026-08-02 締切前戦略v2: 6.213完全版を隔離
+
+- 初版で6.213完全再現をP0提出とした判断を撤回した。完全版はsame-well contactで公開test
+  14,151/14,151行を置換し、その後1井へ固定branch shiftを加える。public再現性を測る価値は
+  あっても、private耐性を優先する残り3日の提出枠には適さない。
+- 7.474の生成Notebookを再監査した。起動時に`run_guarded_overlap_override`、
+  `run_visible_prefix_calibration`、`run_bimodal_detector`、`run_vp_bimodal_guard`、
+  `run_model_package_correction`をすべて`False`へ強制している。same-well contactや公開well固定shiftは
+  最終予測へ入らないため、7.474を汎用controlとして維持する。
+- 新計画は、公開6点台Code 4系統のclean-core監査、7.474のSP45/learned二枝に対するtoe-aware
+  continuous confidence gate、改善した異系統2本だけの固定weight ensembleに限定した。
+- 直近候補のlocal-public差分ずれが0.18〜0.39ftだったため、novel candidateの提出gateを
+  pooled +0.25ft、well bootstrap p01 +0.05ft、toe +0.30ft、3 proxy +0.10ftへ引き上げた。
+  0.10〜0.25ftの改善は学習ノートへ残すが提出しない。
+- 2026-08-04 18:00 JSTまでに適格な7.474超えがなければ新規model実験を停止する。最終2枠は
+  contamination-freeな最高publicと異familyの最高候補を選び、6.213完全版は除外する。
+- 改訂後の正本は[`knowledge/deadline-strategy-2026-08-02.md`](deadline-strategy-2026-08-02.md)。

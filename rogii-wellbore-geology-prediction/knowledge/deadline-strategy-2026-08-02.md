@@ -1,130 +1,188 @@
-# ROGII 締切前実験戦略 — 2026-08-02
+# ROGII 締切前実験戦略 v2 — 2026-08-02
+
+> この文書は同日作成した初版を置き換える。初版でP0とした`New Strategy 6.213`完全版は、公開testとtrainの同一well contactを全行へ適用するため、private耐性を優先する計画の主候補から除外した。
 
 ## 結論
 
-残り期間は、7.474からローカル微修正を積み重ねる方針を停止する。最優先は、ローカルに保存済みで公開NotebookとSHA256が一致する`New Strategy 6.213`完全版を、変更なしでcompetition submissionし、公開スコアの再現性を確認することである。
+残り期間の基準はpublic 7.474の`full generic core d2/b0.50`とする。この提出ではsame-well contact、visible-prefix overlay、bimodal detector、model-package correctionがすべて明示的に無効化されており、公開well ID固有shiftも使っていない。
 
-同時に、6.213系は公開testの同一well contact overrideを全14,151行へ適用するため、private耐性の保証にはならない。最終2枠は、原則として「最高public」と「特定well・固定shiftへの依存が弱い別系統」に分ける。
+今後は次の3本に限定する。
 
-## 2026-08-02時点の状況
+1. 公開6点台Codeから、contact・固定well・submission fingerprintを除いても成立するcoreを1本だけ完全再現する。
+2. 7.474のSP45/learned二枝に対し、toe区間だけを対象にした低次元confidence gateを1本だけ作る。
+3. 1と2の双方がKaggleで改善した場合だけ、異系統固定weight ensembleを1本作る。
+
+6.213完全版は提出しない。ローカルで0.01〜0.10ft改善する既存artifact、field、matcherの再調整も行わない。
+
+## 現状と目標
 
 | 項目 | 状況 |
 | --- | --- |
-| 締切 | 2026-08-05 23:59 UTC、JSTでは2026-08-06 08:59 |
-| 残り時間 | 約3日11時間 |
+| 締切 | 2026-08-05 23:59 UTC、2026-08-06 08:59 JST |
 | 提出上限 | 1日5回 |
 | 採点待ち | 約5時間 |
 | 現行best | 7.474、rank 2,457前後 |
-| 参加チーム | 6,063前後 |
-| Bronze目安 | rank 600前後、score 6.417前後 |
-| Silver目安 | rank 300前後、score 6.371前後 |
-| Gold目安 | rank 10前後、score 5.308前後 |
+| 第一目標 | 6.417以下、rank 600前後の目安 |
+| 第二目標 | 6.371以下、rank 300前後の目安 |
+| stretch | 5.308以下、rank 10前後の目安 |
 
-順位とscore境界は2026-08-02 21:22 JSTのKaggle API snapshotであり、締切まで変動する。短期の第一目標を6.417以下、第二目標を6.371以下とする。5点台前半は、現行系の小幅調整ではなく独立した強い解法が必要なstretch goalとして扱う。
+score境界は2026-08-02 21:22 JSTのKaggle API snapshotであり変動する。残り約3日で5点台前半へ到達するには、7.474の小幅補正ではなく、公開済みの強い汎用coreを正確に移植する必要がある。
 
-## 方針転換の根拠
+## 過学習リスクの区分
 
-直近のローカル改善候補は、complete-well 7.625、field-nested 7.577、artifact centered 7.784となり、いずれも現行7.474を更新しなかった。最後のartifact候補は未見573井で0.0808ft改善を予測したのに、publicでは0.310悪化した。773井OOFはhidden 3井に対する補正方向を選ぶ指標として十分に校正されていない。
+### 失格 — final候補にしない
 
-したがって、今後ローカル評価は候補の破綻を止めるvetoとして使い、0.01〜0.10ftの差をKaggle改善の根拠にはしない。新規提出は、公開高得点コードの完全再現、または7.474から意図した1要素だけを変更した候補に限定する。
+- testと同じ`well_id`のtrain TVT・contact・formationをlookupする。
+- `000d7d20`、`00bbac68`、`00e12e8b`など公開well IDへ分岐する。
+- 14,151行、既知submission SHA、既知CSVを条件に予測を変える。
+- 特定wellへの固定shiftをpublic scoreで選ぶ。
+- public testのtrainコピーを真値としてweight、閾値、branchを選ぶ。
 
-## 最優先候補
+`New Strategy 6.213`完全版はcontact overrideで14,151/14,151行を置換し、その後1井へ固定branch shiftを加えるため、この区分に置く。公開スコアの再現性はあっても、汎用モデルの6.213とは解釈しない。
 
-### P0 — New Strategy 6.213 完全再現
+### 条件付き適格
 
-- 公開NotebookとローカルNotebookのSHA256はともに`4b4879a6d427422c127a300e09dc763b71ea5e7878eb3639941c75753a23933c`。
-- 45個のcode cell hashは45/45一致し、57セル全体のNotebookファイルもbyte一致する。
-- 同じ7 datasetを接続したprivate Kernelは完走済みで、最終`submission.csv`も公開Notebook出力とSHA256一致した。
-- ただしcompetition submissionは未実施。過去の7.539は完全版ではなく`generic_core` ablationである。
-- 次の提出ではコード、dataset version、GPU、internet設定を変えず、完全版をそのまま使う。
+- 公開artifactやpretrained modelを使うが、学習時OOFとtest inferenceのID契約を監査できる。
+- 観測済み`TVT_input` prefix、水平井GR、typewell、坑跡だけを使う。
+- target-freeなPF hedgeやuncertainty gateを使う。
+- 公開Code由来の固定parameterを使うが、public scoreを見たwell別再調整をしない。
 
-成功条件はpublic 6.30以下。6.30〜6.60なら有望だが、公開時点からの依存datasetやhidden runtime差を監査する。6.60超または例外ならパラメータ探索を始めず、まず入力version、実行ログ、最終分岐、出力統計の差を調べる。
+### 現行適格基準
 
-### P1 — 公開6.568系 source baseline
+7.474 Notebookは起動時に次を強制的に無効化している。
 
-公開`Public Score Frontier Lab`は、Q0522後処理を加える前のsource Notebookを6.568と記録している。現在公開されている派生は6.622で、特定wellへの追加shiftがむしろ悪化している。P1では追加probeを追わず、source SHAと最終出力を固定した6.568系を再現する。
+- `run_guarded_overlap_override=False`
+- `run_visible_prefix_calibration=False`
+- `run_bimodal_detector=False`
+- `run_vp_bimodal_guard=False`
+- `run_model_package_correction=False`
 
-これは6.213よりpublicが悪くても、単一の追加LB probeに依存しない比較対象として価値がある。ただしcontact overrideなど共通部品が多いため、完全な独立解法とはみなさない。
+残る構成はSP45 Ridge30/Selector70、`U=TVT+Z` projection d2/b0.50、learned trajectory 40%、target-free PF branch hedgeである。これを変更しないcontrolとする。
 
-### P2 — 別公開系の完全再現を1本だけ
+## 実験P0 — 公開6点台Codeのclean-core監査
 
-候補は公開6.710の`ROGII Codex Exact Public`、6.858の`Another Approach`、6.928の`MHA200`。コードと最終予測の相関を監査し、P0/P1との差が最も大きい1本だけを選ぶ。同じartifact・同じcontact出力の別名Notebookなら提出しない。
+対象は公開表示6.568、6.710、6.858、6.928の4系統。Notebook title scoreではなくcode、dataset、最終出力を比較する。
 
-### P3 — 固定weight blend
+### 監査項目
 
-P0とP2の両方が6.45以下で、hidden-dynamic Notebook内で両者を再現でき、予測差に十分な分散がある場合だけ検討する。weight探索は0.75/0.25または0.50/0.50の最大2案とし、提出は1案だけにする。特定well別weight、定数shift、public結果を見た多段探索は禁止する。
+1. 全code cellを抽出し、失格条件のwell ID、contact、row count、SHA、固定shiftを検索する。
+2. 失格層を無効化した時点の最終CSVを生成する。
+3. 7.474とのRMS差、相関、well別差、各componentの寄与を保存する。
+4. 7.474と同じhidden-dynamic runtimeで完走できるか確認する。
+5. clean coreに公開された実スコアがあるか、推測値ではなくsubmission履歴で確認する。
 
-## 提出スケジュール
+### 昇格
 
-### Wave 1 — 直ちに準備、次の明示指示で提出
+- clean core単独の公開実績が7.20以下で、sourceを完全再現できる候補を最優先する。
+- 複数候補が同じcontact/artifact pipelineなら、最もsource provenanceが明確な1本だけ残す。
+- 4系統すべてが失格層を除くと7.474相当または悪化なら、公開Code forkは2026-08-03中に終了する。
 
-1. P0のNotebook、metadata、dataset source、SHAを再監査する。
-2. P0完全版をcompetition submissionする。
-3. 約5時間の採点待ちの間にP1を再現する。P0結果に依存する改造版は提出しない。
+公開スコア付きclean coreの完全再現は、ローカルOOFとの絶対値対応が取れなくても1回だけ提出できる。ただしsourceから複数箇所を変更した候補にはこの例外を使わない。
 
-### Wave 2 — P0採点後
+## 実験P1 — toe-aware continuous confidence gate
 
-- P0が6.30以下: 新incumbentとして凍結。同系統の微調整は最大1本にし、P1またはP2へ移る。
-- P0が6.30〜6.60: P1を提出し、公開版との差が実行差か後処理差かを分離する。
-- P0が6.60超または失敗: 同系統の探索を停止。差分監査とP2へ切り替える。
+公開solution noteでは、遠いtoe区間が二乗誤差の大半を占め、離散的な候補選択よりcontinuous regressionと候補間disagreementが有効と報告されている。この汎用部分だけを7.474へ加える。
+
+### 固定する設計
+
+- baseは7.474のSP45 60%＋learned 40%＋PF hedge。
+- 変更するのはSP45/learnedの混合率だけで、候補軌道を増やさない。
+- 補正対象はsuffix後半40%のtoe区間。heel側は7.474をそのまま使う。
+- 入力はnormalized MD、SP45/learned差、PF spread、prefix GR fit誤差、GR alignment sharpness、軌道curvatureだけ。
+- 低次元Ridgeでcontinuousな混合率補正を予測し、基準weightからの変化を±0.10、最終移動を±1.5ftに制限する。
+- outer well-group CVのvalidation井は、model fit、scale、clip、採否閾値の選択から完全に外す。
+- parameter gridは正則化3値、shrink 3値まで。特徴追加やfield別modelへ広げない。
+
+### ローカル昇格条件
+
+直近3候補では、ローカル予測とpublic差分が0.18〜0.39ftずれた。従来の0.08ft gateは弱すぎるため、novel candidateは次をすべて満たす場合だけ提出する。
+
+1. repeated well-group CVのpooled RMSEを0.25ft以上改善する。
+2. 50,000 well bootstrapの改善p01が+0.05ft以上。
+3. 事前固定したlegacy splitすべてで改善し、field別最大悪化が0.03ft以下。
+4. toe後半40%で0.30ft以上改善し、heel側を0.02ft以上悪化させない。
+5. artifact/HGB/Ridgeの3 proxyすべてで0.10ft以上改善する。
+6. hidden入力で補正符号・scaleがOOF範囲外にならず、p95移動1.0ft以下、最大1.5ft以下。
+
+0.10〜0.25ftの改善は研究結果として記録するが、締切前の提出候補にはしない。
+
+## 実験P2 — continuous matcher公開解法の再現
+
+P0監査でcontact-freeな7.2以下が見つからず、P1を2026-08-03中に完了できた場合だけ着手する。
+
+- 公開solution noteのcontinuous matcher＋boosted combinerを、利用可能なsourceがある場合だけ再現する。
+- 実装時間を6時間でtimeboxする。
+- raw Viterbiは既にOOF 32.95で失敗しているため再実装しない。
+- spatial cluster/geology補正は公開失敗報告と既存ローカル結果の両方が否定的なので使わない。
+- source不足で新規architecture設計が必要になった時点で中止する。
+
+P2も失格条件とP1のローカル昇格条件を満たす必要がある。
+
+## 実験P3 — 異系統ensemble
+
+次の条件をすべて満たす場合だけ1本作る。
+
+- P0/P1/P2のうち2本がKaggleで7.474を0.05以上改善している。
+- 2本の予測差RMSが0.5ft以上あり、単なる乱数違いではない。
+- 両Notebookを同じhidden runtimeで動的に再現できる。
+- weightは0.75/0.25と0.50/0.50だけ比較し、提出は1本だけ。
+
+well別weight、公開scoreに合わせたglobal shift、3本以上のblendは行わない。
+
+## 日程と提出枠
+
+### 2026-08-02 JST
+
+- 7.474の適格性監査を確定する。
+- P0の4候補を静的監査し、clean core候補を1本へ絞る。
+- Kaggle提出はしない。
+
+### 2026-08-03 JST
+
+- 午前: clean public coreが存在すればS1として1本提出する。
+- 採点待ち: P1を実装・nested CV評価する。
+- S1の結果が7.474より悪ければ、その公開familyの派生を停止する。
+- P1が全gateを通った場合だけ、夕方までにS2として提出する。
 
 ### 2026-08-04 JST
 
-- P1/P2のうち、sourceが完全に監査できた候補を最大2本まで評価する。
-- P0/P2が双方6.45以下ならP3を1本だけ構築する。
-- 同じ軸で2回連続悪化したら、その軸は終了する。
+- P0/P1の結果を確認する。
+- 改善候補がある場合だけP2またはP3を最大1本提出する。
+- 18:00 JSTまでに7.474を上回る適格候補がなければ、新規model実験を終了する。
 
 ### 2026-08-05 JST
 
-- 新規アーキテクチャ、広いhyperparameter sweep、重い773井学習を停止する。
-- 22:00 JSTまでに最後の高期待候補を提出する。
-- 約5時間の採点遅延を考え、2026-08-06 03:00 JST以降は原則として新規提出しない。
+- 新規architectureとparameter探索は禁止。
+- 実行エラー修正、完全再現、または既に改善した2候補のP3だけを扱う。
+- scoreが締切前に返るよう、最後の新規提出は22:00 JSTまでとする。
 
 ### 2026-08-06 JST
 
-- 07:30までに全submissionのstatus、score、Notebook version、出力監査を確定する。
-- 08:00までにfinal 2 submissionsを選択する。
-- 締切08:59の直前操作を避け、選択状態を画面とAPIの両方で確認する。
+- 03:00以降は新規提出しない。
+- 07:30までに全候補のscore、risk区分、Notebook version、出力SHAを確定する。
+- 08:00までにfinal 2 submissionsを選択し、08:59直前の操作を避ける。
 
-## 提出枠の配分
+1日5枠を使い切らない。1 waveは原則1本、1日最大2本とし、常にエラー再実行用の枠を残す。
 
-1日5枠を使い切ることを目標にしない。採点が約5時間かかるため、意思決定可能なのは実質1日2 waveである。
+## public結果による判断
 
-- 1 waveあたり原則1本。
-- 公開スコア付きの完全再現で、互いに独立して結果待ちできる候補だけ同時に最大2本。
-- 常に1日2枠を実行失敗・締切前の再提出用として残す。
-- 結果待ち候補のscoreに依存する派生版は先回りして提出しない。
+| 結果 | 判断 |
+| --- | --- |
+| 7.20以下かつ適格 | 新incumbent。別familyへ移り、同系統の微調整はしない |
+| 7.20〜7.42 | 改善候補として保持。独立候補またはensembleを優先 |
+| 7.42〜7.52 | 実質同等。乱数差を疑い、派生提出を止める |
+| 7.52超 | familyを停止し、原因監査だけ記録 |
+| 実行失敗 | 同一sourceの修正再実行は1回まで |
 
-## 候補の昇格条件
+## 最終2枠
 
-各candidateは、提出前に次をすべて記録する。
+候補を次の順で選ぶ。
 
-1. parent Notebook URL、scriptVersionId、Notebook SHA256、全dataset source/version。
-2. parentから変更したcode cellと、意図した変更を1項目で説明。
-3. public runtimeでも使える入力だけを参照し、ID、行数、finite、重複を検査。
-4. parentとの差について、全体RMS、mean、p50/p95/max、well別件数を保存。
-5. 最終`submission.csv`のSHA256とKernel versionを保存。
+1. 失格条件を含まない候補のうち最高public。
+2. 1と異なる予測familyで、失格条件を含まない最高候補。
 
-通常候補は「一変更のみ」「ローカルで全splitを悪化させない」「補正方向がhidden入力統計だけで反転していない」を必須とする。公開高得点Notebookの完全再現は、ローカルOOFを再現できない場合でもsource一致を根拠に1回だけ例外昇格できる。
+6.213完全版はfinal候補から除外する。新規候補が7.474を更新しなければ、既存7.474とgeneric core 7.539をfallbackとする。2本目のpublic scoreが少し悪くても、同一familyの乱数違いより構造的に異なる候補を優先する。
 
-## 即時停止する実験
+## 次の改善ループ
 
-- artifact OOFを根拠にした補正、all12/all13 meta、field/nested curveの再調整。
-- 0.01〜0.10ftのlocal差だけを根拠にしたKaggle提出。
-- 特定well IDへの定数shiftを複数値試すLB probe。
-- 1回の提出で複数componentを同時変更する実験。
-- 773井の重い再学習や、新規deep modelのゼロからの構築。
-- 公開Notebookのタイトルscoreだけを信じ、code/dataset/output provenanceを確認しないfork。
-
-## 最終2枠の選択
-
-原則は次の組合せとする。
-
-1. 締切時点の最高public score。
-2. 1とは異なる予測系統で、特定well shift・contact override・submission fingerprintへの依存がより弱い最高候補。
-
-P0が6.213近辺を再現しても、private耐性は未証明なので2枠目を同系統の0.01改善版にはしない。P0/P1/P2がすべて失敗した場合は、既存の7.474と7.539をfallbackとして保持する。
-
-## 次の具体的アクション
-
-次の改善ループでは新規学習を始めず、P0の提出前監査を行う。監査が一致すれば、ユーザーの明示指示を受けて`ROGII New Strategy 6.213 Reproduction`をcompetitionへ提出する。その採点待ちの5時間をP1 source baselineの再現に使う。
+最初にP0のstatic sanitizer tableを作る。4つの公開Notebookについて、contact、固定well、row/SHA分岐、固定shift、clean-core出力、7.474との相関を同一表へまとめる。その結果から1本だけ実装対象を選び、同時にP1の特徴とCV foldをコード上で事前固定する。
