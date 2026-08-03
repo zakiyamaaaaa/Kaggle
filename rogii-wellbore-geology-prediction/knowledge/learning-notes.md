@@ -1034,3 +1034,13 @@ Discussionでは、GRに回転由来の周期アーティファクトがあり�
 - 2026-08-04 18:00 JSTまでに適格な7.474超えがなければ新規model実験を停止する。最終2枠は
   contamination-freeな最高publicと異familyの最高候補を選び、6.213完全版は除外する。
 - 改訂後の正本は[`knowledge/deadline-strategy-2026-08-02.md`](deadline-strategy-2026-08-02.md)。
+
+## 2026-08-03 締切前P0/P1監査と井戸単位two-branch meta
+
+- 公開6点台Codeを再取得して静的監査した。[ROGII Codex Exact Public 6.768 V1](https://www.kaggle.com/code/yasut0ra/rogii-codex-exact-public-6-768-v1)、[ROGII Public Frontier Lab](https://www.kaggle.com/code/prvsiyan/rogii-public-score-frontier-lab-visuals)、[ROGII Stacked Ensemble](https://www.kaggle.com/code/raunakdey07/rogii-stacked-ensemble)はいずれも、contact/overlap、公開well固有の継続、固定shift、またはそれらを前提にした層を含む。失格層を除いたclean-coreだけで7.474を更新する根拠は得られなかった。公開6点台をそのままhidden候補へ移植しない方針を維持する。
+- `scripts/toe_confidence_gate.py`はtarget-free特徴の5-fold well-group OOFで、7.474 proxy相当の基準9.42305に対して最良9.39797（+0.02508）、toeは11.87834→11.82858（+0.04976）。保守shrink 0.5では改善+0.01841、bootstrap q05は+0.00314だったが、deadline-strategyのeffect gate +0.25ftに未達で棄却した。
+- `scripts/toe_hgb_combiner.py`は候補間disagreementをHGBへ入力したが、5 outer foldすべてでraw補正が悪化した。最良clip候補でも9.42305→9.42098（+0.00206）、bootstrap q05=-0.00674で、行単位combinerは採用しない。
+- 行単位ではなく井戸を1サンプルとし、SP45 60%＋legal package branch 40%のblend移動量を予測する `scripts/well_level_two_branch_meta.py` を追加した。単一seedでは改善が+0.05〜+0.11ftで再現したが、モデル・seed依存が残った。
+- `scripts/well_level_two_branch_crossfit.py`の5 seed×5 fold repeated whole-well cross-fitでは、Ridge clip 0.15が9.42305→9.33494（+0.08811）、bootstrap q05=+0.00336、Ridge clip 0.10が+0.07550、q05=+0.01504。target-free特徴、validation well除外、same-well contactなしを監査した。ただし効果は0.09ft級で、提出gate +0.25ftを満たさない。
+- `scripts/apply_well_level_two_branch_test.py`で7.474生成経路へfit-all補正を接続し、public test 3井を監査した。clip 0.15は補正平均-0.33456ft、p95 1.59096ftで、7.625へ悪化したcomplete-well候補のactive補正平均-0.30366ftと同じdomain-shift警告になったため不採用。clip 0.05まで縮小すると平均-0.11152ft、p95 0.53032ftだが、local改善は約+0.043ftであり、Kaggle提出は行わない。
+- 本ループの結論は、現行Kaggle best **7.474**を維持し、新しいsubmissionは作成しない。ローカル結果だけを根拠に0.1ft未満の補正を提出すると、過去の7.625/7.784と同じ反転リスクがある。実装・監査結果は `outputs/runs/toe_confidence_gate_20260803_summary.json`、`outputs/runs/toe_hgb_combiner_20260803_summary.json`、`outputs/runs/well_level_two_branch_crossfit_20260803_summary.json`、`outputs/runs/well_level_two_branch_ridge_clip015_test_audit.json` に保存した。
