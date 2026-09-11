@@ -4,6 +4,8 @@
 
 [JED Framework](https://mbhatt1.github.io/competitionscratch/)（Jailbreak–Exploit–Defend）の **Red Team（攻撃側）** コンペ。ツールを使える AI エージェントに対し、多段プロンプトで危険行動を誘発し、リーダーボード得点を競います。
 
+今回の最終結果と上位Solutionから得た知見は、[振り返り](docs/retrospective-2026-09-11.md) に記録しています。
+
 > 公式ページ: [Overview > Description](https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks/overview/description)
 
 ## コンペ概要（公式 Description 要約）
