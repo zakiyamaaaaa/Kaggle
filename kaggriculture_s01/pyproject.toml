@@ -1,0 +1,30 @@
+[project]
+name = "kaggriculture-s01"
+version = "0.1.0"
+description = "Kaggriculture S01 agent workspace"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "kaggle-environments==1.32.7",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.12,<0.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kaggriculture_agent"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
