@@ -80,7 +80,6 @@ jobs:
             exit 0
           fi
           python -m pip install --disable-pip-version-check pytest
-          export PYTHONPATH="kaggriculture_s01/src:kaggriculture_s01:${PYTHONPATH:-}"
           python -m pytest -q
 
       - name: Check whitespace errors

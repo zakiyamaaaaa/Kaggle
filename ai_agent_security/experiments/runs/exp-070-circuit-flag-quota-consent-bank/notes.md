@@ -57,4 +57,4 @@ python3 scripts/build_exp_notebook.py exp-070-circuit-flag-quota-consent-bank --
 
 - cron 実行で `exp-070` の提出バンドルと replay bank（1998 件）を再確認し、自己検証を完了。
 - `py_compile` / `aicomp validate` / `validate_submission_bundle.py kaggle-push/exp-070` を再実行し、すべて成功。
-- リポジトリ全体の pytest が `kaggriculture_s01` の `PYTHONPATH` 未設定で落ちるため、Python CI に `kaggriculture_s01/src` を追加（exp-070 本体の変更ではないが、main 向け PR の CI 通過に必要）。
+- リポジトリルートからの pytest 収集で `kaggriculture_s01` の import が失敗するため、`kaggriculture_s01/tests/conftest.py` で `src` を `sys.path` に追加（`pull_request_target` は main 側 workflow を使うため、CI 定義変更だけでは PR 上のチェックは直らない）。
