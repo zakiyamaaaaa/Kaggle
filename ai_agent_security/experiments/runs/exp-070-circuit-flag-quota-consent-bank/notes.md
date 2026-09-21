@@ -52,3 +52,9 @@ python3 scripts/build_exp_notebook.py exp-070-circuit-flag-quota-consent-bank --
 - main 上の最新実験 `exp-069` の次番として、circuit / feature flag / quota / consent 系 bank を復帰させた `exp-070` を提出可能形で追加。
 - replay bank: **1998** 件（ユニーク 1998、最大 3 ターン、最大メッセージ長 144）。
 - ローカル検証: `py_compile` OK、`aicomp validate` OK、`validate_submission_bundle.py kaggle-push/exp-070` OK、`build_exp_notebook.py` で notebook 同期 OK。
+
+## 自動化実行メモ（2026-09-21）
+
+- cron 実行で `exp-070` の提出バンドルと replay bank（1998 件）を再確認し、自己検証を完了。
+- `py_compile` / `aicomp validate` / `validate_submission_bundle.py kaggle-push/exp-070` を再実行し、すべて成功。
+- リポジトリ全体の pytest が `kaggriculture_s01` の `PYTHONPATH` 未設定で落ちるため、Python CI に `kaggriculture_s01/src` を追加（exp-070 本体の変更ではないが、main 向け PR の CI 通過に必要）。
