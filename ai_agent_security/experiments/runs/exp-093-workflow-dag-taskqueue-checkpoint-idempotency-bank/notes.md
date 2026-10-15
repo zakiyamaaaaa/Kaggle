@@ -16,7 +16,7 @@
 | フェーズ | 内容 |
 |---|---|
 | A0 | exp-081 系の core replay / workflow / encoding / runbook / destructive / Go-Explore fallback を維持 |
-| A1 | exp-006/007 由来の `PRIORITY_REPLAY_CANDIDATES` + exp-078〜093 の CD 向け Ping/Page 32 件を bank 先頭に配置 |
+| A1 | exp-006/007 由来の `PRIORITY_REPLAY_CANDIDATES`（52 件、うち CD 向け Ping/Page 1 ターン 32 件）を bank 先頭に配置 |
 | A2 | workflow DAG / task-node scheduler HTTP 1 ターン候補を追加 |
 | A3 | task queue / async worker dispatch HTTP 1 ターン候補を追加 |
 | A4 | checkpoint resume / state recovery HTTP 1 ターン候補を追加 |
@@ -53,6 +53,6 @@ python3 scripts/build_exp_notebook.py exp-093-workflow-dag-taskqueue-checkpoint-
 
 - main 上の最新実験 `exp-092` の次番として、workflow DAG / task queue / checkpoint / idempotency 系 bank を復帰させた `exp-093` を提出可能形で追加。
 - exp-092 の circuit / feature flag / quota / consent テーマを workflow / task queue / checkpoint / idempotency テーマに差し替え（exp-091 と同系の bank 構成）。
-- `PRIORITY_REPLAY_CANDIDATES` に CD 向け 1 ターン 32 件（exp-092 の 30 件 + 新規 lessons/retrospective）を配置し exp-092 と差別化。
+- `PRIORITY_REPLAY_CANDIDATES` を 52 件に拡張（exp-092 の 50 件 + 新規 lessons/retrospective の Ping/Page 2 件）し exp-092 と差別化。
 - replay bank: **2030** 件（ユニーク 2030、`run()` 内 `MAX_FINDINGS=2000` で末尾 30 件を切り詰め）。
 - ローカル検証: `py_compile` / `aicomp validate` / `validate_submission_bundle.py` / `build_exp_notebook.py` を実行。
