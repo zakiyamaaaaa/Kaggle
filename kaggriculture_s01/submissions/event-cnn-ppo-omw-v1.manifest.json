@@ -1,0 +1,38 @@
+{
+  "competition": "kaggriculture",
+  "policy": "event_cnn_ppo_omw_v1",
+  "parent": "one_more_wheat_with_net_stock_sellnow_v2",
+  "status": "built_not_submitted",
+  "model_sha256": "7a589183b30c0b114858702a0567aa6130cdf54a4e154882b289e4567c9b799f",
+  "main_sha256": "ef5f967267851077b1ecae740178bce50ab65d5e6da7c7c247762ec1196df7fb",
+  "archive_sha256": "34ba7888a82554033849c01354933d57d9fac28d7ecee50e7cd4f9ebf855a16d",
+  "archive_size_bytes": 647282,
+  "archive_members": [
+    "main.py"
+  ],
+  "verification": {
+    "seed": 976777,
+    "seats": [
+      {
+        "seat": 0,
+        "rewards": [
+          98462.0,
+          97011.0
+        ],
+        "actions": 719
+      },
+      {
+        "seat": 1,
+        "rewards": [
+          97011.0,
+          98462.0
+        ],
+        "actions": 719
+      }
+    ],
+    "archive_members": [
+      "main.py"
+    ],
+    "action_parity": true
+  }
+}

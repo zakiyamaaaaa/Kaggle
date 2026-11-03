@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "agent": "omw_base_foi_eval",
+    "opponent": "public_salem",
+    "games": 4,
+    "completed": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "mean_reward": 94241.5,
+    "mean_margin": 30526.0
+  },
+  "games": [
+    {
+      "seed": 962100,
+      "seat": 0,
+      "status": "completed",
+      "reward": 103783.0,
+      "opponent_reward": 70034.0,
+      "margin": 33749.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 962100,
+      "seat": 1,
+      "status": "completed",
+      "reward": 103783.0,
+      "opponent_reward": 70034.0,
+      "margin": 33749.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 962101,
+      "seat": 0,
+      "status": "completed",
+      "reward": 84700.0,
+      "opponent_reward": 57397.0,
+      "margin": 27303.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 962101,
+      "seat": 1,
+      "status": "completed",
+      "reward": 84700.0,
+      "opponent_reward": 57397.0,
+      "margin": 27303.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    }
+  ]
+}

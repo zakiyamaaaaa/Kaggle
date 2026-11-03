@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "members": {
+    "safe_rule_anchor": {
+      "agent": "baseline",
+      "family": "rule_baseline",
+      "archetype": "cash_preservation",
+      "role": "anchor",
+      "weight": 1.0,
+      "frozen": false
+    },
+    "salem_2900_frozen": {
+      "agent": "public_salem",
+      "family": "salem_replay",
+      "archetype": "market_tape",
+      "role": "frozen_checkpoint",
+      "weight": 1.5,
+      "frozen": true,
+      "artifact": "../submissions/public-salem-2900/main.py",
+      "sha256": "3b1cb91feb451b44d075d853f9211be216aea7f85df09d91fa232e4e9dff8fe9"
+    },
+    "independent_workers_v2_frozen": {
+      "agent": "independent_workers",
+      "family": "independent_rule",
+      "archetype": "worker_expansion",
+      "role": "frozen_checkpoint",
+      "weight": 1.5,
+      "frozen": true,
+      "artifact": "../submissions/independent-workers-v2.zip",
+      "sha256": "5007bc2726c5205342744a14d6638944007e7b0a84400e86c2190bad1a27bef8"
+    },
+    "crop_specialist": {
+      "agent": "independent_crop_v1",
+      "family": "independent_rule",
+      "archetype": "crop_specialist",
+      "role": "specialist",
+      "weight": 1.0,
+      "frozen": false
+    },
+    "market_front_runner": {
+      "agent": "salem_front_wheat_fertilizer",
+      "family": "salem_replay",
+      "archetype": "market_front_run",
+      "role": "specialist",
+      "weight": 1.0,
+      "frozen": false
+    },
+    "liquidation_incumbent": {
+      "agent": "salem_liquidate_29",
+      "family": "salem_replay",
+      "archetype": "terminal_liquidation",
+      "role": "incumbent",
+      "weight": 2.0,
+      "frozen": false
+    }
+  },
+  "evaluation_tiers": {
+    "development": {"seeds": 32, "seed_start": 30000},
+    "adoption": {"seeds": 128, "seed_start": 40000},
+    "final": {"seeds": 256, "seed_start": 60000}
+  }
+}

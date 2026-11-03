@@ -1,0 +1,364 @@
+{
+  "schema": 1,
+  "manifest": {
+    "schema": 1,
+    "policy": "event_cnn_ppo_omw_v1",
+    "reference_policy": "fixed",
+    "reference_description": "event wrapper with OMW-002 full action (choice=full)",
+    "model": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v2_feature_schema/bc-only-8seed/bc_model.json",
+    "seed_start": 991000,
+    "seed_count": 8,
+    "seats": [
+      0,
+      1
+    ],
+    "policies": [
+      "learned",
+      "fixed"
+    ],
+    "opponents": [
+      "omw",
+      "peak",
+      "triad",
+      "salem",
+      "early_milk",
+      "baseline"
+    ],
+    "ablation_opponents": [
+      "omw",
+      "peak",
+      "triad"
+    ],
+    "games": 192,
+    "workers": 8,
+    "gate_parameters": {
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 1.0
+    },
+    "fingerprints": {
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py": "eb17d2e917c49c5567c3a49ef631edd0bc26d1c17c765ea6027aaccc294e7131",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/main.py": "937ffef7b3892795d02add07d7e47059a17e88eb599e9d32d0ddd410b7a6e669",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v2_feature_schema/bc-only-8seed/bc_model.json": "c8655590e69b1242f931a36622860cc7a25feecb3ca6087717e75d0bd7481a03",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-net-stock-sellnow-v2/main.py": "433d72487ba6d825233f43dbe5a08870c922988f2ca4528b31d30be3ff04b7ed",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/event_cnn_ppo.py": "383e1bf493a752dc307d65e26d469c8a90afec5e26a5ca0dce86485cb30f212e",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/cnn_ppo.py": "1071f6d71eff8ae8ff10c58872c111cedf2e0b95148290d21c2c1a5c6b46e4a7",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/local_arena.py": "cfbbc9b6fe3b1fa221ef5f109646c1e1b171d14d252fec1061da6b1c85805cfb",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/registry.py": "6a89f2e31bc95bf2da065995899adb5b2b0dec3f68a5f41fc77774390c2fedc1",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/submissions/public-salem-2900/main.py": "3b1cb91feb451b44d075d853f9211be216aea7f85df09d91fa232e4e9dff8fe9",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/one-more-wheat/main.py": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/peak2950/main.py": "d5460fc2e5488e0a340f0e4e795f2709c48b58cff7c204ced3821a4c7dae4555",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/triad-counter/main.py": "4f3ca95dd12d9a94b03339999d8803c155f450a8d3956636f050643301fcc5dd"
+    }
+  },
+  "errors": 0,
+  "status": "completed",
+  "policies": {
+    "learned": {
+      "opponents": {
+        "omw": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 10,
+          "draws": 0,
+          "losses": 6,
+          "score": 0.625,
+          "mean_margin": 266.625,
+          "mean_reward": 102192.875,
+          "mean_opponent_reward": 101926.25,
+          "action_counts": {
+            "skip": 474,
+            "half": 154,
+            "full": 86
+          }
+        },
+        "peak": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 14,
+          "draws": 0,
+          "losses": 2,
+          "score": 0.875,
+          "mean_margin": 961.5,
+          "mean_reward": 102119.0,
+          "mean_opponent_reward": 101157.5,
+          "action_counts": {
+            "skip": 470,
+            "half": 140,
+            "full": 84
+          }
+        },
+        "triad": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 14,
+          "draws": 0,
+          "losses": 2,
+          "score": 0.875,
+          "mean_margin": 1012.5,
+          "mean_reward": 102140.5,
+          "mean_opponent_reward": 101128.0,
+          "action_counts": {
+            "skip": 470,
+            "half": 140,
+            "full": 84
+          }
+        },
+        "salem": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 28161.9375,
+          "mean_reward": 127796.25,
+          "mean_opponent_reward": 99634.3125,
+          "action_counts": {
+            "skip": 818,
+            "half": 193,
+            "full": 40
+          }
+        },
+        "early_milk": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 28489.25,
+          "mean_reward": 127775.625,
+          "mean_opponent_reward": 99286.375,
+          "action_counts": {
+            "skip": 814,
+            "half": 193,
+            "full": 40
+          }
+        },
+        "baseline": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 169941.3125,
+          "mean_reward": 173518.375,
+          "mean_opponent_reward": 3577.0625,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 0
+          }
+        }
+      },
+      "aggregate": {
+        "games": 96,
+        "completed": 96,
+        "errors": 0,
+        "wins": 86,
+        "draws": 0,
+        "losses": 10,
+        "score": 0.8958333333333334,
+        "mean_margin": 38138.854166666664,
+        "mean_reward": 122590.4375,
+        "mean_opponent_reward": 84451.58333333333,
+        "action_counts": {
+          "skip": 3046,
+          "half": 820,
+          "full": 334
+        }
+      }
+    },
+    "fixed": {
+      "opponents": {
+        "omw": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 12,
+          "draws": 0,
+          "losses": 4,
+          "score": 0.75,
+          "mean_margin": 374.125,
+          "mean_reward": 102190.125,
+          "mean_opponent_reward": 101816.0,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 232
+          }
+        },
+        "peak": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 916.125,
+          "mean_reward": 102181.875,
+          "mean_opponent_reward": 101265.75,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 216
+          }
+        },
+        "triad": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 959.875,
+          "mean_reward": 102212.5,
+          "mean_opponent_reward": 101252.625,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 216
+          }
+        },
+        "salem": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 28185.8125,
+          "mean_reward": 127795.75,
+          "mean_opponent_reward": 99609.9375,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 239
+          }
+        },
+        "early_milk": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 28493.5625,
+          "mean_reward": 127763.25,
+          "mean_opponent_reward": 99269.6875,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 239
+          }
+        },
+        "baseline": {
+          "games": 16,
+          "completed": 16,
+          "errors": 0,
+          "wins": 16,
+          "draws": 0,
+          "losses": 0,
+          "score": 1.0,
+          "mean_margin": 169941.3125,
+          "mean_reward": 173518.375,
+          "mean_opponent_reward": 3577.0625,
+          "action_counts": {
+            "skip": 0,
+            "half": 0,
+            "full": 0
+          }
+        }
+      },
+      "aggregate": {
+        "games": 96,
+        "completed": 96,
+        "errors": 0,
+        "wins": 92,
+        "draws": 0,
+        "losses": 4,
+        "score": 0.9583333333333334,
+        "mean_margin": 38145.135416666664,
+        "mean_reward": 122610.3125,
+        "mean_opponent_reward": 84465.17708333333,
+        "action_counts": {
+          "skip": 0,
+          "half": 0,
+          "full": 1142
+        }
+      }
+    }
+  },
+  "paired_vs_fixed": {
+    "learned": {
+      "reference": "fixed",
+      "opponents": {
+        "omw": {
+          "score_delta": -0.125,
+          "score_delta_ci95": [
+            -0.5,
+            0.25
+          ],
+          "seeds": 8
+        },
+        "peak": {
+          "score_delta": -0.125,
+          "score_delta_ci95": [
+            -0.375,
+            0.0
+          ],
+          "seeds": 8
+        },
+        "triad": {
+          "score_delta": -0.125,
+          "score_delta_ci95": [
+            -0.375,
+            0.0
+          ],
+          "seeds": 8
+        },
+        "salem": {
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 8
+        },
+        "early_milk": {
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 8
+        },
+        "baseline": {
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 8
+        }
+      },
+      "score_delta": -0.0625,
+      "score_delta_ci95": [
+        -0.14583333333333334,
+        0.020833333333333332
+      ],
+      "seeds": 48
+    }
+  }
+}

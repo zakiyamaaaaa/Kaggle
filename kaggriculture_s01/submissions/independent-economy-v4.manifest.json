@@ -1,0 +1,30 @@
+{
+  "policy": "economy_mix50",
+  "submission_status": "not_submitted",
+  "source_sha256": "ffb45556d51bd2ebe0a59bffb1246795eea83e77b183172c2f45d60599b2177f",
+  "zip_sha256": "c13e88c9c87e5d650c294f2ef1eb17061cee5b36b82e4f3e2d48de400c014dcb",
+  "verification": {
+    "seed": 138100,
+    "bundle_checks": [
+      {
+        "seat": 0,
+        "actions_equal": 719,
+        "rewards": [
+          80546.0,
+          151315.0
+        ],
+        "status": "completed"
+      },
+      {
+        "seat": 1,
+        "actions_equal": 719,
+        "rewards": [
+          151315.0,
+          80546.0
+        ],
+        "status": "completed"
+      }
+    ],
+    "official_fast_all_steps_equal": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "competition": "kaggriculture",
+  "policy": "omw_observed_value_front_run_v2",
+  "parent": "one_more_wheat_public_exact",
+  "parent_main_sha256": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+  "main_sha256": "a99f93407a39dc87c4a8785c8434a03975703800320b764d69af0366f7d290b5",
+  "archive_sha256": "630e368cc5a9602f6666634f3e2c854bd3d69fa76984528cb9a301a6e9b1b874",
+  "archive_members": [
+    "main.py"
+  ],
+  "local_source": "experiments/omw-observed-value-front-run-v2/main.py",
+  "status": "complete",
+  "submission_id": 56410705,
+  "submitted_at_utc": "2026-09-21T01:46:01.530000",
+  "public_score_snapshot_2026_09_28": 2716.5,
+  "score_interpretation": "live rating snapshot; compare only with episode count and observation time"
+}

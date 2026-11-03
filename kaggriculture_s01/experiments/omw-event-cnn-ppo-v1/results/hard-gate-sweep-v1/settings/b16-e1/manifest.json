@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "policy": "event_cnn_ppo_omw_v1",
+  "reference_policy": "fixed",
+  "reference_description": "event wrapper with OMW-002 full action (choice=full)",
+  "model": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+  "seed_start": 988000,
+  "seed_count": 4,
+  "seats": [
+    0,
+    1
+  ],
+  "policies": [
+    "learned",
+    "fixed"
+  ],
+  "opponents": [
+    "omw",
+    "peak",
+    "triad"
+  ],
+  "ablation_opponents": [
+    "omw",
+    "peak",
+    "triad"
+  ],
+  "games": 48,
+  "workers": 8,
+  "gate_parameters": {
+    "OMW_NET_SN_BUFFER": 16,
+    "OMW_NET_SN_EXPOSURE": 1.0
+  },
+  "fingerprints": {
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py": "eb17d2e917c49c5567c3a49ef631edd0bc26d1c17c765ea6027aaccc294e7131",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/main.py": "937ffef7b3892795d02add07d7e47059a17e88eb599e9d32d0ddd410b7a6e669",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json": "7a589183b30c0b114858702a0567aa6130cdf54a4e154882b289e4567c9b799f",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-net-stock-sellnow-v2/main.py": "433d72487ba6d825233f43dbe5a08870c922988f2ca4528b31d30be3ff04b7ed",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/event_cnn_ppo.py": "18b3c7049c20a83fc1f8245ca95965e89a10bd1699f7cc9772d0fdb22e76b4aa",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/cnn_ppo.py": "1071f6d71eff8ae8ff10c58872c111cedf2e0b95148290d21c2c1a5c6b46e4a7",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/local_arena.py": "cfbbc9b6fe3b1fa221ef5f109646c1e1b171d14d252fec1061da6b1c85805cfb",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/registry.py": "6a89f2e31bc95bf2da065995899adb5b2b0dec3f68a5f41fc77774390c2fedc1",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/submissions/public-salem-2900/main.py": "3b1cb91feb451b44d075d853f9211be216aea7f85df09d91fa232e4e9dff8fe9",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/one-more-wheat/main.py": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/peak2950/main.py": "d5460fc2e5488e0a340f0e4e795f2709c48b58cff7c204ced3821a4c7dae4555",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/triad-counter/main.py": "4f3ca95dd12d9a94b03339999d8803c155f450a8d3956636f050643301fcc5dd"
+  }
+}

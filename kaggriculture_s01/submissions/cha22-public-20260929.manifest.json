@@ -1,0 +1,17 @@
+{
+  "competition": "kaggriculture",
+  "source_notebook": "abhinav0370/cha22-agent",
+  "original_source_sha256": "127ed3e62988c0474d386db6527ae8ca9de9bb1fe7004128557ddef67126c652",
+  "main_sha256": "b5cf8719ad7afd37dbe15545f4fb927d3aedb97e657405050365a938f99f5590",
+  "archive_sha256": "79375df2b6a2db18a027033a8fd54020cc205a97f68a467927516bdacba76c87",
+  "archive_members": [
+    "LICENSE.txt",
+    "NOTICE.txt",
+    "main.py"
+  ],
+  "status": "complete",
+  "submission_id": 56654513,
+  "submitted_at_utc": "2026-09-28T23:24:00.560000",
+  "validation_episode_id": 114935420,
+  "public_score_snapshot_before_public_games": 600.0
+}

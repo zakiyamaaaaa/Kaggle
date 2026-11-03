@@ -1,0 +1,20 @@
+{
+  "slots": {
+    "general": {
+      "champion": "baseline",
+      "candidates": [
+        "candidate"
+      ]
+    },
+    "replay_tape": {
+      "champion": "public_salem",
+      "candidates": []
+    }
+  },
+  "games_per_matchup": 10,
+  "seed": 20000,
+  "swap_seats": true,
+  "workers": 4,
+  "promotion_threshold": 0.52,
+  "output": "../outputs/champion_arena"
+}

@@ -1,0 +1,3 @@
+game_id,seed,player_0,player_1,reward_0,reward_1,winner,steps,elapsed_seconds,status,error
+candidate-vs-economy_mix50-000000-s0-84edf300a9ad,130001,candidate,economy_mix50,140007.0,63190.0,candidate,719,1.6706619169563055,completed,
+candidate-vs-economy_mix50-000000-s1-6bae3b416107,130001,economy_mix50,candidate,63190.0,140007.0,candidate,719,1.6379279159009457,completed,

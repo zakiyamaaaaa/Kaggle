@@ -1,0 +1,347 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "sweep": "event_cnn_ppo_v1_hard_gate",
+  "description": "Paired learned-vs-fixed games over OMW/Peak/Triad with the frozen Event-CNN-PPO v1 model and a 3x3 hard-gate grid.",
+  "model": {
+    "path": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+    "sha256_before": "7a589183b30c0b114858702a0567aa6130cdf54a4e154882b289e4567c9b799f",
+    "read_only": true,
+    "sha256_after": "7a589183b30c0b114858702a0567aa6130cdf54a4e154882b289e4567c9b799f",
+    "unchanged": true
+  },
+  "evaluator": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+  "wrapper": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/main.py",
+  "gate_environment": {
+    "buffer": "OMW_NET_SN_BUFFER",
+    "exposure": "OMW_NET_SN_EXPOSURE",
+    "injection": "Each grid point invokes the evaluator in a fresh subprocess; the evaluator sets these values before spawning its workers."
+  },
+  "buffers": [
+    8,
+    12,
+    16
+  ],
+  "exposures": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "settings": [
+    {
+      "id": "b08-e0p5",
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 0.5
+    },
+    {
+      "id": "b08-e1",
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 1.0
+    },
+    {
+      "id": "b08-e2",
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 2.0
+    },
+    {
+      "id": "b12-e0p5",
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 0.5
+    },
+    {
+      "id": "b12-e1",
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 1.0
+    },
+    {
+      "id": "b12-e2",
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 2.0
+    },
+    {
+      "id": "b16-e0p5",
+      "OMW_NET_SN_BUFFER": 16,
+      "OMW_NET_SN_EXPOSURE": 0.5
+    },
+    {
+      "id": "b16-e1",
+      "OMW_NET_SN_BUFFER": 16,
+      "OMW_NET_SN_EXPOSURE": 1.0
+    },
+    {
+      "id": "b16-e2",
+      "OMW_NET_SN_BUFFER": 16,
+      "OMW_NET_SN_EXPOSURE": 2.0
+    }
+  ],
+  "seed_start": 988000,
+  "seed_count": 4,
+  "seeds": [
+    988000,
+    988001,
+    988002,
+    988003
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponents": [
+    "omw",
+    "peak",
+    "triad"
+  ],
+  "policies": [
+    "learned",
+    "fixed"
+  ],
+  "games_per_setting": 48,
+  "expected_games": 432,
+  "workers": 8,
+  "source_fingerprints": {
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/sweep_event_cnn_ppo_gates.py": "e6dbbc2fadb195a1e8a41d61d66d2bcb97d523781c67cafd374d357f53d19503",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py": "eb17d2e917c49c5567c3a49ef631edd0bc26d1c17c765ea6027aaccc294e7131",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/main.py": "937ffef7b3892795d02add07d7e47059a17e88eb599e9d32d0ddd410b7a6e669",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-net-stock-sellnow-v2/main.py": "433d72487ba6d825233f43dbe5a08870c922988f2ca4528b31d30be3ff04b7ed",
+    "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json": "7a589183b30c0b114858702a0567aa6130cdf54a4e154882b289e4567c9b799f"
+  },
+  "commands": [
+    {
+      "setting": "b08-e0p5",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b08-e0p5",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "8",
+        "--net-sn-exposure",
+        "0.5"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b08-e0p5 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 8 --net-sn-exposure 0.5"
+    },
+    {
+      "setting": "b08-e1",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b08-e1",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "8",
+        "--net-sn-exposure",
+        "1"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b08-e1 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 8 --net-sn-exposure 1"
+    },
+    {
+      "setting": "b08-e2",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b08-e2",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "8",
+        "--net-sn-exposure",
+        "2"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b08-e2 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 8 --net-sn-exposure 2"
+    },
+    {
+      "setting": "b12-e0p5",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b12-e0p5",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "12",
+        "--net-sn-exposure",
+        "0.5"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b12-e0p5 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 12 --net-sn-exposure 0.5"
+    },
+    {
+      "setting": "b12-e1",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b12-e1",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "12",
+        "--net-sn-exposure",
+        "1"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b12-e1 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 12 --net-sn-exposure 1"
+    },
+    {
+      "setting": "b12-e2",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b12-e2",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "12",
+        "--net-sn-exposure",
+        "2"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b12-e2 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 12 --net-sn-exposure 2"
+    },
+    {
+      "setting": "b16-e0p5",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b16-e0p5",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "16",
+        "--net-sn-exposure",
+        "0.5"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b16-e0p5 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 16 --net-sn-exposure 0.5"
+    },
+    {
+      "setting": "b16-e1",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b16-e1",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "16",
+        "--net-sn-exposure",
+        "1"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b16-e1 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 16 --net-sn-exposure 1"
+    },
+    {
+      "setting": "b16-e2",
+      "argv": [
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py",
+        "--model",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+        "--output",
+        "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b16-e2",
+        "--seed",
+        "988000",
+        "--seeds",
+        "4",
+        "--workers",
+        "8",
+        "--policies",
+        "learned,fixed",
+        "--opponents",
+        "omw,peak,triad",
+        "--net-sn-buffer",
+        "16",
+        "--net-sn-exposure",
+        "2"
+      ],
+      "shell": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/.venv/bin/python /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py --model /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json --output /Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/settings/b16-e2 --seed 988000 --seeds 4 --workers 8 --policies learned,fixed --opponents omw,peak,triad --net-sn-buffer 16 --net-sn-exposure 2"
+    }
+  ],
+  "completed_games": 432,
+  "summary_file": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/summary.json",
+  "results_file": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/results/hard-gate-sweep-v1/results.json"
+}

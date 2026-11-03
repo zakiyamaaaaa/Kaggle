@@ -1,0 +1,334 @@
+{
+  "summary": {
+    "agent": "omw-rival-stock-k24",
+    "opponent": "triad",
+    "games": 16,
+    "completed": 16,
+    "wins": 12,
+    "win_rate": 0.75,
+    "mean_reward": 95792.4375,
+    "mean_margin": 1224.5
+  },
+  "games": [
+    {
+      "seed": 968000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91805.0,
+      "opponent_reward": 90214.0,
+      "margin": 1591.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 26,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1436,
+        "or2_rival_sold": 1260,
+        "or2_errors": 0,
+        "or2_sellnow": 16,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91805.0,
+      "opponent_reward": 90214.0,
+      "margin": 1591.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 26,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1436,
+        "or2_rival_sold": 1260,
+        "or2_errors": 0,
+        "or2_sellnow": 16,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 115775.0,
+      "opponent_reward": 115879.0,
+      "margin": -104.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 25,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1486,
+        "or2_rival_sold": 1265,
+        "or2_errors": 0,
+        "or2_sellnow": 0,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 115775.0,
+      "opponent_reward": 115879.0,
+      "margin": -104.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 25,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1486,
+        "or2_rival_sold": 1265,
+        "or2_errors": 0,
+        "or2_sellnow": 0,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88481.0,
+      "opponent_reward": 88225.0,
+      "margin": 256.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 36,
+        "or2_changed_vs_v39": 23,
+        "or2_rival_harvest": 1434,
+        "or2_rival_sold": 1244,
+        "or2_errors": 0,
+        "or2_sellnow": 19,
+        "or2_slot_swaps": 3
+      }
+    },
+    {
+      "seed": 968002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88481.0,
+      "opponent_reward": 88225.0,
+      "margin": 256.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 36,
+        "or2_changed_vs_v39": 23,
+        "or2_rival_harvest": 1434,
+        "or2_rival_sold": 1244,
+        "or2_errors": 0,
+        "or2_sellnow": 19,
+        "or2_slot_swaps": 3
+      }
+    },
+    {
+      "seed": 968003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 89908.0,
+      "opponent_reward": 87292.0,
+      "margin": 2616.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 24,
+        "or2_changed_vs_v39": 7,
+        "or2_rival_harvest": 1533,
+        "or2_rival_sold": 1210,
+        "or2_errors": 0,
+        "or2_sellnow": 66,
+        "or2_slot_swaps": 4
+      }
+    },
+    {
+      "seed": 968003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 90429.0,
+      "opponent_reward": 86793.0,
+      "margin": 3636.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 23,
+        "or2_changed_vs_v39": 7,
+        "or2_rival_harvest": 1527,
+        "or2_rival_sold": 1206,
+        "or2_errors": 0,
+        "or2_sellnow": 65,
+        "or2_slot_swaps": 4
+      }
+    },
+    {
+      "seed": 968004,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92238.0,
+      "opponent_reward": 87666.0,
+      "margin": 4572.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 28,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1440,
+        "or2_rival_sold": 1258,
+        "or2_errors": 0,
+        "or2_sellnow": 28,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968004,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92238.0,
+      "opponent_reward": 87666.0,
+      "margin": 4572.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 28,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1440,
+        "or2_rival_sold": 1258,
+        "or2_errors": 0,
+        "or2_sellnow": 28,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968005,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95537.0,
+      "opponent_reward": 95972.0,
+      "margin": -435.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 30,
+        "or2_changed_vs_v39": 14,
+        "or2_rival_harvest": 1424,
+        "or2_rival_sold": 1160,
+        "or2_errors": 0,
+        "or2_sellnow": 62,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968005,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95537.0,
+      "opponent_reward": 95972.0,
+      "margin": -435.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 30,
+        "or2_changed_vs_v39": 14,
+        "or2_rival_harvest": 1424,
+        "or2_rival_sold": 1160,
+        "or2_errors": 0,
+        "or2_sellnow": 62,
+        "or2_slot_swaps": 2
+      }
+    },
+    {
+      "seed": 968006,
+      "seat": 0,
+      "status": "completed",
+      "reward": 112459.0,
+      "opponent_reward": 112234.0,
+      "margin": 225.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 24,
+        "or2_changed_vs_v39": 14,
+        "or2_rival_harvest": 1446,
+        "or2_rival_sold": 1115,
+        "or2_errors": 0,
+        "or2_sellnow": 76,
+        "or2_slot_swaps": 1
+      }
+    },
+    {
+      "seed": 968006,
+      "seat": 1,
+      "status": "completed",
+      "reward": 112459.0,
+      "opponent_reward": 112234.0,
+      "margin": 225.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 24,
+        "or2_changed_vs_v39": 14,
+        "or2_rival_harvest": 1446,
+        "or2_rival_sold": 1115,
+        "or2_errors": 0,
+        "or2_sellnow": 76,
+        "or2_slot_swaps": 1
+      }
+    },
+    {
+      "seed": 968007,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79876.0,
+      "opponent_reward": 79311.0,
+      "margin": 565.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 36,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1419,
+        "or2_rival_sold": 1516,
+        "or2_errors": 0,
+        "or2_sellnow": 94,
+        "or2_slot_swaps": 7
+      }
+    },
+    {
+      "seed": 968007,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79876.0,
+      "opponent_reward": 79311.0,
+      "margin": 565.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "threshold": 24,
+        "or2_reordered": 36,
+        "or2_changed_vs_v39": 11,
+        "or2_rival_harvest": 1419,
+        "or2_rival_sold": 1516,
+        "or2_errors": 0,
+        "or2_sellnow": 94,
+        "or2_slot_swaps": 7
+      }
+    }
+  ]
+}

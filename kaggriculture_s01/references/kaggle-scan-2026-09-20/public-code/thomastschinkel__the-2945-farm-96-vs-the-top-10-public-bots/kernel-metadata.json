@@ -1,0 +1,23 @@
+{
+  "id": "thomastschinkel/the-2945-farm-96-vs-the-top-10-public-bots",
+  "id_no": 134916381,
+  "title": "The 2945 Farm: 96% vs the Top-10 Public Bots",
+  "code_file": "the-2945-farm-96-vs-the-top-10-public-bots.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [
+    "tetsutani/demand-preserving-turn-sale-timing"
+  ],
+  "competition_sources": [
+    "kaggriculture"
+  ],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-images/python@sha256:dafd4ce5668bbf1ad422e4c109e0f18c9623c3a7c7f48b0235f13142755c40b9",
+  "machine_shape": "None"
+}

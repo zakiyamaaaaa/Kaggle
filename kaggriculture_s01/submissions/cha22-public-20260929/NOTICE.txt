@@ -1,0 +1,5 @@
+Based on the public Kaggle notebook abhinav0370/cha22-agent (Apache-2.0).
+Source: https://www.kaggle.com/code/abhinav0370/cha22-agent
+Original source SHA-256: 127ed3e62988c0474d386db6527ae8ca9de9bb1fe7004128557ddef67126c652
+This package adds only a callable agent() entrypoint delegating to kaggle_agent().
+The source file retains its embedded upstream license and attribution notices.

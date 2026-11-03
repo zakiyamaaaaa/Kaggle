@@ -1,0 +1,23 @@
+{
+  "primary_metric": "mean_score_across_opponents",
+  "tie_breaker": "mean_cash_across_opponents",
+  "independent_reference": "planner_cows8",
+  "main_reference": "candidate",
+  "screen": {"seed_start": 139000, "seeds": 32},
+  "adoption": {
+    "seed_start": 140000,
+    "seeds": 128,
+    "opponents": ["candidate", "planner_cows8", "planner_geese8"],
+    "selection": "Best screen candidate by primary metric then tie breaker; compare to independent reference."
+  },
+  "holdout": {
+    "seed_start": 141000,
+    "seeds": 256,
+    "opponents": ["candidate", "planner_cows8", "planner_sheep8", "independent_strawberry", "salem_liquidate_29_front_scarcity"],
+    "policies": "Selected candidate, independent reference, main reference",
+    "new_opponents": ["planner_sheep8", "independent_strawberry", "salem_liquidate_29_front_scarcity"],
+    "rule": "No policy changes after holdout starts. Retain independent incumbent unless paired score improvement CI lower bound is positive; main replacement additionally needs positive paired improvement vs candidate on the same panel."
+  },
+  "caveat": "Available local opponents represent different production and market behaviors; this is not proof of performance against unseen strong public entrants.",
+  "submission": "not_authorized_by_this_local_evaluation_task"
+}

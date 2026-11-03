@@ -1,0 +1,16 @@
+{
+  "competition": "kaggriculture",
+  "policy": "omw_funding_order_invariant_v1",
+  "parent": "one_more_wheat_public_exact",
+  "parameters": {
+    "min_step": 216
+  },
+  "parent_main_sha256": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+  "main_sha256": "caf0bc8ad4376f7e0897b2946613b4db0ec88a8ba048eb109a720f049c1d64d6",
+  "archive_sha256": "e1557bb905e6e78326c6d15e1acdf89b1bc81a1831d2db544aa7a1fff254790e",
+  "archive_members": [
+    "main.py"
+  ],
+  "local_source": "experiments/omw-funding-order-invariant-v1/main.py",
+  "status": "built_not_submitted"
+}

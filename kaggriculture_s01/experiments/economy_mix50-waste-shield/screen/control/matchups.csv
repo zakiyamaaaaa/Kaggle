@@ -1,0 +1,2 @@
+agent_a,agent_b,games,wins_a,wins_b,draws,win_rate_a,mean_reward_a,mean_reward_b,mean_reward_difference
+candidate,economy_mix50,16,16,0,0,1.0,120054.8125,62990.875,57063.9375

@@ -1,0 +1,42 @@
+{
+  "competition": "kaggriculture",
+  "policy": "omw_net_stock_sellnow_v2",
+  "parent": "one_more_wheat_public_exact",
+  "parameters": {
+    "rival_stock_threshold": 12,
+    "net_stock_buffer": 12,
+    "min_exposure": 1.0
+  },
+  "parent_main_sha256": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+  "main_sha256": "92434983336d9ebfd53c4e85613a9fd675ddb78c0b0f1b6bb828c76c30038057",
+  "archive_sha256": "f6930d60b396aac9c70cbc93abdf04f2d76f60c712ddb6ca7c10bd5515e59544",
+  "archive_members": [
+    "main.py"
+  ],
+  "local_source": "experiments/omw-net-stock-sellnow-v2/main.py",
+  "validation": {
+    "seed_count": 128,
+    "games_per_policy": 1536,
+    "paired_score_delta": 0.04915364583333326,
+    "bootstrap_95_ci": [
+      0.025065104166666664,
+      0.07389322916666667
+    ],
+    "errors_per_policy": 0
+  },
+  "holdout": {
+    "seed_count": 256,
+    "games_per_policy": 3072,
+    "paired_score_delta": 0.04361979166666663,
+    "bootstrap_95_ci": [
+      0.027669270833333332,
+      0.05989583333333333
+    ],
+    "errors_per_policy": 0
+  },
+  "status": "complete",
+  "submission_id": 56417821,
+  "submitted_at_utc": "2026-09-21T05:40:45.750000",
+  "public_score_snapshot_2026_09_28": 2449.8,
+  "score_interpretation": "live rating snapshot; compare only with episode count and observation time"
+}

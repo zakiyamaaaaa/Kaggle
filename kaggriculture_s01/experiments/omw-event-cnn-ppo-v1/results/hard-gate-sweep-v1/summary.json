@@ -1,0 +1,2687 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "errors": 0,
+  "expected_games": 432,
+  "completed_games": 432,
+  "settings": [
+    {
+      "setting": "b08-e0p5",
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 0.5,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 528.5,
+              "mean_reward": 109575.75,
+              "mean_opponent_reward": 109047.25,
+              "action_counts": {
+                "skip": 280,
+                "half": 94,
+                "full": 54
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2167.5,
+              "mean_reward": 110135.5,
+              "mean_opponent_reward": 107968.0,
+              "action_counts": {
+                "skip": 240,
+                "half": 64,
+                "full": 56
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2210.75,
+              "mean_reward": 110152.25,
+              "mean_opponent_reward": 107941.5,
+              "action_counts": {
+                "skip": 242,
+                "half": 60,
+                "full": 56
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1635.5833333333333,
+            "mean_reward": 109954.5,
+            "mean_opponent_reward": 108318.91666666667,
+            "action_counts": {
+              "skip": 762,
+              "half": 218,
+              "full": 166
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 476.25,
+              "mean_reward": 109710.25,
+              "mean_opponent_reward": 109234.0,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 124
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1924.5,
+              "mean_reward": 109886.25,
+              "mean_opponent_reward": 107961.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 116
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1976.0,
+              "mean_reward": 109951.75,
+              "mean_opponent_reward": 107975.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 116
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1458.9166666666667,
+            "mean_reward": 109849.41666666667,
+            "mean_opponent_reward": 108390.5,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 356
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 528.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2167.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2210.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 476.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1924.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1976.0,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b08-e1",
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 1.0,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 528.5,
+              "mean_reward": 109575.75,
+              "mean_opponent_reward": 109047.25,
+              "action_counts": {
+                "skip": 280,
+                "half": 94,
+                "full": 54
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2167.5,
+              "mean_reward": 110135.5,
+              "mean_opponent_reward": 107968.0,
+              "action_counts": {
+                "skip": 240,
+                "half": 64,
+                "full": 56
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2210.75,
+              "mean_reward": 110152.25,
+              "mean_opponent_reward": 107941.5,
+              "action_counts": {
+                "skip": 242,
+                "half": 60,
+                "full": 56
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1635.5833333333333,
+            "mean_reward": 109954.5,
+            "mean_opponent_reward": 108318.91666666667,
+            "action_counts": {
+              "skip": 762,
+              "half": 218,
+              "full": 166
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 476.25,
+              "mean_reward": 109710.25,
+              "mean_opponent_reward": 109234.0,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 124
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1924.5,
+              "mean_reward": 109886.25,
+              "mean_opponent_reward": 107961.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 116
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1976.0,
+              "mean_reward": 109951.75,
+              "mean_opponent_reward": 107975.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 116
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1458.9166666666667,
+            "mean_reward": 109849.41666666667,
+            "mean_opponent_reward": 108390.5,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 356
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 528.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2167.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2210.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 476.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1924.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1976.0,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b08-e2",
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 2.0,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 528.5,
+              "mean_reward": 109575.75,
+              "mean_opponent_reward": 109047.25,
+              "action_counts": {
+                "skip": 280,
+                "half": 94,
+                "full": 54
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2167.5,
+              "mean_reward": 110135.5,
+              "mean_opponent_reward": 107968.0,
+              "action_counts": {
+                "skip": 240,
+                "half": 64,
+                "full": 56
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2210.75,
+              "mean_reward": 110152.25,
+              "mean_opponent_reward": 107941.5,
+              "action_counts": {
+                "skip": 242,
+                "half": 60,
+                "full": 56
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1635.5833333333333,
+            "mean_reward": 109954.5,
+            "mean_opponent_reward": 108318.91666666667,
+            "action_counts": {
+              "skip": 762,
+              "half": 218,
+              "full": 166
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 476.25,
+              "mean_reward": 109710.25,
+              "mean_opponent_reward": 109234.0,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 124
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1924.5,
+              "mean_reward": 109886.25,
+              "mean_opponent_reward": 107961.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 116
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1976.0,
+              "mean_reward": 109951.75,
+              "mean_opponent_reward": 107975.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 116
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1458.9166666666667,
+            "mean_reward": 109849.41666666667,
+            "mean_opponent_reward": 108390.5,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 356
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 528.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2167.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2210.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 476.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1924.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1976.0,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b12-e0p5",
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 0.5,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 536.5,
+              "mean_reward": 109994.75,
+              "mean_opponent_reward": 109458.25,
+              "action_counts": {
+                "skip": 200,
+                "half": 56,
+                "full": 52
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2162.5,
+              "mean_reward": 110167.5,
+              "mean_opponent_reward": 108005.0,
+              "action_counts": {
+                "skip": 188,
+                "half": 50,
+                "full": 54
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2210.75,
+              "mean_reward": 110186.5,
+              "mean_opponent_reward": 107975.75,
+              "action_counts": {
+                "skip": 188,
+                "half": 50,
+                "full": 54
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1636.5833333333333,
+            "mean_reward": 110116.25,
+            "mean_opponent_reward": 108479.66666666667,
+            "action_counts": {
+              "skip": 576,
+              "half": 156,
+              "full": 160
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 574.75,
+              "mean_reward": 109959.5,
+              "mean_opponent_reward": 109384.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 110
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1949.5,
+              "mean_reward": 110248.0,
+              "mean_opponent_reward": 108298.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 100
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2005.5,
+              "mean_reward": 110315.0,
+              "mean_opponent_reward": 108309.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 100
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1509.9166666666667,
+            "mean_reward": 110174.16666666667,
+            "mean_opponent_reward": 108664.25,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 310
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 536.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2162.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2210.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 574.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1949.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2005.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b12-e1",
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 1.0,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 536.5,
+              "mean_reward": 109994.75,
+              "mean_opponent_reward": 109458.25,
+              "action_counts": {
+                "skip": 200,
+                "half": 56,
+                "full": 52
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2162.5,
+              "mean_reward": 110167.5,
+              "mean_opponent_reward": 108005.0,
+              "action_counts": {
+                "skip": 188,
+                "half": 50,
+                "full": 54
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2210.75,
+              "mean_reward": 110186.5,
+              "mean_opponent_reward": 107975.75,
+              "action_counts": {
+                "skip": 188,
+                "half": 50,
+                "full": 54
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1636.5833333333333,
+            "mean_reward": 110116.25,
+            "mean_opponent_reward": 108479.66666666667,
+            "action_counts": {
+              "skip": 576,
+              "half": 156,
+              "full": 160
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 574.75,
+              "mean_reward": 109959.5,
+              "mean_opponent_reward": 109384.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 110
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1949.5,
+              "mean_reward": 110248.0,
+              "mean_opponent_reward": 108298.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 100
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2005.5,
+              "mean_reward": 110315.0,
+              "mean_opponent_reward": 108309.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 100
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1509.9166666666667,
+            "mean_reward": 110174.16666666667,
+            "mean_opponent_reward": 108664.25,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 310
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 536.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2162.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2210.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 574.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1949.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2005.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b12-e2",
+      "OMW_NET_SN_BUFFER": 12,
+      "OMW_NET_SN_EXPOSURE": 2.0,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 536.5,
+              "mean_reward": 109994.75,
+              "mean_opponent_reward": 109458.25,
+              "action_counts": {
+                "skip": 200,
+                "half": 56,
+                "full": 52
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2162.5,
+              "mean_reward": 110167.5,
+              "mean_opponent_reward": 108005.0,
+              "action_counts": {
+                "skip": 188,
+                "half": 50,
+                "full": 54
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2210.75,
+              "mean_reward": 110186.5,
+              "mean_opponent_reward": 107975.75,
+              "action_counts": {
+                "skip": 188,
+                "half": 50,
+                "full": 54
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1636.5833333333333,
+            "mean_reward": 110116.25,
+            "mean_opponent_reward": 108479.66666666667,
+            "action_counts": {
+              "skip": 576,
+              "half": 156,
+              "full": 160
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 574.75,
+              "mean_reward": 109959.5,
+              "mean_opponent_reward": 109384.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 110
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1949.5,
+              "mean_reward": 110248.0,
+              "mean_opponent_reward": 108298.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 100
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2005.5,
+              "mean_reward": 110315.0,
+              "mean_opponent_reward": 108309.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 100
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1509.9166666666667,
+            "mean_reward": 110174.16666666667,
+            "mean_opponent_reward": 108664.25,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 310
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 536.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2162.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2210.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 574.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1949.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2005.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b16-e0p5",
+      "OMW_NET_SN_BUFFER": 16,
+      "OMW_NET_SN_EXPOSURE": 0.5,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 637.25,
+              "mean_reward": 110032.75,
+              "mean_opponent_reward": 109395.5,
+              "action_counts": {
+                "skip": 134,
+                "half": 24,
+                "full": 44
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2127.25,
+              "mean_reward": 110090.5,
+              "mean_opponent_reward": 107963.25,
+              "action_counts": {
+                "skip": 150,
+                "half": 40,
+                "full": 44
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2189.5,
+              "mean_reward": 110162.75,
+              "mean_opponent_reward": 107973.25,
+              "action_counts": {
+                "skip": 152,
+                "half": 40,
+                "full": 44
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1651.3333333333333,
+            "mean_reward": 110095.33333333333,
+            "mean_opponent_reward": 108444.0,
+            "action_counts": {
+              "skip": 436,
+              "half": 104,
+              "full": 132
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 496.75,
+              "mean_reward": 109905.5,
+              "mean_opponent_reward": 109408.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 80
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1928.5,
+              "mean_reward": 110178.0,
+              "mean_opponent_reward": 108249.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 78
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1981.0,
+              "mean_reward": 110244.0,
+              "mean_opponent_reward": 108263.0,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 78
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1468.75,
+            "mean_reward": 110109.16666666667,
+            "mean_opponent_reward": 108640.41666666667,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 236
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 637.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2127.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2189.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 496.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1928.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1981.0,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b16-e1",
+      "OMW_NET_SN_BUFFER": 16,
+      "OMW_NET_SN_EXPOSURE": 1.0,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 637.25,
+              "mean_reward": 110032.75,
+              "mean_opponent_reward": 109395.5,
+              "action_counts": {
+                "skip": 134,
+                "half": 24,
+                "full": 44
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2127.25,
+              "mean_reward": 110090.5,
+              "mean_opponent_reward": 107963.25,
+              "action_counts": {
+                "skip": 150,
+                "half": 40,
+                "full": 44
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2189.5,
+              "mean_reward": 110162.75,
+              "mean_opponent_reward": 107973.25,
+              "action_counts": {
+                "skip": 152,
+                "half": 40,
+                "full": 44
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1651.3333333333333,
+            "mean_reward": 110095.33333333333,
+            "mean_opponent_reward": 108444.0,
+            "action_counts": {
+              "skip": 436,
+              "half": 104,
+              "full": 132
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 496.75,
+              "mean_reward": 109905.5,
+              "mean_opponent_reward": 109408.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 80
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1928.5,
+              "mean_reward": 110178.0,
+              "mean_opponent_reward": 108249.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 78
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1981.0,
+              "mean_reward": 110244.0,
+              "mean_opponent_reward": 108263.0,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 78
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1468.75,
+            "mean_reward": 110109.16666666667,
+            "mean_opponent_reward": 108640.41666666667,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 236
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 637.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2127.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2189.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 496.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1928.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1981.0,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    },
+    {
+      "setting": "b16-e2",
+      "OMW_NET_SN_BUFFER": 16,
+      "OMW_NET_SN_EXPOSURE": 2.0,
+      "games": 48,
+      "errors": 0,
+      "status": "completed",
+      "policies": {
+        "learned": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 637.25,
+              "mean_reward": 110032.75,
+              "mean_opponent_reward": 109395.5,
+              "action_counts": {
+                "skip": 134,
+                "half": 24,
+                "full": 44
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2127.25,
+              "mean_reward": 110090.5,
+              "mean_opponent_reward": 107963.25,
+              "action_counts": {
+                "skip": 150,
+                "half": 40,
+                "full": 44
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 2189.5,
+              "mean_reward": 110162.75,
+              "mean_opponent_reward": 107973.25,
+              "action_counts": {
+                "skip": 152,
+                "half": 40,
+                "full": 44
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1651.3333333333333,
+            "mean_reward": 110095.33333333333,
+            "mean_opponent_reward": 108444.0,
+            "action_counts": {
+              "skip": 436,
+              "half": 104,
+              "full": 132
+            }
+          }
+        },
+        "fixed": {
+          "opponents": {
+            "omw": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 496.75,
+              "mean_reward": 109905.5,
+              "mean_opponent_reward": 109408.75,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 80
+              }
+            },
+            "peak": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1928.5,
+              "mean_reward": 110178.0,
+              "mean_opponent_reward": 108249.5,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 78
+              }
+            },
+            "triad": {
+              "games": 8,
+              "completed": 8,
+              "errors": 0,
+              "wins": 8,
+              "draws": 0,
+              "losses": 0,
+              "score": 1.0,
+              "mean_margin": 1981.0,
+              "mean_reward": 110244.0,
+              "mean_opponent_reward": 108263.0,
+              "action_counts": {
+                "skip": 0,
+                "half": 0,
+                "full": 78
+              }
+            }
+          },
+          "aggregate": {
+            "games": 24,
+            "completed": 24,
+            "errors": 0,
+            "wins": 24,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_margin": 1468.75,
+            "mean_reward": 110109.16666666667,
+            "mean_opponent_reward": 108640.41666666667,
+            "action_counts": {
+              "skip": 0,
+              "half": 0,
+              "full": 236
+            }
+          }
+        }
+      },
+      "paired_vs_fixed": {
+        "learned": {
+          "reference": "fixed",
+          "opponents": {
+            "omw": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "peak": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            },
+            "triad": {
+              "score_delta": 0.0,
+              "score_delta_ci95": [
+                0.0,
+                0.0
+              ],
+              "seeds": 4
+            }
+          },
+          "score_delta": 0.0,
+          "score_delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "seeds": 12
+        }
+      },
+      "metrics": [
+        {
+          "policy": "learned",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 637.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2127.25,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "learned",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 2189.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "omw",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 496.75,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "peak",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1928.5,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        },
+        {
+          "policy": "fixed",
+          "opponent": "triad",
+          "wins": 8,
+          "draws": 0,
+          "losses": 0,
+          "wdl": [
+            8,
+            0,
+            0
+          ],
+          "score": 1.0,
+          "mean_margin": 1981.0,
+          "errors": 0,
+          "games": 8,
+          "completed": 8
+        }
+      ]
+    }
+  ],
+  "best_setting": {
+    "setting": "b16-e0p5",
+    "OMW_NET_SN_BUFFER": 16,
+    "OMW_NET_SN_EXPOSURE": 0.5,
+    "criterion": "learned aggregate score, then mean margin, with zero errors preferred",
+    "learned_aggregate": {
+      "games": 24,
+      "completed": 24,
+      "errors": 0,
+      "wins": 24,
+      "draws": 0,
+      "losses": 0,
+      "score": 1.0,
+      "mean_margin": 1651.3333333333333,
+      "mean_reward": 110095.33333333333,
+      "mean_opponent_reward": 108444.0,
+      "action_counts": {
+        "skip": 436,
+        "half": 104,
+        "full": 132
+      }
+    }
+  }
+}

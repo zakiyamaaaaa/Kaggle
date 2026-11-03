@@ -1,0 +1,1059 @@
+{
+  "manifest": {
+    "schema": 1,
+    "policy": "event_cnn_ppo_omw_v1",
+    "reference_policy": "fixed",
+    "reference_description": "event wrapper with OMW-002 full action (choice=full)",
+    "model": "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json",
+    "seed_start": 988000,
+    "seed_count": 4,
+    "seats": [
+      0,
+      1
+    ],
+    "policies": [
+      "learned",
+      "fixed"
+    ],
+    "opponents": [
+      "omw",
+      "peak",
+      "triad"
+    ],
+    "ablation_opponents": [
+      "omw",
+      "peak",
+      "triad"
+    ],
+    "games": 48,
+    "workers": 8,
+    "gate_parameters": {
+      "OMW_NET_SN_BUFFER": 8,
+      "OMW_NET_SN_EXPOSURE": 2.0
+    },
+    "fingerprints": {
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/scripts/evaluate_event_cnn_ppo_omw.py": "eb17d2e917c49c5567c3a49ef631edd0bc26d1c17c765ea6027aaccc294e7131",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-event-cnn-ppo-v1/main.py": "937ffef7b3892795d02add07d7e47059a17e88eb599e9d32d0ddd410b7a6e669",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/outputs/event_cnn_ppo_omw_v1/cf-trained/model.json": "7a589183b30c0b114858702a0567aa6130cdf54a4e154882b289e4567c9b799f",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/experiments/omw-net-stock-sellnow-v2/main.py": "433d72487ba6d825233f43dbe5a08870c922988f2ca4528b31d30be3ff04b7ed",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/event_cnn_ppo.py": "18b3c7049c20a83fc1f8245ca95965e89a10bd1699f7cc9772d0fdb22e76b4aa",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/cnn_ppo.py": "1071f6d71eff8ae8ff10c58872c111cedf2e0b95148290d21c2c1a5c6b46e4a7",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/local_arena.py": "cfbbc9b6fe3b1fa221ef5f109646c1e1b171d14d252fec1061da6b1c85805cfb",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/src/kaggriculture_agent/registry.py": "6a89f2e31bc95bf2da065995899adb5b2b0dec3f68a5f41fc77774390c2fedc1",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/submissions/public-salem-2900/main.py": "3b1cb91feb451b44d075d853f9211be216aea7f85df09d91fa232e4e9dff8fe9",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/one-more-wheat/main.py": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/peak2950/main.py": "d5460fc2e5488e0a340f0e4e795f2709c48b58cff7c204ced3821a4c7dae4555",
+      "/Users/shoichiyamazaki/Kaggle/kaggriculture_s01/references/kaggle-scan-2026-09-21/extracted/triad-counter/main.py": "4f3ca95dd12d9a94b03339999d8803c155f450a8d3956636f050643301fcc5dd"
+    }
+  },
+  "games": [
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114366.0,
+      "opponent_reward": 113828.0,
+      "margin": 538.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.018212417140603,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 17
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114366.0,
+      "opponent_reward": 113828.0,
+      "margin": 538.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.09487779205665,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 17
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151077.0,
+      "opponent_reward": 150111.0,
+      "margin": 966.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0636424999684095,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151077.0,
+      "opponent_reward": 150111.0,
+      "margin": 966.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.117054084315896,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83008.0,
+      "opponent_reward": 82765.0,
+      "margin": 243.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0698091252706945,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83008.0,
+      "opponent_reward": 82765.0,
+      "margin": 243.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.130161749664694,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 90390.0,
+      "opponent_reward": 90232.0,
+      "margin": 158.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.236339208204299,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "omw",
+      "seed": 988003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 90390.0,
+      "opponent_reward": 90232.0,
+      "margin": 158.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.3577746669761837,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114937.0,
+      "opponent_reward": 112932.0,
+      "margin": 2005.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.07050554221496,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 15
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114937.0,
+      "opponent_reward": 112932.0,
+      "margin": 2005.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0709312092512846,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 15
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151337.0,
+      "opponent_reward": 149997.0,
+      "margin": 1340.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.039252041839063,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151337.0,
+      "opponent_reward": 149997.0,
+      "margin": 1340.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.047197917010635,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82053.0,
+      "opponent_reward": 80447.0,
+      "margin": 1606.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0808299998752773,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82053.0,
+      "opponent_reward": 80447.0,
+      "margin": 1606.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.051028917077929,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91218.0,
+      "opponent_reward": 88471.0,
+      "margin": 2747.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.221408999990672,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 14
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "peak",
+      "seed": 988003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91218.0,
+      "opponent_reward": 88471.0,
+      "margin": 2747.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2499017091467977,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 14
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114959.0,
+      "opponent_reward": 112916.0,
+      "margin": 2043.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0241488749161363,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 15
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114959.0,
+      "opponent_reward": 112916.0,
+      "margin": 2043.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0701840831898153,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 15
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151563.0,
+      "opponent_reward": 150119.0,
+      "margin": 1444.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1110376669093966,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151563.0,
+      "opponent_reward": 150119.0,
+      "margin": 1444.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0840513329021633,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82057.0,
+      "opponent_reward": 80431.0,
+      "margin": 1626.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.083329999819398,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82057.0,
+      "opponent_reward": 80431.0,
+      "margin": 1626.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1074216249398887,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 16
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91228.0,
+      "opponent_reward": 88437.0,
+      "margin": 2791.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1690371660515666,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 14
+      },
+      "error": ""
+    },
+    {
+      "policy": "fixed",
+      "opponent": "triad",
+      "seed": 988003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91228.0,
+      "opponent_reward": 88437.0,
+      "margin": 2791.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1350506669841707,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 0,
+        "half": 0,
+        "full": 14
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114429.0,
+      "opponent_reward": 114423.0,
+      "margin": 6.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2400412908755243,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 50,
+        "half": 11,
+        "full": 8
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114429.0,
+      "opponent_reward": 114423.0,
+      "margin": 6.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2854535412043333,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 50,
+        "half": 11,
+        "full": 8
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151314.0,
+      "opponent_reward": 150248.0,
+      "margin": 1066.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1851246249862015,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 15,
+        "half": 1,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151314.0,
+      "opponent_reward": 150248.0,
+      "margin": 1066.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2123709581792355,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 15,
+        "half": 1,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 81915.0,
+      "opponent_reward": 81273.0,
+      "margin": 642.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2648113751783967,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 43,
+        "half": 16,
+        "full": 4
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 81915.0,
+      "opponent_reward": 81273.0,
+      "margin": 642.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.30797270918265,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 43,
+        "half": 16,
+        "full": 4
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 90645.0,
+      "opponent_reward": 90245.0,
+      "margin": 400.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.4505194169469178,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 32,
+        "half": 19,
+        "full": 2
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "omw",
+      "seed": 988003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 90645.0,
+      "opponent_reward": 90245.0,
+      "margin": 400.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.398506375029683,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 32,
+        "half": 19,
+        "full": 2
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 115180.0,
+      "opponent_reward": 112890.0,
+      "margin": 2290.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.070052542258054,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 40,
+        "half": 3,
+        "full": 8
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 115180.0,
+      "opponent_reward": 112890.0,
+      "margin": 2290.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.078954666852951,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 40,
+        "half": 3,
+        "full": 8
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151606.0,
+      "opponent_reward": 150051.0,
+      "margin": 1555.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 2.996774584054947,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 15,
+        "half": 1,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151606.0,
+      "opponent_reward": 150051.0,
+      "margin": 1555.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.034897666424513,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 15,
+        "half": 1,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82306.0,
+      "opponent_reward": 80471.0,
+      "margin": 1835.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.103926292154938,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 35,
+        "half": 16,
+        "full": 5
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82306.0,
+      "opponent_reward": 80471.0,
+      "margin": 1835.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1007890407927334,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 35,
+        "half": 16,
+        "full": 5
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91450.0,
+      "opponent_reward": 88460.0,
+      "margin": 2990.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.241263334173709,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 30,
+        "half": 12,
+        "full": 2
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "peak",
+      "seed": 988003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91450.0,
+      "opponent_reward": 88460.0,
+      "margin": 2990.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2811727500520647,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 30,
+        "half": 12,
+        "full": 2
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 115220.0,
+      "opponent_reward": 112883.0,
+      "margin": 2337.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0775617081671953,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 40,
+        "half": 3,
+        "full": 8
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 115220.0,
+      "opponent_reward": 112883.0,
+      "margin": 2337.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1325256251730025,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 40,
+        "half": 3,
+        "full": 8
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151619.0,
+      "opponent_reward": 150013.0,
+      "margin": 1606.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0932034170255065,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 15,
+        "half": 1,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151619.0,
+      "opponent_reward": 150013.0,
+      "margin": 1606.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.0622588330879807,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 15,
+        "half": 1,
+        "full": 13
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82310.0,
+      "opponent_reward": 80444.0,
+      "margin": 1866.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1645545843057334,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 36,
+        "half": 14,
+        "full": 5
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82310.0,
+      "opponent_reward": 80444.0,
+      "margin": 1866.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.1368081672117114,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 36,
+        "half": 14,
+        "full": 5
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91460.0,
+      "opponent_reward": 88426.0,
+      "margin": 3034.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.2900237501598895,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 30,
+        "half": 12,
+        "full": 2
+      },
+      "error": ""
+    },
+    {
+      "policy": "learned",
+      "opponent": "triad",
+      "seed": 988003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91460.0,
+      "opponent_reward": 88426.0,
+      "margin": 3034.0,
+      "win": true,
+      "draw": false,
+      "steps": 719,
+      "elapsed_seconds": 3.3416059580631554,
+      "decisions": 1438,
+      "action_counts": {
+        "skip": 30,
+        "half": 12,
+        "full": 2
+      },
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "candidate_agent": "candidate",
+  "metadata": {
+    "purpose": "Four-stage specialization plan for the local Kaggriculture Champion Arena",
+    "learner": "registered rule agent now; replace with a learned checkpoint later",
+    "pool_policy": "progressively narrow the opponent pool while retaining hard-opponent pressure"
+  },
+  "opponents": {
+    "baseline": {
+      "agent": "baseline",
+      "archetype": "safe_rule",
+      "strategy_family": "rule_baseline",
+      "weight": 1.0,
+      "hard": false
+    },
+    "candidate": {
+      "agent": "candidate",
+      "archetype": "current_candidate",
+      "strategy_family": "rule_candidate",
+      "weight": 1.0,
+      "hard": true
+    },
+    "public_salem": {
+      "agent": "public_salem",
+      "archetype": "replay_tape",
+      "strategy_family": "salem_2900",
+      "weight": 2.0,
+      "hard": true
+    }
+  },
+  "evaluation": {
+    "paired_seeds": true,
+    "holdout": false,
+    "seat_orders": [0, 1],
+    "seed_blocks": {
+      "development": [10000, 10999],
+      "validation": [20000, 20999],
+      "holdout": [90000, 90999]
+    },
+    "promotion_rule": "all configured prerequisites must pass before the next stage"
+  },
+  "stages": [
+    {
+      "id": "stage_1",
+      "label": "broad_opponent_pool",
+      "mode": "broad_pool",
+      "pool": ["baseline", "public_salem"],
+      "games": {"training": 24, "evaluation": 24},
+      "seed": 10000,
+      "hard_opponent_weight": 1.5,
+      "promotion": {
+        "min_evaluation_games": 24,
+        "min_win_rate": 0.5,
+        "min_mean_reward_delta": 0,
+        "max_failure_rate": 0,
+        "min_hard_opponent_win_rate": 0.45,
+        "require_previous_stage": false
+      }
+    },
+    {
+      "id": "stage_2",
+      "label": "archetype_champions",
+      "mode": "archetype_champions",
+      "pool": ["public_salem"],
+      "games": {"training": 24, "evaluation": 24},
+      "seed": 20000,
+      "hard_opponent_weight": 2.0,
+      "promotion": {
+        "min_evaluation_games": 24,
+        "min_win_rate": 0.5,
+        "min_mean_reward_delta": 0,
+        "max_failure_rate": 0,
+        "min_hard_opponent_win_rate": 0.5,
+        "require_previous_stage": true
+      }
+    },
+    {
+      "id": "stage_3",
+      "label": "selected_strategy_families",
+      "mode": "strategy_families",
+      "pool": ["public_salem"],
+      "games": {"training": 32, "evaluation": 32},
+      "seed": 30000,
+      "hard_opponent_weight": 2.5,
+      "promotion": {
+        "min_evaluation_games": 32,
+        "min_win_rate": 0.52,
+        "min_mean_reward_delta": 0,
+        "max_failure_rate": 0,
+        "min_hard_opponent_win_rate": 0.52,
+        "require_previous_stage": true
+      }
+    },
+    {
+      "id": "stage_4",
+      "label": "fixed_specialist",
+      "mode": "fixed_specialist",
+      "pool": ["public_salem"],
+      "specialist_agent": "candidate",
+      "games": {"training": 40, "evaluation": 40},
+      "seed": 40000,
+      "hard_opponent_weight": 3.0,
+      "promotion": {
+        "min_evaluation_games": 40,
+        "min_win_rate": 0.55,
+        "min_mean_reward_delta": 0,
+        "max_failure_rate": 0,
+        "min_hard_opponent_win_rate": 0.55,
+        "require_previous_stage": true
+      }
+    }
+  ]
+}

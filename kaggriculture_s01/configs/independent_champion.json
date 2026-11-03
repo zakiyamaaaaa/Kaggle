@@ -1,0 +1,29 @@
+{
+  "agent": "economy_mix50",
+  "scope": "independent_policy_series",
+  "previous_agent": "planner_cows8",
+  "main_agent": "candidate",
+  "main_agent_replaced": false,
+  "evaluation": "outputs/strategy-cycle/economy-v4-holdout/summary.json",
+  "audit": "outputs/strategy-cycle/economy-v4-audit.json",
+  "protocol": "configs/economy_v4_protocol.json",
+  "seed_start": 141000,
+  "seeds": 256,
+  "games": 7680,
+  "failed_games": 0,
+  "paired_score_delta_vs_previous": {
+    "score_delta": 0.091015625,
+    "ci95": [
+      0.075390625,
+      0.10546875
+    ],
+    "gate_passed": true
+  },
+  "artifact": "submissions/independent-economy-v4.zip",
+  "zip_sha256": "c13e88c9c87e5d650c294f2ef1eb17061cee5b36b82e4f3e2d48de400c014dcb",
+  "submission_status": "complete",
+  "submission_id": 56396545,
+  "public_score": 599.5,
+  "public_score_checked_at": "2026-09-21",
+  "public_api_date": "2026-09-20T13:57:37.733000"
+}

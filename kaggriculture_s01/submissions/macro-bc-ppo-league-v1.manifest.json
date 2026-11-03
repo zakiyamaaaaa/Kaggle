@@ -1,0 +1,78 @@
+{
+  "policy": "macro_bc_ppo_v1",
+  "submission_status": "complete",
+  "submission_id": 56397965,
+  "public_score": 600.0,
+  "submitted_at_utc": "2026-09-20 14:36:56.773000",
+  "model": {
+    "method": "behavior_cloning_then_clipped_ppo",
+    "replays": [
+      "episode-111240295-replay.json",
+      "episode-111246969-replay.json",
+      "episode-111246976-replay.json",
+      "episode-111247982-replay.json"
+    ],
+    "bc_examples": 72,
+    "bc_label_counts": {
+      "economy_mix25": 15,
+      "economy_mix50": 0,
+      "economy_mix75": 1,
+      "economy_fert50": 35,
+      "planner_cows8": 21,
+      "planner_sheep8": 0
+    },
+    "bc_training_accuracy": 0.6805555555555556,
+    "ppo_games": 96,
+    "opponent_mix": {
+      "self_play": 0.5,
+      "active_candidate": 0.25,
+      "policy_bank": 0.25
+    },
+    "temperature": 0.8,
+    "history": [
+      {
+        "epoch": 1,
+        "games": 32,
+        "decisions": 320,
+        "win_rate": 0.46875,
+        "mean_margin": -15542.34375
+      },
+      {
+        "epoch": 2,
+        "games": 32,
+        "decisions": 320,
+        "win_rate": 0.40625,
+        "mean_margin": -7316.0
+      },
+      {
+        "epoch": 3,
+        "games": 32,
+        "decisions": 320,
+        "win_rate": 0.40625,
+        "mean_margin": -14886.46875
+      }
+    ]
+  },
+  "source_sha256": "b059300cb7a41c8f50e511c9501ea0f151005cc10ca1599a8c5816e69b71ba66",
+  "zip_sha256": "1baff22b137a63defc290db65ef0c323448614bc12bc6f8570c887575a40a8a2",
+  "verification": {
+    "seed": 741743,
+    "seats": [
+      {
+        "seat": 0,
+        "rewards": [
+          64223.0,
+          113945.0
+        ]
+      },
+      {
+        "seat": 1,
+        "rewards": [
+          113945.0,
+          64223.0
+        ]
+      }
+    ],
+    "official_fast_all_steps_equal": true
+  }
+}

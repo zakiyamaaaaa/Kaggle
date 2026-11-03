@@ -1,0 +1,8206 @@
+{
+  "summary": {
+    "agent": "omw-net-control",
+    "opponent": "peak",
+    "games": 512,
+    "completed": 512,
+    "wins": 467,
+    "win_rate": 0.912109375,
+    "mean_reward": 100619.521484375,
+    "mean_margin": 1185.337890625
+  },
+  "games": [
+    {
+      "seed": 972000,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91265.0,
+      "opponent_reward": 89283.0,
+      "margin": 1982.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972000,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91265.0,
+      "opponent_reward": 89283.0,
+      "margin": 1982.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972001,
+      "seat": 0,
+      "status": "completed",
+      "reward": 76638.0,
+      "opponent_reward": 76536.0,
+      "margin": 102.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972001,
+      "seat": 1,
+      "status": "completed",
+      "reward": 76761.0,
+      "opponent_reward": 76413.0,
+      "margin": 348.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972002,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100087.0,
+      "opponent_reward": 90858.0,
+      "margin": 9229.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972002,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100087.0,
+      "opponent_reward": 90858.0,
+      "margin": 9229.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972003,
+      "seat": 0,
+      "status": "completed",
+      "reward": 89458.0,
+      "opponent_reward": 88093.0,
+      "margin": 1365.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972003,
+      "seat": 1,
+      "status": "completed",
+      "reward": 89394.0,
+      "opponent_reward": 88157.0,
+      "margin": 1237.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972004,
+      "seat": 0,
+      "status": "completed",
+      "reward": 99432.0,
+      "opponent_reward": 97828.0,
+      "margin": 1604.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972004,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99432.0,
+      "opponent_reward": 97828.0,
+      "margin": 1604.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972005,
+      "seat": 0,
+      "status": "completed",
+      "reward": 103534.0,
+      "opponent_reward": 102975.0,
+      "margin": 559.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972005,
+      "seat": 1,
+      "status": "completed",
+      "reward": 103534.0,
+      "opponent_reward": 102975.0,
+      "margin": 559.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972006,
+      "seat": 0,
+      "status": "completed",
+      "reward": 102314.0,
+      "opponent_reward": 101537.0,
+      "margin": 777.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972006,
+      "seat": 1,
+      "status": "completed",
+      "reward": 102314.0,
+      "opponent_reward": 101537.0,
+      "margin": 777.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972007,
+      "seat": 0,
+      "status": "completed",
+      "reward": 102453.0,
+      "opponent_reward": 101045.0,
+      "margin": 1408.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972007,
+      "seat": 1,
+      "status": "completed",
+      "reward": 102453.0,
+      "opponent_reward": 101045.0,
+      "margin": 1408.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972008,
+      "seat": 0,
+      "status": "completed",
+      "reward": 104390.0,
+      "opponent_reward": 101834.0,
+      "margin": 2556.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972008,
+      "seat": 1,
+      "status": "completed",
+      "reward": 104390.0,
+      "opponent_reward": 101834.0,
+      "margin": 2556.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972009,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100426.0,
+      "opponent_reward": 100133.0,
+      "margin": 293.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972009,
+      "seat": 1,
+      "status": "completed",
+      "reward": 102596.0,
+      "opponent_reward": 97937.0,
+      "margin": 4659.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972010,
+      "seat": 0,
+      "status": "completed",
+      "reward": 119265.0,
+      "opponent_reward": 117095.0,
+      "margin": 2170.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972010,
+      "seat": 1,
+      "status": "completed",
+      "reward": 119265.0,
+      "opponent_reward": 117095.0,
+      "margin": 2170.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972011,
+      "seat": 0,
+      "status": "completed",
+      "reward": 103392.0,
+      "opponent_reward": 102922.0,
+      "margin": 470.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972011,
+      "seat": 1,
+      "status": "completed",
+      "reward": 103392.0,
+      "opponent_reward": 102922.0,
+      "margin": 470.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972012,
+      "seat": 0,
+      "status": "completed",
+      "reward": 77407.0,
+      "opponent_reward": 76988.0,
+      "margin": 419.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972012,
+      "seat": 1,
+      "status": "completed",
+      "reward": 77407.0,
+      "opponent_reward": 76988.0,
+      "margin": 419.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972013,
+      "seat": 0,
+      "status": "completed",
+      "reward": 153040.0,
+      "opponent_reward": 152494.0,
+      "margin": 546.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972013,
+      "seat": 1,
+      "status": "completed",
+      "reward": 153040.0,
+      "opponent_reward": 152494.0,
+      "margin": 546.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972014,
+      "seat": 0,
+      "status": "completed",
+      "reward": 113382.0,
+      "opponent_reward": 112524.0,
+      "margin": 858.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972014,
+      "seat": 1,
+      "status": "completed",
+      "reward": 113382.0,
+      "opponent_reward": 112524.0,
+      "margin": 858.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972015,
+      "seat": 0,
+      "status": "completed",
+      "reward": 90842.0,
+      "opponent_reward": 90436.0,
+      "margin": 406.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972015,
+      "seat": 1,
+      "status": "completed",
+      "reward": 90842.0,
+      "opponent_reward": 90436.0,
+      "margin": 406.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972016,
+      "seat": 0,
+      "status": "completed",
+      "reward": 135776.0,
+      "opponent_reward": 134756.0,
+      "margin": 1020.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972016,
+      "seat": 1,
+      "status": "completed",
+      "reward": 135776.0,
+      "opponent_reward": 134756.0,
+      "margin": 1020.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972017,
+      "seat": 0,
+      "status": "completed",
+      "reward": 104414.0,
+      "opponent_reward": 102965.0,
+      "margin": 1449.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972017,
+      "seat": 1,
+      "status": "completed",
+      "reward": 104414.0,
+      "opponent_reward": 102965.0,
+      "margin": 1449.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972018,
+      "seat": 0,
+      "status": "completed",
+      "reward": 115395.0,
+      "opponent_reward": 114416.0,
+      "margin": 979.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972018,
+      "seat": 1,
+      "status": "completed",
+      "reward": 115395.0,
+      "opponent_reward": 114416.0,
+      "margin": 979.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972019,
+      "seat": 0,
+      "status": "completed",
+      "reward": 119207.0,
+      "opponent_reward": 118492.0,
+      "margin": 715.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972019,
+      "seat": 1,
+      "status": "completed",
+      "reward": 119207.0,
+      "opponent_reward": 118492.0,
+      "margin": 715.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972020,
+      "seat": 0,
+      "status": "completed",
+      "reward": 73024.0,
+      "opponent_reward": 70819.0,
+      "margin": 2205.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972020,
+      "seat": 1,
+      "status": "completed",
+      "reward": 73024.0,
+      "opponent_reward": 70819.0,
+      "margin": 2205.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972021,
+      "seat": 0,
+      "status": "completed",
+      "reward": 105657.0,
+      "opponent_reward": 104659.0,
+      "margin": 998.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972021,
+      "seat": 1,
+      "status": "completed",
+      "reward": 105657.0,
+      "opponent_reward": 104659.0,
+      "margin": 998.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972022,
+      "seat": 0,
+      "status": "completed",
+      "reward": 97297.0,
+      "opponent_reward": 96663.0,
+      "margin": 634.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972022,
+      "seat": 1,
+      "status": "completed",
+      "reward": 97297.0,
+      "opponent_reward": 96663.0,
+      "margin": 634.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972023,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92485.0,
+      "opponent_reward": 90411.0,
+      "margin": 2074.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972023,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92485.0,
+      "opponent_reward": 90411.0,
+      "margin": 2074.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972024,
+      "seat": 0,
+      "status": "completed",
+      "reward": 94828.0,
+      "opponent_reward": 94750.0,
+      "margin": 78.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972024,
+      "seat": 1,
+      "status": "completed",
+      "reward": 94828.0,
+      "opponent_reward": 94750.0,
+      "margin": 78.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972025,
+      "seat": 0,
+      "status": "completed",
+      "reward": 122200.0,
+      "opponent_reward": 121139.0,
+      "margin": 1061.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972025,
+      "seat": 1,
+      "status": "completed",
+      "reward": 122200.0,
+      "opponent_reward": 121139.0,
+      "margin": 1061.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972026,
+      "seat": 0,
+      "status": "completed",
+      "reward": 77762.0,
+      "opponent_reward": 77248.0,
+      "margin": 514.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972026,
+      "seat": 1,
+      "status": "completed",
+      "reward": 77762.0,
+      "opponent_reward": 77248.0,
+      "margin": 514.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972027,
+      "seat": 0,
+      "status": "completed",
+      "reward": 113813.0,
+      "opponent_reward": 109807.0,
+      "margin": 4006.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972027,
+      "seat": 1,
+      "status": "completed",
+      "reward": 113813.0,
+      "opponent_reward": 109807.0,
+      "margin": 4006.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972028,
+      "seat": 0,
+      "status": "completed",
+      "reward": 141754.0,
+      "opponent_reward": 141079.0,
+      "margin": 675.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972028,
+      "seat": 1,
+      "status": "completed",
+      "reward": 141754.0,
+      "opponent_reward": 141079.0,
+      "margin": 675.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972029,
+      "seat": 0,
+      "status": "completed",
+      "reward": 159548.0,
+      "opponent_reward": 159310.0,
+      "margin": 238.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972029,
+      "seat": 1,
+      "status": "completed",
+      "reward": 159548.0,
+      "opponent_reward": 159310.0,
+      "margin": 238.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972030,
+      "seat": 0,
+      "status": "completed",
+      "reward": 117872.0,
+      "opponent_reward": 117195.0,
+      "margin": 677.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972030,
+      "seat": 1,
+      "status": "completed",
+      "reward": 117872.0,
+      "opponent_reward": 117195.0,
+      "margin": 677.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972031,
+      "seat": 0,
+      "status": "completed",
+      "reward": 119397.0,
+      "opponent_reward": 118820.0,
+      "margin": 577.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972031,
+      "seat": 1,
+      "status": "completed",
+      "reward": 102424.0,
+      "opponent_reward": 101084.0,
+      "margin": 1340.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972032,
+      "seat": 0,
+      "status": "completed",
+      "reward": 106152.0,
+      "opponent_reward": 105105.0,
+      "margin": 1047.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972032,
+      "seat": 1,
+      "status": "completed",
+      "reward": 106152.0,
+      "opponent_reward": 105105.0,
+      "margin": 1047.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972033,
+      "seat": 0,
+      "status": "completed",
+      "reward": 66939.0,
+      "opponent_reward": 66271.0,
+      "margin": 668.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972033,
+      "seat": 1,
+      "status": "completed",
+      "reward": 66939.0,
+      "opponent_reward": 66271.0,
+      "margin": 668.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972034,
+      "seat": 0,
+      "status": "completed",
+      "reward": 99377.0,
+      "opponent_reward": 98429.0,
+      "margin": 948.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972034,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99377.0,
+      "opponent_reward": 98429.0,
+      "margin": 948.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972035,
+      "seat": 0,
+      "status": "completed",
+      "reward": 104431.0,
+      "opponent_reward": 103630.0,
+      "margin": 801.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972035,
+      "seat": 1,
+      "status": "completed",
+      "reward": 104431.0,
+      "opponent_reward": 103630.0,
+      "margin": 801.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972036,
+      "seat": 0,
+      "status": "completed",
+      "reward": 65981.0,
+      "opponent_reward": 64035.0,
+      "margin": 1946.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972036,
+      "seat": 1,
+      "status": "completed",
+      "reward": 65981.0,
+      "opponent_reward": 64035.0,
+      "margin": 1946.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972037,
+      "seat": 0,
+      "status": "completed",
+      "reward": 108183.0,
+      "opponent_reward": 111398.0,
+      "margin": -3215.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972037,
+      "seat": 1,
+      "status": "completed",
+      "reward": 107071.0,
+      "opponent_reward": 112838.0,
+      "margin": -5767.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972038,
+      "seat": 0,
+      "status": "completed",
+      "reward": 66635.0,
+      "opponent_reward": 63617.0,
+      "margin": 3018.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972038,
+      "seat": 1,
+      "status": "completed",
+      "reward": 66635.0,
+      "opponent_reward": 63617.0,
+      "margin": 3018.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972039,
+      "seat": 0,
+      "status": "completed",
+      "reward": 110283.0,
+      "opponent_reward": 109418.0,
+      "margin": 865.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972039,
+      "seat": 1,
+      "status": "completed",
+      "reward": 110283.0,
+      "opponent_reward": 109418.0,
+      "margin": 865.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972040,
+      "seat": 0,
+      "status": "completed",
+      "reward": 85739.0,
+      "opponent_reward": 85166.0,
+      "margin": 573.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972040,
+      "seat": 1,
+      "status": "completed",
+      "reward": 85739.0,
+      "opponent_reward": 85166.0,
+      "margin": 573.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972041,
+      "seat": 0,
+      "status": "completed",
+      "reward": 75362.0,
+      "opponent_reward": 73365.0,
+      "margin": 1997.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972041,
+      "seat": 1,
+      "status": "completed",
+      "reward": 75362.0,
+      "opponent_reward": 73365.0,
+      "margin": 1997.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972042,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82476.0,
+      "opponent_reward": 80806.0,
+      "margin": 1670.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972042,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82343.0,
+      "opponent_reward": 80939.0,
+      "margin": 1404.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972043,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114015.0,
+      "opponent_reward": 113281.0,
+      "margin": 734.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972043,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114015.0,
+      "opponent_reward": 113281.0,
+      "margin": 734.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972044,
+      "seat": 0,
+      "status": "completed",
+      "reward": 122156.0,
+      "opponent_reward": 122589.0,
+      "margin": -433.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972044,
+      "seat": 1,
+      "status": "completed",
+      "reward": 122156.0,
+      "opponent_reward": 122589.0,
+      "margin": -433.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972045,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88485.0,
+      "opponent_reward": 87031.0,
+      "margin": 1454.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972045,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88485.0,
+      "opponent_reward": 87031.0,
+      "margin": 1454.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972046,
+      "seat": 0,
+      "status": "completed",
+      "reward": 138052.0,
+      "opponent_reward": 136719.0,
+      "margin": 1333.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972046,
+      "seat": 1,
+      "status": "completed",
+      "reward": 138052.0,
+      "opponent_reward": 136719.0,
+      "margin": 1333.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972047,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88199.0,
+      "opponent_reward": 87040.0,
+      "margin": 1159.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972047,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88199.0,
+      "opponent_reward": 87040.0,
+      "margin": 1159.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972048,
+      "seat": 0,
+      "status": "completed",
+      "reward": 119824.0,
+      "opponent_reward": 117186.0,
+      "margin": 2638.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972048,
+      "seat": 1,
+      "status": "completed",
+      "reward": 119824.0,
+      "opponent_reward": 117186.0,
+      "margin": 2638.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972049,
+      "seat": 0,
+      "status": "completed",
+      "reward": 74893.0,
+      "opponent_reward": 73205.0,
+      "margin": 1688.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972049,
+      "seat": 1,
+      "status": "completed",
+      "reward": 74893.0,
+      "opponent_reward": 73205.0,
+      "margin": 1688.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972050,
+      "seat": 0,
+      "status": "completed",
+      "reward": 125115.0,
+      "opponent_reward": 124141.0,
+      "margin": 974.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972050,
+      "seat": 1,
+      "status": "completed",
+      "reward": 125115.0,
+      "opponent_reward": 124141.0,
+      "margin": 974.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972051,
+      "seat": 0,
+      "status": "completed",
+      "reward": 117825.0,
+      "opponent_reward": 115712.0,
+      "margin": 2113.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972051,
+      "seat": 1,
+      "status": "completed",
+      "reward": 117825.0,
+      "opponent_reward": 115712.0,
+      "margin": 2113.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972052,
+      "seat": 0,
+      "status": "completed",
+      "reward": 105118.0,
+      "opponent_reward": 103485.0,
+      "margin": 1633.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972052,
+      "seat": 1,
+      "status": "completed",
+      "reward": 105118.0,
+      "opponent_reward": 103485.0,
+      "margin": 1633.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972053,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79445.0,
+      "opponent_reward": 77298.0,
+      "margin": 2147.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972053,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79445.0,
+      "opponent_reward": 77298.0,
+      "margin": 2147.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972054,
+      "seat": 0,
+      "status": "completed",
+      "reward": 99892.0,
+      "opponent_reward": 100179.0,
+      "margin": -287.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972054,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99892.0,
+      "opponent_reward": 100179.0,
+      "margin": -287.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972055,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83062.0,
+      "opponent_reward": 82088.0,
+      "margin": 974.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972055,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83062.0,
+      "opponent_reward": 82088.0,
+      "margin": 974.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972056,
+      "seat": 0,
+      "status": "completed",
+      "reward": 131785.0,
+      "opponent_reward": 130333.0,
+      "margin": 1452.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972056,
+      "seat": 1,
+      "status": "completed",
+      "reward": 131785.0,
+      "opponent_reward": 130333.0,
+      "margin": 1452.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972057,
+      "seat": 0,
+      "status": "completed",
+      "reward": 77969.0,
+      "opponent_reward": 77637.0,
+      "margin": 332.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972057,
+      "seat": 1,
+      "status": "completed",
+      "reward": 77969.0,
+      "opponent_reward": 77637.0,
+      "margin": 332.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972058,
+      "seat": 0,
+      "status": "completed",
+      "reward": 71967.0,
+      "opponent_reward": 71348.0,
+      "margin": 619.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972058,
+      "seat": 1,
+      "status": "completed",
+      "reward": 71967.0,
+      "opponent_reward": 71348.0,
+      "margin": 619.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972059,
+      "seat": 0,
+      "status": "completed",
+      "reward": 86514.0,
+      "opponent_reward": 85262.0,
+      "margin": 1252.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972059,
+      "seat": 1,
+      "status": "completed",
+      "reward": 86514.0,
+      "opponent_reward": 85262.0,
+      "margin": 1252.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972060,
+      "seat": 0,
+      "status": "completed",
+      "reward": 123543.0,
+      "opponent_reward": 121963.0,
+      "margin": 1580.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972060,
+      "seat": 1,
+      "status": "completed",
+      "reward": 123543.0,
+      "opponent_reward": 121963.0,
+      "margin": 1580.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972061,
+      "seat": 0,
+      "status": "completed",
+      "reward": 126414.0,
+      "opponent_reward": 125208.0,
+      "margin": 1206.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972061,
+      "seat": 1,
+      "status": "completed",
+      "reward": 126414.0,
+      "opponent_reward": 125208.0,
+      "margin": 1206.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972062,
+      "seat": 0,
+      "status": "completed",
+      "reward": 78895.0,
+      "opponent_reward": 80187.0,
+      "margin": -1292.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972062,
+      "seat": 1,
+      "status": "completed",
+      "reward": 78895.0,
+      "opponent_reward": 80187.0,
+      "margin": -1292.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972063,
+      "seat": 0,
+      "status": "completed",
+      "reward": 77992.0,
+      "opponent_reward": 77285.0,
+      "margin": 707.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972063,
+      "seat": 1,
+      "status": "completed",
+      "reward": 77992.0,
+      "opponent_reward": 77285.0,
+      "margin": 707.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972064,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100536.0,
+      "opponent_reward": 99923.0,
+      "margin": 613.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972064,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100536.0,
+      "opponent_reward": 99923.0,
+      "margin": 613.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972065,
+      "seat": 0,
+      "status": "completed",
+      "reward": 132643.0,
+      "opponent_reward": 131560.0,
+      "margin": 1083.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972065,
+      "seat": 1,
+      "status": "completed",
+      "reward": 132643.0,
+      "opponent_reward": 131560.0,
+      "margin": 1083.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972066,
+      "seat": 0,
+      "status": "completed",
+      "reward": 101340.0,
+      "opponent_reward": 100256.0,
+      "margin": 1084.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972066,
+      "seat": 1,
+      "status": "completed",
+      "reward": 101340.0,
+      "opponent_reward": 100256.0,
+      "margin": 1084.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972067,
+      "seat": 0,
+      "status": "completed",
+      "reward": 77265.0,
+      "opponent_reward": 76215.0,
+      "margin": 1050.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972067,
+      "seat": 1,
+      "status": "completed",
+      "reward": 77265.0,
+      "opponent_reward": 76215.0,
+      "margin": 1050.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972068,
+      "seat": 0,
+      "status": "completed",
+      "reward": 84956.0,
+      "opponent_reward": 82841.0,
+      "margin": 2115.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972068,
+      "seat": 1,
+      "status": "completed",
+      "reward": 84956.0,
+      "opponent_reward": 82841.0,
+      "margin": 2115.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972069,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83326.0,
+      "opponent_reward": 82558.0,
+      "margin": 768.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972069,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83326.0,
+      "opponent_reward": 82558.0,
+      "margin": 768.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972070,
+      "seat": 0,
+      "status": "completed",
+      "reward": 139006.0,
+      "opponent_reward": 139173.0,
+      "margin": -167.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972070,
+      "seat": 1,
+      "status": "completed",
+      "reward": 139006.0,
+      "opponent_reward": 139173.0,
+      "margin": -167.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972071,
+      "seat": 0,
+      "status": "completed",
+      "reward": 146700.0,
+      "opponent_reward": 146222.0,
+      "margin": 478.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972071,
+      "seat": 1,
+      "status": "completed",
+      "reward": 146700.0,
+      "opponent_reward": 146222.0,
+      "margin": 478.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972072,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79270.0,
+      "opponent_reward": 77074.0,
+      "margin": 2196.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972072,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79270.0,
+      "opponent_reward": 77074.0,
+      "margin": 2196.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972073,
+      "seat": 0,
+      "status": "completed",
+      "reward": 108918.0,
+      "opponent_reward": 109396.0,
+      "margin": -478.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972073,
+      "seat": 1,
+      "status": "completed",
+      "reward": 108918.0,
+      "opponent_reward": 109396.0,
+      "margin": -478.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972074,
+      "seat": 0,
+      "status": "completed",
+      "reward": 119035.0,
+      "opponent_reward": 115913.0,
+      "margin": 3122.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972074,
+      "seat": 1,
+      "status": "completed",
+      "reward": 119035.0,
+      "opponent_reward": 115913.0,
+      "margin": 3122.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972075,
+      "seat": 0,
+      "status": "completed",
+      "reward": 61584.0,
+      "opponent_reward": 59942.0,
+      "margin": 1642.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972075,
+      "seat": 1,
+      "status": "completed",
+      "reward": 61584.0,
+      "opponent_reward": 59942.0,
+      "margin": 1642.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972076,
+      "seat": 0,
+      "status": "completed",
+      "reward": 137577.0,
+      "opponent_reward": 136040.0,
+      "margin": 1537.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972076,
+      "seat": 1,
+      "status": "completed",
+      "reward": 137577.0,
+      "opponent_reward": 136040.0,
+      "margin": 1537.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972077,
+      "seat": 0,
+      "status": "completed",
+      "reward": 112911.0,
+      "opponent_reward": 112324.0,
+      "margin": 587.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972077,
+      "seat": 1,
+      "status": "completed",
+      "reward": 112911.0,
+      "opponent_reward": 112324.0,
+      "margin": 587.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972078,
+      "seat": 0,
+      "status": "completed",
+      "reward": 59171.0,
+      "opponent_reward": 58688.0,
+      "margin": 483.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972078,
+      "seat": 1,
+      "status": "completed",
+      "reward": 59171.0,
+      "opponent_reward": 58688.0,
+      "margin": 483.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972079,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92066.0,
+      "opponent_reward": 90461.0,
+      "margin": 1605.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972079,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92066.0,
+      "opponent_reward": 90461.0,
+      "margin": 1605.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972080,
+      "seat": 0,
+      "status": "completed",
+      "reward": 134009.0,
+      "opponent_reward": 133715.0,
+      "margin": 294.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972080,
+      "seat": 1,
+      "status": "completed",
+      "reward": 134009.0,
+      "opponent_reward": 133715.0,
+      "margin": 294.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972081,
+      "seat": 0,
+      "status": "completed",
+      "reward": 108867.0,
+      "opponent_reward": 106565.0,
+      "margin": 2302.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972081,
+      "seat": 1,
+      "status": "completed",
+      "reward": 108867.0,
+      "opponent_reward": 106565.0,
+      "margin": 2302.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972082,
+      "seat": 0,
+      "status": "completed",
+      "reward": 107401.0,
+      "opponent_reward": 107178.0,
+      "margin": 223.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972082,
+      "seat": 1,
+      "status": "completed",
+      "reward": 107481.0,
+      "opponent_reward": 107098.0,
+      "margin": 383.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972083,
+      "seat": 0,
+      "status": "completed",
+      "reward": 101616.0,
+      "opponent_reward": 101201.0,
+      "margin": 415.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972083,
+      "seat": 1,
+      "status": "completed",
+      "reward": 101616.0,
+      "opponent_reward": 101201.0,
+      "margin": 415.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972084,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95573.0,
+      "opponent_reward": 94154.0,
+      "margin": 1419.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972084,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95573.0,
+      "opponent_reward": 94154.0,
+      "margin": 1419.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972085,
+      "seat": 0,
+      "status": "completed",
+      "reward": 124884.0,
+      "opponent_reward": 124102.0,
+      "margin": 782.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972085,
+      "seat": 1,
+      "status": "completed",
+      "reward": 124884.0,
+      "opponent_reward": 124102.0,
+      "margin": 782.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972086,
+      "seat": 0,
+      "status": "completed",
+      "reward": 133457.0,
+      "opponent_reward": 132074.0,
+      "margin": 1383.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972086,
+      "seat": 1,
+      "status": "completed",
+      "reward": 133457.0,
+      "opponent_reward": 132074.0,
+      "margin": 1383.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972087,
+      "seat": 0,
+      "status": "completed",
+      "reward": 123703.0,
+      "opponent_reward": 123083.0,
+      "margin": 620.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972087,
+      "seat": 1,
+      "status": "completed",
+      "reward": 123703.0,
+      "opponent_reward": 123083.0,
+      "margin": 620.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972088,
+      "seat": 0,
+      "status": "completed",
+      "reward": 78856.0,
+      "opponent_reward": 77806.0,
+      "margin": 1050.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972088,
+      "seat": 1,
+      "status": "completed",
+      "reward": 78856.0,
+      "opponent_reward": 77806.0,
+      "margin": 1050.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972089,
+      "seat": 0,
+      "status": "completed",
+      "reward": 123315.0,
+      "opponent_reward": 122520.0,
+      "margin": 795.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972089,
+      "seat": 1,
+      "status": "completed",
+      "reward": 123315.0,
+      "opponent_reward": 122520.0,
+      "margin": 795.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972090,
+      "seat": 0,
+      "status": "completed",
+      "reward": 78905.0,
+      "opponent_reward": 77013.0,
+      "margin": 1892.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972090,
+      "seat": 1,
+      "status": "completed",
+      "reward": 78905.0,
+      "opponent_reward": 77013.0,
+      "margin": 1892.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972091,
+      "seat": 0,
+      "status": "completed",
+      "reward": 96665.0,
+      "opponent_reward": 93710.0,
+      "margin": 2955.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972091,
+      "seat": 1,
+      "status": "completed",
+      "reward": 96665.0,
+      "opponent_reward": 93710.0,
+      "margin": 2955.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972092,
+      "seat": 0,
+      "status": "completed",
+      "reward": 107191.0,
+      "opponent_reward": 105251.0,
+      "margin": 1940.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972092,
+      "seat": 1,
+      "status": "completed",
+      "reward": 107191.0,
+      "opponent_reward": 105251.0,
+      "margin": 1940.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972093,
+      "seat": 0,
+      "status": "completed",
+      "reward": 63730.0,
+      "opponent_reward": 62969.0,
+      "margin": 761.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972093,
+      "seat": 1,
+      "status": "completed",
+      "reward": 63730.0,
+      "opponent_reward": 62969.0,
+      "margin": 761.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972094,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100367.0,
+      "opponent_reward": 100504.0,
+      "margin": -137.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972094,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100367.0,
+      "opponent_reward": 100504.0,
+      "margin": -137.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972095,
+      "seat": 0,
+      "status": "completed",
+      "reward": 78673.0,
+      "opponent_reward": 77881.0,
+      "margin": 792.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972095,
+      "seat": 1,
+      "status": "completed",
+      "reward": 78673.0,
+      "opponent_reward": 77881.0,
+      "margin": 792.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972096,
+      "seat": 0,
+      "status": "completed",
+      "reward": 78730.0,
+      "opponent_reward": 76484.0,
+      "margin": 2246.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972096,
+      "seat": 1,
+      "status": "completed",
+      "reward": 78730.0,
+      "opponent_reward": 76484.0,
+      "margin": 2246.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972097,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91646.0,
+      "opponent_reward": 92845.0,
+      "margin": -1199.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972097,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91646.0,
+      "opponent_reward": 92845.0,
+      "margin": -1199.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972098,
+      "seat": 0,
+      "status": "completed",
+      "reward": 109688.0,
+      "opponent_reward": 109330.0,
+      "margin": 358.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972098,
+      "seat": 1,
+      "status": "completed",
+      "reward": 109688.0,
+      "opponent_reward": 109330.0,
+      "margin": 358.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972099,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100208.0,
+      "opponent_reward": 100082.0,
+      "margin": 126.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972099,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100208.0,
+      "opponent_reward": 100082.0,
+      "margin": 126.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972100,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82220.0,
+      "opponent_reward": 80416.0,
+      "margin": 1804.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972100,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82220.0,
+      "opponent_reward": 80416.0,
+      "margin": 1804.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972101,
+      "seat": 0,
+      "status": "completed",
+      "reward": 138031.0,
+      "opponent_reward": 137207.0,
+      "margin": 824.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972101,
+      "seat": 1,
+      "status": "completed",
+      "reward": 138031.0,
+      "opponent_reward": 137207.0,
+      "margin": 824.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972102,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100719.0,
+      "opponent_reward": 99951.0,
+      "margin": 768.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972102,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100719.0,
+      "opponent_reward": 99951.0,
+      "margin": 768.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972103,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83701.0,
+      "opponent_reward": 83053.0,
+      "margin": 648.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972103,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83701.0,
+      "opponent_reward": 83053.0,
+      "margin": 648.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972104,
+      "seat": 0,
+      "status": "completed",
+      "reward": 133245.0,
+      "opponent_reward": 131704.0,
+      "margin": 1541.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972104,
+      "seat": 1,
+      "status": "completed",
+      "reward": 133245.0,
+      "opponent_reward": 131704.0,
+      "margin": 1541.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972105,
+      "seat": 0,
+      "status": "completed",
+      "reward": 76610.0,
+      "opponent_reward": 76086.0,
+      "margin": 524.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972105,
+      "seat": 1,
+      "status": "completed",
+      "reward": 76610.0,
+      "opponent_reward": 76086.0,
+      "margin": 524.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972106,
+      "seat": 0,
+      "status": "completed",
+      "reward": 96446.0,
+      "opponent_reward": 96457.0,
+      "margin": -11.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972106,
+      "seat": 1,
+      "status": "completed",
+      "reward": 96446.0,
+      "opponent_reward": 96457.0,
+      "margin": -11.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972107,
+      "seat": 0,
+      "status": "completed",
+      "reward": 119673.0,
+      "opponent_reward": 119079.0,
+      "margin": 594.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972107,
+      "seat": 1,
+      "status": "completed",
+      "reward": 119673.0,
+      "opponent_reward": 119079.0,
+      "margin": 594.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972108,
+      "seat": 0,
+      "status": "completed",
+      "reward": 94356.0,
+      "opponent_reward": 93972.0,
+      "margin": 384.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972108,
+      "seat": 1,
+      "status": "completed",
+      "reward": 94356.0,
+      "opponent_reward": 93972.0,
+      "margin": 384.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972109,
+      "seat": 0,
+      "status": "completed",
+      "reward": 108028.0,
+      "opponent_reward": 107737.0,
+      "margin": 291.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972109,
+      "seat": 1,
+      "status": "completed",
+      "reward": 108028.0,
+      "opponent_reward": 107737.0,
+      "margin": 291.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972110,
+      "seat": 0,
+      "status": "completed",
+      "reward": 116939.0,
+      "opponent_reward": 115172.0,
+      "margin": 1767.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972110,
+      "seat": 1,
+      "status": "completed",
+      "reward": 116939.0,
+      "opponent_reward": 115172.0,
+      "margin": 1767.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972111,
+      "seat": 0,
+      "status": "completed",
+      "reward": 102730.0,
+      "opponent_reward": 101658.0,
+      "margin": 1072.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972111,
+      "seat": 1,
+      "status": "completed",
+      "reward": 102601.0,
+      "opponent_reward": 101787.0,
+      "margin": 814.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972112,
+      "seat": 0,
+      "status": "completed",
+      "reward": 64940.0,
+      "opponent_reward": 64313.0,
+      "margin": 627.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972112,
+      "seat": 1,
+      "status": "completed",
+      "reward": 64940.0,
+      "opponent_reward": 64313.0,
+      "margin": 627.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972113,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79891.0,
+      "opponent_reward": 80510.0,
+      "margin": -619.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972113,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79891.0,
+      "opponent_reward": 80510.0,
+      "margin": -619.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972114,
+      "seat": 0,
+      "status": "completed",
+      "reward": 84981.0,
+      "opponent_reward": 83835.0,
+      "margin": 1146.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972114,
+      "seat": 1,
+      "status": "completed",
+      "reward": 84981.0,
+      "opponent_reward": 83835.0,
+      "margin": 1146.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972115,
+      "seat": 0,
+      "status": "completed",
+      "reward": 97166.0,
+      "opponent_reward": 97163.0,
+      "margin": 3.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972115,
+      "seat": 1,
+      "status": "completed",
+      "reward": 97166.0,
+      "opponent_reward": 97163.0,
+      "margin": 3.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972116,
+      "seat": 0,
+      "status": "completed",
+      "reward": 141048.0,
+      "opponent_reward": 139451.0,
+      "margin": 1597.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972116,
+      "seat": 1,
+      "status": "completed",
+      "reward": 141048.0,
+      "opponent_reward": 139451.0,
+      "margin": 1597.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972117,
+      "seat": 0,
+      "status": "completed",
+      "reward": 73347.0,
+      "opponent_reward": 70061.0,
+      "margin": 3286.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972117,
+      "seat": 1,
+      "status": "completed",
+      "reward": 73347.0,
+      "opponent_reward": 70061.0,
+      "margin": 3286.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972118,
+      "seat": 0,
+      "status": "completed",
+      "reward": 70614.0,
+      "opponent_reward": 68573.0,
+      "margin": 2041.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972118,
+      "seat": 1,
+      "status": "completed",
+      "reward": 70614.0,
+      "opponent_reward": 68573.0,
+      "margin": 2041.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972119,
+      "seat": 0,
+      "status": "completed",
+      "reward": 94759.0,
+      "opponent_reward": 93442.0,
+      "margin": 1317.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972119,
+      "seat": 1,
+      "status": "completed",
+      "reward": 94759.0,
+      "opponent_reward": 93442.0,
+      "margin": 1317.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972120,
+      "seat": 0,
+      "status": "completed",
+      "reward": 125220.0,
+      "opponent_reward": 122677.0,
+      "margin": 2543.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972120,
+      "seat": 1,
+      "status": "completed",
+      "reward": 124163.0,
+      "opponent_reward": 123735.0,
+      "margin": 428.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972121,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82369.0,
+      "opponent_reward": 80378.0,
+      "margin": 1991.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972121,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82369.0,
+      "opponent_reward": 80378.0,
+      "margin": 1991.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972122,
+      "seat": 0,
+      "status": "completed",
+      "reward": 98161.0,
+      "opponent_reward": 97175.0,
+      "margin": 986.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972122,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99038.0,
+      "opponent_reward": 96372.0,
+      "margin": 2666.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972123,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95512.0,
+      "opponent_reward": 97200.0,
+      "margin": -1688.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972123,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95592.0,
+      "opponent_reward": 97120.0,
+      "margin": -1528.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972124,
+      "seat": 0,
+      "status": "completed",
+      "reward": 80205.0,
+      "opponent_reward": 79209.0,
+      "margin": 996.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972124,
+      "seat": 1,
+      "status": "completed",
+      "reward": 80205.0,
+      "opponent_reward": 79209.0,
+      "margin": 996.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972125,
+      "seat": 0,
+      "status": "completed",
+      "reward": 107502.0,
+      "opponent_reward": 107508.0,
+      "margin": -6.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972125,
+      "seat": 1,
+      "status": "completed",
+      "reward": 107502.0,
+      "opponent_reward": 107508.0,
+      "margin": -6.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972126,
+      "seat": 0,
+      "status": "completed",
+      "reward": 75075.0,
+      "opponent_reward": 74397.0,
+      "margin": 678.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972126,
+      "seat": 1,
+      "status": "completed",
+      "reward": 75075.0,
+      "opponent_reward": 74397.0,
+      "margin": 678.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972127,
+      "seat": 0,
+      "status": "completed",
+      "reward": 96217.0,
+      "opponent_reward": 95647.0,
+      "margin": 570.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972127,
+      "seat": 1,
+      "status": "completed",
+      "reward": 97191.0,
+      "opponent_reward": 94673.0,
+      "margin": 2518.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972128,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92615.0,
+      "opponent_reward": 91722.0,
+      "margin": 893.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972128,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92615.0,
+      "opponent_reward": 91722.0,
+      "margin": 893.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972129,
+      "seat": 0,
+      "status": "completed",
+      "reward": 69135.0,
+      "opponent_reward": 65820.0,
+      "margin": 3315.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972129,
+      "seat": 1,
+      "status": "completed",
+      "reward": 69135.0,
+      "opponent_reward": 65820.0,
+      "margin": 3315.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972130,
+      "seat": 0,
+      "status": "completed",
+      "reward": 66075.0,
+      "opponent_reward": 65373.0,
+      "margin": 702.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972130,
+      "seat": 1,
+      "status": "completed",
+      "reward": 66075.0,
+      "opponent_reward": 65373.0,
+      "margin": 702.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972131,
+      "seat": 0,
+      "status": "completed",
+      "reward": 72555.0,
+      "opponent_reward": 71013.0,
+      "margin": 1542.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972131,
+      "seat": 1,
+      "status": "completed",
+      "reward": 72555.0,
+      "opponent_reward": 71013.0,
+      "margin": 1542.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972132,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91109.0,
+      "opponent_reward": 87587.0,
+      "margin": 3522.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972132,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91109.0,
+      "opponent_reward": 87587.0,
+      "margin": 3522.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972133,
+      "seat": 0,
+      "status": "completed",
+      "reward": 146978.0,
+      "opponent_reward": 145566.0,
+      "margin": 1412.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972133,
+      "seat": 1,
+      "status": "completed",
+      "reward": 145845.0,
+      "opponent_reward": 146700.0,
+      "margin": -855.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972134,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95618.0,
+      "opponent_reward": 93514.0,
+      "margin": 2104.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972134,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95618.0,
+      "opponent_reward": 93514.0,
+      "margin": 2104.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972135,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151543.0,
+      "opponent_reward": 150144.0,
+      "margin": 1399.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972135,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151543.0,
+      "opponent_reward": 150144.0,
+      "margin": 1399.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972136,
+      "seat": 0,
+      "status": "completed",
+      "reward": 101466.0,
+      "opponent_reward": 101489.0,
+      "margin": -23.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972136,
+      "seat": 1,
+      "status": "completed",
+      "reward": 101466.0,
+      "opponent_reward": 101489.0,
+      "margin": -23.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972137,
+      "seat": 0,
+      "status": "completed",
+      "reward": 104348.0,
+      "opponent_reward": 103801.0,
+      "margin": 547.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972137,
+      "seat": 1,
+      "status": "completed",
+      "reward": 104348.0,
+      "opponent_reward": 103801.0,
+      "margin": 547.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972138,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114987.0,
+      "opponent_reward": 113753.0,
+      "margin": 1234.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972138,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114987.0,
+      "opponent_reward": 113753.0,
+      "margin": 1234.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972139,
+      "seat": 0,
+      "status": "completed",
+      "reward": 108426.0,
+      "opponent_reward": 106515.0,
+      "margin": 1911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972139,
+      "seat": 1,
+      "status": "completed",
+      "reward": 108426.0,
+      "opponent_reward": 106515.0,
+      "margin": 1911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972140,
+      "seat": 0,
+      "status": "completed",
+      "reward": 112018.0,
+      "opponent_reward": 111963.0,
+      "margin": 55.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972140,
+      "seat": 1,
+      "status": "completed",
+      "reward": 112018.0,
+      "opponent_reward": 111963.0,
+      "margin": 55.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972141,
+      "seat": 0,
+      "status": "completed",
+      "reward": 118786.0,
+      "opponent_reward": 119886.0,
+      "margin": -1100.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972141,
+      "seat": 1,
+      "status": "completed",
+      "reward": 118786.0,
+      "opponent_reward": 119886.0,
+      "margin": -1100.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972142,
+      "seat": 0,
+      "status": "completed",
+      "reward": 115144.0,
+      "opponent_reward": 114181.0,
+      "margin": 963.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972142,
+      "seat": 1,
+      "status": "completed",
+      "reward": 115144.0,
+      "opponent_reward": 114181.0,
+      "margin": 963.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972143,
+      "seat": 0,
+      "status": "completed",
+      "reward": 99114.0,
+      "opponent_reward": 97934.0,
+      "margin": 1180.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972143,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99114.0,
+      "opponent_reward": 97934.0,
+      "margin": 1180.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972144,
+      "seat": 0,
+      "status": "completed",
+      "reward": 130139.0,
+      "opponent_reward": 128114.0,
+      "margin": 2025.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972144,
+      "seat": 1,
+      "status": "completed",
+      "reward": 130139.0,
+      "opponent_reward": 128114.0,
+      "margin": 2025.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972145,
+      "seat": 0,
+      "status": "completed",
+      "reward": 84652.0,
+      "opponent_reward": 82732.0,
+      "margin": 1920.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972145,
+      "seat": 1,
+      "status": "completed",
+      "reward": 84652.0,
+      "opponent_reward": 82732.0,
+      "margin": 1920.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972146,
+      "seat": 0,
+      "status": "completed",
+      "reward": 159252.0,
+      "opponent_reward": 158223.0,
+      "margin": 1029.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972146,
+      "seat": 1,
+      "status": "completed",
+      "reward": 159252.0,
+      "opponent_reward": 158223.0,
+      "margin": 1029.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972147,
+      "seat": 0,
+      "status": "completed",
+      "reward": 112417.0,
+      "opponent_reward": 110254.0,
+      "margin": 2163.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972147,
+      "seat": 1,
+      "status": "completed",
+      "reward": 112291.0,
+      "opponent_reward": 110380.0,
+      "margin": 1911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972148,
+      "seat": 0,
+      "status": "completed",
+      "reward": 70330.0,
+      "opponent_reward": 69457.0,
+      "margin": 873.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972148,
+      "seat": 1,
+      "status": "completed",
+      "reward": 70330.0,
+      "opponent_reward": 69457.0,
+      "margin": 873.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972149,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82197.0,
+      "opponent_reward": 81828.0,
+      "margin": 369.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972149,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82197.0,
+      "opponent_reward": 81828.0,
+      "margin": 369.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972150,
+      "seat": 0,
+      "status": "completed",
+      "reward": 114852.0,
+      "opponent_reward": 113670.0,
+      "margin": 1182.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972150,
+      "seat": 1,
+      "status": "completed",
+      "reward": 114852.0,
+      "opponent_reward": 113670.0,
+      "margin": 1182.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972151,
+      "seat": 0,
+      "status": "completed",
+      "reward": 81783.0,
+      "opponent_reward": 80014.0,
+      "margin": 1769.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972151,
+      "seat": 1,
+      "status": "completed",
+      "reward": 81783.0,
+      "opponent_reward": 80014.0,
+      "margin": 1769.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972152,
+      "seat": 0,
+      "status": "completed",
+      "reward": 128062.0,
+      "opponent_reward": 127668.0,
+      "margin": 394.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972152,
+      "seat": 1,
+      "status": "completed",
+      "reward": 128062.0,
+      "opponent_reward": 127668.0,
+      "margin": 394.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972153,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100815.0,
+      "opponent_reward": 100316.0,
+      "margin": 499.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972153,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100815.0,
+      "opponent_reward": 100316.0,
+      "margin": 499.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972154,
+      "seat": 0,
+      "status": "completed",
+      "reward": 59357.0,
+      "opponent_reward": 57878.0,
+      "margin": 1479.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972154,
+      "seat": 1,
+      "status": "completed",
+      "reward": 84511.0,
+      "opponent_reward": 76595.0,
+      "margin": 7916.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972155,
+      "seat": 0,
+      "status": "completed",
+      "reward": 97788.0,
+      "opponent_reward": 94423.0,
+      "margin": 3365.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972155,
+      "seat": 1,
+      "status": "completed",
+      "reward": 96604.0,
+      "opponent_reward": 95605.0,
+      "margin": 999.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972156,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95436.0,
+      "opponent_reward": 95353.0,
+      "margin": 83.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972156,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95436.0,
+      "opponent_reward": 95353.0,
+      "margin": 83.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972157,
+      "seat": 0,
+      "status": "completed",
+      "reward": 74783.0,
+      "opponent_reward": 73526.0,
+      "margin": 1257.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972157,
+      "seat": 1,
+      "status": "completed",
+      "reward": 74783.0,
+      "opponent_reward": 73526.0,
+      "margin": 1257.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972158,
+      "seat": 0,
+      "status": "completed",
+      "reward": 101599.0,
+      "opponent_reward": 100591.0,
+      "margin": 1008.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972158,
+      "seat": 1,
+      "status": "completed",
+      "reward": 101477.0,
+      "opponent_reward": 100713.0,
+      "margin": 764.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972159,
+      "seat": 0,
+      "status": "completed",
+      "reward": 63488.0,
+      "opponent_reward": 62870.0,
+      "margin": 618.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972159,
+      "seat": 1,
+      "status": "completed",
+      "reward": 63488.0,
+      "opponent_reward": 62870.0,
+      "margin": 618.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972160,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95150.0,
+      "opponent_reward": 94544.0,
+      "margin": 606.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972160,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95150.0,
+      "opponent_reward": 94544.0,
+      "margin": 606.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972161,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92021.0,
+      "opponent_reward": 91503.0,
+      "margin": 518.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972161,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92021.0,
+      "opponent_reward": 91503.0,
+      "margin": 518.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972162,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83911.0,
+      "opponent_reward": 84411.0,
+      "margin": -500.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972162,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83911.0,
+      "opponent_reward": 84411.0,
+      "margin": -500.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972163,
+      "seat": 0,
+      "status": "completed",
+      "reward": 85057.0,
+      "opponent_reward": 83656.0,
+      "margin": 1401.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972163,
+      "seat": 1,
+      "status": "completed",
+      "reward": 85057.0,
+      "opponent_reward": 83656.0,
+      "margin": 1401.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972164,
+      "seat": 0,
+      "status": "completed",
+      "reward": 133472.0,
+      "opponent_reward": 132498.0,
+      "margin": 974.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972164,
+      "seat": 1,
+      "status": "completed",
+      "reward": 133472.0,
+      "opponent_reward": 132498.0,
+      "margin": 974.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972165,
+      "seat": 0,
+      "status": "completed",
+      "reward": 70660.0,
+      "opponent_reward": 70641.0,
+      "margin": 19.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972165,
+      "seat": 1,
+      "status": "completed",
+      "reward": 70660.0,
+      "opponent_reward": 70641.0,
+      "margin": 19.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972166,
+      "seat": 0,
+      "status": "completed",
+      "reward": 106671.0,
+      "opponent_reward": 106422.0,
+      "margin": 249.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972166,
+      "seat": 1,
+      "status": "completed",
+      "reward": 106671.0,
+      "opponent_reward": 106422.0,
+      "margin": 249.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972167,
+      "seat": 0,
+      "status": "completed",
+      "reward": 121972.0,
+      "opponent_reward": 120794.0,
+      "margin": 1178.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972167,
+      "seat": 1,
+      "status": "completed",
+      "reward": 121972.0,
+      "opponent_reward": 120794.0,
+      "margin": 1178.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972168,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91866.0,
+      "opponent_reward": 90492.0,
+      "margin": 1374.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972168,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91866.0,
+      "opponent_reward": 90492.0,
+      "margin": 1374.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972169,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88127.0,
+      "opponent_reward": 87430.0,
+      "margin": 697.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972169,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88127.0,
+      "opponent_reward": 87430.0,
+      "margin": 697.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972170,
+      "seat": 0,
+      "status": "completed",
+      "reward": 139077.0,
+      "opponent_reward": 136285.0,
+      "margin": 2792.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972170,
+      "seat": 1,
+      "status": "completed",
+      "reward": 139077.0,
+      "opponent_reward": 136285.0,
+      "margin": 2792.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972171,
+      "seat": 0,
+      "status": "completed",
+      "reward": 73602.0,
+      "opponent_reward": 71108.0,
+      "margin": 2494.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972171,
+      "seat": 1,
+      "status": "completed",
+      "reward": 73602.0,
+      "opponent_reward": 71108.0,
+      "margin": 2494.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972172,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95169.0,
+      "opponent_reward": 92712.0,
+      "margin": 2457.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972172,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95169.0,
+      "opponent_reward": 92712.0,
+      "margin": 2457.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972173,
+      "seat": 0,
+      "status": "completed",
+      "reward": 65702.0,
+      "opponent_reward": 63180.0,
+      "margin": 2522.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972173,
+      "seat": 1,
+      "status": "completed",
+      "reward": 65702.0,
+      "opponent_reward": 63180.0,
+      "margin": 2522.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972174,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83808.0,
+      "opponent_reward": 80357.0,
+      "margin": 3451.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972174,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83808.0,
+      "opponent_reward": 80357.0,
+      "margin": 3451.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972175,
+      "seat": 0,
+      "status": "completed",
+      "reward": 136543.0,
+      "opponent_reward": 135632.0,
+      "margin": 911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972175,
+      "seat": 1,
+      "status": "completed",
+      "reward": 136543.0,
+      "opponent_reward": 135632.0,
+      "margin": 911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972176,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79497.0,
+      "opponent_reward": 78737.0,
+      "margin": 760.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972176,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79497.0,
+      "opponent_reward": 78737.0,
+      "margin": 760.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972177,
+      "seat": 0,
+      "status": "completed",
+      "reward": 93039.0,
+      "opponent_reward": 89768.0,
+      "margin": 3271.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972177,
+      "seat": 1,
+      "status": "completed",
+      "reward": 93039.0,
+      "opponent_reward": 89768.0,
+      "margin": 3271.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972178,
+      "seat": 0,
+      "status": "completed",
+      "reward": 136240.0,
+      "opponent_reward": 136290.0,
+      "margin": -50.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972178,
+      "seat": 1,
+      "status": "completed",
+      "reward": 136240.0,
+      "opponent_reward": 136290.0,
+      "margin": -50.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972179,
+      "seat": 0,
+      "status": "completed",
+      "reward": 104611.0,
+      "opponent_reward": 106587.0,
+      "margin": -1976.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972179,
+      "seat": 1,
+      "status": "completed",
+      "reward": 104611.0,
+      "opponent_reward": 106587.0,
+      "margin": -1976.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972180,
+      "seat": 0,
+      "status": "completed",
+      "reward": 67588.0,
+      "opponent_reward": 66336.0,
+      "margin": 1252.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972180,
+      "seat": 1,
+      "status": "completed",
+      "reward": 64340.0,
+      "opponent_reward": 62477.0,
+      "margin": 1863.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972181,
+      "seat": 0,
+      "status": "completed",
+      "reward": 97356.0,
+      "opponent_reward": 96319.0,
+      "margin": 1037.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972181,
+      "seat": 1,
+      "status": "completed",
+      "reward": 97356.0,
+      "opponent_reward": 96319.0,
+      "margin": 1037.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972182,
+      "seat": 0,
+      "status": "completed",
+      "reward": 80711.0,
+      "opponent_reward": 79319.0,
+      "margin": 1392.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972182,
+      "seat": 1,
+      "status": "completed",
+      "reward": 80711.0,
+      "opponent_reward": 79319.0,
+      "margin": 1392.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972183,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92974.0,
+      "opponent_reward": 93053.0,
+      "margin": -79.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972183,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92974.0,
+      "opponent_reward": 93053.0,
+      "margin": -79.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972184,
+      "seat": 0,
+      "status": "completed",
+      "reward": 106071.0,
+      "opponent_reward": 104484.0,
+      "margin": 1587.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972184,
+      "seat": 1,
+      "status": "completed",
+      "reward": 106071.0,
+      "opponent_reward": 104484.0,
+      "margin": 1587.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972185,
+      "seat": 0,
+      "status": "completed",
+      "reward": 101651.0,
+      "opponent_reward": 100248.0,
+      "margin": 1403.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972185,
+      "seat": 1,
+      "status": "completed",
+      "reward": 101651.0,
+      "opponent_reward": 100248.0,
+      "margin": 1403.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972186,
+      "seat": 0,
+      "status": "completed",
+      "reward": 80460.0,
+      "opponent_reward": 78954.0,
+      "margin": 1506.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972186,
+      "seat": 1,
+      "status": "completed",
+      "reward": 80460.0,
+      "opponent_reward": 78954.0,
+      "margin": 1506.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972187,
+      "seat": 0,
+      "status": "completed",
+      "reward": 91515.0,
+      "opponent_reward": 90814.0,
+      "margin": 701.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972187,
+      "seat": 1,
+      "status": "completed",
+      "reward": 91515.0,
+      "opponent_reward": 90814.0,
+      "margin": 701.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972188,
+      "seat": 0,
+      "status": "completed",
+      "reward": 75932.0,
+      "opponent_reward": 73939.0,
+      "margin": 1993.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972188,
+      "seat": 1,
+      "status": "completed",
+      "reward": 75229.0,
+      "opponent_reward": 74598.0,
+      "margin": 631.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972189,
+      "seat": 0,
+      "status": "completed",
+      "reward": 95572.0,
+      "opponent_reward": 95006.0,
+      "margin": 566.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972189,
+      "seat": 1,
+      "status": "completed",
+      "reward": 95572.0,
+      "opponent_reward": 95006.0,
+      "margin": 566.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972190,
+      "seat": 0,
+      "status": "completed",
+      "reward": 131498.0,
+      "opponent_reward": 130970.0,
+      "margin": 528.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972190,
+      "seat": 1,
+      "status": "completed",
+      "reward": 131498.0,
+      "opponent_reward": 130970.0,
+      "margin": 528.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972191,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100949.0,
+      "opponent_reward": 100772.0,
+      "margin": 177.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972191,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100949.0,
+      "opponent_reward": 100772.0,
+      "margin": 177.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972192,
+      "seat": 0,
+      "status": "completed",
+      "reward": 75932.0,
+      "opponent_reward": 74270.0,
+      "margin": 1662.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972192,
+      "seat": 1,
+      "status": "completed",
+      "reward": 75932.0,
+      "opponent_reward": 74270.0,
+      "margin": 1662.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972193,
+      "seat": 0,
+      "status": "completed",
+      "reward": 101315.0,
+      "opponent_reward": 101195.0,
+      "margin": 120.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972193,
+      "seat": 1,
+      "status": "completed",
+      "reward": 101315.0,
+      "opponent_reward": 101195.0,
+      "margin": 120.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972194,
+      "seat": 0,
+      "status": "completed",
+      "reward": 118214.0,
+      "opponent_reward": 117415.0,
+      "margin": 799.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972194,
+      "seat": 1,
+      "status": "completed",
+      "reward": 118214.0,
+      "opponent_reward": 117415.0,
+      "margin": 799.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972195,
+      "seat": 0,
+      "status": "completed",
+      "reward": 82736.0,
+      "opponent_reward": 74276.0,
+      "margin": 8460.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972195,
+      "seat": 1,
+      "status": "completed",
+      "reward": 82736.0,
+      "opponent_reward": 74276.0,
+      "margin": 8460.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972196,
+      "seat": 0,
+      "status": "completed",
+      "reward": 87741.0,
+      "opponent_reward": 86070.0,
+      "margin": 1671.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972196,
+      "seat": 1,
+      "status": "completed",
+      "reward": 87741.0,
+      "opponent_reward": 86070.0,
+      "margin": 1671.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972197,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88230.0,
+      "opponent_reward": 84759.0,
+      "margin": 3471.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972197,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88230.0,
+      "opponent_reward": 84759.0,
+      "margin": 3471.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972198,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92162.0,
+      "opponent_reward": 90130.0,
+      "margin": 2032.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972198,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92162.0,
+      "opponent_reward": 90130.0,
+      "margin": 2032.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972199,
+      "seat": 0,
+      "status": "completed",
+      "reward": 130431.0,
+      "opponent_reward": 129269.0,
+      "margin": 1162.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972199,
+      "seat": 1,
+      "status": "completed",
+      "reward": 130431.0,
+      "opponent_reward": 129269.0,
+      "margin": 1162.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972200,
+      "seat": 0,
+      "status": "completed",
+      "reward": 77339.0,
+      "opponent_reward": 75602.0,
+      "margin": 1737.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972200,
+      "seat": 1,
+      "status": "completed",
+      "reward": 77510.0,
+      "opponent_reward": 75343.0,
+      "margin": 2167.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972201,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92494.0,
+      "opponent_reward": 90585.0,
+      "margin": 1909.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972201,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92494.0,
+      "opponent_reward": 90585.0,
+      "margin": 1909.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972202,
+      "seat": 0,
+      "status": "completed",
+      "reward": 111169.0,
+      "opponent_reward": 110477.0,
+      "margin": 692.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972202,
+      "seat": 1,
+      "status": "completed",
+      "reward": 111169.0,
+      "opponent_reward": 110477.0,
+      "margin": 692.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972203,
+      "seat": 0,
+      "status": "completed",
+      "reward": 129560.0,
+      "opponent_reward": 128040.0,
+      "margin": 1520.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972203,
+      "seat": 1,
+      "status": "completed",
+      "reward": 129560.0,
+      "opponent_reward": 128040.0,
+      "margin": 1520.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972204,
+      "seat": 0,
+      "status": "completed",
+      "reward": 115055.0,
+      "opponent_reward": 114434.0,
+      "margin": 621.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972204,
+      "seat": 1,
+      "status": "completed",
+      "reward": 115055.0,
+      "opponent_reward": 114434.0,
+      "margin": 621.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972205,
+      "seat": 0,
+      "status": "completed",
+      "reward": 72418.0,
+      "opponent_reward": 71507.0,
+      "margin": 911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972205,
+      "seat": 1,
+      "status": "completed",
+      "reward": 72418.0,
+      "opponent_reward": 71507.0,
+      "margin": 911.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972206,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88694.0,
+      "opponent_reward": 89485.0,
+      "margin": -791.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972206,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88694.0,
+      "opponent_reward": 89485.0,
+      "margin": -791.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972207,
+      "seat": 0,
+      "status": "completed",
+      "reward": 67926.0,
+      "opponent_reward": 65442.0,
+      "margin": 2484.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972207,
+      "seat": 1,
+      "status": "completed",
+      "reward": 67926.0,
+      "opponent_reward": 65442.0,
+      "margin": 2484.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972208,
+      "seat": 0,
+      "status": "completed",
+      "reward": 159756.0,
+      "opponent_reward": 158971.0,
+      "margin": 785.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972208,
+      "seat": 1,
+      "status": "completed",
+      "reward": 159756.0,
+      "opponent_reward": 158971.0,
+      "margin": 785.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972209,
+      "seat": 0,
+      "status": "completed",
+      "reward": 100456.0,
+      "opponent_reward": 98241.0,
+      "margin": 2215.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972209,
+      "seat": 1,
+      "status": "completed",
+      "reward": 100456.0,
+      "opponent_reward": 98241.0,
+      "margin": 2215.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972210,
+      "seat": 0,
+      "status": "completed",
+      "reward": 112784.0,
+      "opponent_reward": 111717.0,
+      "margin": 1067.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972210,
+      "seat": 1,
+      "status": "completed",
+      "reward": 112784.0,
+      "opponent_reward": 111717.0,
+      "margin": 1067.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972211,
+      "seat": 0,
+      "status": "completed",
+      "reward": 70360.0,
+      "opponent_reward": 69025.0,
+      "margin": 1335.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972211,
+      "seat": 1,
+      "status": "completed",
+      "reward": 70360.0,
+      "opponent_reward": 69025.0,
+      "margin": 1335.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972212,
+      "seat": 0,
+      "status": "completed",
+      "reward": 96697.0,
+      "opponent_reward": 96398.0,
+      "margin": 299.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972212,
+      "seat": 1,
+      "status": "completed",
+      "reward": 96697.0,
+      "opponent_reward": 96398.0,
+      "margin": 299.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972213,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79518.0,
+      "opponent_reward": 77473.0,
+      "margin": 2045.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972213,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79518.0,
+      "opponent_reward": 77473.0,
+      "margin": 2045.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972214,
+      "seat": 0,
+      "status": "completed",
+      "reward": 69015.0,
+      "opponent_reward": 68971.0,
+      "margin": 44.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972214,
+      "seat": 1,
+      "status": "completed",
+      "reward": 69015.0,
+      "opponent_reward": 68971.0,
+      "margin": 44.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972215,
+      "seat": 0,
+      "status": "completed",
+      "reward": 116245.0,
+      "opponent_reward": 115819.0,
+      "margin": 426.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972215,
+      "seat": 1,
+      "status": "completed",
+      "reward": 116245.0,
+      "opponent_reward": 115819.0,
+      "margin": 426.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972216,
+      "seat": 0,
+      "status": "completed",
+      "reward": 81462.0,
+      "opponent_reward": 79993.0,
+      "margin": 1469.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972216,
+      "seat": 1,
+      "status": "completed",
+      "reward": 81462.0,
+      "opponent_reward": 79993.0,
+      "margin": 1469.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972217,
+      "seat": 0,
+      "status": "completed",
+      "reward": 97426.0,
+      "opponent_reward": 98269.0,
+      "margin": -843.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972217,
+      "seat": 1,
+      "status": "completed",
+      "reward": 97426.0,
+      "opponent_reward": 98269.0,
+      "margin": -843.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972218,
+      "seat": 0,
+      "status": "completed",
+      "reward": 126766.0,
+      "opponent_reward": 126276.0,
+      "margin": 490.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972218,
+      "seat": 1,
+      "status": "completed",
+      "reward": 126766.0,
+      "opponent_reward": 126276.0,
+      "margin": 490.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972219,
+      "seat": 0,
+      "status": "completed",
+      "reward": 109161.0,
+      "opponent_reward": 107522.0,
+      "margin": 1639.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972219,
+      "seat": 1,
+      "status": "completed",
+      "reward": 109161.0,
+      "opponent_reward": 107522.0,
+      "margin": 1639.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972220,
+      "seat": 0,
+      "status": "completed",
+      "reward": 123639.0,
+      "opponent_reward": 122923.0,
+      "margin": 716.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972220,
+      "seat": 1,
+      "status": "completed",
+      "reward": 123639.0,
+      "opponent_reward": 122923.0,
+      "margin": 716.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972221,
+      "seat": 0,
+      "status": "completed",
+      "reward": 99655.0,
+      "opponent_reward": 99561.0,
+      "margin": 94.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972221,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99655.0,
+      "opponent_reward": 99561.0,
+      "margin": 94.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972222,
+      "seat": 0,
+      "status": "completed",
+      "reward": 105792.0,
+      "opponent_reward": 105167.0,
+      "margin": 625.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972222,
+      "seat": 1,
+      "status": "completed",
+      "reward": 105792.0,
+      "opponent_reward": 105167.0,
+      "margin": 625.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972223,
+      "seat": 0,
+      "status": "completed",
+      "reward": 105907.0,
+      "opponent_reward": 104181.0,
+      "margin": 1726.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972223,
+      "seat": 1,
+      "status": "completed",
+      "reward": 105907.0,
+      "opponent_reward": 104181.0,
+      "margin": 1726.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972224,
+      "seat": 0,
+      "status": "completed",
+      "reward": 151236.0,
+      "opponent_reward": 150354.0,
+      "margin": 882.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972224,
+      "seat": 1,
+      "status": "completed",
+      "reward": 151236.0,
+      "opponent_reward": 150354.0,
+      "margin": 882.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972225,
+      "seat": 0,
+      "status": "completed",
+      "reward": 106109.0,
+      "opponent_reward": 105597.0,
+      "margin": 512.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972225,
+      "seat": 1,
+      "status": "completed",
+      "reward": 106109.0,
+      "opponent_reward": 105597.0,
+      "margin": 512.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972226,
+      "seat": 0,
+      "status": "completed",
+      "reward": 89209.0,
+      "opponent_reward": 86043.0,
+      "margin": 3166.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972226,
+      "seat": 1,
+      "status": "completed",
+      "reward": 89209.0,
+      "opponent_reward": 86043.0,
+      "margin": 3166.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972227,
+      "seat": 0,
+      "status": "completed",
+      "reward": 88912.0,
+      "opponent_reward": 86141.0,
+      "margin": 2771.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972227,
+      "seat": 1,
+      "status": "completed",
+      "reward": 88912.0,
+      "opponent_reward": 86141.0,
+      "margin": 2771.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972228,
+      "seat": 0,
+      "status": "completed",
+      "reward": 111952.0,
+      "opponent_reward": 111051.0,
+      "margin": 901.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972228,
+      "seat": 1,
+      "status": "completed",
+      "reward": 111952.0,
+      "opponent_reward": 111051.0,
+      "margin": 901.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972229,
+      "seat": 0,
+      "status": "completed",
+      "reward": 70468.0,
+      "opponent_reward": 65759.0,
+      "margin": 4709.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972229,
+      "seat": 1,
+      "status": "completed",
+      "reward": 70468.0,
+      "opponent_reward": 65759.0,
+      "margin": 4709.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972230,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92384.0,
+      "opponent_reward": 89545.0,
+      "margin": 2839.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972230,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92943.0,
+      "opponent_reward": 88981.0,
+      "margin": 3962.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972231,
+      "seat": 0,
+      "status": "completed",
+      "reward": 103998.0,
+      "opponent_reward": 103433.0,
+      "margin": 565.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972231,
+      "seat": 1,
+      "status": "completed",
+      "reward": 103998.0,
+      "opponent_reward": 103433.0,
+      "margin": 565.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972232,
+      "seat": 0,
+      "status": "completed",
+      "reward": 107076.0,
+      "opponent_reward": 105727.0,
+      "margin": 1349.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972232,
+      "seat": 1,
+      "status": "completed",
+      "reward": 107076.0,
+      "opponent_reward": 105727.0,
+      "margin": 1349.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972233,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79692.0,
+      "opponent_reward": 77640.0,
+      "margin": 2052.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972233,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79692.0,
+      "opponent_reward": 77640.0,
+      "margin": 2052.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972234,
+      "seat": 0,
+      "status": "completed",
+      "reward": 106218.0,
+      "opponent_reward": 103728.0,
+      "margin": 2490.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972234,
+      "seat": 1,
+      "status": "completed",
+      "reward": 106218.0,
+      "opponent_reward": 103728.0,
+      "margin": 2490.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972235,
+      "seat": 0,
+      "status": "completed",
+      "reward": 78028.0,
+      "opponent_reward": 77024.0,
+      "margin": 1004.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972235,
+      "seat": 1,
+      "status": "completed",
+      "reward": 78028.0,
+      "opponent_reward": 77024.0,
+      "margin": 1004.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972236,
+      "seat": 0,
+      "status": "completed",
+      "reward": 105377.0,
+      "opponent_reward": 105457.0,
+      "margin": -80.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972236,
+      "seat": 1,
+      "status": "completed",
+      "reward": 105377.0,
+      "opponent_reward": 105457.0,
+      "margin": -80.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972237,
+      "seat": 0,
+      "status": "completed",
+      "reward": 87585.0,
+      "opponent_reward": 86713.0,
+      "margin": 872.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972237,
+      "seat": 1,
+      "status": "completed",
+      "reward": 87585.0,
+      "opponent_reward": 86713.0,
+      "margin": 872.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972238,
+      "seat": 0,
+      "status": "completed",
+      "reward": 111827.0,
+      "opponent_reward": 108440.0,
+      "margin": 3387.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972238,
+      "seat": 1,
+      "status": "completed",
+      "reward": 110802.0,
+      "opponent_reward": 109465.0,
+      "margin": 1337.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972239,
+      "seat": 0,
+      "status": "completed",
+      "reward": 99000.0,
+      "opponent_reward": 98494.0,
+      "margin": 506.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972239,
+      "seat": 1,
+      "status": "completed",
+      "reward": 99000.0,
+      "opponent_reward": 98494.0,
+      "margin": 506.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972240,
+      "seat": 0,
+      "status": "completed",
+      "reward": 159864.0,
+      "opponent_reward": 159539.0,
+      "margin": 325.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972240,
+      "seat": 1,
+      "status": "completed",
+      "reward": 159743.0,
+      "opponent_reward": 159660.0,
+      "margin": 83.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972241,
+      "seat": 0,
+      "status": "completed",
+      "reward": 73465.0,
+      "opponent_reward": 73222.0,
+      "margin": 243.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972241,
+      "seat": 1,
+      "status": "completed",
+      "reward": 75399.0,
+      "opponent_reward": 73884.0,
+      "margin": 1515.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972242,
+      "seat": 0,
+      "status": "completed",
+      "reward": 92465.0,
+      "opponent_reward": 91603.0,
+      "margin": 862.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972242,
+      "seat": 1,
+      "status": "completed",
+      "reward": 92465.0,
+      "opponent_reward": 91603.0,
+      "margin": 862.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972243,
+      "seat": 0,
+      "status": "completed",
+      "reward": 80034.0,
+      "opponent_reward": 74527.0,
+      "margin": 5507.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972243,
+      "seat": 1,
+      "status": "completed",
+      "reward": 80034.0,
+      "opponent_reward": 74527.0,
+      "margin": 5507.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972244,
+      "seat": 0,
+      "status": "completed",
+      "reward": 129668.0,
+      "opponent_reward": 127852.0,
+      "margin": 1816.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972244,
+      "seat": 1,
+      "status": "completed",
+      "reward": 129668.0,
+      "opponent_reward": 127852.0,
+      "margin": 1816.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972245,
+      "seat": 0,
+      "status": "completed",
+      "reward": 108552.0,
+      "opponent_reward": 108175.0,
+      "margin": 377.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972245,
+      "seat": 1,
+      "status": "completed",
+      "reward": 108552.0,
+      "opponent_reward": 108175.0,
+      "margin": 377.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972246,
+      "seat": 0,
+      "status": "completed",
+      "reward": 118754.0,
+      "opponent_reward": 118389.0,
+      "margin": 365.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972246,
+      "seat": 1,
+      "status": "completed",
+      "reward": 118754.0,
+      "opponent_reward": 118389.0,
+      "margin": 365.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972247,
+      "seat": 0,
+      "status": "completed",
+      "reward": 111497.0,
+      "opponent_reward": 110013.0,
+      "margin": 1484.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972247,
+      "seat": 1,
+      "status": "completed",
+      "reward": 111497.0,
+      "opponent_reward": 110013.0,
+      "margin": 1484.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972248,
+      "seat": 0,
+      "status": "completed",
+      "reward": 138932.0,
+      "opponent_reward": 138378.0,
+      "margin": 554.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972248,
+      "seat": 1,
+      "status": "completed",
+      "reward": 138932.0,
+      "opponent_reward": 138378.0,
+      "margin": 554.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972249,
+      "seat": 0,
+      "status": "completed",
+      "reward": 113210.0,
+      "opponent_reward": 112610.0,
+      "margin": 600.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972249,
+      "seat": 1,
+      "status": "completed",
+      "reward": 113210.0,
+      "opponent_reward": 112610.0,
+      "margin": 600.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972250,
+      "seat": 0,
+      "status": "completed",
+      "reward": 130311.0,
+      "opponent_reward": 129649.0,
+      "margin": 662.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972250,
+      "seat": 1,
+      "status": "completed",
+      "reward": 130311.0,
+      "opponent_reward": 129649.0,
+      "margin": 662.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972251,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83879.0,
+      "opponent_reward": 81395.0,
+      "margin": 2484.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972251,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83879.0,
+      "opponent_reward": 81395.0,
+      "margin": 2484.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972252,
+      "seat": 0,
+      "status": "completed",
+      "reward": 124844.0,
+      "opponent_reward": 126599.0,
+      "margin": -1755.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972252,
+      "seat": 1,
+      "status": "completed",
+      "reward": 124844.0,
+      "opponent_reward": 126599.0,
+      "margin": -1755.0,
+      "win": false,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972253,
+      "seat": 0,
+      "status": "completed",
+      "reward": 67717.0,
+      "opponent_reward": 67074.0,
+      "margin": 643.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972253,
+      "seat": 1,
+      "status": "completed",
+      "reward": 68080.0,
+      "opponent_reward": 66854.0,
+      "margin": 1226.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972254,
+      "seat": 0,
+      "status": "completed",
+      "reward": 86365.0,
+      "opponent_reward": 84245.0,
+      "margin": 2120.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972254,
+      "seat": 1,
+      "status": "completed",
+      "reward": 86365.0,
+      "opponent_reward": 84245.0,
+      "margin": 2120.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972255,
+      "seat": 0,
+      "status": "completed",
+      "reward": 131933.0,
+      "opponent_reward": 130383.0,
+      "margin": 1550.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    },
+    {
+      "seed": 972255,
+      "seat": 1,
+      "status": "completed",
+      "reward": 131933.0,
+      "opponent_reward": 130383.0,
+      "margin": 1550.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0
+      }
+    }
+  ]
+}

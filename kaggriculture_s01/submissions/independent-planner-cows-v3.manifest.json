@@ -1,0 +1,30 @@
+{
+  "policy": "planner_cows8",
+  "submission_status": "not_submitted",
+  "source_sha256": "51fa53e3b92fa054b54cc9dc5e16a4c50c247614ce9b4217b252df47aece2a63",
+  "zip_sha256": "2cf5339aac2018b608248300a2f96833ba0f08e7345fc139e7026a80217e5534",
+  "verification": {
+    "seed": 135001,
+    "bundle_checks": [
+      {
+        "seat": 0,
+        "actions_equal": 719,
+        "rewards": [
+          30716.0,
+          106861.0
+        ],
+        "status": "completed"
+      },
+      {
+        "seat": 1,
+        "actions_equal": 719,
+        "rewards": [
+          106861.0,
+          30716.0
+        ],
+        "status": "completed"
+      }
+    ],
+    "official_fast_all_steps_equal": true
+  }
+}

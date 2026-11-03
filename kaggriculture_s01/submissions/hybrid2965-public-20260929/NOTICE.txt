@@ -1,0 +1,4 @@
+Based on the public Kaggle notebook haideptry/the-2965-master-hybrid-engine.
+Source: https://www.kaggle.com/code/haideptry/the-2965-master-hybrid-engine
+Extracted main.py SHA-256: 63dde9e4f73eb6c4c60cd453d085c17f4fec7110a6d52a2946b20e7ddb9f32bc
+The source was extracted without executing notebook cells and retains its upstream notices.

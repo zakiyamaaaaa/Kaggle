@@ -1,0 +1,27 @@
+{
+  "agents": [
+    "candidate",
+    "economy_mix50_waste_shield"
+  ],
+  "completed_games": 16,
+  "executed_games": 16,
+  "failed_games": 0,
+  "games_per_second": 2.14072853975691,
+  "reused_games": 0,
+  "runner": "fast",
+  "scheduled_games": 16,
+  "seed_end": 130008,
+  "seed_start": 130001,
+  "swap_seats": true,
+  "system": {
+    "cpu": "arm",
+    "cpu_count": 14,
+    "kaggle_environments_version": "1.32.7",
+    "os": "macOS-26.6.2-arm64-arm-64bit",
+    "python_implementation": "CPython",
+    "python_version": "3.12.13"
+  },
+  "total_seconds": 7.47409104090184,
+  "trajectory": false,
+  "worker_count": 4
+}

@@ -1,0 +1,352 @@
+{
+  "policy": "omw_net_stock_sellnow_v2",
+  "selection_metric": "win + 0.5 * draw",
+  "stages": [
+    {
+      "stage": "validation",
+      "seed_count": 128,
+      "opponents": [
+        {
+          "opponent": "omw",
+          "candidate": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 179,
+            "draws": 1,
+            "losses": 76,
+            "score": 0.701171875,
+            "mean_reward": 96460.203125,
+            "mean_margin": 301.65234375
+          },
+          "control": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 11,
+            "draws": 234,
+            "losses": 11,
+            "score": 0.5,
+            "mean_reward": 96726.02734375,
+            "mean_margin": 0.0
+          },
+          "score_delta": 0.201171875
+        },
+        {
+          "opponent": "peak",
+          "candidate": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 241,
+            "draws": 0,
+            "losses": 15,
+            "score": 0.94140625,
+            "mean_reward": 96956.40625,
+            "mean_margin": 1420.37109375
+          },
+          "control": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 228,
+            "draws": 0,
+            "losses": 28,
+            "score": 0.890625,
+            "mean_reward": 96970.92578125,
+            "mean_margin": 1266.36328125
+          },
+          "score_delta": 0.05078125
+        },
+        {
+          "opponent": "triad",
+          "candidate": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 242,
+            "draws": 0,
+            "losses": 14,
+            "score": 0.9453125,
+            "mean_reward": 97173.68359375,
+            "mean_margin": 1523.08984375
+          },
+          "control": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 231,
+            "draws": 0,
+            "losses": 25,
+            "score": 0.90234375,
+            "mean_reward": 97185.65625,
+            "mean_margin": 1361.640625
+          },
+          "score_delta": 0.04296875
+        },
+        {
+          "opponent": "salem",
+          "candidate": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 256,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 112118.97265625,
+            "mean_margin": 32152.328125
+          },
+          "control": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 256,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 112200.16796875,
+            "mean_margin": 32072.40625
+          },
+          "score_delta": 0.0
+        },
+        {
+          "opponent": "early_milk",
+          "candidate": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 256,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 112090.51953125,
+            "mean_margin": 32446.55859375
+          },
+          "control": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 256,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 112171.64453125,
+            "mean_margin": 32366.92578125
+          },
+          "score_delta": 0.0
+        },
+        {
+          "opponent": "baseline",
+          "candidate": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 256,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 170214.25,
+            "mean_margin": 166658.40625
+          },
+          "control": {
+            "games": 256,
+            "completed": 256,
+            "errors": 0,
+            "wins": 256,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 170214.25,
+            "mean_margin": 166658.40625
+          },
+          "score_delta": 0.0
+        }
+      ],
+      "aggregate": {
+        "candidate_score": 0.9313151041666666,
+        "control_score": 0.8821614583333334,
+        "paired_score_delta": 0.04915364583333326,
+        "bootstrap_95_ci": [
+          0.025065104166666664,
+          0.07389322916666667
+        ],
+        "games_per_policy": 1536,
+        "errors_per_policy": 0
+      }
+    },
+    {
+      "stage": "holdout",
+      "seed_count": 256,
+      "opponents": [
+        {
+          "opponent": "omw",
+          "candidate": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 366,
+            "draws": 4,
+            "losses": 142,
+            "score": 0.71875,
+            "mean_reward": 100314.248046875,
+            "mean_margin": 338.322265625
+          },
+          "control": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 25,
+            "draws": 462,
+            "losses": 25,
+            "score": 0.5,
+            "mean_reward": 100507.4375,
+            "mean_margin": 0.0
+          },
+          "score_delta": 0.21875
+        },
+        {
+          "opponent": "peak",
+          "candidate": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 478,
+            "draws": 0,
+            "losses": 34,
+            "score": 0.93359375,
+            "mean_reward": 100579.888671875,
+            "mean_margin": 1337.251953125
+          },
+          "control": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 467,
+            "draws": 0,
+            "losses": 45,
+            "score": 0.912109375,
+            "mean_reward": 100619.521484375,
+            "mean_margin": 1185.337890625
+          },
+          "score_delta": 0.021484375
+        },
+        {
+          "opponent": "triad",
+          "candidate": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 483,
+            "draws": 0,
+            "losses": 29,
+            "score": 0.943359375,
+            "mean_reward": 100540.333984375,
+            "mean_margin": 1385.1875
+          },
+          "control": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 472,
+            "draws": 0,
+            "losses": 40,
+            "score": 0.921875,
+            "mean_reward": 100625.1953125,
+            "mean_margin": 1238.8671875
+          },
+          "score_delta": 0.021484375
+        },
+        {
+          "opponent": "salem",
+          "candidate": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 512,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 116036.703125,
+            "mean_margin": 32512.27734375
+          },
+          "control": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 512,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 116103.138671875,
+            "mean_margin": 32347.97265625
+          },
+          "score_delta": 0.0
+        },
+        {
+          "opponent": "early_milk",
+          "candidate": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 512,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 116019.326171875,
+            "mean_margin": 32820.94921875
+          },
+          "control": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 512,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 116079.49609375,
+            "mean_margin": 32639.015625
+          },
+          "score_delta": 0.0
+        },
+        {
+          "opponent": "baseline",
+          "candidate": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 512,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 171342.41015625,
+            "mean_margin": 167775.0625
+          },
+          "control": {
+            "games": 512,
+            "completed": 512,
+            "errors": 0,
+            "wins": 512,
+            "draws": 0,
+            "losses": 0,
+            "score": 1.0,
+            "mean_reward": 171342.41015625,
+            "mean_margin": 167775.0625
+          },
+          "score_delta": 0.0
+        }
+      ],
+      "aggregate": {
+        "candidate_score": 0.9326171875,
+        "control_score": 0.8889973958333334,
+        "paired_score_delta": 0.04361979166666663,
+        "bootstrap_95_ci": [
+          0.027669270833333332,
+          0.05989583333333333
+        ],
+        "games_per_policy": 3072,
+        "errors_per_policy": 0
+      }
+    }
+  ]
+}

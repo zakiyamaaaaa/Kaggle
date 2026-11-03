@@ -1,0 +1,20 @@
+{
+  "experiment": "omw-forecast4-capped",
+  "status": "local_only",
+  "parent": "omw-forecast4",
+  "parent_source": "references/kaggle-scan-2026-09-21/extracted/one-more-wheat/main.py",
+  "parent_sha256": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+  "frozen_copy": "omw-original.py",
+  "candidate": "main.py",
+  "change": "Cap only distant forecast4 SELL quantity at predicted next-four quantity",
+  "parameters": {
+    "lookahead_turns": 4,
+    "immediate_lookahead_turns": 2,
+    "history_turns": 240,
+    "min_matching_events": 3,
+    "min_precision": 0.7,
+    "match_tolerance_turns": 1,
+    "distant_quantity_cap": "selected stream predicted SELL units over next four turns"
+  },
+  "submitted": false
+}

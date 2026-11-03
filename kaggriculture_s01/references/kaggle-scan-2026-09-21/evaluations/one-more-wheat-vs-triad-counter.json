@@ -1,0 +1,174 @@
+{
+  "summary": {
+    "agent": "one_more_wheat",
+    "opponent": "triad_counter",
+    "games": 16,
+    "completed": 16,
+    "wins": 16,
+    "win_rate": 1.0,
+    "mean_reward": 93877.4375,
+    "mean_margin": 1513.375
+  },
+  "games": [
+    {
+      "seed": 962300,
+      "seat": 0,
+      "status": "completed",
+      "reward": 93763.0,
+      "opponent_reward": 92870.0,
+      "margin": 893.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962300,
+      "seat": 1,
+      "status": "completed",
+      "reward": 93763.0,
+      "opponent_reward": 92870.0,
+      "margin": 893.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962301,
+      "seat": 0,
+      "status": "completed",
+      "reward": 83219.0,
+      "opponent_reward": 81682.0,
+      "margin": 1537.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962301,
+      "seat": 1,
+      "status": "completed",
+      "reward": 83219.0,
+      "opponent_reward": 81682.0,
+      "margin": 1537.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962302,
+      "seat": 0,
+      "status": "completed",
+      "reward": 76075.0,
+      "opponent_reward": 74597.0,
+      "margin": 1478.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962302,
+      "seat": 1,
+      "status": "completed",
+      "reward": 76075.0,
+      "opponent_reward": 74597.0,
+      "margin": 1478.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962303,
+      "seat": 0,
+      "status": "completed",
+      "reward": 69889.0,
+      "opponent_reward": 67127.0,
+      "margin": 2762.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962303,
+      "seat": 1,
+      "status": "completed",
+      "reward": 69889.0,
+      "opponent_reward": 67127.0,
+      "margin": 2762.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962304,
+      "seat": 0,
+      "status": "completed",
+      "reward": 140413.0,
+      "opponent_reward": 138298.0,
+      "margin": 2115.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962304,
+      "seat": 1,
+      "status": "completed",
+      "reward": 139482.0,
+      "opponent_reward": 139229.0,
+      "margin": 253.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962305,
+      "seat": 0,
+      "status": "completed",
+      "reward": 79014.0,
+      "opponent_reward": 78094.0,
+      "margin": 920.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962305,
+      "seat": 1,
+      "status": "completed",
+      "reward": 79014.0,
+      "opponent_reward": 78094.0,
+      "margin": 920.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962306,
+      "seat": 0,
+      "status": "completed",
+      "reward": 86344.0,
+      "opponent_reward": 84798.0,
+      "margin": 1546.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962306,
+      "seat": 1,
+      "status": "completed",
+      "reward": 86344.0,
+      "opponent_reward": 84798.0,
+      "margin": 1546.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962307,
+      "seat": 0,
+      "status": "completed",
+      "reward": 122768.0,
+      "opponent_reward": 120981.0,
+      "margin": 1787.0,
+      "win": true,
+      "error": ""
+    },
+    {
+      "seed": 962307,
+      "seat": 1,
+      "status": "completed",
+      "reward": 122768.0,
+      "opponent_reward": 120981.0,
+      "margin": 1787.0,
+      "win": true,
+      "error": ""
+    }
+  ]
+}

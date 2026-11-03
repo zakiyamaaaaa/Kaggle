@@ -1,0 +1,94 @@
+{
+  "summary": {
+    "agent": "omw_foi_eval",
+    "opponent": "public_salem",
+    "games": 4,
+    "completed": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "mean_reward": 94360.5,
+    "mean_margin": 30755.5
+  },
+  "games": [
+    {
+      "seed": 962100,
+      "seat": 0,
+      "status": "completed",
+      "reward": 103783.0,
+      "opponent_reward": 70034.0,
+      "margin": 33749.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0,
+        "foi_turns": 0,
+        "foi_moved_sells": 0,
+        "foi_blocked_candidates": 0,
+        "foi_errors": 0
+      }
+    },
+    {
+      "seed": 962100,
+      "seat": 1,
+      "status": "completed",
+      "reward": 103783.0,
+      "opponent_reward": 70034.0,
+      "margin": 33749.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0,
+        "foi_turns": 0,
+        "foi_moved_sells": 0,
+        "foi_blocked_candidates": 0,
+        "foi_errors": 0
+      }
+    },
+    {
+      "seed": 962101,
+      "seat": 0,
+      "status": "completed",
+      "reward": 84938.0,
+      "opponent_reward": 57176.0,
+      "margin": 27762.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0,
+        "foi_turns": 1,
+        "foi_moved_sells": 1,
+        "foi_blocked_candidates": 0,
+        "foi_errors": 0
+      }
+    },
+    {
+      "seed": 962101,
+      "seat": 1,
+      "status": "completed",
+      "reward": 84938.0,
+      "opponent_reward": 57176.0,
+      "margin": 27762.0,
+      "win": true,
+      "error": "",
+      "telemetry": {
+        "cl_harvested": 3,
+        "cl_pasture": 1,
+        "cl_delivered": 3,
+        "cl_errors": 0,
+        "foi_turns": 2,
+        "foi_moved_sells": 2,
+        "foi_blocked_candidates": 0,
+        "foi_errors": 0
+      }
+    }
+  ]
+}

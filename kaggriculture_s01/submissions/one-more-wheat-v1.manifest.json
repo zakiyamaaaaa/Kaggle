@@ -1,0 +1,47 @@
+{
+  "competition": "kaggriculture",
+  "policy": "one_more_wheat_public_exact",
+  "source": "dmitriigluzdov/kaggriculture-one-more-wheat",
+  "submission_id": 56409440,
+  "file": "one-more-wheat-v1.tar.gz",
+  "submitted_at_utc": "2026-09-21T00:38:26.483000",
+  "status": "complete",
+  "public_score_snapshot": 706.1,
+  "score_interpretation": "preliminary live rating after one public episode",
+  "episodes_snapshot": {
+    "validation": 1,
+    "public": 1,
+    "validation_episode_id": 111423009,
+    "public_episode_ids": [111424300]
+  },
+  "first_public_episode": {
+    "episode_id": 111424300,
+    "opponent": "Artem Zenkevich",
+    "seat": 0,
+    "rewards": [141033.0, 52356.0],
+    "margin": 88677.0,
+    "result": "win"
+  },
+  "score_history": [
+    {
+      "public_score": 600.0,
+      "public_episodes": 0,
+      "note": "validation-only initial display"
+    },
+    {
+      "public_score": 706.1,
+      "public_episodes": 1,
+      "note": "after first public episode"
+    }
+  ],
+  "archive_sha256": "4fd9470dbaff31a4fdc5f6c29fb2c9878f05772e6e4b7eb3029a7a0d033fcec0",
+  "main_sha256": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+  "main_matches_extracted_source": true,
+  "local_evidence": {
+    "vs_public_salem_games": 48,
+    "vs_public_salem_wins": 48,
+    "exploration_mean_margin": 34559.75,
+    "holdout_mean_margin": 33072.25
+  },
+  "recorded_at": "2026-09-21"
+}

@@ -1,0 +1,20 @@
+{
+  "completed_games": 16,
+  "cpu": "arm",
+  "cpu_count": 14,
+  "decisions_per_second": 3078.367640170437,
+  "failed_games": 0,
+  "games": 16,
+  "games_per_second": 2.14072853975691,
+  "kaggle_environments_version": "1.32.7",
+  "mean_game_seconds": 1.7626936640881468,
+  "os": "macOS-26.6.2-arm64-arm-64bit",
+  "p50_game_seconds": 1.7501265830360353,
+  "p95_game_seconds": 1.8398883752524853,
+  "python_implementation": "CPython",
+  "python_version": "3.12.13",
+  "seed_end": 130008,
+  "seed_start": 130001,
+  "total_seconds": 7.47409104090184,
+  "worker_count": 4
+}

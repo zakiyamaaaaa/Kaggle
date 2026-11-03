@@ -1,0 +1,17 @@
+{
+  "experiment": "omw-externality-gate",
+  "status": "local_only",
+  "parent": "omw-forecast4",
+  "parent_source": "references/kaggle-scan-2026-09-21/extracted/one-more-wheat/main.py",
+  "parent_sha256": "10f58185b916392ca39697c83f67f455df81a74dfb6eb1aacd60fd81d50c9970",
+  "parent_candidate_sha256": "b3ea2eaec6af852e181d2210bb773bef181ca486ff8b663927cbe2190eaa99c7",
+  "frozen_copy": "omw-original.py",
+  "candidate": "main.py",
+  "change": "Block distant forecast SELL when estimated rival price loss exceeds threshold",
+  "parameters": {
+    "lookahead_turns": 4,
+    "max_rival_loss_to_own_revenue_ratio": 0.5,
+    "immediate_branch": "unchanged"
+  },
+  "submitted": false
+}
